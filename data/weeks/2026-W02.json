@@ -1,0 +1,1183 @@
+{
+ "site_schema_version": 1,
+ "source": {
+  "scan_schema_version": 1,
+  "file": "reports/scan_wk02.json"
+ },
+ "id": "2026-W02",
+ "season": 2026,
+ "week": 2,
+ "generated_at": "2026-09-15T13:56:26-07:00",
+ "timezone": "America/Phoenix",
+ "odds_pull": {
+  "succeeded": true,
+  "fetched_at": "2026-09-15T10:52:00-07:00",
+  "age_hours": 3.1,
+  "stale": false,
+  "detail": "pull 2026-09-15_1052 America/Phoenix, 3.1 h old"
+ },
+ "books": [
+  "betmgm",
+  "draftkings",
+  "fanduel"
+ ],
+ "data_refresh": "ok 2026-09-15 13:56",
+ "rules": {
+  "lean_cap_points": 1.5,
+  "stale_after_hours": 36,
+  "shortlist": "(a) 2+ survivor angles the same way, or 1 survivor + 1 watch, with no survivor firing the other way harder; (b) the best available number has not moved past the lean since the opener. Numbers to shop, never stakes."
+ },
+ "counts": {
+  "games": 16,
+  "shortlist": 0,
+  "survivors": 4,
+  "watch": 8,
+  "expressions_tested": 32
+ },
+ "shortlist": [],
+ "shortlist_empty_message": "No game met both rules this week. That is a valid, honest output.",
+ "games": [
+  {
+   "game_id": "2026_02_DET_BUF",
+   "matchup": "DET@BUF",
+   "home": "BUF",
+   "away": "DET",
+   "kickoff_phoenix": "2026-09-17T17:15:00-07:00",
+   "kickoff_display": "Thu 09/17 17:15",
+   "spread": {
+    "lean_side": null,
+    "lean_points": 0.0,
+    "verdict": "no lean",
+    "survivors_same_way": 0,
+    "watch_same_way": 0,
+    "survivors_against": 0,
+    "rule_a": false,
+    "rule_b": null,
+    "number_to_shop": null,
+    "opener_consensus": null,
+    "moved_toward_lean": null,
+    "lean_remaining": null,
+    "angles_for": [],
+    "angles_against": []
+   },
+   "total": {
+    "lean_side": null,
+    "lean_points": 0.0,
+    "verdict": "no lean",
+    "survivors_same_way": 0,
+    "watch_same_way": 0,
+    "survivors_against": 0,
+    "rule_a": false,
+    "rule_b": null,
+    "number_to_shop": null,
+    "opener_consensus": null,
+    "moved_toward_lean": null,
+    "lean_remaining": null,
+    "angles_for": [],
+    "angles_against": []
+   },
+   "angles_fired": []
+  },
+  {
+   "game_id": "2026_02_CAR_ATL",
+   "matchup": "CAR@ATL",
+   "home": "ATL",
+   "away": "CAR",
+   "kickoff_phoenix": "2026-09-20T10:00:00-07:00",
+   "kickoff_display": "Sun 09/20 10:00",
+   "spread": {
+    "lean_side": null,
+    "lean_points": 0.0,
+    "verdict": "no lean",
+    "survivors_same_way": 0,
+    "watch_same_way": 0,
+    "survivors_against": 0,
+    "rule_a": false,
+    "rule_b": null,
+    "number_to_shop": null,
+    "opener_consensus": null,
+    "moved_toward_lean": null,
+    "lean_remaining": null,
+    "angles_for": [],
+    "angles_against": []
+   },
+   "total": {
+    "lean_side": null,
+    "lean_points": 0.0,
+    "verdict": "no lean",
+    "survivors_same_way": 0,
+    "watch_same_way": 0,
+    "survivors_against": 0,
+    "rule_a": false,
+    "rule_b": null,
+    "number_to_shop": null,
+    "opener_consensus": null,
+    "moved_toward_lean": null,
+    "lean_remaining": null,
+    "angles_for": [],
+    "angles_against": []
+   },
+   "angles_fired": []
+  },
+  {
+   "game_id": "2026_02_CIN_HOU",
+   "matchup": "CIN@HOU",
+   "home": "HOU",
+   "away": "CIN",
+   "kickoff_phoenix": "2026-09-20T10:00:00-07:00",
+   "kickoff_display": "Sun 09/20 10:00",
+   "spread": {
+    "lean_side": null,
+    "lean_points": 0.0,
+    "verdict": "angles cancel",
+    "survivors_same_way": 0,
+    "watch_same_way": 0,
+    "survivors_against": 0,
+    "rule_a": false,
+    "rule_b": null,
+    "number_to_shop": null,
+    "opener_consensus": null,
+    "moved_toward_lean": null,
+    "lean_remaining": null,
+    "angles_for": [],
+    "angles_against": []
+   },
+   "total": {
+    "lean_side": null,
+    "lean_points": 0.0,
+    "verdict": "no lean",
+    "survivors_same_way": 0,
+    "watch_same_way": 0,
+    "survivors_against": 0,
+    "rule_a": false,
+    "rule_b": null,
+    "number_to_shop": null,
+    "opener_consensus": null,
+    "moved_toward_lean": null,
+    "lean_remaining": null,
+    "angles_for": [],
+    "angles_against": []
+   },
+   "angles_fired": [
+    {
+     "name": "sandwich_game",
+     "expression": "sandwich_game",
+     "tier": "survivor",
+     "market": "spread",
+     "direction": "fade",
+     "direction_label": "fade HOU -> lean CIN",
+     "flagged_team": "HOU",
+     "lean_side": "CIN",
+     "points": 0.5,
+     "n": 5137,
+     "windows": {
+      "2020-2024": {
+       "pct": 53.23,
+       "n": 921
+      },
+      "2021-2025": {
+       "pct": 52.73,
+       "n": 922
+      }
+     },
+     "mechanism": "Attention: a division game next week pulls preparation focus forward."
+    },
+    {
+     "name": "sandwich_game",
+     "expression": "sandwich_game",
+     "tier": "survivor",
+     "market": "spread",
+     "direction": "fade",
+     "direction_label": "fade CIN -> lean HOU",
+     "flagged_team": "CIN",
+     "lean_side": "HOU",
+     "points": 0.5,
+     "n": 5137,
+     "windows": {
+      "2020-2024": {
+       "pct": 53.23,
+       "n": 921
+      },
+      "2021-2025": {
+       "pct": 52.73,
+       "n": 922
+      }
+     },
+     "mechanism": "Attention: a division game next week pulls preparation focus forward."
+    }
+   ]
+  },
+  {
+   "game_id": "2026_02_CLE_TB",
+   "matchup": "CLE@TB",
+   "home": "TB",
+   "away": "CLE",
+   "kickoff_phoenix": "2026-09-20T10:00:00-07:00",
+   "kickoff_display": "Sun 09/20 10:00",
+   "spread": {
+    "lean_side": null,
+    "lean_points": 0.0,
+    "verdict": "no lean",
+    "survivors_same_way": 0,
+    "watch_same_way": 0,
+    "survivors_against": 0,
+    "rule_a": false,
+    "rule_b": null,
+    "number_to_shop": null,
+    "opener_consensus": null,
+    "moved_toward_lean": null,
+    "lean_remaining": null,
+    "angles_for": [],
+    "angles_against": []
+   },
+   "total": {
+    "lean_side": null,
+    "lean_points": 0.0,
+    "verdict": "no lean",
+    "survivors_same_way": 0,
+    "watch_same_way": 0,
+    "survivors_against": 0,
+    "rule_a": false,
+    "rule_b": null,
+    "number_to_shop": null,
+    "opener_consensus": null,
+    "moved_toward_lean": null,
+    "lean_remaining": null,
+    "angles_for": [],
+    "angles_against": []
+   },
+   "angles_fired": []
+  },
+  {
+   "game_id": "2026_02_GB_NYJ",
+   "matchup": "GB@NYJ",
+   "home": "NYJ",
+   "away": "GB",
+   "kickoff_phoenix": "2026-09-20T10:00:00-07:00",
+   "kickoff_display": "Sun 09/20 10:00",
+   "spread": {
+    "lean_side": null,
+    "lean_points": 0.0,
+    "verdict": "no lean",
+    "survivors_same_way": 0,
+    "watch_same_way": 0,
+    "survivors_against": 0,
+    "rule_a": false,
+    "rule_b": null,
+    "number_to_shop": null,
+    "opener_consensus": null,
+    "moved_toward_lean": null,
+    "lean_remaining": null,
+    "angles_for": [],
+    "angles_against": []
+   },
+   "total": {
+    "lean_side": null,
+    "lean_points": 0.0,
+    "verdict": "no lean",
+    "survivors_same_way": 0,
+    "watch_same_way": 0,
+    "survivors_against": 0,
+    "rule_a": false,
+    "rule_b": null,
+    "number_to_shop": null,
+    "opener_consensus": null,
+    "moved_toward_lean": null,
+    "lean_remaining": null,
+    "angles_for": [],
+    "angles_against": []
+   },
+   "angles_fired": []
+  },
+  {
+   "game_id": "2026_02_MIN_CHI",
+   "matchup": "MIN@CHI",
+   "home": "CHI",
+   "away": "MIN",
+   "kickoff_phoenix": "2026-09-20T10:00:00-07:00",
+   "kickoff_display": "Sun 09/20 10:00",
+   "spread": {
+    "lean_side": null,
+    "lean_points": 0.0,
+    "verdict": "no lean",
+    "survivors_same_way": 0,
+    "watch_same_way": 0,
+    "survivors_against": 0,
+    "rule_a": false,
+    "rule_b": null,
+    "number_to_shop": null,
+    "opener_consensus": null,
+    "moved_toward_lean": null,
+    "lean_remaining": null,
+    "angles_for": [],
+    "angles_against": []
+   },
+   "total": {
+    "lean_side": null,
+    "lean_points": 0.0,
+    "verdict": "no lean",
+    "survivors_same_way": 0,
+    "watch_same_way": 0,
+    "survivors_against": 0,
+    "rule_a": false,
+    "rule_b": null,
+    "number_to_shop": null,
+    "opener_consensus": null,
+    "moved_toward_lean": null,
+    "lean_remaining": null,
+    "angles_for": [],
+    "angles_against": []
+   },
+   "angles_fired": []
+  },
+  {
+   "game_id": "2026_02_NO_BAL",
+   "matchup": "NO@BAL",
+   "home": "BAL",
+   "away": "NO",
+   "kickoff_phoenix": "2026-09-20T10:00:00-07:00",
+   "kickoff_display": "Sun 09/20 10:00",
+   "spread": {
+    "lean_side": null,
+    "lean_points": 0.0,
+    "verdict": "no lean",
+    "survivors_same_way": 0,
+    "watch_same_way": 0,
+    "survivors_against": 0,
+    "rule_a": false,
+    "rule_b": null,
+    "number_to_shop": null,
+    "opener_consensus": null,
+    "moved_toward_lean": null,
+    "lean_remaining": null,
+    "angles_for": [],
+    "angles_against": []
+   },
+   "total": {
+    "lean_side": null,
+    "lean_points": 0.0,
+    "verdict": "no lean",
+    "survivors_same_way": 0,
+    "watch_same_way": 0,
+    "survivors_against": 0,
+    "rule_a": false,
+    "rule_b": null,
+    "number_to_shop": null,
+    "opener_consensus": null,
+    "moved_toward_lean": null,
+    "lean_remaining": null,
+    "angles_for": [],
+    "angles_against": []
+   },
+   "angles_fired": []
+  },
+  {
+   "game_id": "2026_02_PHI_TEN",
+   "matchup": "PHI@TEN",
+   "home": "TEN",
+   "away": "PHI",
+   "kickoff_phoenix": "2026-09-20T10:00:00-07:00",
+   "kickoff_display": "Sun 09/20 10:00",
+   "spread": {
+    "lean_side": null,
+    "lean_points": 0.0,
+    "verdict": "no lean",
+    "survivors_same_way": 0,
+    "watch_same_way": 0,
+    "survivors_against": 0,
+    "rule_a": false,
+    "rule_b": null,
+    "number_to_shop": null,
+    "opener_consensus": null,
+    "moved_toward_lean": null,
+    "lean_remaining": null,
+    "angles_for": [],
+    "angles_against": []
+   },
+   "total": {
+    "lean_side": null,
+    "lean_points": 0.0,
+    "verdict": "no lean",
+    "survivors_same_way": 0,
+    "watch_same_way": 0,
+    "survivors_against": 0,
+    "rule_a": false,
+    "rule_b": null,
+    "number_to_shop": null,
+    "opener_consensus": null,
+    "moved_toward_lean": null,
+    "lean_remaining": null,
+    "angles_for": [],
+    "angles_against": []
+   },
+   "angles_fired": []
+  },
+  {
+   "game_id": "2026_02_PIT_NE",
+   "matchup": "PIT@NE",
+   "home": "NE",
+   "away": "PIT",
+   "kickoff_phoenix": "2026-09-20T10:00:00-07:00",
+   "kickoff_display": "Sun 09/20 10:00",
+   "spread": {
+    "lean_side": "NE",
+    "lean_points": 0.5,
+    "verdict": "not enough angles (1 survivor, 0 watch same way)",
+    "survivors_same_way": 1,
+    "watch_same_way": 0,
+    "survivors_against": 0,
+    "rule_a": false,
+    "rule_b": true,
+    "number_to_shop": {
+     "line": -4.5,
+     "price": -120,
+     "book": "fanduel",
+     "reachable_by": [
+      "Q",
+      "Mike",
+      "Marques"
+     ],
+     "consensus": -5.5,
+     "books_quoting": 3
+    },
+    "opener_consensus": -5.5,
+    "moved_toward_lean": -1.0,
+    "lean_remaining": 1.5,
+    "angles_for": [
+     {
+      "name": "sandwich_game",
+      "expression": "sandwich_game",
+      "tier": "survivor",
+      "market": "spread",
+      "direction": "fade",
+      "direction_label": "fade PIT -> lean NE",
+      "flagged_team": "PIT",
+      "lean_side": "NE",
+      "points": 0.5,
+      "n": 5137,
+      "windows": {
+       "2020-2024": {
+        "pct": 53.23,
+        "n": 921
+       },
+       "2021-2025": {
+        "pct": 52.73,
+        "n": 922
+       }
+      },
+      "mechanism": "Attention: a division game next week pulls preparation focus forward."
+     }
+    ],
+    "angles_against": []
+   },
+   "total": {
+    "lean_side": null,
+    "lean_points": 0.0,
+    "verdict": "no lean",
+    "survivors_same_way": 0,
+    "watch_same_way": 0,
+    "survivors_against": 0,
+    "rule_a": false,
+    "rule_b": null,
+    "number_to_shop": null,
+    "opener_consensus": null,
+    "moved_toward_lean": null,
+    "lean_remaining": null,
+    "angles_for": [],
+    "angles_against": []
+   },
+   "angles_fired": [
+    {
+     "name": "sandwich_game",
+     "expression": "sandwich_game",
+     "tier": "survivor",
+     "market": "spread",
+     "direction": "fade",
+     "direction_label": "fade PIT -> lean NE",
+     "flagged_team": "PIT",
+     "lean_side": "NE",
+     "points": 0.5,
+     "n": 5137,
+     "windows": {
+      "2020-2024": {
+       "pct": 53.23,
+       "n": 921
+      },
+      "2021-2025": {
+       "pct": 52.73,
+       "n": 922
+      }
+     },
+     "mechanism": "Attention: a division game next week pulls preparation focus forward."
+    }
+   ]
+  },
+  {
+   "game_id": "2026_02_JAX_DEN",
+   "matchup": "JAX@DEN",
+   "home": "DEN",
+   "away": "JAX",
+   "kickoff_phoenix": "2026-09-20T13:05:00-07:00",
+   "kickoff_display": "Sun 09/20 13:05",
+   "spread": {
+    "lean_side": null,
+    "lean_points": 0.0,
+    "verdict": "no lean",
+    "survivors_same_way": 0,
+    "watch_same_way": 0,
+    "survivors_against": 0,
+    "rule_a": false,
+    "rule_b": null,
+    "number_to_shop": null,
+    "opener_consensus": null,
+    "moved_toward_lean": null,
+    "lean_remaining": null,
+    "angles_for": [],
+    "angles_against": []
+   },
+   "total": {
+    "lean_side": null,
+    "lean_points": 0.0,
+    "verdict": "no lean",
+    "survivors_same_way": 0,
+    "watch_same_way": 0,
+    "survivors_against": 0,
+    "rule_a": false,
+    "rule_b": null,
+    "number_to_shop": null,
+    "opener_consensus": null,
+    "moved_toward_lean": null,
+    "lean_remaining": null,
+    "angles_for": [],
+    "angles_against": []
+   },
+   "angles_fired": []
+  },
+  {
+   "game_id": "2026_02_LV_LAC",
+   "matchup": "LV@LAC",
+   "home": "LAC",
+   "away": "LV",
+   "kickoff_phoenix": "2026-09-20T13:05:00-07:00",
+   "kickoff_display": "Sun 09/20 13:05",
+   "spread": {
+    "lean_side": null,
+    "lean_points": 0.0,
+    "verdict": "no lean",
+    "survivors_same_way": 0,
+    "watch_same_way": 0,
+    "survivors_against": 0,
+    "rule_a": false,
+    "rule_b": null,
+    "number_to_shop": null,
+    "opener_consensus": null,
+    "moved_toward_lean": null,
+    "lean_remaining": null,
+    "angles_for": [],
+    "angles_against": []
+   },
+   "total": {
+    "lean_side": null,
+    "lean_points": 0.0,
+    "verdict": "no lean",
+    "survivors_same_way": 0,
+    "watch_same_way": 0,
+    "survivors_against": 0,
+    "rule_a": false,
+    "rule_b": null,
+    "number_to_shop": null,
+    "opener_consensus": null,
+    "moved_toward_lean": null,
+    "lean_remaining": null,
+    "angles_for": [],
+    "angles_against": []
+   },
+   "angles_fired": []
+  },
+  {
+   "game_id": "2026_02_MIA_SF",
+   "matchup": "MIA@SF",
+   "home": "SF",
+   "away": "MIA",
+   "kickoff_phoenix": "2026-09-20T13:25:00-07:00",
+   "kickoff_display": "Sun 09/20 13:25",
+   "spread": {
+    "lean_side": null,
+    "lean_points": 0.0,
+    "verdict": "angles cancel",
+    "survivors_same_way": 0,
+    "watch_same_way": 0,
+    "survivors_against": 0,
+    "rule_a": false,
+    "rule_b": null,
+    "number_to_shop": null,
+    "opener_consensus": null,
+    "moved_toward_lean": null,
+    "lean_remaining": null,
+    "angles_for": [],
+    "angles_against": []
+   },
+   "total": {
+    "lean_side": null,
+    "lean_points": 0.0,
+    "verdict": "no lean",
+    "survivors_same_way": 0,
+    "watch_same_way": 0,
+    "survivors_against": 0,
+    "rule_a": false,
+    "rule_b": null,
+    "number_to_shop": null,
+    "opener_consensus": null,
+    "moved_toward_lean": null,
+    "lean_remaining": null,
+    "angles_for": [],
+    "angles_against": []
+   },
+   "angles_fired": [
+    {
+     "name": "off_thursday",
+     "expression": "off_thursday",
+     "tier": "survivor",
+     "market": "spread",
+     "direction": "bet",
+     "direction_label": "bet SF -> lean SF",
+     "flagged_team": "SF",
+     "lean_side": "SF",
+     "points": 0.5,
+     "n": 632,
+     "windows": {
+      "2020-2024": {
+       "pct": 54.49,
+       "n": 170
+      },
+      "2021-2025": {
+       "pct": 54.19,
+       "n": 182
+      }
+     },
+     "mechanism": "Rest: mini-bye of 9+ days after a Thursday game."
+    },
+    {
+     "name": "sandwich_game",
+     "expression": "sandwich_game",
+     "tier": "survivor",
+     "market": "spread",
+     "direction": "fade",
+     "direction_label": "fade SF -> lean MIA",
+     "flagged_team": "SF",
+     "lean_side": "MIA",
+     "points": 0.5,
+     "n": 5137,
+     "windows": {
+      "2020-2024": {
+       "pct": 53.23,
+       "n": 921
+      },
+      "2021-2025": {
+       "pct": 52.73,
+       "n": 922
+      }
+     },
+     "mechanism": "Attention: a division game next week pulls preparation focus forward."
+    },
+    {
+     "name": "off_international",
+     "expression": "off_international",
+     "tier": "watch",
+     "market": "spread",
+     "direction": "fade",
+     "direction_label": "fade SF -> lean MIA",
+     "flagged_team": "SF",
+     "lean_side": "MIA",
+     "points": 0.0,
+     "n": 98,
+     "windows": {
+      "2020-2024": {
+       "pct": 52.94,
+       "n": 34
+      },
+      "2021-2025": {
+       "pct": 52.94,
+       "n": 34
+      }
+     },
+     "mechanism": "Travel: hangover after an international game (long haul plus time change)."
+    },
+    {
+     "name": "off_international_no_bye",
+     "expression": "off_international_no_bye",
+     "tier": "watch",
+     "market": "spread",
+     "direction": "fade",
+     "direction_label": "fade SF -> lean MIA",
+     "flagged_team": "SF",
+     "lean_side": "MIA",
+     "points": 0.0,
+     "n": 29,
+     "windows": {
+      "2020-2024": {
+       "pct": 36.84,
+       "n": 19
+      },
+      "2021-2025": {
+       "pct": 36.84,
+       "n": 19
+      }
+     },
+     "mechanism": "Travel: international hangover with no bye week to recover."
+    }
+   ]
+  },
+  {
+   "game_id": "2026_02_SEA_ARI",
+   "matchup": "SEA@ARI",
+   "home": "ARI",
+   "away": "SEA",
+   "kickoff_phoenix": "2026-09-20T13:25:00-07:00",
+   "kickoff_display": "Sun 09/20 13:25",
+   "spread": {
+    "lean_side": "SEA",
+    "lean_points": 0.5,
+    "verdict": "not enough angles (1 survivor, 0 watch same way)",
+    "survivors_same_way": 1,
+    "watch_same_way": 0,
+    "survivors_against": 0,
+    "rule_a": false,
+    "rule_b": true,
+    "number_to_shop": {
+     "line": -4.5,
+     "price": -105,
+     "book": "draftkings",
+     "reachable_by": [
+      "Q",
+      "Mike",
+      "Marques"
+     ],
+     "consensus": -4.5,
+     "books_quoting": 3
+    },
+    "opener_consensus": -4.5,
+    "moved_toward_lean": 0.0,
+    "lean_remaining": 0.5,
+    "angles_for": [
+     {
+      "name": "sandwich_game",
+      "expression": "sandwich_game",
+      "tier": "survivor",
+      "market": "spread",
+      "direction": "fade",
+      "direction_label": "fade ARI -> lean SEA",
+      "flagged_team": "ARI",
+      "lean_side": "SEA",
+      "points": 0.5,
+      "n": 5137,
+      "windows": {
+       "2020-2024": {
+        "pct": 53.23,
+        "n": 921
+       },
+       "2021-2025": {
+        "pct": 52.73,
+        "n": 922
+       }
+      },
+      "mechanism": "Attention: a division game next week pulls preparation focus forward."
+     }
+    ],
+    "angles_against": []
+   },
+   "total": {
+    "lean_side": null,
+    "lean_points": 0.0,
+    "verdict": "no lean",
+    "survivors_same_way": 0,
+    "watch_same_way": 0,
+    "survivors_against": 0,
+    "rule_a": false,
+    "rule_b": null,
+    "number_to_shop": null,
+    "opener_consensus": null,
+    "moved_toward_lean": null,
+    "lean_remaining": null,
+    "angles_for": [],
+    "angles_against": []
+   },
+   "angles_fired": [
+    {
+     "name": "sandwich_game",
+     "expression": "sandwich_game",
+     "tier": "survivor",
+     "market": "spread",
+     "direction": "fade",
+     "direction_label": "fade ARI -> lean SEA",
+     "flagged_team": "ARI",
+     "lean_side": "SEA",
+     "points": 0.5,
+     "n": 5137,
+     "windows": {
+      "2020-2024": {
+       "pct": 53.23,
+       "n": 921
+      },
+      "2021-2025": {
+       "pct": 52.73,
+       "n": 922
+      }
+     },
+     "mechanism": "Attention: a division game next week pulls preparation focus forward."
+    }
+   ]
+  },
+  {
+   "game_id": "2026_02_WAS_DAL",
+   "matchup": "WAS@DAL",
+   "home": "DAL",
+   "away": "WAS",
+   "kickoff_phoenix": "2026-09-20T13:25:00-07:00",
+   "kickoff_display": "Sun 09/20 13:25",
+   "spread": {
+    "lean_side": null,
+    "lean_points": 0.0,
+    "verdict": "no lean",
+    "survivors_same_way": 0,
+    "watch_same_way": 0,
+    "survivors_against": 0,
+    "rule_a": false,
+    "rule_b": null,
+    "number_to_shop": null,
+    "opener_consensus": null,
+    "moved_toward_lean": null,
+    "lean_remaining": null,
+    "angles_for": [],
+    "angles_against": []
+   },
+   "total": {
+    "lean_side": null,
+    "lean_points": 0.0,
+    "verdict": "no lean",
+    "survivors_same_way": 0,
+    "watch_same_way": 0,
+    "survivors_against": 0,
+    "rule_a": false,
+    "rule_b": null,
+    "number_to_shop": null,
+    "opener_consensus": null,
+    "moved_toward_lean": null,
+    "lean_remaining": null,
+    "angles_for": [],
+    "angles_against": []
+   },
+   "angles_fired": []
+  },
+  {
+   "game_id": "2026_02_IND_KC",
+   "matchup": "IND@KC",
+   "home": "KC",
+   "away": "IND",
+   "kickoff_phoenix": "2026-09-20T17:20:00-07:00",
+   "kickoff_display": "Sun 09/20 17:20",
+   "spread": {
+    "lean_side": "KC",
+    "lean_points": 0.5,
+    "verdict": "not enough angles (1 survivor, 0 watch same way)",
+    "survivors_same_way": 1,
+    "watch_same_way": 0,
+    "survivors_against": 0,
+    "rule_a": false,
+    "rule_b": true,
+    "number_to_shop": {
+     "line": -6.5,
+     "price": -115,
+     "book": "fanduel",
+     "reachable_by": [
+      "Q",
+      "Mike",
+      "Marques"
+     ],
+     "consensus": -6.5,
+     "books_quoting": 2
+    },
+    "opener_consensus": -6.5,
+    "moved_toward_lean": 0.0,
+    "lean_remaining": 0.5,
+    "angles_for": [
+     {
+      "name": "sandwich_game",
+      "expression": "sandwich_game",
+      "tier": "survivor",
+      "market": "spread",
+      "direction": "fade",
+      "direction_label": "fade IND -> lean KC",
+      "flagged_team": "IND",
+      "lean_side": "KC",
+      "points": 0.5,
+      "n": 5137,
+      "windows": {
+       "2020-2024": {
+        "pct": 53.23,
+        "n": 921
+       },
+       "2021-2025": {
+        "pct": 52.73,
+        "n": 922
+       }
+      },
+      "mechanism": "Attention: a division game next week pulls preparation focus forward."
+     }
+    ],
+    "angles_against": []
+   },
+   "total": {
+    "lean_side": null,
+    "lean_points": 0.0,
+    "verdict": "no lean",
+    "survivors_same_way": 0,
+    "watch_same_way": 0,
+    "survivors_against": 0,
+    "rule_a": false,
+    "rule_b": null,
+    "number_to_shop": null,
+    "opener_consensus": null,
+    "moved_toward_lean": null,
+    "lean_remaining": null,
+    "angles_for": [],
+    "angles_against": []
+   },
+   "angles_fired": [
+    {
+     "name": "sandwich_game",
+     "expression": "sandwich_game",
+     "tier": "survivor",
+     "market": "spread",
+     "direction": "fade",
+     "direction_label": "fade IND -> lean KC",
+     "flagged_team": "IND",
+     "lean_side": "KC",
+     "points": 0.5,
+     "n": 5137,
+     "windows": {
+      "2020-2024": {
+       "pct": 53.23,
+       "n": 921
+      },
+      "2021-2025": {
+       "pct": 52.73,
+       "n": 922
+      }
+     },
+     "mechanism": "Attention: a division game next week pulls preparation focus forward."
+    }
+   ]
+  },
+  {
+   "game_id": "2026_02_NYG_LA",
+   "matchup": "NYG@LA",
+   "home": "LA",
+   "away": "NYG",
+   "kickoff_phoenix": "2026-09-21T17:15:00-07:00",
+   "kickoff_display": "Mon 09/21 17:15",
+   "spread": {
+    "lean_side": "LA",
+    "lean_points": 0.5,
+    "verdict": "not enough angles (1 survivor, 0 watch same way)",
+    "survivors_same_way": 1,
+    "watch_same_way": 0,
+    "survivors_against": 0,
+    "rule_a": false,
+    "rule_b": true,
+    "number_to_shop": {
+     "line": -7.0,
+     "price": -115,
+     "book": "draftkings",
+     "reachable_by": [
+      "Q",
+      "Mike",
+      "Marques"
+     ],
+     "consensus": -7.0,
+     "books_quoting": 3
+    },
+    "opener_consensus": -7.0,
+    "moved_toward_lean": 0.0,
+    "lean_remaining": 0.5,
+    "angles_for": [
+     {
+      "name": "off_thursday",
+      "expression": "off_thursday",
+      "tier": "survivor",
+      "market": "spread",
+      "direction": "bet",
+      "direction_label": "bet LA -> lean LA",
+      "flagged_team": "LA",
+      "lean_side": "LA",
+      "points": 0.5,
+      "n": 632,
+      "windows": {
+       "2020-2024": {
+        "pct": 54.49,
+        "n": 170
+       },
+       "2021-2025": {
+        "pct": 54.19,
+        "n": 182
+       }
+      },
+      "mechanism": "Rest: mini-bye of 9+ days after a Thursday game."
+     }
+    ],
+    "angles_against": [
+     {
+      "name": "off_international",
+      "expression": "off_international",
+      "tier": "watch",
+      "market": "spread",
+      "direction": "fade",
+      "direction_label": "fade LA -> lean NYG",
+      "flagged_team": "LA",
+      "lean_side": "NYG",
+      "points": 0.0,
+      "n": 98,
+      "windows": {
+       "2020-2024": {
+        "pct": 52.94,
+        "n": 34
+       },
+       "2021-2025": {
+        "pct": 52.94,
+        "n": 34
+       }
+      },
+      "mechanism": "Travel: hangover after an international game (long haul plus time change)."
+     },
+     {
+      "name": "off_international_no_bye",
+      "expression": "off_international_no_bye",
+      "tier": "watch",
+      "market": "spread",
+      "direction": "fade",
+      "direction_label": "fade LA -> lean NYG",
+      "flagged_team": "LA",
+      "lean_side": "NYG",
+      "points": 0.0,
+      "n": 29,
+      "windows": {
+       "2020-2024": {
+        "pct": 36.84,
+        "n": 19
+       },
+       "2021-2025": {
+        "pct": 36.84,
+        "n": 19
+       }
+      },
+      "mechanism": "Travel: international hangover with no bye week to recover."
+     }
+    ]
+   },
+   "total": {
+    "lean_side": null,
+    "lean_points": 0.0,
+    "verdict": "no lean",
+    "survivors_same_way": 0,
+    "watch_same_way": 0,
+    "survivors_against": 0,
+    "rule_a": false,
+    "rule_b": null,
+    "number_to_shop": null,
+    "opener_consensus": null,
+    "moved_toward_lean": null,
+    "lean_remaining": null,
+    "angles_for": [],
+    "angles_against": []
+   },
+   "angles_fired": [
+    {
+     "name": "off_thursday",
+     "expression": "off_thursday",
+     "tier": "survivor",
+     "market": "spread",
+     "direction": "bet",
+     "direction_label": "bet LA -> lean LA",
+     "flagged_team": "LA",
+     "lean_side": "LA",
+     "points": 0.5,
+     "n": 632,
+     "windows": {
+      "2020-2024": {
+       "pct": 54.49,
+       "n": 170
+      },
+      "2021-2025": {
+       "pct": 54.19,
+       "n": 182
+      }
+     },
+     "mechanism": "Rest: mini-bye of 9+ days after a Thursday game."
+    },
+    {
+     "name": "off_international",
+     "expression": "off_international",
+     "tier": "watch",
+     "market": "spread",
+     "direction": "fade",
+     "direction_label": "fade LA -> lean NYG",
+     "flagged_team": "LA",
+     "lean_side": "NYG",
+     "points": 0.0,
+     "n": 98,
+     "windows": {
+      "2020-2024": {
+       "pct": 52.94,
+       "n": 34
+      },
+      "2021-2025": {
+       "pct": 52.94,
+       "n": 34
+      }
+     },
+     "mechanism": "Travel: hangover after an international game (long haul plus time change)."
+    },
+    {
+     "name": "off_international_no_bye",
+     "expression": "off_international_no_bye",
+     "tier": "watch",
+     "market": "spread",
+     "direction": "fade",
+     "direction_label": "fade LA -> lean NYG",
+     "flagged_team": "LA",
+     "lean_side": "NYG",
+     "points": 0.0,
+     "n": 29,
+     "windows": {
+      "2020-2024": {
+       "pct": 36.84,
+       "n": 19
+      },
+      "2021-2025": {
+       "pct": 36.84,
+       "n": 19
+      }
+     },
+     "mechanism": "Travel: international hangover with no bye week to recover."
+    }
+   ]
+  }
+ ],
+ "not_wired": [
+  {
+   "name": "high_wind",
+   "tier": "survivor",
+   "reason": "needs a forecast wind source; the schedule feed only records wind after the game"
+  },
+  {
+   "name": "dome_team_cold_wind",
+   "tier": "watch",
+   "reason": "same: wind is unknown before kickoff"
+  }
+ ],
+ "angle_board_generated": "2026-09-15 11:06 America/Phoenix",
+ "harness_log": {
+  "runs": 115,
+  "distinct_expressions": 32
+ }
+}

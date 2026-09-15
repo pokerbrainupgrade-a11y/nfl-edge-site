@@ -1,0 +1,574 @@
+{
+ "site_schema_version": 1,
+ "source": "config/angles.yaml",
+ "generated": "2026-09-15 11:06 America/Phoenix",
+ "sample": "REG 1999-2025 at closing lines",
+ "harness_log": {
+  "runs": 115,
+  "distinct_expressions": 32
+ },
+ "alive_rule": {
+  "min_recent_window_pct": 52.4,
+  "min_recent_n": 40
+ },
+ "stack_cap_points": 1.5,
+ "counts": {
+  "survivor": 4,
+  "watch": 8,
+  "dead": 20
+ },
+ "angles": [
+  {
+   "name": "off_thursday",
+   "status": "survivor",
+   "expression": "off_thursday",
+   "description": "Rest: mini-bye of 9+ days after a Thursday game.",
+   "direction": "bet",
+   "market": "spread",
+   "weight_points": 0.5,
+   "backtest": {
+    "n_full": 632,
+    "full_ats_pct": 51.53,
+    "windows": {
+     "2020-2024": {
+      "pct": 54.49,
+      "n": 170
+     },
+     "2021-2025": {
+      "pct": 54.19,
+      "n": 182
+     }
+    },
+    "recent_n_combined": 210,
+    "flipped_vs_full_sample": false
+   },
+   "not_wired_reason": null
+  },
+  {
+   "name": "sandwich_game",
+   "status": "survivor",
+   "expression": "sandwich_game",
+   "description": "Attention: a division game next week pulls preparation focus forward.",
+   "direction": "fade",
+   "market": "spread",
+   "weight_points": 0.5,
+   "backtest": {
+    "n_full": 5137,
+    "full_ats_pct": 49.61,
+    "windows": {
+     "2020-2024": {
+      "pct": 53.23,
+      "n": 921
+     },
+     "2021-2025": {
+      "pct": 52.73,
+      "n": 922
+     }
+    },
+    "recent_n_combined": 1100,
+    "flipped_vs_full_sample": false
+   },
+   "not_wired_reason": null
+  },
+  {
+   "name": "dome_team_outdoors_cold",
+   "status": "survivor",
+   "expression": "dome_team_outdoors_cold",
+   "description": "Environment: a team built for controlled conditions playing outdoors in November-January.",
+   "direction": "under",
+   "market": "total",
+   "weight_points": 0.5,
+   "backtest": {
+    "n_full": 779,
+    "full_ats_pct": 49.2,
+    "windows": {
+     "2020-2024": {
+      "pct": 54.35,
+      "n": 186
+     },
+     "2021-2025": {
+      "pct": 54.95,
+      "n": 184
+     }
+    },
+    "recent_n_combined": 219,
+    "flipped_vs_full_sample": false
+   },
+   "not_wired_reason": null
+  },
+  {
+   "name": "high_wind",
+   "status": "survivor",
+   "expression": "high_wind",
+   "description": "Environment: 15+ mph wind suppresses passing and kicking; bears on totals.",
+   "direction": "under",
+   "market": "total",
+   "weight_points": 0.75,
+   "backtest": {
+    "n_full": 1298,
+    "full_ats_pct": 50.0,
+    "windows": {
+     "2020-2024": {
+      "pct": 55.32,
+      "n": 95
+     },
+     "2021-2025": {
+      "pct": 60.92,
+      "n": 88
+     }
+    },
+    "recent_n_combined": 114,
+    "flipped_vs_full_sample": false
+   },
+   "not_wired_reason": "needs a forecast wind source; the schedule feed only records wind after the game"
+  },
+  {
+   "name": "long_road_trip",
+   "status": "watch",
+   "expression": "long_road_trip",
+   "description": "Travel: third or later consecutive game away from home; cumulative travel fatigue.",
+   "direction": "fade",
+   "market": "spread",
+   "weight_points": 0.0,
+   "backtest": {
+    "n_full": 142,
+    "full_ats_pct": 46.81,
+    "windows": {
+     "2020-2024": {
+      "pct": 53.57,
+      "n": 29
+     },
+     "2021-2025": {
+      "pct": 54.17,
+      "n": 25
+     }
+    },
+    "recent_n_combined": 35,
+    "flipped_vs_full_sample": false
+   },
+   "not_wired_reason": null
+  },
+  {
+   "name": "off_international",
+   "status": "watch",
+   "expression": "off_international",
+   "description": "Travel: hangover after an international game (long haul plus time change).",
+   "direction": "fade",
+   "market": "spread",
+   "weight_points": 0.0,
+   "backtest": {
+    "n_full": 98,
+    "full_ats_pct": 47.92,
+    "windows": {
+     "2020-2024": {
+      "pct": 52.94,
+      "n": 34
+     },
+     "2021-2025": {
+      "pct": 52.94,
+      "n": 34
+     }
+    },
+    "recent_n_combined": 34,
+    "flipped_vs_full_sample": false
+   },
+   "not_wired_reason": null
+  },
+  {
+   "name": "off_international_no_bye",
+   "status": "watch",
+   "expression": "off_international_no_bye",
+   "description": "Travel: international hangover with no bye week to recover.",
+   "direction": "fade",
+   "market": "spread",
+   "weight_points": 0.0,
+   "backtest": {
+    "n_full": 29,
+    "full_ats_pct": 55.17,
+    "windows": {
+     "2020-2024": {
+      "pct": 36.84,
+      "n": 19
+     },
+     "2021-2025": {
+      "pct": 36.84,
+      "n": 19
+     }
+    },
+    "recent_n_combined": 19,
+    "flipped_vs_full_sample": false
+   },
+   "not_wired_reason": null
+  },
+  {
+   "name": "dome_team_cold_wind",
+   "status": "watch",
+   "expression": "dome_team_outdoors_cold,high_wind",
+   "description": "Environment: dome team outdoors in cold AND wind.",
+   "direction": "under",
+   "market": "total",
+   "weight_points": 0.0,
+   "backtest": {
+    "n_full": 87,
+    "full_ats_pct": 50.0,
+    "windows": {
+     "2020-2024": {
+      "pct": 68.18,
+      "n": 22
+     },
+     "2021-2025": {
+      "pct": 73.68,
+      "n": 19
+     }
+    },
+    "recent_n_combined": 27,
+    "flipped_vs_full_sample": false
+   },
+   "not_wired_reason": "same: wind is unknown before kickoff"
+  },
+  {
+   "name": "early_body_clock_long_road_trip",
+   "status": "watch",
+   "expression": "early_body_clock,long_road_trip",
+   "description": "Travel: body-clock deficit stacked on consecutive road games.",
+   "direction": "fade",
+   "market": "spread",
+   "weight_points": 0.0,
+   "backtest": {
+    "n_full": 12,
+    "full_ats_pct": 58.33,
+    "windows": {
+     "2020-2024": {
+      "pct": 50.0,
+      "n": 2
+     },
+     "2021-2025": {
+      "pct": 0.0,
+      "n": 1
+     }
+    },
+    "recent_n_combined": 2,
+    "flipped_vs_full_sample": false
+   },
+   "not_wired_reason": null
+  },
+  {
+   "name": "mnf_road_eastbound",
+   "status": "watch",
+   "expression": "off_mnf_road,tz_crossed>=2",
+   "description": "Travel: Monday night road game that also crossed two or more zones eastbound; fatigue and circadian on the same trip (Q: test).",
+   "direction": "fade",
+   "market": "spread",
+   "weight_points": 0.0,
+   "backtest": {
+    "n_full": 14,
+    "full_ats_pct": 35.71,
+    "windows": {
+     "2020-2024": {
+      "pct": 50.0,
+      "n": 4
+     },
+     "2021-2025": {
+      "pct": 50.0,
+      "n": 4
+     }
+    },
+    "recent_n_combined": 4,
+    "flipped_vs_full_sample": false
+   },
+   "not_wired_reason": null
+  },
+  {
+   "name": "thursday_minibye_eastbound",
+   "status": "watch",
+   "expression": "off_thursday,tz_crossed>=2",
+   "description": "Rest vs travel: mini-bye team also travelling two or more zones east; does the off_thursday edge hold when the team travels? (Q: test)",
+   "direction": "bet",
+   "market": "spread",
+   "weight_points": 0.0,
+   "backtest": {
+    "n_full": 57,
+    "full_ats_pct": 44.64,
+    "windows": {
+     "2020-2024": {
+      "pct": 44.44,
+      "n": 18
+     },
+     "2021-2025": {
+      "pct": 47.37,
+      "n": 19
+     }
+    },
+    "recent_n_combined": 23,
+    "flipped_vs_full_sample": false
+   },
+   "not_wired_reason": null
+  },
+  {
+   "name": "division_stretch_veteran_coach",
+   "status": "watch",
+   "expression": "off_division_loss,sandwich_game,coach_tenure_seasons>=5",
+   "description": "Coaching: experienced staff (season 5+ with the team) handles a division stretch after a division loss (Q's hypothesis: they cover).",
+   "direction": "bet",
+   "market": "spread",
+   "weight_points": 0.0,
+   "backtest": {
+    "n_full": 159,
+    "full_ats_pct": 47.02,
+    "windows": {
+     "2020-2024": {
+      "pct": 66.67,
+      "n": 32
+     },
+     "2021-2025": {
+      "pct": 62.07,
+      "n": 34
+     }
+    },
+    "recent_n_combined": 39,
+    "flipped_vs_full_sample": false
+   },
+   "not_wired_reason": null
+  },
+  {
+   "name": "short_week",
+   "status": "dead",
+   "expression": "short_week",
+   "description": "under total 50.5% / 51.0% in 2020-2024 / 2021-2025 (n 113), need both >= 52.4%",
+   "direction": null,
+   "market": null,
+   "weight_points": 0.0,
+   "backtest": null,
+   "killed_by": "under total 50.5% / 51.0% in 2020-2024 / 2021-2025 (n 113), need both >= 52.4%",
+   "not_wired_reason": null
+  },
+  {
+   "name": "coach_revenge",
+   "status": "dead",
+   "expression": "coach_revenge",
+   "description": "bet spread 56.5% / 59.1% in 2020-2024 / 2021-2025 (n 32), need both >= 52.4% [folklore, small sample]",
+   "direction": null,
+   "market": null,
+   "weight_points": 0.0,
+   "backtest": null,
+   "killed_by": "bet spread 56.5% / 59.1% in 2020-2024 / 2021-2025 (n 32), need both >= 52.4% [folklore, small sample]",
+   "not_wired_reason": null
+  },
+  {
+   "name": "rest_advantage_3plus",
+   "status": "dead",
+   "expression": "rest_delta>=3",
+   "description": "bet spread 51.8% / 51.7% in 2020-2024 / 2021-2025 (n 347), need both >= 52.4%",
+   "direction": null,
+   "market": null,
+   "weight_points": 0.0,
+   "backtest": null,
+   "killed_by": "bet spread 51.8% / 51.7% in 2020-2024 / 2021-2025 (n 347), need both >= 52.4%",
+   "not_wired_reason": null
+  },
+  {
+   "name": "rest_disadvantage_3plus",
+   "status": "dead",
+   "expression": "rest_delta<=-3",
+   "description": "fade spread 51.8% / 51.7% in 2020-2024 / 2021-2025 (n 347), need both >= 52.4%",
+   "direction": null,
+   "market": null,
+   "weight_points": 0.0,
+   "backtest": null,
+   "killed_by": "fade spread 51.8% / 51.7% in 2020-2024 / 2021-2025 (n 347), need both >= 52.4%",
+   "not_wired_reason": null
+  },
+  {
+   "name": "mnf_road_short_week",
+   "status": "dead",
+   "expression": "off_mnf_road,short_week",
+   "description": "no sample: 2 team-games in 27 seasons",
+   "direction": null,
+   "market": null,
+   "weight_points": 0.0,
+   "backtest": null,
+   "killed_by": "no sample: 2 team-games in 27 seasons",
+   "not_wired_reason": null
+  },
+  {
+   "name": "short_week_long_road_trip",
+   "status": "dead",
+   "expression": "short_week,long_road_trip",
+   "description": "no sample: 0 team-games in 27 seasons",
+   "direction": null,
+   "market": null,
+   "weight_points": 0.0,
+   "backtest": null,
+   "killed_by": "no sample: 0 team-games in 27 seasons",
+   "not_wired_reason": null
+  },
+  {
+   "name": "division_lookahead",
+   "status": "dead",
+   "expression": "sandwich_game,lookahead",
+   "description": "fade spread 49.2% / 52.8% in 2020-2024 / 2021-2025 (n 213), need both >= 52.4%",
+   "direction": null,
+   "market": null,
+   "weight_points": 0.0,
+   "backtest": null,
+   "killed_by": "fade spread 49.2% / 52.8% in 2020-2024 / 2021-2025 (n 213), need both >= 52.4%",
+   "not_wired_reason": null
+  },
+  {
+   "name": "early_body_clock_off_mnf_road",
+   "status": "dead",
+   "expression": "early_body_clock,off_mnf_road",
+   "description": "no sample: 9 team-games in 27 seasons",
+   "direction": null,
+   "market": null,
+   "weight_points": 0.0,
+   "backtest": null,
+   "killed_by": "no sample: 9 team-games in 27 seasons",
+   "not_wired_reason": null
+  },
+  {
+   "name": "altitude_short_week",
+   "status": "dead",
+   "expression": "altitude_game,short_week",
+   "description": "no sample: 7 team-games in 27 seasons",
+   "direction": null,
+   "market": null,
+   "weight_points": 0.0,
+   "backtest": null,
+   "killed_by": "no sample: 7 team-games in 27 seasons",
+   "not_wired_reason": null
+  },
+  {
+   "name": "division_stretch_new_coach",
+   "status": "dead",
+   "expression": "off_division_loss,sandwich_game,coach_tenure_seasons<=4",
+   "description": "fade spread 50.7% / 49.3% in 2020-2024 / 2021-2025 (n 90), need both >= 52.4%",
+   "direction": null,
+   "market": null,
+   "weight_points": 0.0,
+   "backtest": null,
+   "killed_by": "fade spread 50.7% / 49.3% in 2020-2024 / 2021-2025 (n 90), need both >= 52.4%",
+   "not_wired_reason": null
+  },
+  {
+   "name": "early_body_clock",
+   "status": "dead",
+   "expression": "early_body_clock",
+   "description": "UNPREDICTED MARKET: passes only outside the mechanism (under total 54.0% / 54.8%); expected fade reads 47.3% / 47.3%",
+   "direction": null,
+   "market": null,
+   "weight_points": 0.0,
+   "backtest": null,
+   "killed_by": "UNPREDICTED MARKET: passes only outside the mechanism (under total 54.0% / 54.8%); expected fade reads 47.3% / 47.3%",
+   "not_wired_reason": null
+  },
+  {
+   "name": "eastbound_2plus",
+   "status": "dead",
+   "expression": "tz_crossed>=2",
+   "description": "UNPREDICTED MARKET: passes only outside the mechanism (under total 56.5% / 56.8%); expected fade reads 46.8% / 48.0%",
+   "direction": null,
+   "market": null,
+   "weight_points": 0.0,
+   "backtest": null,
+   "killed_by": "UNPREDICTED MARKET: passes only outside the mechanism (under total 56.5% / 56.8%); expected fade reads 46.8% / 48.0%",
+   "not_wired_reason": null
+  },
+  {
+   "name": "westbound_2plus",
+   "status": "dead",
+   "expression": "tz_crossed<=-2",
+   "description": "UNPREDICTED MARKET: passes only outside the mechanism (over total 53.1% / 54.4%); expected bet reads 51.4% / 48.6%",
+   "direction": null,
+   "market": null,
+   "weight_points": 0.0,
+   "backtest": null,
+   "killed_by": "UNPREDICTED MARKET: passes only outside the mechanism (over total 53.1% / 54.4%); expected bet reads 51.4% / 48.6%",
+   "not_wired_reason": null
+  },
+  {
+   "name": "altitude_game",
+   "status": "dead",
+   "expression": "altitude_game",
+   "description": "UNPREDICTED MARKET: passes only outside the mechanism (under total 53.5% / 54.5%); expected fade reads 52.3% / 53.3%",
+   "direction": null,
+   "market": null,
+   "weight_points": 0.0,
+   "backtest": null,
+   "killed_by": "UNPREDICTED MARKET: passes only outside the mechanism (under total 53.5% / 54.5%); expected fade reads 52.3% / 53.3%",
+   "not_wired_reason": null
+  },
+  {
+   "name": "off_bye",
+   "status": "dead",
+   "expression": "off_bye",
+   "description": "UNPREDICTED MARKET: passes only outside the mechanism (under total 56.2% / 56.9%); expected bet reads 47.1% / 48.4%",
+   "direction": null,
+   "market": null,
+   "weight_points": 0.0,
+   "backtest": null,
+   "killed_by": "UNPREDICTED MARKET: passes only outside the mechanism (under total 56.2% / 56.9%); expected bet reads 47.1% / 48.4%",
+   "not_wired_reason": null
+  },
+  {
+   "name": "off_mnf_road",
+   "status": "dead",
+   "expression": "off_mnf_road",
+   "description": "INVERTED: passes only against the mechanism (bet spread 53.1% / 55.1%); expected fade reads 46.9% / 44.9%",
+   "direction": null,
+   "market": null,
+   "weight_points": 0.0,
+   "backtest": null,
+   "killed_by": "INVERTED: passes only against the mechanism (bet spread 53.1% / 55.1%); expected fade reads 46.9% / 44.9%",
+   "not_wired_reason": null
+  },
+  {
+   "name": "off_division_loss",
+   "status": "dead",
+   "expression": "off_division_loss",
+   "description": "INVERTED: passes only against the mechanism (bet spread 53.9% / 53.2%); expected fade reads 46.1% / 46.8%",
+   "direction": null,
+   "market": null,
+   "weight_points": 0.0,
+   "backtest": null,
+   "killed_by": "INVERTED: passes only against the mechanism (bet spread 53.9% / 53.2%); expected fade reads 46.1% / 46.8%",
+   "not_wired_reason": null
+  },
+  {
+   "name": "lookahead",
+   "status": "dead",
+   "expression": "lookahead",
+   "description": "INVERTED: passes only against the mechanism (bet spread 53.3% / 53.3%); expected fade reads 46.7% / 46.7%",
+   "direction": null,
+   "market": null,
+   "weight_points": 0.0,
+   "backtest": null,
+   "killed_by": "INVERTED: passes only against the mechanism (bet spread 53.3% / 53.3%); expected fade reads 46.7% / 46.7%",
+   "not_wired_reason": null
+  },
+  {
+   "name": "eastbound_early_body_clock",
+   "status": "dead",
+   "expression": "tz_crossed>=2,early_body_clock",
+   "description": "UNPREDICTED MARKET: passes only outside the mechanism (under total 54.0% / 55.8%); expected fade reads 47.3% / 47.1%",
+   "direction": null,
+   "market": null,
+   "weight_points": 0.0,
+   "backtest": null,
+   "killed_by": "UNPREDICTED MARKET: passes only outside the mechanism (under total 54.0% / 55.8%); expected fade reads 47.3% / 47.1%",
+   "not_wired_reason": null
+  },
+  {
+   "name": "mnf_road_six_day_turnaround",
+   "status": "dead",
+   "expression": "off_mnf_road,rest_days<=6",
+   "description": "INVERTED: passes only against the mechanism (bet spread 54.9% / 57.8%); expected fade reads 45.1% / 42.2%",
+   "direction": null,
+   "market": null,
+   "weight_points": 0.0,
+   "backtest": null,
+   "killed_by": "INVERTED: passes only against the mechanism (bet spread 54.9% / 57.8%); expected fade reads 45.1% / 42.2%",
+   "not_wired_reason": null
+  }
+ ]
+}
