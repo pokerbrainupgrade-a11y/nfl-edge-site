@@ -1,0 +1,63 @@
+{
+ "generated_at": "2026-09-18T08:32:23-07:00",
+ "timezone": "America/Phoenix",
+ "stale_entry_hours": 12,
+ "counts": {
+  "rows": 16,
+  "settled": 1,
+  "pending": 15,
+  "stale": 16
+ },
+ "tiers": [
+  {
+   "tier": "A",
+   "rows": 0,
+   "settled": 0,
+   "stale": 0,
+   "graded_fresh": 0,
+   "mean_clv": null,
+   "beat_close_pct": null,
+   "ats": "0-0-0"
+  },
+  {
+   "tier": "B",
+   "rows": 4,
+   "settled": 0,
+   "stale": 4,
+   "graded_fresh": 0,
+   "mean_clv": null,
+   "beat_close_pct": null,
+   "ats": "0-0-0"
+  },
+  {
+   "tier": "C",
+   "rows": 1,
+   "settled": 0,
+   "stale": 1,
+   "graded_fresh": 0,
+   "mean_clv": null,
+   "beat_close_pct": null,
+   "ats": "0-0-0"
+  },
+  {
+   "tier": "D",
+   "rows": 11,
+   "settled": 1,
+   "stale": 11,
+   "graded_fresh": 0,
+   "mean_clv": null,
+   "beat_close_pct": null,
+   "ats": "1-0-0"
+  },
+  {
+   "tier": "ALL",
+   "rows": 16,
+   "settled": 1,
+   "stale": 16,
+   "graded_fresh": 0,
+   "mean_clv": null,
+   "beat_close_pct": null,
+   "ats": "1-0-0"
+  }
+ ]
+}

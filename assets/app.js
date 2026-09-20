@@ -7,7 +7,7 @@
   var TZ = 'America/Phoenix';
   var STALE_DAYS = 8;
   var BETTORS = ['Q', 'Mike', 'Marques'];
-  var state = { manifest: null, angles: null, weeks: {}, leansOnly: false, sortDesc: false, angleFilter: 'all' };
+  var state = { manifest: null, angles: null, shadow: null, weeks: {}, leansOnly: false, sortDesc: false, angleFilter: 'all' };
   var $main = document.getElementById('main');
   var $updated = document.getElementById('updated');
   var $stale = document.getElementById('stale');
@@ -159,6 +159,57 @@
         '<span class="small muted">' + esc(r.m.verdict) + '</span></li>';
     }).join('') + '</ul>';
   }
+  // 4.5: the game-of-the-week trace. Pure rendering of week.game_of_week (built by
+  // src/game_trace.py): the same strings as the md report, verbatim. No selection or
+  // lean logic lives here.
+  function gotwHtml(w) {
+    var t = w.game_of_week;
+    if (!t || !t.steps || !t.steps.length) return '';
+    var h = '<h2>' + esc(t.section_title) + '</h2>';
+    h += '<div class="card gotw"><h3><a href="#/weeks/' + esc(w.id) + '/' + esc(t.game_id) + '">' + esc(t.matchup) + '</a> ' +
+      '<span class="small muted">' + esc(t.kickoff_display) + '</span></h3>';
+    h += '<p class="small muted">' + esc(t.reason) + '</p>';
+    t.steps.forEach(function (s) {
+      h += '<p><b>' + esc(s.n + '. ' + s.title + '.') + '</b></p>';
+      (s.lines || []).forEach(function (ln) { h += '<p>' + esc(ln) + '</p>'; });
+    });
+    return h + '</div>';
+  }
+  // 1.5: the per-game shadow lean and the shadow-ledger table. Pure rendering of
+  // week.games[].shadow_lean and data/shadow_summary.json (both written by the
+  // python side); no side, tier or CLV logic lives here.
+  function shadowLeanHtml(g) {
+    var sl = g.shadow_lean;
+    if (!sl) return '';
+    var h = '';
+    ['spread', 'total'].forEach(function (mk) {
+      var s = sl[mk];
+      if (!s) return;
+      var lt = s.line != null ? (mk === 'spread' ? s.side + ' ' + signed(s.line) : s.side + ' ' + s.line) : s.side + ' (no line posted)';
+      h += '<div class="small shadow-lean">Shadow lean: <b>' + esc(lt) + '</b> (tier ' + esc(s.tier) + ') — tracking only, not a bet' +
+        (s.forced_default ? ' — default side, no signal' : '') +
+        (s.line_stale ? ' <span class="muted">· entry line stale</span>' : '') + '</div>';
+    });
+    return h;
+  }
+  function shadowLedgerCard() {
+    var s = state.shadow;
+    if (!s || !s.tiers || !s.tiers.length) {
+      return placeholderCard('Shadow ledger', [['forced leans graded', '—'], ['source', 'make settle (no shadow settle yet)']]);
+    }
+    var c = s.counts || {};
+    var h = '<div class="card"><h3>Shadow ledger</h3>' +
+      '<div class="small muted">Zero stake, tracking only — one forced lean per game, graded on CLV like a real bet but never counted as one. ' +
+      'Rows <span class="num">' + esc(c.rows) + '</span> · settled <span class="num">' + esc(c.settled) + '</span> · stale entries excluded from the CLV means.</div>' +
+      '<table class="tbl shadow-tbl"><thead><tr><th>Tier</th><th class="num">n</th><th class="num">mean CLV</th><th class="num">beat %</th><th>ATS</th><th class="num">stale</th></tr></thead><tbody>';
+    s.tiers.forEach(function (t) {
+      h += '<tr><td>' + esc(t.tier) + '</td><td class="num">' + esc(t.rows) + '</td>' +
+        '<td class="num">' + (t.mean_clv == null ? '—' : esc(Number(t.mean_clv).toFixed(4))) + '</td>' +
+        '<td class="num">' + (t.beat_close_pct == null ? '—' : esc(t.beat_close_pct) + '%') + '</td>' +
+        '<td class="num">' + esc(t.ats) + '</td><td class="num">' + esc(t.stale) + '</td></tr>';
+    });
+    return h + '</tbody></table><div class="small muted">Tiers: A shortlist rule (a) met · B survivor lean, no rule (a) · C watch angles only · D forced default (no signal).</div></div>';
+  }
   function statStrip(w) {
     var c = w.counts || {};
     return '<div class="stats">' +
@@ -192,7 +243,7 @@
     }).catch(fail);
   }
   function placeholders() {
-    return '<h2>Season tracking</h2><div class="grid two">' +
+    return '<h2>Season tracking</h2>' + shadowLedgerCard() + '<div class="grid two">' +
       placeholderCard('Season CLV', [['closing line value', '—'], ['bets graded', '—'], ['source', 'make settle (not yet wired to this site)']]) +
       placeholderCard('Bets logged', BETTORS.map(function (b) { return [b, '—']; })) +
       placeholderCard('Week 6 props gate', [['countdown', '—'], ['CLV denominator', '—'], ['threshold', '—']]) +
@@ -240,6 +291,7 @@
         esc((w.rules || {}).lean_cap_points) + ' points. Watch angles weigh 0.</p><p><b>Shortlist</b>: ' + esc((w.rules || {}).shortlist) + '</p>' +
         '<p>Line pull counts as stale after ' + esc((w.rules || {}).stale_after_hours) + ' hours. <a href="#/appendix/how-to-read">Full reading guide →</a></p></details>';
       html += '<h2>Shortlist (' + esc(w.counts.shortlist) + ')</h2>' + shortlistSection(w);
+      html += gotwHtml(w);
       html += '<h2>All games</h2>' + gamesTable(w);
       html += '<h2>Angles by game</h2>' + gameCards(w);
       html += '<h2>Not wired this week</h2>' + notWired(w);
@@ -297,17 +349,67 @@
     });
     return h + '</tbody></table></div>';
   }
+  // 4.4 addendum: the per-game matrix. Pure rendering of week.games[].matrix (built by
+  // src/angle_matrix.py): every survivor and watch angle, fired or not, the tagger inputs
+  // it reads, their values for both teams (home first), result, direction, weight, n, both
+  // backtest windows, then the lean math footer. No lean logic lives here.
+  var RESULT_CLASS = { 'FIRED': 'fired', 'NOT FIRED': 'notfired', 'NOT WIRED': 'notwired', 'OUT OF SEASON': 'season' };
+  function matrixHtml(g) {
+    var mx = g.matrix;
+    if (!mx || !mx.angles || !mx.angles.length) return '';
+    var wins = mx.windows || [];
+    var open = (g.spread && g.spread.verdict === 'SHORTLIST') || (g.total && g.total.verdict === 'SHORTLIST');
+    var nFired = mx.angles.filter(function (a) { return a.result === 'FIRED'; }).length;
+    var h = '<details class="mx"' + (open ? ' open' : '') + '><summary>Every angle, fired or not ' +
+      '<span class="small muted">(' + mx.angles.length + ' checked, ' + nFired + ' fired) · lean math</span></summary>';
+    h += '<div class="tbl-wrap mx-wrap"><table class="tbl mx-tbl"><thead><tr><th>Angle</th><th>Status</th><th>Inputs</th><th>Values this game</th>' +
+      '<th>Result</th><th>Direction</th><th>Weight</th><th>n</th>' + wins.map(function (x) { return '<th>' + esc(x) + '</th>'; }).join('') + '</tr></thead><tbody>';
+    mx.angles.forEach(function (a) {
+      var rc = RESULT_CLASS[a.result] || 'notfired';
+      // every cell's content sits in one .cv span, so the phone layout (a 2-column grid per cell: label, value) always has exactly two items
+      h += '<tr class="' + esc(a.tier) + '">' +
+        '<td data-k="Angle"><span class="cv"><span class="name">' + esc(a.name) + '</span><br><code>' + esc(a.expression) + '</code></span></td>' +
+        '<td data-k="Status"><span class="cv">' + pill(a.tier) + '</span></td>' +
+        '<td data-k="Inputs" class="mono"><span class="cv">' + esc((a.inputs || []).join(', ') || '—') + '</span></td>' +
+        '<td data-k="Values" class="mono"><span class="cv">' + (a.values || []).map(function (v) { return esc(v); }).join('<br>') + '</span></td>' +
+        '<td data-k="Result"><span class="cv"><span class="res ' + rc + '">' + esc(a.result) + '</span>' +
+        (a.note ? '<br><span class="small muted">' + esc(a.note) + '</span>' : '') + '</span></td>' +
+        '<td data-k="Direction"><span class="cv">' + esc(a.direction_text) + '</span></td>' +
+        '<td data-k="Weight" class="num"><span class="cv">' + esc(pts(a.points)) + '</span></td>' +
+        '<td data-k="n" class="num"><span class="cv">' + esc(a.n) + '</span></td>' +
+        wins.map(function (x) {
+          var v = (a.windows || {})[x];
+          return '<td data-k="' + esc(x) + '" class="num"><span class="cv">' + (v ? pct(v.pct) + ' <span class="small muted">(n ' + esc(v.n) + ')</span>' : '—') + '</span></td>';
+        }).join('') + '</tr>';
+    });
+    h += '</tbody></table></div>';
+    var lm = mx.lean_math || {};
+    h += '<div class="lean-math">' + ['spread', 'total'].map(function (mk) {
+      var f = lm[mk];
+      if (!f) return '';
+      return '<div class="mk"><b>' + mk + '</b>: ' + esc(f.net) + '<ul><li>rule (a): ' + esc(f.rule_a) + '</li>' +
+        '<li>rule (b): ' + esc(f.rule_b) + '</li>' + (f.move ? '<li>move: ' + esc(f.move) + '</li>' : '') +
+        '<li>verdict: <b>' + esc(f.verdict) + '</b></li></ul></div>';
+    }).join('') + '</div></details>';
+    return h;
+  }
   function gameCards(w) {
     var games = w.games.slice().sort(function (a, b) { return String(a.kickoff_phoenix).localeCompare(String(b.kickoff_phoenix)); });
-    return games.map(function (g) {
+    var anyMatrix = games.some(function (g) { return g.matrix && g.matrix.angles && g.matrix.angles.length; });
+    var intro = anyMatrix
+      ? '<p class="small muted">Tap "Every angle" under a game to see every survivor and watch angle, fired or not, the tagger inputs it reads, their values for both teams (home first), and the lean math that produced the verdict. Shortlisted games start open.</p>'
+      : '';
+    return intro + games.map(function (g) {
       var fired = g.angles_fired || [];
       var h = '<div class="card' + (fired.length ? '' : ' plain') + '" id="g-' + esc(g.game_id) + '">' +
         '<div class="game-line"><h3 style="margin:0">' + esc(g.matchup) + '</h3><span class="small muted">' + esc(g.kickoff_display) + '</span>' +
         '<span class="small">spread <b>' + esc(leanText(g.spread)) + '</b> · ' + esc(g.spread.verdict) + '</span>' +
         '<span class="small">total <b>' + esc(leanText(g.total)) + '</b> · ' + esc(g.total.verdict) + '</span></div>';
+      h += shadowLeanHtml(g);
       ['spread', 'total'].forEach(function (mk) { if (g[mk] && g[mk].number_to_shop) h += shopHtml(mk, g[mk]); });
       if (fired.length) h += '<ul class="angles">' + fired.map(function (a) { return angleLi(a, false); }).join('') + '</ul>';
       else h += '<div class="small muted">No angle fired.</div>';
+      h += matrixHtml(g);
       return h + '</div>';
     }).join('');
   }
@@ -336,6 +438,7 @@
 
   // ------------------------------------------------------------ appendix
   var AP_SECTIONS = [
+    ['how-we-grade', 'How we grade'],
     ['how-to-read', 'How to read the scan'],
     ['angle-library', 'Angle library'],
     ['glossary', 'Glossary'],
@@ -343,6 +446,32 @@
     ['data-sources', 'Data sources and freshness'],
     ['changelog', 'Changelog']
   ];
+  // 6.9: success definition + breakeven math. The breakeven numbers are computed here, not typed.
+  function breakevenPct(american) {
+    var p = american < 0 ? (-american) / ((-american) + 100) : 100 / (american + 100);
+    return p * 100;
+  }
+  function howWeGrade() {
+    var prices = [-105, -110, -115, -120];
+    var rows = prices.map(function (a) {
+      return '<tr><td class="num">' + esc(String(a)) + '</td><td class="num">' + breakevenPct(a).toFixed(1) + '%</td></tr>';
+    }).join('');
+    return '<section class="ap" id="how-we-grade"><h2>How we grade</h2>' +
+      '<p><b>Closing line value (CLV) comes first.</b> A call is graded by whether the number we took beat the number the market closed at, measured as no-vig probability, not by whether it won.</p>' +
+      '<p>Why: at a true 55% win rate it takes several hundred bets before a record separates from luck, while CLV converges in weeks. Beating the close is the only weekly signal this system trusts; win/loss at this sample size is noise.</p>' +
+      '<h3>Breakeven win rate by price</h3>' +
+      '<div class="tbl-wrap"><table class="tbl"><thead><tr><th>Price</th><th>Win rate needed to break even</th></tr></thead><tbody>' + rows + '</tbody></table></div>' +
+      '<p class="small muted">Computed as |price| / (|price| + 100) for negative prices. At -110 the bar is 52.4%, not 54%; 60% over a season would be a wild success.</p>' +
+      '<h3>Sample size</h3>' +
+      '<p>A weekly record of 3-1 or 1-3 says nothing. Roughly 300 graded calls are needed before a 55% hit rate is distinguishable from a coin flip at ordinary confidence, which is more than one season of shortlist plays. That is why every call, including the zero-stake shadow leans, is graded on CLV as it settles.</p>' +
+      '<h3>Research year, then 2027</h3>' +
+      '<p>2026 is a research-and-build year. The goal is a framework whose angles have proven they beat the close, going into 2027. Betting to win every week is still just gambling; entertainment-budget stakes only.</p>' +
+      '<h3>Gates</h3><dl class="gl">' +
+      '<dt>Week 9 gate — Tue 2026-11-10</dt><dd>First read of the production ledger: CLV by source and by bettor, at ~8 weeks of logged bets. Nothing is promoted or demoted on win/loss.</dd>' +
+      '<dt>SHADOW gate — Tue 2026-11-10</dt><dd>First read of the shadow ledgers: engine leans by tier, and gut / BBM / report-implied calls by caller, all on the same no-vig CLV method. A real verdict on gut vs engine needs the full season.</dd>' +
+      '</dl></section>';
+  }
+
   function viewAppendix(section) {
     setNav('appendix');
     var lib = state.angles || { angles: [] };
@@ -350,6 +479,8 @@
     var html = '<h1>Appendix</h1><div class="subnav">' + AP_SECTIONS.map(function (s) {
       return '<a href="#/appendix/' + s[0] + '"' + (section === s[0] ? ' class="active"' : '') + '>' + esc(s[1]) + '</a>';
     }).join('') + '</div>';
+
+    html += howWeGrade();
 
     html += '<section class="ap" id="how-to-read"><h2>How to read the scan</h2>' +
       '<p><b>Lean.</b> Each surviving angle that fires on a game pushes that market (spread or total) toward one side by its weight in points. The lean is the sum of survivor weights, capped at ±1.5 points. Watch angles weigh 0 and only count toward the shortlist rule.</p>' +
@@ -465,10 +596,12 @@
   }
 
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-  Promise.all([fetchJSON('data/manifest.json'), fetchJSON('data/angles.json').catch(function () { return { angles: [] }; })])
+  Promise.all([fetchJSON('data/manifest.json'), fetchJSON('data/angles.json').catch(function () { return { angles: [] }; }),
+               fetchJSON('data/shadow_summary.json').catch(function () { return null; })])
     .then(function (res) {
       state.manifest = res[0];
       state.angles = res[1];
+      state.shadow = res[2];
       headerFromLatest();
       window.addEventListener('hashchange', route);
       route();

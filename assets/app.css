@@ -213,3 +213,43 @@ dl.gl dd { margin: 2px 0 0 0; color: var(--fg); }
 .kv { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; font-size: .95rem; }
 .kv .k { color: var(--muted); }
 code { font-family: var(--mono); font-size: .9em; background: var(--bg-2); padding: 0 4px; border-radius: 4px; }
+
+/* 4.4 matrix: every angle per game, fired or not, plus the lean math (same content as the scan report) */
+details.mx { margin-top: 8px; }
+details.mx > summary { cursor: pointer; font-weight: 600; padding: 6px 0; }
+details.mx > summary .small { font-weight: 400; }
+.mx-tbl { min-width: 1080px; }
+.mx-tbl td.mono, .mx-tbl code { font-family: var(--mono); font-size: .85em; }
+.mx-tbl td[data-k="Values"], .mx-tbl td[data-k="Inputs"], .mx-tbl td[data-k="Result"], .mx-tbl td[data-k="Direction"] { white-space: normal; }
+.mx-tbl td[data-k="Values"] { min-width: 340px; }
+.mx-tbl td[data-k="Inputs"] { min-width: 180px; }
+.mx-tbl td[data-k="Result"], .mx-tbl td[data-k="Direction"] { min-width: 160px; }
+.mx-tbl tr.watch td { color: var(--muted); }
+.res { font-weight: 700; }
+.res.fired { color: var(--survivor); }
+.res.notfired { color: var(--muted); font-weight: 600; }
+.res.notwired { color: var(--watch); }
+.res.season { color: var(--link); }
+/* 4.5: game-of-the-week trace — prose only, wraps at any width, no sideways scroll */
+.gotw p { margin: 6px 0; overflow-wrap: anywhere; }
+.lean-math { font-size: .9rem; margin-top: 8px; }
+.lean-math .mk { margin: 6px 0; }
+.lean-math ul { margin: 2px 0 0; padding-left: 18px; }
+@media (max-width: 719px) {
+  /* phone: each angle row becomes a stacked card (label / value per cell), no sideways scrolling */
+  .mx-wrap { overflow-x: visible; border: 0; background: transparent; }
+  .mx-tbl, .mx-tbl tbody, .mx-tbl tr { display: block; width: 100%; min-width: 0; }
+  .mx-tbl thead { display: none; }
+  .mx-tbl tr { border: 1px solid var(--line); border-radius: var(--radius); background: var(--card); padding: 6px 10px; margin: 8px 0; }
+  .mx-tbl tr:last-child { margin-bottom: 0; }
+  .mx-tbl td, .mx-tbl td.num, .mx-tbl td[data-k] { display: grid; grid-template-columns: 6.5em minmax(0, 1fr); gap: 8px; padding: 3px 0; border-bottom: 0; white-space: normal; min-width: 0; text-align: left; }
+  .mx-tbl td::before { content: attr(data-k); color: var(--muted); font-size: .78rem; text-transform: uppercase; letter-spacing: .04em; font-family: var(--sans); padding-top: 2px; }
+  .mx-tbl td .cv, .mx-tbl td code { min-width: 0; overflow-wrap: anywhere; white-space: normal; }
+}
+/* 1.5: shadow lean — one tracking-only line per game card, and the ledger table.
+   The table has six short columns and no min-width, so a 375px phone shows it
+   whole with no sideways scroll. */
+.shadow-lean { margin: 4px 0; overflow-wrap: anywhere; }
+.shadow-lean b { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.shadow-tbl { min-width: 0; margin-top: 8px; font-size: .85rem; }
+.shadow-tbl th, .shadow-tbl td { padding: 5px 7px; }

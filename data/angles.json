@@ -1,10 +1,10 @@
 {
  "site_schema_version": 1,
  "source": "config/angles.yaml",
- "generated": "2026-09-15 11:06 America/Phoenix",
+ "generated": "2026-09-19 18:42 America/Phoenix",
  "sample": "REG 1999-2025 at closing lines",
  "harness_log": {
-  "runs": 115,
+  "runs": 188,
   "distinct_expressions": 32
  },
  "alive_rule": {
@@ -13,9 +13,9 @@
  },
  "stack_cap_points": 1.5,
  "counts": {
-  "survivor": 4,
+  "survivor": 5,
   "watch": 8,
-  "dead": 20
+  "dead": 19
  },
  "angles": [
   {
@@ -51,21 +51,47 @@
    "description": "Attention: a division game next week pulls preparation focus forward.",
    "direction": "fade",
    "market": "spread",
-   "weight_points": 0.5,
+   "weight_points": 0.75,
    "backtest": {
-    "n_full": 5137,
-    "full_ats_pct": 49.61,
+    "n_full": 2741,
+    "full_ats_pct": 49.27,
     "windows": {
      "2020-2024": {
-      "pct": 53.23,
-      "n": 921
+      "pct": 56.3,
+      "n": 473
      },
      "2021-2025": {
-      "pct": 52.73,
-      "n": 922
+      "pct": 55.14,
+      "n": 490
      }
     },
-    "recent_n_combined": 1100,
+    "recent_n_combined": 576,
+    "flipped_vs_full_sample": false
+   },
+   "not_wired_reason": null
+  },
+  {
+   "name": "off_international",
+   "status": "survivor",
+   "expression": "off_international",
+   "description": "Travel: hangover after an international game (long haul plus time change).",
+   "direction": "fade",
+   "market": "spread",
+   "weight_points": 0.5,
+   "backtest": {
+    "n_full": 112,
+    "full_ats_pct": 47.27,
+    "windows": {
+     "2020-2024": {
+      "pct": 52.94,
+      "n": 34
+     },
+     "2021-2025": {
+      "pct": 54.17,
+      "n": 48
+     }
+    },
+    "recent_n_combined": 48,
     "flipped_vs_full_sample": false
    },
    "not_wired_reason": null
@@ -149,32 +175,6 @@
    "not_wired_reason": null
   },
   {
-   "name": "off_international",
-   "status": "watch",
-   "expression": "off_international",
-   "description": "Travel: hangover after an international game (long haul plus time change).",
-   "direction": "fade",
-   "market": "spread",
-   "weight_points": 0.0,
-   "backtest": {
-    "n_full": 98,
-    "full_ats_pct": 47.92,
-    "windows": {
-     "2020-2024": {
-      "pct": 52.94,
-      "n": 34
-     },
-     "2021-2025": {
-      "pct": 52.94,
-      "n": 34
-     }
-    },
-    "recent_n_combined": 34,
-    "flipped_vs_full_sample": false
-   },
-   "not_wired_reason": null
-  },
-  {
    "name": "off_international_no_bye",
    "status": "watch",
    "expression": "off_international_no_bye",
@@ -183,20 +183,46 @@
    "market": "spread",
    "weight_points": 0.0,
    "backtest": {
-    "n_full": 29,
-    "full_ats_pct": 55.17,
+    "n_full": 36,
+    "full_ats_pct": 50.0,
     "windows": {
      "2020-2024": {
       "pct": 36.84,
       "n": 19
      },
      "2021-2025": {
-      "pct": 36.84,
-      "n": 19
+      "pct": 46.15,
+      "n": 26
      }
     },
-    "recent_n_combined": 19,
+    "recent_n_combined": 26,
     "flipped_vs_full_sample": false
+   },
+   "not_wired_reason": null
+  },
+  {
+   "name": "division_lookahead",
+   "status": "watch",
+   "expression": "sandwich_game,lookahead",
+   "description": "Attention: next game is a division game against an elite opponent.",
+   "direction": "fade",
+   "market": "spread",
+   "weight_points": 0.0,
+   "backtest": {
+    "n_full": 499,
+    "full_ats_pct": 51.45,
+    "windows": {
+     "2020-2024": {
+      "pct": 56.99,
+      "n": 94
+     },
+     "2021-2025": {
+      "pct": 56.38,
+      "n": 95
+     }
+    },
+    "recent_n_combined": 111,
+    "flipped_vs_full_sample": true
    },
    "not_wired_reason": null
   },
@@ -313,19 +339,19 @@
    "market": "spread",
    "weight_points": 0.0,
    "backtest": {
-    "n_full": 159,
-    "full_ats_pct": 47.02,
+    "n_full": 82,
+    "full_ats_pct": 46.05,
     "windows": {
      "2020-2024": {
       "pct": 66.67,
-      "n": 32
+      "n": 12
      },
      "2021-2025": {
-      "pct": 62.07,
-      "n": 34
+      "pct": 61.54,
+      "n": 16
      }
     },
-    "recent_n_combined": 39,
+    "recent_n_combined": 17,
     "flipped_vs_full_sample": false
    },
    "not_wired_reason": null
@@ -403,18 +429,6 @@
    "not_wired_reason": null
   },
   {
-   "name": "division_lookahead",
-   "status": "dead",
-   "expression": "sandwich_game,lookahead",
-   "description": "fade spread 49.2% / 52.8% in 2020-2024 / 2021-2025 (n 213), need both >= 52.4%",
-   "direction": null,
-   "market": null,
-   "weight_points": 0.0,
-   "backtest": null,
-   "killed_by": "fade spread 49.2% / 52.8% in 2020-2024 / 2021-2025 (n 213), need both >= 52.4%",
-   "not_wired_reason": null
-  },
-  {
    "name": "early_body_clock_off_mnf_road",
    "status": "dead",
    "expression": "early_body_clock,off_mnf_road",
@@ -439,18 +453,6 @@
    "not_wired_reason": null
   },
   {
-   "name": "division_stretch_new_coach",
-   "status": "dead",
-   "expression": "off_division_loss,sandwich_game,coach_tenure_seasons<=4",
-   "description": "fade spread 50.7% / 49.3% in 2020-2024 / 2021-2025 (n 90), need both >= 52.4%",
-   "direction": null,
-   "market": null,
-   "weight_points": 0.0,
-   "backtest": null,
-   "killed_by": "fade spread 50.7% / 49.3% in 2020-2024 / 2021-2025 (n 90), need both >= 52.4%",
-   "not_wired_reason": null
-  },
-  {
    "name": "early_body_clock",
    "status": "dead",
    "expression": "early_body_clock",
@@ -466,24 +468,24 @@
    "name": "eastbound_2plus",
    "status": "dead",
    "expression": "tz_crossed>=2",
-   "description": "UNPREDICTED MARKET: passes only outside the mechanism (under total 56.5% / 56.8%); expected fade reads 46.8% / 48.0%",
+   "description": "UNPREDICTED MARKET: passes only outside the mechanism (under total 56.5% / 55.8%); expected fade reads 46.8% / 48.1%",
    "direction": null,
    "market": null,
    "weight_points": 0.0,
    "backtest": null,
-   "killed_by": "UNPREDICTED MARKET: passes only outside the mechanism (under total 56.5% / 56.8%); expected fade reads 46.8% / 48.0%",
+   "killed_by": "UNPREDICTED MARKET: passes only outside the mechanism (under total 56.5% / 55.8%); expected fade reads 46.8% / 48.1%",
    "not_wired_reason": null
   },
   {
    "name": "westbound_2plus",
    "status": "dead",
    "expression": "tz_crossed<=-2",
-   "description": "UNPREDICTED MARKET: passes only outside the mechanism (over total 53.1% / 54.4%); expected bet reads 51.4% / 48.6%",
+   "description": "UNPREDICTED MARKET: passes only outside the mechanism (over total 53.1% / 54.2%); expected bet reads 51.4% / 48.9%",
    "direction": null,
    "market": null,
    "weight_points": 0.0,
    "backtest": null,
-   "killed_by": "UNPREDICTED MARKET: passes only outside the mechanism (over total 53.1% / 54.4%); expected bet reads 51.4% / 48.6%",
+   "killed_by": "UNPREDICTED MARKET: passes only outside the mechanism (over total 53.1% / 54.2%); expected bet reads 51.4% / 48.9%",
    "not_wired_reason": null
   },
   {
@@ -550,12 +552,12 @@
    "name": "eastbound_early_body_clock",
    "status": "dead",
    "expression": "tz_crossed>=2,early_body_clock",
-   "description": "UNPREDICTED MARKET: passes only outside the mechanism (under total 54.0% / 55.8%); expected fade reads 47.3% / 47.1%",
+   "description": "UNPREDICTED MARKET: passes only outside the mechanism (under total 54.0% / 54.8%); expected fade reads 47.3% / 47.3%",
    "direction": null,
    "market": null,
    "weight_points": 0.0,
    "backtest": null,
-   "killed_by": "UNPREDICTED MARKET: passes only outside the mechanism (under total 54.0% / 55.8%); expected fade reads 47.3% / 47.1%",
+   "killed_by": "UNPREDICTED MARKET: passes only outside the mechanism (under total 54.0% / 54.8%); expected fade reads 47.3% / 47.3%",
    "not_wired_reason": null
   },
   {
@@ -568,6 +570,18 @@
    "weight_points": 0.0,
    "backtest": null,
    "killed_by": "INVERTED: passes only against the mechanism (bet spread 54.9% / 57.8%); expected fade reads 45.1% / 42.2%",
+   "not_wired_reason": null
+  },
+  {
+   "name": "division_stretch_new_coach",
+   "status": "dead",
+   "expression": "off_division_loss,sandwich_game,coach_tenure_seasons<=4",
+   "description": "INVERTED: passes only against the mechanism (bet spread 58.8% / 63.6%); expected fade reads 41.2% / 36.4%",
+   "direction": null,
+   "market": null,
+   "weight_points": 0.0,
+   "backtest": null,
+   "killed_by": "INVERTED: passes only against the mechanism (bet spread 58.8% / 63.6%); expected fade reads 41.2% / 36.4%",
    "not_wired_reason": null
   }
  ]
