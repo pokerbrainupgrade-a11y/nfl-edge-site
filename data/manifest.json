@@ -1,7 +1,7 @@
 {
- "site_schema_version": 1,
+ "site_schema_version": 2,
  "timezone": "America/Phoenix",
- "exported_at": "2026-09-19T18:43:36-07:00",
+ "exported_at": "2026-09-20T08:41:11-07:00",
  "latest_week": "2026-W03",
  "weeks": [
   {
@@ -9,30 +9,49 @@
    "season": 2026,
    "week": 3,
    "file": "weeks/2026-W03.json",
-   "generated_at": "2026-09-18T08:32:11-07:00",
+   "generated_at": "2026-09-20T08:38:15-07:00",
    "counts": {
     "games": 16,
     "shortlist": 0,
-    "survivors": 4,
+    "survivors": 5,
     "watch": 8,
-    "expressions_tested": 32
+    "expressions_tested": 32,
+    "lanes": {
+     "BET": 0,
+     "POSSIBLE BET": 7,
+     "NO BET": 9
+    }
    },
-   "odds_pull_at": "2026-09-15T10:52:00-07:00"
+   "odds_pull_at": "2026-09-20T07:06:49-07:00"
   },
   {
    "id": "2026-W02",
    "season": 2026,
    "week": 2,
    "file": "weeks/2026-W02.json",
-   "generated_at": "2026-09-18T08:32:03-07:00",
+   "generated_at": "2026-09-20T08:38:04-07:00",
    "counts": {
     "games": 16,
-    "shortlist": 0,
-    "survivors": 4,
+    "shortlist": 1,
+    "survivors": 5,
     "watch": 8,
-    "expressions_tested": 32
+    "expressions_tested": 32,
+    "lanes": {
+     "BET": 1,
+     "POSSIBLE BET": 3,
+     "NO BET": 12
+    }
    },
-   "odds_pull_at": "2026-09-15T10:52:00-07:00"
+   "odds_pull_at": "2026-09-20T07:06:49-07:00"
   }
- ]
+ ],
+ "last_publish": {
+  "week": "2026-W03",
+  "published_at": "2026-09-20 08:41 America/Phoenix",
+  "engine_head": "2140e88",
+  "url": "https://pokerbrainupgrade-a11y.github.io/nfl-edge-site/"
+ },
+ "reports": {
+  "market_baseline": "market_baseline.md"
+ }
 }

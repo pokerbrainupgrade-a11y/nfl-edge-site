@@ -1,55 +1,225 @@
 {
- "site_schema_version": 1,
+ "site_schema_version": 2,
  "source": {
-  "scan_schema_version": 1,
+  "scan_schema_version": 2,
   "file": "reports/scan_wk02.json"
  },
  "id": "2026-W02",
  "season": 2026,
  "week": 2,
- "generated_at": "2026-09-18T08:32:03-07:00",
+ "generated_at": "2026-09-20T08:38:04-07:00",
  "timezone": "America/Phoenix",
  "odds_pull": {
   "succeeded": true,
-  "fetched_at": "2026-09-15T10:52:00-07:00",
-  "age_hours": 69.7,
-  "stale": true,
-  "detail": "pull 2026-09-15_1052 America/Phoenix, 69.7 h old"
+  "fetched_at": "2026-09-20T07:06:49-07:00",
+  "age_hours": 1.5,
+  "stale": false,
+  "detail": "pull 2026-09-20_070649 America/Phoenix, 1.5 h old"
  },
  "books": [
   "betmgm",
   "draftkings",
   "fanduel"
  ],
- "data_refresh": "ok 2026-09-18 08:32",
+ "data_refresh": "skipped",
  "rules": {
   "lean_cap_points": 1.5,
   "stale_after_hours": 36,
-  "shortlist": "(a) 2+ survivor angles the same way, or 1 survivor + 1 watch, with no survivor firing the other way harder; (b) the best available number has not moved past the lean since the opener. Numbers to shop, never stakes."
+  "shortlist": "(a) 2+ survivor angles the same way, or 1 survivor + 1 watch (a watch angle counts only if both recent windows >= 52.4%), with no survivor firing the other way harder; (b) the best available number has not moved past the lean since the opener. Numbers to shop, never stakes."
  },
  "counts": {
   "games": 16,
-  "shortlist": 0,
-  "survivors": 4,
+  "shortlist": 1,
+  "survivors": 5,
   "watch": 8,
-  "expressions_tested": 32
+  "expressions_tested": 32,
+  "lanes": {
+   "BET": 1,
+   "POSSIBLE BET": 3,
+   "NO BET": 12
+  }
  },
- "shortlist": [],
- "shortlist_empty_message": "No game met both rules this week. That is a valid, honest output.",
+ "tags": {
+  "source": "config/tags.yaml",
+  "version": 1,
+  "rule": {
+   "A": "BET",
+   "B": "POSSIBLE BET",
+   "C": "NO BET",
+   "D": "NO BET"
+  },
+  "lanes": [
+   "BET",
+   "POSSIBLE BET",
+   "NO BET"
+  ],
+  "market_rule": "best_of_spread_total",
+  "ranking": [
+   "net_survivor_weight desc",
+   "survivor_angles_fired desc",
+   "price_edge desc",
+   "kickoff asc"
+  ],
+  "stale_line": "badge_only"
+ },
+ "weather": {
+  "status": "ok",
+  "detail": "14 game(s) with a kickoff forecast, 0 unknown, 2 indoor",
+  "host": "api.open-meteo.com",
+  "fetched_at": "2026-09-20T08:37:53.603047-07:00",
+  "snapshot": "/Users/quincypbu/NFL-Edge/data/weather/forecast_2026-09-20_083804.json",
+  "counts": {
+   "forecast": 14,
+   "unknown": 0,
+   "dome": 2
+  },
+  "badge": null
+ },
+ "shortlist": [
+  {
+   "game_id": "2026_02_MIA_SF",
+   "matchup": "MIA@SF",
+   "home": "SF",
+   "away": "MIA",
+   "kickoff_phoenix": "2026-09-20T13:25:00-07:00",
+   "kickoff_display": "Sun 09/20 13:25",
+   "market": "spread",
+   "lean_side": "MIA",
+   "lean_points": 0.75,
+   "verdict": "SHORTLIST",
+   "survivors_same_way": 2,
+   "watch_same_way": 0,
+   "survivors_against": 1,
+   "rule_a": true,
+   "rule_b": true,
+   "number_to_shop": {
+    "line": 13.5,
+    "price": -110,
+    "book": "draftkings",
+    "reachable_by": [
+     "Q",
+     "Mike",
+     "Marques"
+    ],
+    "consensus": 13.5,
+    "books_quoting": 3
+   },
+   "opener_consensus": 13.5,
+   "moved_toward_lean": 0.0,
+   "lean_remaining": 0.75,
+   "angles_for": [
+    {
+     "name": "sandwich_game",
+     "expression": "sandwich_game",
+     "tier": "survivor",
+     "market": "spread",
+     "direction": "fade",
+     "direction_label": "fade SF -> lean MIA",
+     "flagged_team": "SF",
+     "lean_side": "MIA",
+     "points": 0.75,
+     "n": 2741,
+     "windows": {
+      "2020-2024": {
+       "pct": 56.3,
+       "n": 473
+      },
+      "2021-2025": {
+       "pct": 55.14,
+       "n": 490
+      }
+     },
+     "mechanism": "Attention: a division game next week pulls preparation focus forward."
+    },
+    {
+     "name": "off_international",
+     "expression": "off_international",
+     "tier": "survivor",
+     "market": "spread",
+     "direction": "fade",
+     "direction_label": "fade SF -> lean MIA",
+     "flagged_team": "SF",
+     "lean_side": "MIA",
+     "points": 0.5,
+     "n": 112,
+     "windows": {
+      "2020-2024": {
+       "pct": 52.94,
+       "n": 34
+      },
+      "2021-2025": {
+       "pct": 54.17,
+       "n": 48
+      }
+     },
+     "mechanism": "Travel: hangover after an international game (long haul plus time change)."
+    },
+    {
+     "name": "off_international_no_bye",
+     "expression": "off_international_no_bye",
+     "tier": "watch",
+     "market": "spread",
+     "direction": "fade",
+     "direction_label": "fade SF -> lean MIA (below floor - not counted: needs both windows >= 52.4%)",
+     "flagged_team": "SF",
+     "lean_side": "MIA",
+     "points": 0.0,
+     "n": 36,
+     "windows": {
+      "2020-2024": {
+       "pct": 36.84,
+       "n": 19
+      },
+      "2021-2025": {
+       "pct": 46.15,
+       "n": 26
+      }
+     },
+     "mechanism": "Travel: international hangover with no bye week to recover."
+    }
+   ],
+   "angles_against": [
+    {
+     "name": "off_thursday",
+     "expression": "off_thursday",
+     "tier": "survivor",
+     "market": "spread",
+     "direction": "bet",
+     "direction_label": "bet SF -> lean SF",
+     "flagged_team": "SF",
+     "lean_side": "SF",
+     "points": 0.5,
+     "n": 632,
+     "windows": {
+      "2020-2024": {
+       "pct": 54.49,
+       "n": 170
+      },
+      "2021-2025": {
+       "pct": 54.19,
+       "n": 182
+      }
+     },
+     "mechanism": "Rest: mini-bye of 9+ days after a Thursday game."
+    }
+   ]
+  }
+ ],
+ "shortlist_empty_message": null,
  "game_of_week": {
   "section_title": "GAME OF THE WEEK - how the system read one game",
-  "game_id": "2026_02_NYG_LA",
-  "matchup": "NYG@LA",
-  "kickoff_display": "Mon 09/21 17:15",
+  "game_id": "2026_02_MIA_SF",
+  "matchup": "MIA@SF",
+  "kickoff_display": "Sun 09/20 13:25",
   "market": "spread",
-  "reason": "Why this game: the week's highest net lean, 0.5 points, is shared by PIT@NE, SEA@ARI, IND@KC, NYG@LA; NYG@LA fired the most angles (3, survivor and watch together) - rule 2.",
+  "reason": "Why this game: the week's highest net lean, 0.75 points, is shared by PIT@NE, MIA@SF, SEA@ARI, IND@KC; MIA@SF fired the most angles (4, survivor and watch together) - rule 2.",
   "steps": [
    {
     "n": 1,
     "title": "What we knew about the game",
     "lines": [
-     "NYG at LA, kickoff Mon 09/21 17:15 America/Phoenix. Roof: dome.",
-     "On the spread, the market opened at LA -7 (consensus of the first odds pull carrying this game) and the best current number on the leaned side is LA -7 (-115) at draftkings."
+     "MIA at SF, kickoff Sun 09/20 13:25 America/Phoenix. Roof: outdoors.",
+     "On the spread, the market opened at MIA +13.5 (consensus of the first odds pull carrying this game) and the best current number on the leaned side is MIA +13.5 (-110) at draftkings."
     ]
    },
    {
@@ -57,19 +227,20 @@
     "title": "The situational tags computed for each team",
     "lines": [
      "The tagger computed these situational flags from the schedule history, with the raw inputs it read next to them (yes/no flags first, then the values behind them; home team first):",
-     "LA (home): off_thursday=yes, prev_weekday=Thursday, rest_days=11, sandwich_game=no, next_div_game=0, dome_team_outdoors_cold=no, gameday=2026-09-21, dome_team=yes, home_roof=dome, roof=dome, high_wind=no, wind=n/a, long_road_trip=no, road_streak=0, neutral_site=no, is_home=yes, off_international=yes, prev_is_international=yes, off_international_no_bye=yes, early_body_clock=no, body_clock_kickoff_hour=17.25, off_mnf_road=no, tz_crossed=0, prev_neutral_site=yes, prev_is_home=yes, off_division_loss=yes, coach_tenure_seasons=10, prev_div_game=1, prev_team_margin=-20, coach_first_season_with_team=2017.",
-     "NYG (away): off_thursday=no, prev_weekday=Sunday, rest_days=8, sandwich_game=no, next_div_game=0, dome_team_outdoors_cold=no, gameday=2026-09-21, dome_team=no, home_roof=outdoors, roof=dome, high_wind=no, wind=n/a, long_road_trip=no, road_streak=1, neutral_site=no, is_home=no, off_international=no, prev_is_international=no, off_international_no_bye=no, early_body_clock=no, body_clock_kickoff_hour=20.25, off_mnf_road=no, tz_crossed=-3, prev_neutral_site=no, prev_is_home=yes, off_division_loss=no, coach_tenure_seasons=1, prev_div_game=1, prev_team_margin=8, coach_first_season_with_team=2026."
+     "SF (home): off_thursday=yes, prev_weekday=Thursday, rest_days=10, sandwich_game=yes, next_div_game=1, off_international=yes, prev_is_international=yes, dome_team_outdoors_cold=no, gameday=2026-09-20, dome_team=no, home_roof=outdoors, roof=outdoors, high_wind=no, wind=n/a, long_road_trip=no, road_streak=0, neutral_site=no, is_home=yes, off_international_no_bye=yes, lookahead=no, next_opp=ARI, early_body_clock=no, body_clock_kickoff_hour=13.4167, off_mnf_road=no, tz_crossed=0, prev_neutral_site=yes, prev_is_home=no, off_division_loss=no, coach_tenure_seasons=10, prev_div_game=1, prev_team_margin=20, coach_first_season_with_team=2017.",
+     "MIA (away): off_thursday=no, prev_weekday=Sunday, rest_days=7, sandwich_game=no, next_div_game=0, off_international=no, prev_is_international=no, dome_team_outdoors_cold=no, gameday=2026-09-20, dome_team=no, home_roof=outdoors, roof=outdoors, high_wind=no, wind=n/a, long_road_trip=no, road_streak=2, neutral_site=no, is_home=no, off_international_no_bye=no, lookahead=no, next_opp=KC, early_body_clock=no, body_clock_kickoff_hour=16.4167, off_mnf_road=no, tz_crossed=-3, prev_neutral_site=no, prev_is_home=no, off_division_loss=no, coach_tenure_seasons=1, prev_div_game=0, prev_team_margin=-14, coach_first_season_with_team=2026."
     ]
    },
    {
     "n": 3,
     "title": "Each angle checked against this game",
     "lines": [
-     "off_thursday (0.5 pt) - Rest: mini-bye of 9+ days after a Thursday game. This game: LA: off_thursday=yes [prev_weekday=Thursday, rest_days=11]; NYG: off_thursday=no [prev_weekday=Sunday, rest_days=8]. Result: FIRED (bet LA -> lean LA). Backtest n 632; recent windows 2020-2024: 54.5% (n 170) / 2021-2025: 54.2% (n 182).",
-     "sandwich_game (0.5 pt) - Attention: a division game next week pulls preparation focus forward. This game: LA: sandwich_game=no [next_div_game=0]; NYG: sandwich_game=no [next_div_game=0]. Result: NOT FIRED - neither team meets it.",
-     "dome_team_outdoors_cold (0.5 pt) - Environment: a team built for controlled conditions playing outdoors in November-January. This game: LA: dome_team_outdoors_cold=no [gameday=2026-09-21, dome_team=yes, home_roof=dome, roof=dome]; NYG: dome_team_outdoors_cold=no [gameday=2026-09-21, dome_team=no, home_roof=outdoors, roof=dome]. Result: OUT OF SEASON - needs months Nov-Jan; this game is Sep 21.",
-     "high_wind (0.75 pt) - Environment: 15+ mph wind suppresses passing and kicking; bears on totals. This game: LA: high_wind=no [wind=n/a]; NYG: high_wind=no [wind=n/a]. Result: NOT WIRED - needs a forecast wind source; the schedule feed only records wind after the game.",
-     "The 8 watch angles carry zero weight; they only count toward the shortlist rule. Fired here: off_international fired (fade LA -> lean NYG; n 98, 2020-2024: 52.9% (n 34) / 2021-2025: 52.9% (n 34)); off_international_no_bye fired (fade LA -> lean NYG; n 29, 2020-2024: 36.8% (n 19) / 2021-2025: 36.8% (n 19)). The other 6 did not fire."
+     "off_thursday (0.5 pt) - Rest: mini-bye of 9+ days after a Thursday game. This game: SF: off_thursday=yes [prev_weekday=Thursday, rest_days=10]; MIA: off_thursday=no [prev_weekday=Sunday, rest_days=7]. Result: FIRED (bet SF -> lean SF). Backtest n 632; recent windows 2020-2024: 54.5% (n 170) / 2021-2025: 54.2% (n 182).",
+     "sandwich_game (0.75 pt) - Attention: a division game next week pulls preparation focus forward. This game: SF: sandwich_game=yes [next_div_game=1]; MIA: sandwich_game=no [next_div_game=0]. Result: FIRED (fade SF -> lean MIA). Backtest n 2741; recent windows 2020-2024: 56.3% (n 473) / 2021-2025: 55.1% (n 490).",
+     "off_international (0.5 pt) - Travel: hangover after an international game (long haul plus time change). This game: SF: off_international=yes [prev_is_international=yes]; MIA: off_international=no [prev_is_international=no]. Result: FIRED (fade SF -> lean MIA). Backtest n 112; recent windows 2020-2024: 52.9% (n 34) / 2021-2025: 54.2% (n 48).",
+     "dome_team_outdoors_cold (0.5 pt) - Environment: a team built for controlled conditions playing outdoors in November-January. This game: SF: dome_team_outdoors_cold=no [gameday=2026-09-20, dome_team=no, home_roof=outdoors, roof=outdoors]; MIA: dome_team_outdoors_cold=no [gameday=2026-09-20, dome_team=no, home_roof=outdoors, roof=outdoors]. Result: OUT OF SEASON - needs months Nov-Jan; this game is Sep 20.",
+     "high_wind (0.75 pt) - Environment: 15+ mph wind suppresses passing and kicking; bears on totals. This game: SF: high_wind=no [wind=n/a]; MIA: high_wind=no [wind=n/a]. Result: NOT WIRED - not wired to the kickoff forecast yet: the WEATHER section shows the forecast wind (3.4) for reading only; wiring the angle to forecast wind is an intake decision (its backtest used post-game wind).",
+     "The 8 watch angles carry zero weight; they only count toward the shortlist rule. Fired here: off_international_no_bye fired (fade SF -> lean MIA (below floor - not counted: needs both windows >= 52.4%); n 36, 2020-2024: 36.8% (n 19) / 2021-2025: 46.1% (n 26)). The other 7 did not fire."
     ]
    },
    {
@@ -77,7 +248,7 @@
     "title": "The lean math",
     "lines": [
      "Each fired survivor pushes its market by its weight in points toward the side its mechanism names; fires on opposite sides offset; the net is capped at +/-1.5 points. Watch angles add 0.",
-     "spread: sum of fired weights: LA 0.5, NYG 0; net 0.5 toward LA; cap +/-1.5 -> lean LA 0.5.",
+     "spread: sum of fired weights: SF 0.5, MIA 1.25; net 0.75 toward MIA; cap +/-1.5 -> lean MIA 0.75.",
      "total: sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none."
     ]
    },
@@ -86,15 +257,15 @@
     "title": "The line check",
     "lines": [
      "The line check protects against chasing a number the market has already taken: if the line has moved toward the lean by as much as the lean itself, the value is gone.",
-     "spread: opener LA -7 vs best now LA -7 (-115) at draftkings; moved +0 toward LA (negative = away), lean 0.5 -> pass (number not gone)."
+     "spread: opener MIA +13.5 vs best now MIA +13.5 (-110) at draftkings; moved +0 toward MIA (negative = away), lean 0.75 -> pass (number not gone)."
     ]
    },
    {
     "n": 6,
     "title": "The verdict, and what would have changed it",
     "lines": [
-     "Verdict - spread: not enough angles (1 survivor, 0 watch same way); total: no lean.",
-     "What would have changed it (spread): One more survivor angle on the LA side - or one watch angle agreeing - would have passed the angle-count rule; the number had not moved, so that alone would have put this on the shortlist."
+     "Verdict - spread: SHORTLIST; total: no lean.",
+     "What would have changed it (spread): Nothing - this market made the shortlist."
     ]
    }
   ]
@@ -191,19 +362,48 @@
       "result": "NOT FIRED",
       "note": "",
       "direction_text": "fade (spread)",
-      "points": 0.5,
-      "n": 5137,
+      "points": 0.75,
+      "n": 2741,
       "windows": {
        "2020-2024": {
-        "pct": 53.23,
-        "n": 921
+        "pct": 56.3,
+        "n": 473
        },
        "2021-2025": {
-        "pct": 52.73,
-        "n": 922
+        "pct": 55.14,
+        "n": 490
        }
       },
       "mechanism": "Attention: a division game next week pulls preparation focus forward."
+     },
+     {
+      "name": "off_international",
+      "tier": "survivor",
+      "expression": "off_international",
+      "market": "spread",
+      "inputs": [
+       "prev_is_international"
+      ],
+      "values": [
+       "BUF: off_international=no [prev_is_international=no]",
+       "DET: off_international=no [prev_is_international=no]"
+      ],
+      "result": "NOT FIRED",
+      "note": "",
+      "direction_text": "fade (spread)",
+      "points": 0.5,
+      "n": 112,
+      "windows": {
+       "2020-2024": {
+        "pct": 52.94,
+        "n": 34
+       },
+       "2021-2025": {
+        "pct": 54.17,
+        "n": 48
+       }
+      },
+      "mechanism": "Travel: hangover after an international game (long haul plus time change)."
      },
      {
       "name": "dome_team_outdoors_cold",
@@ -250,7 +450,7 @@
        "DET: high_wind=no [wind=4]"
       ],
       "result": "NOT WIRED",
-      "note": "needs a forecast wind source; the schedule feed only records wind after the game",
+      "note": "not wired to the kickoff forecast yet: the WEATHER section shows the forecast wind (3.4) for reading only; wiring the angle to forecast wind is an intake decision (its backtest used post-game wind)",
       "direction_text": "under (total)",
       "points": 0.75,
       "n": 1298,
@@ -298,35 +498,6 @@
       "mechanism": "Travel: third or later consecutive game away from home; cumulative travel fatigue."
      },
      {
-      "name": "off_international",
-      "tier": "watch",
-      "expression": "off_international",
-      "market": "spread",
-      "inputs": [
-       "prev_is_international"
-      ],
-      "values": [
-       "BUF: off_international=no [prev_is_international=no]",
-       "DET: off_international=no [prev_is_international=no]"
-      ],
-      "result": "NOT FIRED",
-      "note": "",
-      "direction_text": "fade (spread)",
-      "points": 0.0,
-      "n": 98,
-      "windows": {
-       "2020-2024": {
-        "pct": 52.94,
-        "n": 34
-       },
-       "2021-2025": {
-        "pct": 52.94,
-        "n": 34
-       }
-      },
-      "mechanism": "Travel: hangover after an international game (long haul plus time change)."
-     },
-     {
       "name": "off_international_no_bye",
       "tier": "watch",
       "expression": "off_international_no_bye",
@@ -344,18 +515,48 @@
       "note": "",
       "direction_text": "fade (spread)",
       "points": 0.0,
-      "n": 29,
+      "n": 36,
       "windows": {
        "2020-2024": {
         "pct": 36.84,
         "n": 19
        },
        "2021-2025": {
-        "pct": 36.84,
-        "n": 19
+        "pct": 46.15,
+        "n": 26
        }
       },
       "mechanism": "Travel: international hangover with no bye week to recover."
+     },
+     {
+      "name": "division_lookahead",
+      "tier": "watch",
+      "expression": "sandwich_game,lookahead",
+      "market": "spread",
+      "inputs": [
+       "next_div_game",
+       "next_opp"
+      ],
+      "values": [
+       "BUF: sandwich_game=no, lookahead=no [next_div_game=0, next_opp=LAC]",
+       "DET: sandwich_game=no, lookahead=no [next_div_game=0, next_opp=NYJ]"
+      ],
+      "result": "NOT FIRED",
+      "note": "",
+      "direction_text": "fade (spread)",
+      "points": 0.0,
+      "n": 499,
+      "windows": {
+       "2020-2024": {
+        "pct": 56.99,
+        "n": 94
+       },
+       "2021-2025": {
+        "pct": 56.38,
+        "n": 95
+       }
+      },
+      "mechanism": "Attention: next game is a division game against an elite opponent."
      },
      {
       "name": "dome_team_cold_wind",
@@ -374,7 +575,7 @@
        "DET: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-17, dome_team=yes, home_roof=dome, roof=outdoors, wind=4]"
       ],
       "result": "NOT WIRED",
-      "note": "same: wind is unknown before kickoff (also outside its window: needs months Nov-Jan)",
+      "note": "same: the forecast is shown in WEATHER, the angle stays unwired until intake (also outside its window: needs months Nov-Jan)",
       "direction_text": "under (total)",
       "points": 0.0,
       "n": 87,
@@ -504,15 +705,15 @@
       "note": "",
       "direction_text": "bet (spread)",
       "points": 0.0,
-      "n": 159,
+      "n": 82,
       "windows": {
        "2020-2024": {
         "pct": 66.67,
-        "n": 32
+        "n": 12
        },
        "2021-2025": {
-        "pct": 62.07,
-        "n": 34
+        "pct": 61.54,
+        "n": 16
        }
       },
       "mechanism": "Coaching: experienced staff (season 5+ with the team) handles a division stretch after a division loss (Q's hypothesis: they cover)."
@@ -523,14 +724,14 @@
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": null,
+      "move": "open BUF -4.5 (2026-09-15_1050 ) -> latest BUF -4.5 (2026-09-15_1052 ); move +0 over 2 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      },
      "total": {
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": null,
+      "move": "open over 53.5 (2026-09-15_1050 ) -> latest over 53.5 (2026-09-15_1052 ); move +0 over 2 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      }
     }
@@ -538,16 +739,88 @@
    "shadow_lean": {
     "spread": {
      "side": "BUF",
-     "line": -4.5,
-     "price": -112,
-     "book": "draftkings",
+     "line": null,
+     "price": null,
+     "book": null,
      "tier": "D",
      "net_lean": 0.0,
      "forced_default": true,
-     "line_stale": true,
-     "pulled_at": "2026-09-15T10:52:00-07:00"
+     "line_stale": false,
+     "pulled_at": null
     },
     "total": null
+   },
+   "tag": "NO BET",
+   "tag_rank": 5,
+   "tag_reason": "No angles fired",
+   "tag_market": "spread",
+   "tag_tier": "D",
+   "tag_keys": {
+    "net_survivor_weight": 0.0,
+    "survivor_angles_fired": 0,
+    "price_edge": 0.0,
+    "kickoff": "2026-09-17T17:15:00-07:00"
+   },
+   "weather": {
+    "status": "forecast",
+    "badge": null,
+    "detail": null,
+    "wind_mph": 3.3,
+    "wind_max_3h_mph": 3.8,
+    "gust_mph": 6.9,
+    "temp_f": 66.6,
+    "precip_in_3h": 0.0,
+    "kickoff_hour_utc": "2026-09-18T00:00:00+00:00",
+    "hours": [
+     "2026-09-18T00:00:00+00:00",
+     "2026-09-18T01:00:00+00:00",
+     "2026-09-18T02:00:00+00:00",
+     "2026-09-18T03:00:00+00:00"
+    ],
+    "source": "open-meteo forecast (10 m wind, mph; 2 m temp, F)",
+    "venue": "Highmark Stadium",
+    "roof": "outdoors",
+    "lat": 42.7738,
+    "lon": -78.787,
+    "kickoff_utc": "2026-09-18T00:15:00+00:00",
+    "fetched_at": "2026-09-20T08:37:53.603047-07:00",
+    "source_host": "api.open-meteo.com"
+   },
+   "movement": {
+    "spread": {
+     "market": "spreads",
+     "side": "BUF",
+     "snapshots": 2,
+     "open": -4.5,
+     "open_at": "2026-09-15_1050 America/Phoenix",
+     "open_books": 3,
+     "latest": -4.5,
+     "latest_at": "2026-09-15_1052 America/Phoenix",
+     "latest_books": 3,
+     "open_price": -112,
+     "latest_price": -112,
+     "move": 0.0,
+     "toward_lean": null,
+     "direction": null,
+     "key_crossed": []
+    },
+    "total": {
+     "market": "totals",
+     "side": "over",
+     "snapshots": 2,
+     "open": 53.5,
+     "open_at": "2026-09-15_1050 America/Phoenix",
+     "open_books": 3,
+     "latest": 53.5,
+     "latest_at": "2026-09-15_1052 America/Phoenix",
+     "latest_books": 3,
+     "open_price": -115,
+     "latest_price": -115,
+     "move": 0.0,
+     "toward_lean": null,
+     "direction": null,
+     "key_crossed": []
+    }
    }
   },
   {
@@ -641,19 +914,48 @@
       "result": "NOT FIRED",
       "note": "",
       "direction_text": "fade (spread)",
-      "points": 0.5,
-      "n": 5137,
+      "points": 0.75,
+      "n": 2741,
       "windows": {
        "2020-2024": {
-        "pct": 53.23,
-        "n": 921
+        "pct": 56.3,
+        "n": 473
        },
        "2021-2025": {
-        "pct": 52.73,
-        "n": 922
+        "pct": 55.14,
+        "n": 490
        }
       },
       "mechanism": "Attention: a division game next week pulls preparation focus forward."
+     },
+     {
+      "name": "off_international",
+      "tier": "survivor",
+      "expression": "off_international",
+      "market": "spread",
+      "inputs": [
+       "prev_is_international"
+      ],
+      "values": [
+       "ATL: off_international=no [prev_is_international=no]",
+       "CAR: off_international=no [prev_is_international=no]"
+      ],
+      "result": "NOT FIRED",
+      "note": "",
+      "direction_text": "fade (spread)",
+      "points": 0.5,
+      "n": 112,
+      "windows": {
+       "2020-2024": {
+        "pct": 52.94,
+        "n": 34
+       },
+       "2021-2025": {
+        "pct": 54.17,
+        "n": 48
+       }
+      },
+      "mechanism": "Travel: hangover after an international game (long haul plus time change)."
      },
      {
       "name": "dome_team_outdoors_cold",
@@ -700,7 +1002,7 @@
        "CAR: high_wind=no [wind=n/a]"
       ],
       "result": "NOT WIRED",
-      "note": "needs a forecast wind source; the schedule feed only records wind after the game",
+      "note": "not wired to the kickoff forecast yet: the WEATHER section shows the forecast wind (3.4) for reading only; wiring the angle to forecast wind is an intake decision (its backtest used post-game wind)",
       "direction_text": "under (total)",
       "points": 0.75,
       "n": 1298,
@@ -748,35 +1050,6 @@
       "mechanism": "Travel: third or later consecutive game away from home; cumulative travel fatigue."
      },
      {
-      "name": "off_international",
-      "tier": "watch",
-      "expression": "off_international",
-      "market": "spread",
-      "inputs": [
-       "prev_is_international"
-      ],
-      "values": [
-       "ATL: off_international=no [prev_is_international=no]",
-       "CAR: off_international=no [prev_is_international=no]"
-      ],
-      "result": "NOT FIRED",
-      "note": "",
-      "direction_text": "fade (spread)",
-      "points": 0.0,
-      "n": 98,
-      "windows": {
-       "2020-2024": {
-        "pct": 52.94,
-        "n": 34
-       },
-       "2021-2025": {
-        "pct": 52.94,
-        "n": 34
-       }
-      },
-      "mechanism": "Travel: hangover after an international game (long haul plus time change)."
-     },
-     {
       "name": "off_international_no_bye",
       "tier": "watch",
       "expression": "off_international_no_bye",
@@ -794,18 +1067,48 @@
       "note": "",
       "direction_text": "fade (spread)",
       "points": 0.0,
-      "n": 29,
+      "n": 36,
       "windows": {
        "2020-2024": {
         "pct": 36.84,
         "n": 19
        },
        "2021-2025": {
-        "pct": 36.84,
-        "n": 19
+        "pct": 46.15,
+        "n": 26
        }
       },
       "mechanism": "Travel: international hangover with no bye week to recover."
+     },
+     {
+      "name": "division_lookahead",
+      "tier": "watch",
+      "expression": "sandwich_game,lookahead",
+      "market": "spread",
+      "inputs": [
+       "next_div_game",
+       "next_opp"
+      ],
+      "values": [
+       "ATL: sandwich_game=no, lookahead=no [next_div_game=0, next_opp=GB]",
+       "CAR: sandwich_game=no, lookahead=no [next_div_game=0, next_opp=CLE]"
+      ],
+      "result": "NOT FIRED",
+      "note": "",
+      "direction_text": "fade (spread)",
+      "points": 0.0,
+      "n": 499,
+      "windows": {
+       "2020-2024": {
+        "pct": 56.99,
+        "n": 94
+       },
+       "2021-2025": {
+        "pct": 56.38,
+        "n": 95
+       }
+      },
+      "mechanism": "Attention: next game is a division game against an elite opponent."
      },
      {
       "name": "dome_team_cold_wind",
@@ -824,7 +1127,7 @@
        "CAR: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-20, dome_team=no, home_roof=outdoors, roof=n/a, wind=n/a]"
       ],
       "result": "NOT WIRED",
-      "note": "same: wind is unknown before kickoff (also outside its window: needs months Nov-Jan)",
+      "note": "same: the forecast is shown in WEATHER, the angle stays unwired until intake (also outside its window: needs months Nov-Jan)",
       "direction_text": "under (total)",
       "points": 0.0,
       "n": 87,
@@ -954,15 +1257,15 @@
       "note": "",
       "direction_text": "bet (spread)",
       "points": 0.0,
-      "n": 159,
+      "n": 82,
       "windows": {
        "2020-2024": {
         "pct": 66.67,
-        "n": 32
+        "n": 12
        },
        "2021-2025": {
-        "pct": 62.07,
-        "n": 34
+        "pct": 61.54,
+        "n": 16
        }
       },
       "mechanism": "Coaching: experienced staff (season 5+ with the team) handles a division stretch after a division loss (Q's hypothesis: they cover)."
@@ -973,14 +1276,14 @@
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": null,
+      "move": "open ATL +2.5 (2026-09-15_1050 ) -> latest ATL +2.5 (2026-09-20_07064); move +0 over 7 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      },
      "total": {
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": null,
+      "move": "open over 43.5 (2026-09-15_1050 ) -> latest over 43.5 (2026-09-20_07064); move +0 over 7 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      }
     }
@@ -989,15 +1292,87 @@
     "spread": {
      "side": "ATL",
      "line": 2.5,
-     "price": -108,
-     "book": "betmgm",
+     "price": 100,
+     "book": "draftkings",
      "tier": "D",
      "net_lean": 0.0,
      "forced_default": true,
-     "line_stale": true,
-     "pulled_at": "2026-09-15T10:52:00-07:00"
+     "line_stale": false,
+     "pulled_at": "2026-09-20T07:06:49-07:00"
     },
     "total": null
+   },
+   "tag": "NO BET",
+   "tag_rank": 6,
+   "tag_reason": "No angles fired",
+   "tag_market": "spread",
+   "tag_tier": "D",
+   "tag_keys": {
+    "net_survivor_weight": 0.0,
+    "survivor_angles_fired": 0,
+    "price_edge": 0.0,
+    "kickoff": "2026-09-20T10:00:00-07:00"
+   },
+   "weather": {
+    "status": "forecast",
+    "badge": null,
+    "detail": null,
+    "wind_mph": 3.6,
+    "wind_max_3h_mph": 4.0,
+    "gust_mph": 6.3,
+    "temp_f": 81.1,
+    "precip_in_3h": 0.0,
+    "kickoff_hour_utc": "2026-09-20T17:00:00+00:00",
+    "hours": [
+     "2026-09-20T17:00:00+00:00",
+     "2026-09-20T18:00:00+00:00",
+     "2026-09-20T19:00:00+00:00",
+     "2026-09-20T20:00:00+00:00"
+    ],
+    "source": "open-meteo forecast (10 m wind, mph; 2 m temp, F)",
+    "venue": "Mercedes-Benz Stadium",
+    "roof": "retractable",
+    "lat": 33.7554,
+    "lon": -84.401,
+    "kickoff_utc": "2026-09-20T17:00:00+00:00",
+    "fetched_at": "2026-09-20T08:37:53.603047-07:00",
+    "source_host": "api.open-meteo.com"
+   },
+   "movement": {
+    "spread": {
+     "market": "spreads",
+     "side": "ATL",
+     "snapshots": 7,
+     "open": 2.5,
+     "open_at": "2026-09-15_1050 America/Phoenix",
+     "open_books": 3,
+     "latest": 2.5,
+     "latest_at": "2026-09-20_070649 America/Phoenix",
+     "latest_books": 3,
+     "open_price": -110,
+     "latest_price": -102,
+     "move": 0.0,
+     "toward_lean": null,
+     "direction": null,
+     "key_crossed": []
+    },
+    "total": {
+     "market": "totals",
+     "side": "over",
+     "snapshots": 7,
+     "open": 43.5,
+     "open_at": "2026-09-15_1050 America/Phoenix",
+     "open_books": 3,
+     "latest": 43.5,
+     "latest_at": "2026-09-20_070649 America/Phoenix",
+     "latest_books": 3,
+     "open_price": -105,
+     "latest_price": -110,
+     "move": 0.0,
+     "toward_lean": null,
+     "direction": null,
+     "key_crossed": []
+    }
    }
   },
   {
@@ -1010,7 +1385,7 @@
    "spread": {
     "lean_side": null,
     "lean_points": 0.0,
-    "verdict": "angles cancel",
+    "verdict": "no lean",
     "survivors_same_way": 0,
     "watch_same_way": 0,
     "survivors_against": 0,
@@ -1039,54 +1414,7 @@
     "angles_for": [],
     "angles_against": []
    },
-   "angles_fired": [
-    {
-     "name": "sandwich_game",
-     "expression": "sandwich_game",
-     "tier": "survivor",
-     "market": "spread",
-     "direction": "fade",
-     "direction_label": "fade HOU -> lean CIN",
-     "flagged_team": "HOU",
-     "lean_side": "CIN",
-     "points": 0.5,
-     "n": 5137,
-     "windows": {
-      "2020-2024": {
-       "pct": 53.23,
-       "n": 921
-      },
-      "2021-2025": {
-       "pct": 52.73,
-       "n": 922
-      }
-     },
-     "mechanism": "Attention: a division game next week pulls preparation focus forward."
-    },
-    {
-     "name": "sandwich_game",
-     "expression": "sandwich_game",
-     "tier": "survivor",
-     "market": "spread",
-     "direction": "fade",
-     "direction_label": "fade CIN -> lean HOU",
-     "flagged_team": "CIN",
-     "lean_side": "HOU",
-     "points": 0.5,
-     "n": 5137,
-     "windows": {
-      "2020-2024": {
-       "pct": 53.23,
-       "n": 921
-      },
-      "2021-2025": {
-       "pct": 52.73,
-       "n": 922
-      }
-     },
-     "mechanism": "Attention: a division game next week pulls preparation focus forward."
-    }
-   ],
+   "angles_fired": [],
    "matrix": {
     "windows": [
      "2020-2024",
@@ -1132,25 +1460,54 @@
        "next_div_game"
       ],
       "values": [
-       "HOU: sandwich_game=yes [next_div_game=1]",
-       "CIN: sandwich_game=yes [next_div_game=1]"
+       "HOU: sandwich_game=no [next_div_game=1]",
+       "CIN: sandwich_game=no [next_div_game=1]"
       ],
-      "result": "FIRED",
-      "note": "",
-      "direction_text": "fade (spread) -> fade HOU -> lean CIN; fade CIN -> lean HOU",
-      "points": 0.5,
-      "n": 5137,
+      "result": "NOT FIRED",
+      "note": "both sandwiched - excluded (both teams have a division game next week; fires for neither)",
+      "direction_text": "fade (spread)",
+      "points": 0.75,
+      "n": 2741,
       "windows": {
        "2020-2024": {
-        "pct": 53.23,
-        "n": 921
+        "pct": 56.3,
+        "n": 473
        },
        "2021-2025": {
-        "pct": 52.73,
-        "n": 922
+        "pct": 55.14,
+        "n": 490
        }
       },
       "mechanism": "Attention: a division game next week pulls preparation focus forward."
+     },
+     {
+      "name": "off_international",
+      "tier": "survivor",
+      "expression": "off_international",
+      "market": "spread",
+      "inputs": [
+       "prev_is_international"
+      ],
+      "values": [
+       "HOU: off_international=no [prev_is_international=no]",
+       "CIN: off_international=no [prev_is_international=no]"
+      ],
+      "result": "NOT FIRED",
+      "note": "",
+      "direction_text": "fade (spread)",
+      "points": 0.5,
+      "n": 112,
+      "windows": {
+       "2020-2024": {
+        "pct": 52.94,
+        "n": 34
+       },
+       "2021-2025": {
+        "pct": 54.17,
+        "n": 48
+       }
+      },
+      "mechanism": "Travel: hangover after an international game (long haul plus time change)."
      },
      {
       "name": "dome_team_outdoors_cold",
@@ -1197,7 +1554,7 @@
        "CIN: high_wind=no [wind=n/a]"
       ],
       "result": "NOT WIRED",
-      "note": "needs a forecast wind source; the schedule feed only records wind after the game",
+      "note": "not wired to the kickoff forecast yet: the WEATHER section shows the forecast wind (3.4) for reading only; wiring the angle to forecast wind is an intake decision (its backtest used post-game wind)",
       "direction_text": "under (total)",
       "points": 0.75,
       "n": 1298,
@@ -1245,35 +1602,6 @@
       "mechanism": "Travel: third or later consecutive game away from home; cumulative travel fatigue."
      },
      {
-      "name": "off_international",
-      "tier": "watch",
-      "expression": "off_international",
-      "market": "spread",
-      "inputs": [
-       "prev_is_international"
-      ],
-      "values": [
-       "HOU: off_international=no [prev_is_international=no]",
-       "CIN: off_international=no [prev_is_international=no]"
-      ],
-      "result": "NOT FIRED",
-      "note": "",
-      "direction_text": "fade (spread)",
-      "points": 0.0,
-      "n": 98,
-      "windows": {
-       "2020-2024": {
-        "pct": 52.94,
-        "n": 34
-       },
-       "2021-2025": {
-        "pct": 52.94,
-        "n": 34
-       }
-      },
-      "mechanism": "Travel: hangover after an international game (long haul plus time change)."
-     },
-     {
       "name": "off_international_no_bye",
       "tier": "watch",
       "expression": "off_international_no_bye",
@@ -1291,18 +1619,48 @@
       "note": "",
       "direction_text": "fade (spread)",
       "points": 0.0,
-      "n": 29,
+      "n": 36,
       "windows": {
        "2020-2024": {
         "pct": 36.84,
         "n": 19
        },
        "2021-2025": {
-        "pct": 36.84,
-        "n": 19
+        "pct": 46.15,
+        "n": 26
        }
       },
       "mechanism": "Travel: international hangover with no bye week to recover."
+     },
+     {
+      "name": "division_lookahead",
+      "tier": "watch",
+      "expression": "sandwich_game,lookahead",
+      "market": "spread",
+      "inputs": [
+       "next_div_game",
+       "next_opp"
+      ],
+      "values": [
+       "HOU: sandwich_game=no, lookahead=no [next_div_game=1, next_opp=IND]",
+       "CIN: sandwich_game=no, lookahead=no [next_div_game=1, next_opp=PIT]"
+      ],
+      "result": "NOT FIRED",
+      "note": "",
+      "direction_text": "fade (spread)",
+      "points": 0.0,
+      "n": 499,
+      "windows": {
+       "2020-2024": {
+        "pct": 56.99,
+        "n": 94
+       },
+       "2021-2025": {
+        "pct": 56.38,
+        "n": 95
+       }
+      },
+      "mechanism": "Attention: next game is a division game against an elite opponent."
      },
      {
       "name": "dome_team_cold_wind",
@@ -1321,7 +1679,7 @@
        "CIN: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-20, dome_team=no, home_roof=outdoors, roof=n/a, wind=n/a]"
       ],
       "result": "NOT WIRED",
-      "note": "same: wind is unknown before kickoff (also outside its window: needs months Nov-Jan)",
+      "note": "same: the forecast is shown in WEATHER, the angle stays unwired until intake (also outside its window: needs months Nov-Jan)",
       "direction_text": "under (total)",
       "points": 0.0,
       "n": 87,
@@ -1444,22 +1802,22 @@
        "coach_first_season_with_team"
       ],
       "values": [
-       "HOU: off_division_loss=no, sandwich_game=yes, coach_tenure_seasons=4 (needs >=5) [prev_div_game=0, prev_team_margin=-5, next_div_game=1, coach_first_season_with_team=2023]",
-       "CIN: off_division_loss=no, sandwich_game=yes, coach_tenure_seasons=8 (needs >=5) [prev_div_game=0, prev_team_margin=6, next_div_game=1, coach_first_season_with_team=2019]"
+       "HOU: off_division_loss=no, sandwich_game=no, coach_tenure_seasons=4 (needs >=5) [prev_div_game=0, prev_team_margin=-5, next_div_game=1, coach_first_season_with_team=2023]",
+       "CIN: off_division_loss=no, sandwich_game=no, coach_tenure_seasons=8 (needs >=5) [prev_div_game=0, prev_team_margin=6, next_div_game=1, coach_first_season_with_team=2019]"
       ],
       "result": "NOT FIRED",
       "note": "",
       "direction_text": "bet (spread)",
       "points": 0.0,
-      "n": 159,
+      "n": 82,
       "windows": {
        "2020-2024": {
         "pct": 66.67,
-        "n": 32
+        "n": 12
        },
        "2021-2025": {
-        "pct": 62.07,
-        "n": 34
+        "pct": 61.54,
+        "n": 16
        }
       },
       "mechanism": "Coaching: experienced staff (season 5+ with the team) handles a division stretch after a division loss (Q's hypothesis: they cover)."
@@ -1467,17 +1825,17 @@
     ],
     "lean_math": {
      "spread": {
-      "net": "sum of fired weights: CIN 0.5, HOU 0.5; net 0; cap +/-1.5 -> lean none",
+      "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": null,
-      "verdict": "angles cancel"
+      "move": "open HOU -2.5 (2026-09-15_1050 ) -> latest HOU -2.5 (2026-09-20_07064); move +0 over 7 snapshot(s); key numbers crossed: none",
+      "verdict": "no lean"
      },
      "total": {
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": null,
+      "move": "open over 46.5 (2026-09-15_1050 ) -> latest over 45.5 (2026-09-20_07064); move -1 over 7 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      }
     }
@@ -1487,14 +1845,86 @@
      "side": "HOU",
      "line": -2.5,
      "price": -115,
-     "book": "draftkings",
+     "book": "fanduel",
      "tier": "D",
      "net_lean": 0.0,
      "forced_default": true,
-     "line_stale": true,
-     "pulled_at": "2026-09-15T10:52:00-07:00"
+     "line_stale": false,
+     "pulled_at": "2026-09-20T07:06:49-07:00"
     },
     "total": null
+   },
+   "tag": "NO BET",
+   "tag_rank": 7,
+   "tag_reason": "No angles fired",
+   "tag_market": "spread",
+   "tag_tier": "D",
+   "tag_keys": {
+    "net_survivor_weight": 0.0,
+    "survivor_angles_fired": 0,
+    "price_edge": 0.0,
+    "kickoff": "2026-09-20T10:00:00-07:00"
+   },
+   "weather": {
+    "status": "forecast",
+    "badge": null,
+    "detail": null,
+    "wind_mph": 1.0,
+    "wind_max_3h_mph": 5.6,
+    "gust_mph": 6.9,
+    "temp_f": 92.3,
+    "precip_in_3h": 0.0,
+    "kickoff_hour_utc": "2026-09-20T17:00:00+00:00",
+    "hours": [
+     "2026-09-20T17:00:00+00:00",
+     "2026-09-20T18:00:00+00:00",
+     "2026-09-20T19:00:00+00:00",
+     "2026-09-20T20:00:00+00:00"
+    ],
+    "source": "open-meteo forecast (10 m wind, mph; 2 m temp, F)",
+    "venue": "Reliant Stadium",
+    "roof": "retractable",
+    "lat": 29.6847,
+    "lon": -95.4107,
+    "kickoff_utc": "2026-09-20T17:00:00+00:00",
+    "fetched_at": "2026-09-20T08:37:53.603047-07:00",
+    "source_host": "api.open-meteo.com"
+   },
+   "movement": {
+    "spread": {
+     "market": "spreads",
+     "side": "HOU",
+     "snapshots": 7,
+     "open": -2.5,
+     "open_at": "2026-09-15_1050 America/Phoenix",
+     "open_books": 3,
+     "latest": -2.5,
+     "latest_at": "2026-09-20_070649 America/Phoenix",
+     "latest_books": 3,
+     "open_price": -115,
+     "latest_price": -115,
+     "move": 0.0,
+     "toward_lean": null,
+     "direction": null,
+     "key_crossed": []
+    },
+    "total": {
+     "market": "totals",
+     "side": "over",
+     "snapshots": 7,
+     "open": 46.5,
+     "open_at": "2026-09-15_1050 America/Phoenix",
+     "open_books": 3,
+     "latest": 45.5,
+     "latest_at": "2026-09-20_070649 America/Phoenix",
+     "latest_books": 3,
+     "open_price": -110,
+     "latest_price": -110,
+     "move": -1.0,
+     "toward_lean": null,
+     "direction": null,
+     "key_crossed": []
+    }
    }
   },
   {
@@ -1588,19 +2018,48 @@
       "result": "NOT FIRED",
       "note": "",
       "direction_text": "fade (spread)",
-      "points": 0.5,
-      "n": 5137,
+      "points": 0.75,
+      "n": 2741,
       "windows": {
        "2020-2024": {
-        "pct": 53.23,
-        "n": 921
+        "pct": 56.3,
+        "n": 473
        },
        "2021-2025": {
-        "pct": 52.73,
-        "n": 922
+        "pct": 55.14,
+        "n": 490
        }
       },
       "mechanism": "Attention: a division game next week pulls preparation focus forward."
+     },
+     {
+      "name": "off_international",
+      "tier": "survivor",
+      "expression": "off_international",
+      "market": "spread",
+      "inputs": [
+       "prev_is_international"
+      ],
+      "values": [
+       "TB: off_international=no [prev_is_international=no]",
+       "CLE: off_international=no [prev_is_international=no]"
+      ],
+      "result": "NOT FIRED",
+      "note": "",
+      "direction_text": "fade (spread)",
+      "points": 0.5,
+      "n": 112,
+      "windows": {
+       "2020-2024": {
+        "pct": 52.94,
+        "n": 34
+       },
+       "2021-2025": {
+        "pct": 54.17,
+        "n": 48
+       }
+      },
+      "mechanism": "Travel: hangover after an international game (long haul plus time change)."
      },
      {
       "name": "dome_team_outdoors_cold",
@@ -1647,7 +2106,7 @@
        "CLE: high_wind=no [wind=n/a]"
       ],
       "result": "NOT WIRED",
-      "note": "needs a forecast wind source; the schedule feed only records wind after the game",
+      "note": "not wired to the kickoff forecast yet: the WEATHER section shows the forecast wind (3.4) for reading only; wiring the angle to forecast wind is an intake decision (its backtest used post-game wind)",
       "direction_text": "under (total)",
       "points": 0.75,
       "n": 1298,
@@ -1695,35 +2154,6 @@
       "mechanism": "Travel: third or later consecutive game away from home; cumulative travel fatigue."
      },
      {
-      "name": "off_international",
-      "tier": "watch",
-      "expression": "off_international",
-      "market": "spread",
-      "inputs": [
-       "prev_is_international"
-      ],
-      "values": [
-       "TB: off_international=no [prev_is_international=no]",
-       "CLE: off_international=no [prev_is_international=no]"
-      ],
-      "result": "NOT FIRED",
-      "note": "",
-      "direction_text": "fade (spread)",
-      "points": 0.0,
-      "n": 98,
-      "windows": {
-       "2020-2024": {
-        "pct": 52.94,
-        "n": 34
-       },
-       "2021-2025": {
-        "pct": 52.94,
-        "n": 34
-       }
-      },
-      "mechanism": "Travel: hangover after an international game (long haul plus time change)."
-     },
-     {
       "name": "off_international_no_bye",
       "tier": "watch",
       "expression": "off_international_no_bye",
@@ -1741,18 +2171,48 @@
       "note": "",
       "direction_text": "fade (spread)",
       "points": 0.0,
-      "n": 29,
+      "n": 36,
       "windows": {
        "2020-2024": {
         "pct": 36.84,
         "n": 19
        },
        "2021-2025": {
-        "pct": 36.84,
-        "n": 19
+        "pct": 46.15,
+        "n": 26
        }
       },
       "mechanism": "Travel: international hangover with no bye week to recover."
+     },
+     {
+      "name": "division_lookahead",
+      "tier": "watch",
+      "expression": "sandwich_game,lookahead",
+      "market": "spread",
+      "inputs": [
+       "next_div_game",
+       "next_opp"
+      ],
+      "values": [
+       "TB: sandwich_game=no, lookahead=no [next_div_game=0, next_opp=MIN]",
+       "CLE: sandwich_game=no, lookahead=no [next_div_game=0, next_opp=CAR]"
+      ],
+      "result": "NOT FIRED",
+      "note": "",
+      "direction_text": "fade (spread)",
+      "points": 0.0,
+      "n": 499,
+      "windows": {
+       "2020-2024": {
+        "pct": 56.99,
+        "n": 94
+       },
+       "2021-2025": {
+        "pct": 56.38,
+        "n": 95
+       }
+      },
+      "mechanism": "Attention: next game is a division game against an elite opponent."
      },
      {
       "name": "dome_team_cold_wind",
@@ -1771,7 +2231,7 @@
        "CLE: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-20, dome_team=no, home_roof=outdoors, roof=outdoors, wind=n/a]"
       ],
       "result": "NOT WIRED",
-      "note": "same: wind is unknown before kickoff (also outside its window: needs months Nov-Jan)",
+      "note": "same: the forecast is shown in WEATHER, the angle stays unwired until intake (also outside its window: needs months Nov-Jan)",
       "direction_text": "under (total)",
       "points": 0.0,
       "n": 87,
@@ -1901,15 +2361,15 @@
       "note": "",
       "direction_text": "bet (spread)",
       "points": 0.0,
-      "n": 159,
+      "n": 82,
       "windows": {
        "2020-2024": {
         "pct": 66.67,
-        "n": 32
+        "n": 12
        },
        "2021-2025": {
-        "pct": 62.07,
-        "n": 34
+        "pct": 61.54,
+        "n": 16
        }
       },
       "mechanism": "Coaching: experienced staff (season 5+ with the team) handles a division stretch after a division loss (Q's hypothesis: they cover)."
@@ -1920,14 +2380,14 @@
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": null,
+      "move": "open TB -8.5 (2026-09-15_1050 ) -> latest TB -8.5 (2026-09-20_07064); move +0 over 7 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      },
      "total": {
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": null,
+      "move": "open over 41 (2026-09-15_1050 ) -> latest over 41.5 (2026-09-20_07064); move +0.5 over 7 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      }
     }
@@ -1935,16 +2395,88 @@
    "shadow_lean": {
     "spread": {
      "side": "TB",
-     "line": -8.5,
-     "price": -104,
-     "book": "fanduel",
+     "line": -8.0,
+     "price": -110,
+     "book": "betmgm",
      "tier": "D",
      "net_lean": 0.0,
      "forced_default": true,
-     "line_stale": true,
-     "pulled_at": "2026-09-15T10:52:00-07:00"
+     "line_stale": false,
+     "pulled_at": "2026-09-20T07:06:49-07:00"
     },
     "total": null
+   },
+   "tag": "NO BET",
+   "tag_rank": 8,
+   "tag_reason": "No angles fired",
+   "tag_market": "spread",
+   "tag_tier": "D",
+   "tag_keys": {
+    "net_survivor_weight": 0.0,
+    "survivor_angles_fired": 0,
+    "price_edge": 0.0,
+    "kickoff": "2026-09-20T10:00:00-07:00"
+   },
+   "weather": {
+    "status": "forecast",
+    "badge": null,
+    "detail": null,
+    "wind_mph": 3.0,
+    "wind_max_3h_mph": 4.6,
+    "gust_mph": 5.1,
+    "temp_f": 85.7,
+    "precip_in_3h": 0.0,
+    "kickoff_hour_utc": "2026-09-20T17:00:00+00:00",
+    "hours": [
+     "2026-09-20T17:00:00+00:00",
+     "2026-09-20T18:00:00+00:00",
+     "2026-09-20T19:00:00+00:00",
+     "2026-09-20T20:00:00+00:00"
+    ],
+    "source": "open-meteo forecast (10 m wind, mph; 2 m temp, F)",
+    "venue": "Raymond James Stadium",
+    "roof": "outdoors",
+    "lat": 27.9759,
+    "lon": -82.5033,
+    "kickoff_utc": "2026-09-20T17:00:00+00:00",
+    "fetched_at": "2026-09-20T08:37:53.603047-07:00",
+    "source_host": "api.open-meteo.com"
+   },
+   "movement": {
+    "spread": {
+     "market": "spreads",
+     "side": "TB",
+     "snapshots": 7,
+     "open": -8.5,
+     "open_at": "2026-09-15_1050 America/Phoenix",
+     "open_books": 3,
+     "latest": -8.5,
+     "latest_at": "2026-09-20_070649 America/Phoenix",
+     "latest_books": 3,
+     "open_price": -108,
+     "latest_price": -105,
+     "move": 0.0,
+     "toward_lean": null,
+     "direction": null,
+     "key_crossed": []
+    },
+    "total": {
+     "market": "totals",
+     "side": "over",
+     "snapshots": 7,
+     "open": 41.0,
+     "open_at": "2026-09-15_1050 America/Phoenix",
+     "open_books": 3,
+     "latest": 41.5,
+     "latest_at": "2026-09-20_070649 America/Phoenix",
+     "latest_books": 3,
+     "open_price": -112,
+     "latest_price": -108,
+     "move": 0.5,
+     "toward_lean": null,
+     "direction": null,
+     "key_crossed": []
+    }
    }
   },
   {
@@ -2038,19 +2570,48 @@
       "result": "NOT FIRED",
       "note": "",
       "direction_text": "fade (spread)",
-      "points": 0.5,
-      "n": 5137,
+      "points": 0.75,
+      "n": 2741,
       "windows": {
        "2020-2024": {
-        "pct": 53.23,
-        "n": 921
+        "pct": 56.3,
+        "n": 473
        },
        "2021-2025": {
-        "pct": 52.73,
-        "n": 922
+        "pct": 55.14,
+        "n": 490
        }
       },
       "mechanism": "Attention: a division game next week pulls preparation focus forward."
+     },
+     {
+      "name": "off_international",
+      "tier": "survivor",
+      "expression": "off_international",
+      "market": "spread",
+      "inputs": [
+       "prev_is_international"
+      ],
+      "values": [
+       "NYJ: off_international=no [prev_is_international=no]",
+       "GB: off_international=no [prev_is_international=no]"
+      ],
+      "result": "NOT FIRED",
+      "note": "",
+      "direction_text": "fade (spread)",
+      "points": 0.5,
+      "n": 112,
+      "windows": {
+       "2020-2024": {
+        "pct": 52.94,
+        "n": 34
+       },
+       "2021-2025": {
+        "pct": 54.17,
+        "n": 48
+       }
+      },
+      "mechanism": "Travel: hangover after an international game (long haul plus time change)."
      },
      {
       "name": "dome_team_outdoors_cold",
@@ -2097,7 +2658,7 @@
        "GB: high_wind=no [wind=n/a]"
       ],
       "result": "NOT WIRED",
-      "note": "needs a forecast wind source; the schedule feed only records wind after the game",
+      "note": "not wired to the kickoff forecast yet: the WEATHER section shows the forecast wind (3.4) for reading only; wiring the angle to forecast wind is an intake decision (its backtest used post-game wind)",
       "direction_text": "under (total)",
       "points": 0.75,
       "n": 1298,
@@ -2145,35 +2706,6 @@
       "mechanism": "Travel: third or later consecutive game away from home; cumulative travel fatigue."
      },
      {
-      "name": "off_international",
-      "tier": "watch",
-      "expression": "off_international",
-      "market": "spread",
-      "inputs": [
-       "prev_is_international"
-      ],
-      "values": [
-       "NYJ: off_international=no [prev_is_international=no]",
-       "GB: off_international=no [prev_is_international=no]"
-      ],
-      "result": "NOT FIRED",
-      "note": "",
-      "direction_text": "fade (spread)",
-      "points": 0.0,
-      "n": 98,
-      "windows": {
-       "2020-2024": {
-        "pct": 52.94,
-        "n": 34
-       },
-       "2021-2025": {
-        "pct": 52.94,
-        "n": 34
-       }
-      },
-      "mechanism": "Travel: hangover after an international game (long haul plus time change)."
-     },
-     {
       "name": "off_international_no_bye",
       "tier": "watch",
       "expression": "off_international_no_bye",
@@ -2191,18 +2723,48 @@
       "note": "",
       "direction_text": "fade (spread)",
       "points": 0.0,
-      "n": 29,
+      "n": 36,
       "windows": {
        "2020-2024": {
         "pct": 36.84,
         "n": 19
        },
        "2021-2025": {
-        "pct": 36.84,
-        "n": 19
+        "pct": 46.15,
+        "n": 26
        }
       },
       "mechanism": "Travel: international hangover with no bye week to recover."
+     },
+     {
+      "name": "division_lookahead",
+      "tier": "watch",
+      "expression": "sandwich_game,lookahead",
+      "market": "spread",
+      "inputs": [
+       "next_div_game",
+       "next_opp"
+      ],
+      "values": [
+       "NYJ: sandwich_game=no, lookahead=no [next_div_game=0, next_opp=DET]",
+       "GB: sandwich_game=no, lookahead=no [next_div_game=0, next_opp=ATL]"
+      ],
+      "result": "NOT FIRED",
+      "note": "",
+      "direction_text": "fade (spread)",
+      "points": 0.0,
+      "n": 499,
+      "windows": {
+       "2020-2024": {
+        "pct": 56.99,
+        "n": 94
+       },
+       "2021-2025": {
+        "pct": 56.38,
+        "n": 95
+       }
+      },
+      "mechanism": "Attention: next game is a division game against an elite opponent."
      },
      {
       "name": "dome_team_cold_wind",
@@ -2221,7 +2783,7 @@
        "GB: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-20, dome_team=no, home_roof=outdoors, roof=outdoors, wind=n/a]"
       ],
       "result": "NOT WIRED",
-      "note": "same: wind is unknown before kickoff (also outside its window: needs months Nov-Jan)",
+      "note": "same: the forecast is shown in WEATHER, the angle stays unwired until intake (also outside its window: needs months Nov-Jan)",
       "direction_text": "under (total)",
       "points": 0.0,
       "n": 87,
@@ -2351,15 +2913,15 @@
       "note": "",
       "direction_text": "bet (spread)",
       "points": 0.0,
-      "n": 159,
+      "n": 82,
       "windows": {
        "2020-2024": {
         "pct": 66.67,
-        "n": 32
+        "n": 12
        },
        "2021-2025": {
-        "pct": 62.07,
-        "n": 34
+        "pct": 61.54,
+        "n": 16
        }
       },
       "mechanism": "Coaching: experienced staff (season 5+ with the team) handles a division stretch after a division loss (Q's hypothesis: they cover)."
@@ -2370,14 +2932,14 @@
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": null,
+      "move": "open NYJ +3.5 (2026-09-15_1050 ) -> latest NYJ +3.5 (2026-09-20_07064); move +0 over 7 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      },
      "total": {
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": null,
+      "move": "open over 44.5 (2026-09-15_1050 ) -> latest over 44.5 (2026-09-20_07064); move +0 over 7 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      }
     }
@@ -2385,16 +2947,88 @@
    "shadow_lean": {
     "spread": {
      "side": "NYJ",
-     "line": 4.5,
-     "price": -120,
+     "line": 3.5,
+     "price": -108,
      "book": "draftkings",
      "tier": "D",
      "net_lean": 0.0,
      "forced_default": true,
-     "line_stale": true,
-     "pulled_at": "2026-09-15T10:52:00-07:00"
+     "line_stale": false,
+     "pulled_at": "2026-09-20T07:06:49-07:00"
     },
     "total": null
+   },
+   "tag": "NO BET",
+   "tag_rank": 9,
+   "tag_reason": "No angles fired",
+   "tag_market": "spread",
+   "tag_tier": "D",
+   "tag_keys": {
+    "net_survivor_weight": 0.0,
+    "survivor_angles_fired": 0,
+    "price_edge": 0.0,
+    "kickoff": "2026-09-20T10:00:00-07:00"
+   },
+   "weather": {
+    "status": "forecast",
+    "badge": null,
+    "detail": null,
+    "wind_mph": 8.8,
+    "wind_max_3h_mph": 8.8,
+    "gust_mph": 22.1,
+    "temp_f": 67.3,
+    "precip_in_3h": 0.06,
+    "kickoff_hour_utc": "2026-09-20T17:00:00+00:00",
+    "hours": [
+     "2026-09-20T17:00:00+00:00",
+     "2026-09-20T18:00:00+00:00",
+     "2026-09-20T19:00:00+00:00",
+     "2026-09-20T20:00:00+00:00"
+    ],
+    "source": "open-meteo forecast (10 m wind, mph; 2 m temp, F)",
+    "venue": "MetLife Stadium",
+    "roof": "outdoors",
+    "lat": 40.8135,
+    "lon": -74.0745,
+    "kickoff_utc": "2026-09-20T17:00:00+00:00",
+    "fetched_at": "2026-09-20T08:37:53.603047-07:00",
+    "source_host": "api.open-meteo.com"
+   },
+   "movement": {
+    "spread": {
+     "market": "spreads",
+     "side": "NYJ",
+     "snapshots": 7,
+     "open": 3.5,
+     "open_at": "2026-09-15_1050 America/Phoenix",
+     "open_books": 3,
+     "latest": 3.5,
+     "latest_at": "2026-09-20_070649 America/Phoenix",
+     "latest_books": 3,
+     "open_price": -105,
+     "latest_price": -112,
+     "move": 0.0,
+     "toward_lean": null,
+     "direction": null,
+     "key_crossed": []
+    },
+    "total": {
+     "market": "totals",
+     "side": "over",
+     "snapshots": 7,
+     "open": 44.5,
+     "open_at": "2026-09-15_1050 America/Phoenix",
+     "open_books": 2,
+     "latest": 44.5,
+     "latest_at": "2026-09-20_070649 America/Phoenix",
+     "latest_books": 3,
+     "open_price": -113,
+     "latest_price": -110,
+     "move": 0.0,
+     "toward_lean": null,
+     "direction": null,
+     "key_crossed": []
+    }
    }
   },
   {
@@ -2488,19 +3122,48 @@
       "result": "NOT FIRED",
       "note": "",
       "direction_text": "fade (spread)",
-      "points": 0.5,
-      "n": 5137,
+      "points": 0.75,
+      "n": 2741,
       "windows": {
        "2020-2024": {
-        "pct": 53.23,
-        "n": 921
+        "pct": 56.3,
+        "n": 473
        },
        "2021-2025": {
-        "pct": 52.73,
-        "n": 922
+        "pct": 55.14,
+        "n": 490
        }
       },
       "mechanism": "Attention: a division game next week pulls preparation focus forward."
+     },
+     {
+      "name": "off_international",
+      "tier": "survivor",
+      "expression": "off_international",
+      "market": "spread",
+      "inputs": [
+       "prev_is_international"
+      ],
+      "values": [
+       "CHI: off_international=no [prev_is_international=no]",
+       "MIN: off_international=no [prev_is_international=no]"
+      ],
+      "result": "NOT FIRED",
+      "note": "",
+      "direction_text": "fade (spread)",
+      "points": 0.5,
+      "n": 112,
+      "windows": {
+       "2020-2024": {
+        "pct": 52.94,
+        "n": 34
+       },
+       "2021-2025": {
+        "pct": 54.17,
+        "n": 48
+       }
+      },
+      "mechanism": "Travel: hangover after an international game (long haul plus time change)."
      },
      {
       "name": "dome_team_outdoors_cold",
@@ -2547,7 +3210,7 @@
        "MIN: high_wind=no [wind=n/a]"
       ],
       "result": "NOT WIRED",
-      "note": "needs a forecast wind source; the schedule feed only records wind after the game",
+      "note": "not wired to the kickoff forecast yet: the WEATHER section shows the forecast wind (3.4) for reading only; wiring the angle to forecast wind is an intake decision (its backtest used post-game wind)",
       "direction_text": "under (total)",
       "points": 0.75,
       "n": 1298,
@@ -2595,35 +3258,6 @@
       "mechanism": "Travel: third or later consecutive game away from home; cumulative travel fatigue."
      },
      {
-      "name": "off_international",
-      "tier": "watch",
-      "expression": "off_international",
-      "market": "spread",
-      "inputs": [
-       "prev_is_international"
-      ],
-      "values": [
-       "CHI: off_international=no [prev_is_international=no]",
-       "MIN: off_international=no [prev_is_international=no]"
-      ],
-      "result": "NOT FIRED",
-      "note": "",
-      "direction_text": "fade (spread)",
-      "points": 0.0,
-      "n": 98,
-      "windows": {
-       "2020-2024": {
-        "pct": 52.94,
-        "n": 34
-       },
-       "2021-2025": {
-        "pct": 52.94,
-        "n": 34
-       }
-      },
-      "mechanism": "Travel: hangover after an international game (long haul plus time change)."
-     },
-     {
       "name": "off_international_no_bye",
       "tier": "watch",
       "expression": "off_international_no_bye",
@@ -2641,18 +3275,48 @@
       "note": "",
       "direction_text": "fade (spread)",
       "points": 0.0,
-      "n": 29,
+      "n": 36,
       "windows": {
        "2020-2024": {
         "pct": 36.84,
         "n": 19
        },
        "2021-2025": {
-        "pct": 36.84,
-        "n": 19
+        "pct": 46.15,
+        "n": 26
        }
       },
       "mechanism": "Travel: international hangover with no bye week to recover."
+     },
+     {
+      "name": "division_lookahead",
+      "tier": "watch",
+      "expression": "sandwich_game,lookahead",
+      "market": "spread",
+      "inputs": [
+       "next_div_game",
+       "next_opp"
+      ],
+      "values": [
+       "CHI: sandwich_game=no, lookahead=no [next_div_game=0, next_opp=PHI]",
+       "MIN: sandwich_game=no, lookahead=no [next_div_game=0, next_opp=TB]"
+      ],
+      "result": "NOT FIRED",
+      "note": "",
+      "direction_text": "fade (spread)",
+      "points": 0.0,
+      "n": 499,
+      "windows": {
+       "2020-2024": {
+        "pct": 56.99,
+        "n": 94
+       },
+       "2021-2025": {
+        "pct": 56.38,
+        "n": 95
+       }
+      },
+      "mechanism": "Attention: next game is a division game against an elite opponent."
      },
      {
       "name": "dome_team_cold_wind",
@@ -2671,7 +3335,7 @@
        "MIN: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-20, dome_team=yes, home_roof=dome, roof=outdoors, wind=n/a]"
       ],
       "result": "NOT WIRED",
-      "note": "same: wind is unknown before kickoff (also outside its window: needs months Nov-Jan)",
+      "note": "same: the forecast is shown in WEATHER, the angle stays unwired until intake (also outside its window: needs months Nov-Jan)",
       "direction_text": "under (total)",
       "points": 0.0,
       "n": 87,
@@ -2801,15 +3465,15 @@
       "note": "",
       "direction_text": "bet (spread)",
       "points": 0.0,
-      "n": 159,
+      "n": 82,
       "windows": {
        "2020-2024": {
         "pct": 66.67,
-        "n": 32
+        "n": 12
        },
        "2021-2025": {
-        "pct": 62.07,
-        "n": 34
+        "pct": 61.54,
+        "n": 16
        }
       },
       "mechanism": "Coaching: experienced staff (season 5+ with the team) handles a division stretch after a division loss (Q's hypothesis: they cover)."
@@ -2820,14 +3484,14 @@
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": null,
+      "move": "open CHI -5.5 (2026-09-15_1050 ) -> latest CHI -4.5 (2026-09-20_07064); move +1 over 7 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      },
      "total": {
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": null,
+      "move": "open over 48.5 (2026-09-15_1050 ) -> latest over 47.5 (2026-09-20_07064); move -1 over 7 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      }
     }
@@ -2835,16 +3499,88 @@
    "shadow_lean": {
     "spread": {
      "side": "CHI",
-     "line": -5.5,
-     "price": -108,
-     "book": "fanduel",
+     "line": -4.5,
+     "price": -105,
+     "book": "betmgm",
      "tier": "D",
      "net_lean": 0.0,
      "forced_default": true,
-     "line_stale": true,
-     "pulled_at": "2026-09-15T10:52:00-07:00"
+     "line_stale": false,
+     "pulled_at": "2026-09-20T07:06:49-07:00"
     },
     "total": null
+   },
+   "tag": "NO BET",
+   "tag_rank": 10,
+   "tag_reason": "No angles fired",
+   "tag_market": "spread",
+   "tag_tier": "D",
+   "tag_keys": {
+    "net_survivor_weight": 0.0,
+    "survivor_angles_fired": 0,
+    "price_edge": 0.0,
+    "kickoff": "2026-09-20T10:00:00-07:00"
+   },
+   "weather": {
+    "status": "forecast",
+    "badge": null,
+    "detail": null,
+    "wind_mph": 13.3,
+    "wind_max_3h_mph": 13.3,
+    "gust_mph": 22.6,
+    "temp_f": 65.9,
+    "precip_in_3h": 0.5,
+    "kickoff_hour_utc": "2026-09-20T17:00:00+00:00",
+    "hours": [
+     "2026-09-20T17:00:00+00:00",
+     "2026-09-20T18:00:00+00:00",
+     "2026-09-20T19:00:00+00:00",
+     "2026-09-20T20:00:00+00:00"
+    ],
+    "source": "open-meteo forecast (10 m wind, mph; 2 m temp, F)",
+    "venue": "Soldier Field",
+    "roof": "outdoors",
+    "lat": 41.8623,
+    "lon": -87.6167,
+    "kickoff_utc": "2026-09-20T17:00:00+00:00",
+    "fetched_at": "2026-09-20T08:37:53.603047-07:00",
+    "source_host": "api.open-meteo.com"
+   },
+   "movement": {
+    "spread": {
+     "market": "spreads",
+     "side": "CHI",
+     "snapshots": 7,
+     "open": -5.5,
+     "open_at": "2026-09-15_1050 America/Phoenix",
+     "open_books": 3,
+     "latest": -4.5,
+     "latest_at": "2026-09-20_070649 America/Phoenix",
+     "latest_books": 3,
+     "open_price": -110,
+     "latest_price": -110,
+     "move": 1.0,
+     "toward_lean": null,
+     "direction": null,
+     "key_crossed": []
+    },
+    "total": {
+     "market": "totals",
+     "side": "over",
+     "snapshots": 7,
+     "open": 48.5,
+     "open_at": "2026-09-15_1050 America/Phoenix",
+     "open_books": 3,
+     "latest": 47.5,
+     "latest_at": "2026-09-20_070649 America/Phoenix",
+     "latest_books": 3,
+     "open_price": -110,
+     "latest_price": -110,
+     "move": -1.0,
+     "toward_lean": null,
+     "direction": null,
+     "key_crossed": []
+    }
    }
   },
   {
@@ -2938,19 +3674,48 @@
       "result": "NOT FIRED",
       "note": "",
       "direction_text": "fade (spread)",
-      "points": 0.5,
-      "n": 5137,
+      "points": 0.75,
+      "n": 2741,
       "windows": {
        "2020-2024": {
-        "pct": 53.23,
-        "n": 921
+        "pct": 56.3,
+        "n": 473
        },
        "2021-2025": {
-        "pct": 52.73,
-        "n": 922
+        "pct": 55.14,
+        "n": 490
        }
       },
       "mechanism": "Attention: a division game next week pulls preparation focus forward."
+     },
+     {
+      "name": "off_international",
+      "tier": "survivor",
+      "expression": "off_international",
+      "market": "spread",
+      "inputs": [
+       "prev_is_international"
+      ],
+      "values": [
+       "BAL: off_international=no [prev_is_international=no]",
+       "NO: off_international=no [prev_is_international=no]"
+      ],
+      "result": "NOT FIRED",
+      "note": "",
+      "direction_text": "fade (spread)",
+      "points": 0.5,
+      "n": 112,
+      "windows": {
+       "2020-2024": {
+        "pct": 52.94,
+        "n": 34
+       },
+       "2021-2025": {
+        "pct": 54.17,
+        "n": 48
+       }
+      },
+      "mechanism": "Travel: hangover after an international game (long haul plus time change)."
      },
      {
       "name": "dome_team_outdoors_cold",
@@ -2997,7 +3762,7 @@
        "NO: high_wind=no [wind=n/a]"
       ],
       "result": "NOT WIRED",
-      "note": "needs a forecast wind source; the schedule feed only records wind after the game",
+      "note": "not wired to the kickoff forecast yet: the WEATHER section shows the forecast wind (3.4) for reading only; wiring the angle to forecast wind is an intake decision (its backtest used post-game wind)",
       "direction_text": "under (total)",
       "points": 0.75,
       "n": 1298,
@@ -3045,35 +3810,6 @@
       "mechanism": "Travel: third or later consecutive game away from home; cumulative travel fatigue."
      },
      {
-      "name": "off_international",
-      "tier": "watch",
-      "expression": "off_international",
-      "market": "spread",
-      "inputs": [
-       "prev_is_international"
-      ],
-      "values": [
-       "BAL: off_international=no [prev_is_international=no]",
-       "NO: off_international=no [prev_is_international=no]"
-      ],
-      "result": "NOT FIRED",
-      "note": "",
-      "direction_text": "fade (spread)",
-      "points": 0.0,
-      "n": 98,
-      "windows": {
-       "2020-2024": {
-        "pct": 52.94,
-        "n": 34
-       },
-       "2021-2025": {
-        "pct": 52.94,
-        "n": 34
-       }
-      },
-      "mechanism": "Travel: hangover after an international game (long haul plus time change)."
-     },
-     {
       "name": "off_international_no_bye",
       "tier": "watch",
       "expression": "off_international_no_bye",
@@ -3091,18 +3827,48 @@
       "note": "",
       "direction_text": "fade (spread)",
       "points": 0.0,
-      "n": 29,
+      "n": 36,
       "windows": {
        "2020-2024": {
         "pct": 36.84,
         "n": 19
        },
        "2021-2025": {
-        "pct": 36.84,
-        "n": 19
+        "pct": 46.15,
+        "n": 26
        }
       },
       "mechanism": "Travel: international hangover with no bye week to recover."
+     },
+     {
+      "name": "division_lookahead",
+      "tier": "watch",
+      "expression": "sandwich_game,lookahead",
+      "market": "spread",
+      "inputs": [
+       "next_div_game",
+       "next_opp"
+      ],
+      "values": [
+       "BAL: sandwich_game=no, lookahead=no [next_div_game=0, next_opp=DAL]",
+       "NO: sandwich_game=no, lookahead=no [next_div_game=0, next_opp=LV]"
+      ],
+      "result": "NOT FIRED",
+      "note": "",
+      "direction_text": "fade (spread)",
+      "points": 0.0,
+      "n": 499,
+      "windows": {
+       "2020-2024": {
+        "pct": 56.99,
+        "n": 94
+       },
+       "2021-2025": {
+        "pct": 56.38,
+        "n": 95
+       }
+      },
+      "mechanism": "Attention: next game is a division game against an elite opponent."
      },
      {
       "name": "dome_team_cold_wind",
@@ -3121,7 +3887,7 @@
        "NO: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-20, dome_team=yes, home_roof=dome, roof=outdoors, wind=n/a]"
       ],
       "result": "NOT WIRED",
-      "note": "same: wind is unknown before kickoff (also outside its window: needs months Nov-Jan)",
+      "note": "same: the forecast is shown in WEATHER, the angle stays unwired until intake (also outside its window: needs months Nov-Jan)",
       "direction_text": "under (total)",
       "points": 0.0,
       "n": 87,
@@ -3251,15 +4017,15 @@
       "note": "",
       "direction_text": "bet (spread)",
       "points": 0.0,
-      "n": 159,
+      "n": 82,
       "windows": {
        "2020-2024": {
         "pct": 66.67,
-        "n": 32
+        "n": 12
        },
        "2021-2025": {
-        "pct": 62.07,
-        "n": 34
+        "pct": 61.54,
+        "n": 16
        }
       },
       "mechanism": "Coaching: experienced staff (season 5+ with the team) handles a division stretch after a division loss (Q's hypothesis: they cover)."
@@ -3270,14 +4036,14 @@
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": null,
+      "move": "open BAL -8.5 (2026-09-15_1050 ) -> latest BAL -8.5 (2026-09-20_07064); move +0 over 7 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      },
      "total": {
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": null,
+      "move": "open over 47 (2026-09-15_1050 ) -> latest over 45.5 (2026-09-20_07064); move -1.5 over 7 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      }
     }
@@ -3287,14 +4053,86 @@
      "side": "BAL",
      "line": -8.5,
      "price": -105,
-     "book": "fanduel",
+     "book": "draftkings",
      "tier": "D",
      "net_lean": 0.0,
      "forced_default": true,
-     "line_stale": true,
-     "pulled_at": "2026-09-15T10:52:00-07:00"
+     "line_stale": false,
+     "pulled_at": "2026-09-20T07:06:49-07:00"
     },
     "total": null
+   },
+   "tag": "NO BET",
+   "tag_rank": 11,
+   "tag_reason": "No angles fired",
+   "tag_market": "spread",
+   "tag_tier": "D",
+   "tag_keys": {
+    "net_survivor_weight": 0.0,
+    "survivor_angles_fired": 0,
+    "price_edge": 0.0,
+    "kickoff": "2026-09-20T10:00:00-07:00"
+   },
+   "weather": {
+    "status": "forecast",
+    "badge": null,
+    "detail": null,
+    "wind_mph": 8.1,
+    "wind_max_3h_mph": 8.1,
+    "gust_mph": 14.1,
+    "temp_f": 76.8,
+    "precip_in_3h": 0.0,
+    "kickoff_hour_utc": "2026-09-20T17:00:00+00:00",
+    "hours": [
+     "2026-09-20T17:00:00+00:00",
+     "2026-09-20T18:00:00+00:00",
+     "2026-09-20T19:00:00+00:00",
+     "2026-09-20T20:00:00+00:00"
+    ],
+    "source": "open-meteo forecast (10 m wind, mph; 2 m temp, F)",
+    "venue": "M&T Bank Stadium",
+    "roof": "outdoors",
+    "lat": 39.278,
+    "lon": -76.6227,
+    "kickoff_utc": "2026-09-20T17:00:00+00:00",
+    "fetched_at": "2026-09-20T08:37:53.603047-07:00",
+    "source_host": "api.open-meteo.com"
+   },
+   "movement": {
+    "spread": {
+     "market": "spreads",
+     "side": "BAL",
+     "snapshots": 7,
+     "open": -8.5,
+     "open_at": "2026-09-15_1050 America/Phoenix",
+     "open_books": 3,
+     "latest": -8.5,
+     "latest_at": "2026-09-20_070649 America/Phoenix",
+     "latest_books": 3,
+     "open_price": -108,
+     "latest_price": -105,
+     "move": 0.0,
+     "toward_lean": null,
+     "direction": null,
+     "key_crossed": []
+    },
+    "total": {
+     "market": "totals",
+     "side": "over",
+     "snapshots": 7,
+     "open": 47.0,
+     "open_at": "2026-09-15_1050 America/Phoenix",
+     "open_books": 3,
+     "latest": 45.5,
+     "latest_at": "2026-09-20_070649 America/Phoenix",
+     "latest_books": 3,
+     "open_price": -112,
+     "latest_price": -110,
+     "move": -1.5,
+     "toward_lean": null,
+     "direction": null,
+     "key_crossed": []
+    }
    }
   },
   {
@@ -3388,19 +4226,48 @@
       "result": "NOT FIRED",
       "note": "",
       "direction_text": "fade (spread)",
-      "points": 0.5,
-      "n": 5137,
+      "points": 0.75,
+      "n": 2741,
       "windows": {
        "2020-2024": {
-        "pct": 53.23,
-        "n": 921
+        "pct": 56.3,
+        "n": 473
        },
        "2021-2025": {
-        "pct": 52.73,
-        "n": 922
+        "pct": 55.14,
+        "n": 490
        }
       },
       "mechanism": "Attention: a division game next week pulls preparation focus forward."
+     },
+     {
+      "name": "off_international",
+      "tier": "survivor",
+      "expression": "off_international",
+      "market": "spread",
+      "inputs": [
+       "prev_is_international"
+      ],
+      "values": [
+       "TEN: off_international=no [prev_is_international=no]",
+       "PHI: off_international=no [prev_is_international=no]"
+      ],
+      "result": "NOT FIRED",
+      "note": "",
+      "direction_text": "fade (spread)",
+      "points": 0.5,
+      "n": 112,
+      "windows": {
+       "2020-2024": {
+        "pct": 52.94,
+        "n": 34
+       },
+       "2021-2025": {
+        "pct": 54.17,
+        "n": 48
+       }
+      },
+      "mechanism": "Travel: hangover after an international game (long haul plus time change)."
      },
      {
       "name": "dome_team_outdoors_cold",
@@ -3447,7 +4314,7 @@
        "PHI: high_wind=no [wind=n/a]"
       ],
       "result": "NOT WIRED",
-      "note": "needs a forecast wind source; the schedule feed only records wind after the game",
+      "note": "not wired to the kickoff forecast yet: the WEATHER section shows the forecast wind (3.4) for reading only; wiring the angle to forecast wind is an intake decision (its backtest used post-game wind)",
       "direction_text": "under (total)",
       "points": 0.75,
       "n": 1298,
@@ -3495,35 +4362,6 @@
       "mechanism": "Travel: third or later consecutive game away from home; cumulative travel fatigue."
      },
      {
-      "name": "off_international",
-      "tier": "watch",
-      "expression": "off_international",
-      "market": "spread",
-      "inputs": [
-       "prev_is_international"
-      ],
-      "values": [
-       "TEN: off_international=no [prev_is_international=no]",
-       "PHI: off_international=no [prev_is_international=no]"
-      ],
-      "result": "NOT FIRED",
-      "note": "",
-      "direction_text": "fade (spread)",
-      "points": 0.0,
-      "n": 98,
-      "windows": {
-       "2020-2024": {
-        "pct": 52.94,
-        "n": 34
-       },
-       "2021-2025": {
-        "pct": 52.94,
-        "n": 34
-       }
-      },
-      "mechanism": "Travel: hangover after an international game (long haul plus time change)."
-     },
-     {
       "name": "off_international_no_bye",
       "tier": "watch",
       "expression": "off_international_no_bye",
@@ -3541,18 +4379,48 @@
       "note": "",
       "direction_text": "fade (spread)",
       "points": 0.0,
-      "n": 29,
+      "n": 36,
       "windows": {
        "2020-2024": {
         "pct": 36.84,
         "n": 19
        },
        "2021-2025": {
-        "pct": 36.84,
-        "n": 19
+        "pct": 46.15,
+        "n": 26
        }
       },
       "mechanism": "Travel: international hangover with no bye week to recover."
+     },
+     {
+      "name": "division_lookahead",
+      "tier": "watch",
+      "expression": "sandwich_game,lookahead",
+      "market": "spread",
+      "inputs": [
+       "next_div_game",
+       "next_opp"
+      ],
+      "values": [
+       "TEN: sandwich_game=no, lookahead=no [next_div_game=0, next_opp=NYG]",
+       "PHI: sandwich_game=no, lookahead=no [next_div_game=0, next_opp=CHI]"
+      ],
+      "result": "NOT FIRED",
+      "note": "",
+      "direction_text": "fade (spread)",
+      "points": 0.0,
+      "n": 499,
+      "windows": {
+       "2020-2024": {
+        "pct": 56.99,
+        "n": 94
+       },
+       "2021-2025": {
+        "pct": 56.38,
+        "n": 95
+       }
+      },
+      "mechanism": "Attention: next game is a division game against an elite opponent."
      },
      {
       "name": "dome_team_cold_wind",
@@ -3571,7 +4439,7 @@
        "PHI: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-20, dome_team=no, home_roof=outdoors, roof=outdoors, wind=n/a]"
       ],
       "result": "NOT WIRED",
-      "note": "same: wind is unknown before kickoff (also outside its window: needs months Nov-Jan)",
+      "note": "same: the forecast is shown in WEATHER, the angle stays unwired until intake (also outside its window: needs months Nov-Jan)",
       "direction_text": "under (total)",
       "points": 0.0,
       "n": 87,
@@ -3701,15 +4569,15 @@
       "note": "",
       "direction_text": "bet (spread)",
       "points": 0.0,
-      "n": 159,
+      "n": 82,
       "windows": {
        "2020-2024": {
         "pct": 66.67,
-        "n": 32
+        "n": 12
        },
        "2021-2025": {
-        "pct": 62.07,
-        "n": 34
+        "pct": 61.54,
+        "n": 16
        }
       },
       "mechanism": "Coaching: experienced staff (season 5+ with the team) handles a division stretch after a division loss (Q's hypothesis: they cover)."
@@ -3720,14 +4588,14 @@
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": null,
+      "move": "open TEN +7 (2026-09-15_1050 ) -> latest TEN +7 (2026-09-20_07064); move +0 over 7 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      },
      "total": {
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": null,
+      "move": "open over 39.5 (2026-09-15_1050 ) -> latest over 39.5 (2026-09-20_07064); move +0 over 7 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      }
     }
@@ -3736,15 +4604,87 @@
     "spread": {
      "side": "TEN",
      "line": 7.0,
-     "price": -110,
+     "price": -102,
      "book": "draftkings",
      "tier": "D",
      "net_lean": 0.0,
      "forced_default": true,
-     "line_stale": true,
-     "pulled_at": "2026-09-15T10:52:00-07:00"
+     "line_stale": false,
+     "pulled_at": "2026-09-20T07:06:49-07:00"
     },
     "total": null
+   },
+   "tag": "NO BET",
+   "tag_rank": 12,
+   "tag_reason": "No angles fired",
+   "tag_market": "spread",
+   "tag_tier": "D",
+   "tag_keys": {
+    "net_survivor_weight": 0.0,
+    "survivor_angles_fired": 0,
+    "price_edge": 0.0,
+    "kickoff": "2026-09-20T10:00:00-07:00"
+   },
+   "weather": {
+    "status": "forecast",
+    "badge": null,
+    "detail": null,
+    "wind_mph": 3.2,
+    "wind_max_3h_mph": 6.9,
+    "gust_mph": 12.5,
+    "temp_f": 95.7,
+    "precip_in_3h": 0.0,
+    "kickoff_hour_utc": "2026-09-20T17:00:00+00:00",
+    "hours": [
+     "2026-09-20T17:00:00+00:00",
+     "2026-09-20T18:00:00+00:00",
+     "2026-09-20T19:00:00+00:00",
+     "2026-09-20T20:00:00+00:00"
+    ],
+    "source": "open-meteo forecast (10 m wind, mph; 2 m temp, F)",
+    "venue": "Nissan Stadium",
+    "roof": "outdoors",
+    "lat": 36.1665,
+    "lon": -86.7713,
+    "kickoff_utc": "2026-09-20T17:00:00+00:00",
+    "fetched_at": "2026-09-20T08:37:53.603047-07:00",
+    "source_host": "api.open-meteo.com"
+   },
+   "movement": {
+    "spread": {
+     "market": "spreads",
+     "side": "TEN",
+     "snapshots": 7,
+     "open": 7.0,
+     "open_at": "2026-09-15_1050 America/Phoenix",
+     "open_books": 3,
+     "latest": 7.0,
+     "latest_at": "2026-09-20_070649 America/Phoenix",
+     "latest_books": 3,
+     "open_price": -110,
+     "latest_price": -105,
+     "move": 0.0,
+     "toward_lean": null,
+     "direction": null,
+     "key_crossed": []
+    },
+    "total": {
+     "market": "totals",
+     "side": "over",
+     "snapshots": 7,
+     "open": 39.5,
+     "open_at": "2026-09-15_1050 America/Phoenix",
+     "open_books": 3,
+     "latest": 39.5,
+     "latest_at": "2026-09-20_070649 America/Phoenix",
+     "latest_books": 3,
+     "open_price": -110,
+     "latest_price": -112,
+     "move": 0.0,
+     "toward_lean": null,
+     "direction": null,
+     "key_crossed": []
+    }
    }
   },
   {
@@ -3756,7 +4696,7 @@
    "kickoff_display": "Sun 09/20 10:00",
    "spread": {
     "lean_side": "NE",
-    "lean_points": 0.5,
+    "lean_points": 0.75,
     "verdict": "not enough angles (1 survivor, 0 watch same way)",
     "survivors_same_way": 1,
     "watch_same_way": 0,
@@ -3764,8 +4704,8 @@
     "rule_a": false,
     "rule_b": true,
     "number_to_shop": {
-     "line": -4.5,
-     "price": -120,
+     "line": -5.5,
+     "price": -105,
      "book": "fanduel",
      "reachable_by": [
       "Q",
@@ -3776,8 +4716,8 @@
      "books_quoting": 3
     },
     "opener_consensus": -5.5,
-    "moved_toward_lean": -1.0,
-    "lean_remaining": 1.5,
+    "moved_toward_lean": 0.0,
+    "lean_remaining": 0.75,
     "angles_for": [
      {
       "name": "sandwich_game",
@@ -3788,16 +4728,16 @@
       "direction_label": "fade PIT -> lean NE",
       "flagged_team": "PIT",
       "lean_side": "NE",
-      "points": 0.5,
-      "n": 5137,
+      "points": 0.75,
+      "n": 2741,
       "windows": {
        "2020-2024": {
-        "pct": 53.23,
-        "n": 921
+        "pct": 56.3,
+        "n": 473
        },
        "2021-2025": {
-        "pct": 52.73,
-        "n": 922
+        "pct": 55.14,
+        "n": 490
        }
       },
       "mechanism": "Attention: a division game next week pulls preparation focus forward."
@@ -3831,16 +4771,16 @@
      "direction_label": "fade PIT -> lean NE",
      "flagged_team": "PIT",
      "lean_side": "NE",
-     "points": 0.5,
-     "n": 5137,
+     "points": 0.75,
+     "n": 2741,
      "windows": {
       "2020-2024": {
-       "pct": 53.23,
-       "n": 921
+       "pct": 56.3,
+       "n": 473
       },
       "2021-2025": {
-       "pct": 52.73,
-       "n": 922
+       "pct": 55.14,
+       "n": 490
       }
      },
      "mechanism": "Attention: a division game next week pulls preparation focus forward."
@@ -3897,19 +4837,48 @@
       "result": "FIRED",
       "note": "",
       "direction_text": "fade (spread) -> fade PIT -> lean NE",
-      "points": 0.5,
-      "n": 5137,
+      "points": 0.75,
+      "n": 2741,
       "windows": {
        "2020-2024": {
-        "pct": 53.23,
-        "n": 921
+        "pct": 56.3,
+        "n": 473
        },
        "2021-2025": {
-        "pct": 52.73,
-        "n": 922
+        "pct": 55.14,
+        "n": 490
        }
       },
       "mechanism": "Attention: a division game next week pulls preparation focus forward."
+     },
+     {
+      "name": "off_international",
+      "tier": "survivor",
+      "expression": "off_international",
+      "market": "spread",
+      "inputs": [
+       "prev_is_international"
+      ],
+      "values": [
+       "NE: off_international=no [prev_is_international=no]",
+       "PIT: off_international=no [prev_is_international=no]"
+      ],
+      "result": "NOT FIRED",
+      "note": "",
+      "direction_text": "fade (spread)",
+      "points": 0.5,
+      "n": 112,
+      "windows": {
+       "2020-2024": {
+        "pct": 52.94,
+        "n": 34
+       },
+       "2021-2025": {
+        "pct": 54.17,
+        "n": 48
+       }
+      },
+      "mechanism": "Travel: hangover after an international game (long haul plus time change)."
      },
      {
       "name": "dome_team_outdoors_cold",
@@ -3956,7 +4925,7 @@
        "PIT: high_wind=no [wind=n/a]"
       ],
       "result": "NOT WIRED",
-      "note": "needs a forecast wind source; the schedule feed only records wind after the game",
+      "note": "not wired to the kickoff forecast yet: the WEATHER section shows the forecast wind (3.4) for reading only; wiring the angle to forecast wind is an intake decision (its backtest used post-game wind)",
       "direction_text": "under (total)",
       "points": 0.75,
       "n": 1298,
@@ -4004,35 +4973,6 @@
       "mechanism": "Travel: third or later consecutive game away from home; cumulative travel fatigue."
      },
      {
-      "name": "off_international",
-      "tier": "watch",
-      "expression": "off_international",
-      "market": "spread",
-      "inputs": [
-       "prev_is_international"
-      ],
-      "values": [
-       "NE: off_international=no [prev_is_international=no]",
-       "PIT: off_international=no [prev_is_international=no]"
-      ],
-      "result": "NOT FIRED",
-      "note": "",
-      "direction_text": "fade (spread)",
-      "points": 0.0,
-      "n": 98,
-      "windows": {
-       "2020-2024": {
-        "pct": 52.94,
-        "n": 34
-       },
-       "2021-2025": {
-        "pct": 52.94,
-        "n": 34
-       }
-      },
-      "mechanism": "Travel: hangover after an international game (long haul plus time change)."
-     },
-     {
       "name": "off_international_no_bye",
       "tier": "watch",
       "expression": "off_international_no_bye",
@@ -4050,18 +4990,48 @@
       "note": "",
       "direction_text": "fade (spread)",
       "points": 0.0,
-      "n": 29,
+      "n": 36,
       "windows": {
        "2020-2024": {
         "pct": 36.84,
         "n": 19
        },
        "2021-2025": {
-        "pct": 36.84,
-        "n": 19
+        "pct": 46.15,
+        "n": 26
        }
       },
       "mechanism": "Travel: international hangover with no bye week to recover."
+     },
+     {
+      "name": "division_lookahead",
+      "tier": "watch",
+      "expression": "sandwich_game,lookahead",
+      "market": "spread",
+      "inputs": [
+       "next_div_game",
+       "next_opp"
+      ],
+      "values": [
+       "NE: sandwich_game=no, lookahead=yes [next_div_game=0, next_opp=JAX]",
+       "PIT: sandwich_game=yes, lookahead=no [next_div_game=1, next_opp=CIN]"
+      ],
+      "result": "NOT FIRED",
+      "note": "",
+      "direction_text": "fade (spread)",
+      "points": 0.0,
+      "n": 499,
+      "windows": {
+       "2020-2024": {
+        "pct": 56.99,
+        "n": 94
+       },
+       "2021-2025": {
+        "pct": 56.38,
+        "n": 95
+       }
+      },
+      "mechanism": "Attention: next game is a division game against an elite opponent."
      },
      {
       "name": "dome_team_cold_wind",
@@ -4080,7 +5050,7 @@
        "PIT: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-20, dome_team=no, home_roof=outdoors, roof=outdoors, wind=n/a]"
       ],
       "result": "NOT WIRED",
-      "note": "same: wind is unknown before kickoff (also outside its window: needs months Nov-Jan)",
+      "note": "same: the forecast is shown in WEATHER, the angle stays unwired until intake (also outside its window: needs months Nov-Jan)",
       "direction_text": "under (total)",
       "points": 0.0,
       "n": 87,
@@ -4210,15 +5180,15 @@
       "note": "",
       "direction_text": "bet (spread)",
       "points": 0.0,
-      "n": 159,
+      "n": 82,
       "windows": {
        "2020-2024": {
         "pct": 66.67,
-        "n": 32
+        "n": 12
        },
        "2021-2025": {
-        "pct": 62.07,
-        "n": 34
+        "pct": 61.54,
+        "n": 16
        }
       },
       "mechanism": "Coaching: experienced staff (season 5+ with the team) handles a division stretch after a division loss (Q's hypothesis: they cover)."
@@ -4226,17 +5196,17 @@
     ],
     "lean_math": {
      "spread": {
-      "net": "sum of fired weights: NE 0.5; net 0.5 toward NE; cap +/-1.5 -> lean NE 0.5",
-      "rule_a": "survivors same direction: 1 of 2 needed (or 1 survivor + 1 watch); watch same direction: 0; survivors against: 0 -> fail",
-      "rule_b": "opener NE -5.5 vs best now NE -4.5 (-120) at fanduel; moved -1 toward NE (negative = away), lean 0.5 -> pass (number not gone)",
-      "move": null,
+      "net": "sum of fired weights: NE 0.75; net 0.75 toward NE; cap +/-1.5 -> lean NE 0.75",
+      "rule_a": "survivors same direction: 1 of 2 needed (or 1 survivor + 1 watch); watch same direction: 0 counted; survivors against: 0 -> fail",
+      "rule_b": "opener NE -5.5 vs best now NE -5.5 (-105) at fanduel; moved +0 toward NE (negative = away), lean 0.75 -> pass (number not gone)",
+      "move": "open NE -5.5 (2026-09-15_1050 ) -> latest NE -5.5 (2026-09-20_07064); move +0 over 7 snapshot(s); flat (+0); key numbers crossed: none",
       "verdict": "not enough angles (1 survivor, 0 watch same way)"
      },
      "total": {
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": null,
+      "move": "open over 41.5 (2026-09-15_1050 ) -> latest over 41.5 (2026-09-20_07064); move +0 over 7 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      }
     }
@@ -4244,16 +5214,88 @@
    "shadow_lean": {
     "spread": {
      "side": "NE",
-     "line": -4.5,
-     "price": -120,
+     "line": -5.5,
+     "price": -105,
      "book": "fanduel",
      "tier": "B",
-     "net_lean": 0.5,
+     "net_lean": 0.75,
      "forced_default": false,
-     "line_stale": true,
-     "pulled_at": "2026-09-15T10:52:00-07:00"
+     "line_stale": false,
+     "pulled_at": "2026-09-20T07:06:49-07:00"
     },
     "total": null
+   },
+   "tag": "POSSIBLE BET",
+   "tag_rank": 4,
+   "tag_reason": "Survivor lean NE, rule (a) not met: 1 of 2",
+   "tag_market": "spread",
+   "tag_tier": "B",
+   "tag_keys": {
+    "net_survivor_weight": 0.75,
+    "survivor_angles_fired": 1,
+    "price_edge": 0.0,
+    "kickoff": "2026-09-20T10:00:00-07:00"
+   },
+   "weather": {
+    "status": "forecast",
+    "badge": null,
+    "detail": null,
+    "wind_mph": 2.3,
+    "wind_max_3h_mph": 6.3,
+    "gust_mph": 16.1,
+    "temp_f": 58.5,
+    "precip_in_3h": 0.09,
+    "kickoff_hour_utc": "2026-09-20T17:00:00+00:00",
+    "hours": [
+     "2026-09-20T17:00:00+00:00",
+     "2026-09-20T18:00:00+00:00",
+     "2026-09-20T19:00:00+00:00",
+     "2026-09-20T20:00:00+00:00"
+    ],
+    "source": "open-meteo forecast (10 m wind, mph; 2 m temp, F)",
+    "venue": "Gillette Stadium",
+    "roof": "outdoors",
+    "lat": 42.0909,
+    "lon": -71.2643,
+    "kickoff_utc": "2026-09-20T17:00:00+00:00",
+    "fetched_at": "2026-09-20T08:37:53.603047-07:00",
+    "source_host": "api.open-meteo.com"
+   },
+   "movement": {
+    "spread": {
+     "market": "spreads",
+     "side": "NE",
+     "snapshots": 7,
+     "open": -5.5,
+     "open_at": "2026-09-15_1050 America/Phoenix",
+     "open_books": 3,
+     "latest": -5.5,
+     "latest_at": "2026-09-20_070649 America/Phoenix",
+     "latest_books": 3,
+     "open_price": -110,
+     "latest_price": -105,
+     "move": 0.0,
+     "toward_lean": 0.0,
+     "direction": "flat",
+     "key_crossed": []
+    },
+    "total": {
+     "market": "totals",
+     "side": "over",
+     "snapshots": 7,
+     "open": 41.5,
+     "open_at": "2026-09-15_1050 America/Phoenix",
+     "open_books": 3,
+     "latest": 41.5,
+     "latest_at": "2026-09-20_070649 America/Phoenix",
+     "latest_books": 3,
+     "open_price": -110,
+     "latest_price": -110,
+     "move": 0.0,
+     "toward_lean": null,
+     "direction": null,
+     "key_crossed": []
+    }
    }
   },
   {
@@ -4347,19 +5389,48 @@
       "result": "NOT FIRED",
       "note": "",
       "direction_text": "fade (spread)",
-      "points": 0.5,
-      "n": 5137,
+      "points": 0.75,
+      "n": 2741,
       "windows": {
        "2020-2024": {
-        "pct": 53.23,
-        "n": 921
+        "pct": 56.3,
+        "n": 473
        },
        "2021-2025": {
-        "pct": 52.73,
-        "n": 922
+        "pct": 55.14,
+        "n": 490
        }
       },
       "mechanism": "Attention: a division game next week pulls preparation focus forward."
+     },
+     {
+      "name": "off_international",
+      "tier": "survivor",
+      "expression": "off_international",
+      "market": "spread",
+      "inputs": [
+       "prev_is_international"
+      ],
+      "values": [
+       "DEN: off_international=no [prev_is_international=no]",
+       "JAX: off_international=no [prev_is_international=no]"
+      ],
+      "result": "NOT FIRED",
+      "note": "",
+      "direction_text": "fade (spread)",
+      "points": 0.5,
+      "n": 112,
+      "windows": {
+       "2020-2024": {
+        "pct": 52.94,
+        "n": 34
+       },
+       "2021-2025": {
+        "pct": 54.17,
+        "n": 48
+       }
+      },
+      "mechanism": "Travel: hangover after an international game (long haul plus time change)."
      },
      {
       "name": "dome_team_outdoors_cold",
@@ -4406,7 +5477,7 @@
        "JAX: high_wind=no [wind=n/a]"
       ],
       "result": "NOT WIRED",
-      "note": "needs a forecast wind source; the schedule feed only records wind after the game",
+      "note": "not wired to the kickoff forecast yet: the WEATHER section shows the forecast wind (3.4) for reading only; wiring the angle to forecast wind is an intake decision (its backtest used post-game wind)",
       "direction_text": "under (total)",
       "points": 0.75,
       "n": 1298,
@@ -4454,35 +5525,6 @@
       "mechanism": "Travel: third or later consecutive game away from home; cumulative travel fatigue."
      },
      {
-      "name": "off_international",
-      "tier": "watch",
-      "expression": "off_international",
-      "market": "spread",
-      "inputs": [
-       "prev_is_international"
-      ],
-      "values": [
-       "DEN: off_international=no [prev_is_international=no]",
-       "JAX: off_international=no [prev_is_international=no]"
-      ],
-      "result": "NOT FIRED",
-      "note": "",
-      "direction_text": "fade (spread)",
-      "points": 0.0,
-      "n": 98,
-      "windows": {
-       "2020-2024": {
-        "pct": 52.94,
-        "n": 34
-       },
-       "2021-2025": {
-        "pct": 52.94,
-        "n": 34
-       }
-      },
-      "mechanism": "Travel: hangover after an international game (long haul plus time change)."
-     },
-     {
       "name": "off_international_no_bye",
       "tier": "watch",
       "expression": "off_international_no_bye",
@@ -4500,18 +5542,48 @@
       "note": "",
       "direction_text": "fade (spread)",
       "points": 0.0,
-      "n": 29,
+      "n": 36,
       "windows": {
        "2020-2024": {
         "pct": 36.84,
         "n": 19
        },
        "2021-2025": {
-        "pct": 36.84,
-        "n": 19
+        "pct": 46.15,
+        "n": 26
        }
       },
       "mechanism": "Travel: international hangover with no bye week to recover."
+     },
+     {
+      "name": "division_lookahead",
+      "tier": "watch",
+      "expression": "sandwich_game,lookahead",
+      "market": "spread",
+      "inputs": [
+       "next_div_game",
+       "next_opp"
+      ],
+      "values": [
+       "DEN: sandwich_game=no, lookahead=yes [next_div_game=0, next_opp=LA]",
+       "JAX: sandwich_game=no, lookahead=yes [next_div_game=0, next_opp=NE]"
+      ],
+      "result": "NOT FIRED",
+      "note": "",
+      "direction_text": "fade (spread)",
+      "points": 0.0,
+      "n": 499,
+      "windows": {
+       "2020-2024": {
+        "pct": 56.99,
+        "n": 94
+       },
+       "2021-2025": {
+        "pct": 56.38,
+        "n": 95
+       }
+      },
+      "mechanism": "Attention: next game is a division game against an elite opponent."
      },
      {
       "name": "dome_team_cold_wind",
@@ -4530,7 +5602,7 @@
        "JAX: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-20, dome_team=no, home_roof=outdoors, roof=outdoors, wind=n/a]"
       ],
       "result": "NOT WIRED",
-      "note": "same: wind is unknown before kickoff (also outside its window: needs months Nov-Jan)",
+      "note": "same: the forecast is shown in WEATHER, the angle stays unwired until intake (also outside its window: needs months Nov-Jan)",
       "direction_text": "under (total)",
       "points": 0.0,
       "n": 87,
@@ -4660,15 +5732,15 @@
       "note": "",
       "direction_text": "bet (spread)",
       "points": 0.0,
-      "n": 159,
+      "n": 82,
       "windows": {
        "2020-2024": {
         "pct": 66.67,
-        "n": 32
+        "n": 12
        },
        "2021-2025": {
-        "pct": 62.07,
-        "n": 34
+        "pct": 61.54,
+        "n": 16
        }
       },
       "mechanism": "Coaching: experienced staff (season 5+ with the team) handles a division stretch after a division loss (Q's hypothesis: they cover)."
@@ -4679,14 +5751,14 @@
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": null,
+      "move": "open DEN -2.5 (2026-09-15_1050 ) -> latest DEN -2.5 (2026-09-20_07064); move +0 over 7 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      },
      "total": {
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": null,
+      "move": "open over 44.5 (2026-09-15_1050 ) -> latest over 45.5 (2026-09-20_07064); move +1 over 7 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      }
     }
@@ -4695,15 +5767,87 @@
     "spread": {
      "side": "DEN",
      "line": -2.5,
-     "price": -110,
+     "price": -120,
      "book": "draftkings",
      "tier": "D",
      "net_lean": 0.0,
      "forced_default": true,
-     "line_stale": true,
-     "pulled_at": "2026-09-15T10:52:00-07:00"
+     "line_stale": false,
+     "pulled_at": "2026-09-20T07:06:49-07:00"
     },
     "total": null
+   },
+   "tag": "NO BET",
+   "tag_rank": 13,
+   "tag_reason": "No angles fired",
+   "tag_market": "spread",
+   "tag_tier": "D",
+   "tag_keys": {
+    "net_survivor_weight": 0.0,
+    "survivor_angles_fired": 0,
+    "price_edge": 0.0,
+    "kickoff": "2026-09-20T13:05:00-07:00"
+   },
+   "weather": {
+    "status": "forecast",
+    "badge": null,
+    "detail": null,
+    "wind_mph": 7.2,
+    "wind_max_3h_mph": 12.4,
+    "gust_mph": 16.3,
+    "temp_f": 75.7,
+    "precip_in_3h": 0.0,
+    "kickoff_hour_utc": "2026-09-20T20:00:00+00:00",
+    "hours": [
+     "2026-09-20T20:00:00+00:00",
+     "2026-09-20T21:00:00+00:00",
+     "2026-09-20T22:00:00+00:00",
+     "2026-09-20T23:00:00+00:00"
+    ],
+    "source": "open-meteo forecast (10 m wind, mph; 2 m temp, F)",
+    "venue": "Empower Field at Mile High",
+    "roof": "outdoors",
+    "lat": 39.7439,
+    "lon": -105.0201,
+    "kickoff_utc": "2026-09-20T20:05:00+00:00",
+    "fetched_at": "2026-09-20T08:37:53.603047-07:00",
+    "source_host": "api.open-meteo.com"
+   },
+   "movement": {
+    "spread": {
+     "market": "spreads",
+     "side": "DEN",
+     "snapshots": 7,
+     "open": -2.5,
+     "open_at": "2026-09-15_1050 America/Phoenix",
+     "open_books": 3,
+     "latest": -2.5,
+     "latest_at": "2026-09-20_070649 America/Phoenix",
+     "latest_books": 3,
+     "open_price": -115,
+     "latest_price": -120,
+     "move": 0.0,
+     "toward_lean": null,
+     "direction": null,
+     "key_crossed": []
+    },
+    "total": {
+     "market": "totals",
+     "side": "over",
+     "snapshots": 7,
+     "open": 44.5,
+     "open_at": "2026-09-15_1050 America/Phoenix",
+     "open_books": 3,
+     "latest": 45.5,
+     "latest_at": "2026-09-20_070649 America/Phoenix",
+     "latest_books": 3,
+     "open_price": -110,
+     "latest_price": -108,
+     "move": 1.0,
+     "toward_lean": null,
+     "direction": null,
+     "key_crossed": []
+    }
    }
   },
   {
@@ -4797,19 +5941,48 @@
       "result": "NOT FIRED",
       "note": "",
       "direction_text": "fade (spread)",
-      "points": 0.5,
-      "n": 5137,
+      "points": 0.75,
+      "n": 2741,
       "windows": {
        "2020-2024": {
-        "pct": 53.23,
-        "n": 921
+        "pct": 56.3,
+        "n": 473
        },
        "2021-2025": {
-        "pct": 52.73,
-        "n": 922
+        "pct": 55.14,
+        "n": 490
        }
       },
       "mechanism": "Attention: a division game next week pulls preparation focus forward."
+     },
+     {
+      "name": "off_international",
+      "tier": "survivor",
+      "expression": "off_international",
+      "market": "spread",
+      "inputs": [
+       "prev_is_international"
+      ],
+      "values": [
+       "LAC: off_international=no [prev_is_international=no]",
+       "LV: off_international=no [prev_is_international=no]"
+      ],
+      "result": "NOT FIRED",
+      "note": "",
+      "direction_text": "fade (spread)",
+      "points": 0.5,
+      "n": 112,
+      "windows": {
+       "2020-2024": {
+        "pct": 52.94,
+        "n": 34
+       },
+       "2021-2025": {
+        "pct": 54.17,
+        "n": 48
+       }
+      },
+      "mechanism": "Travel: hangover after an international game (long haul plus time change)."
      },
      {
       "name": "dome_team_outdoors_cold",
@@ -4856,7 +6029,7 @@
        "LV: high_wind=no [wind=n/a]"
       ],
       "result": "NOT WIRED",
-      "note": "needs a forecast wind source; the schedule feed only records wind after the game",
+      "note": "not wired to the kickoff forecast yet: the WEATHER section shows the forecast wind (3.4) for reading only; wiring the angle to forecast wind is an intake decision (its backtest used post-game wind)",
       "direction_text": "under (total)",
       "points": 0.75,
       "n": 1298,
@@ -4904,35 +6077,6 @@
       "mechanism": "Travel: third or later consecutive game away from home; cumulative travel fatigue."
      },
      {
-      "name": "off_international",
-      "tier": "watch",
-      "expression": "off_international",
-      "market": "spread",
-      "inputs": [
-       "prev_is_international"
-      ],
-      "values": [
-       "LAC: off_international=no [prev_is_international=no]",
-       "LV: off_international=no [prev_is_international=no]"
-      ],
-      "result": "NOT FIRED",
-      "note": "",
-      "direction_text": "fade (spread)",
-      "points": 0.0,
-      "n": 98,
-      "windows": {
-       "2020-2024": {
-        "pct": 52.94,
-        "n": 34
-       },
-       "2021-2025": {
-        "pct": 52.94,
-        "n": 34
-       }
-      },
-      "mechanism": "Travel: hangover after an international game (long haul plus time change)."
-     },
-     {
       "name": "off_international_no_bye",
       "tier": "watch",
       "expression": "off_international_no_bye",
@@ -4950,18 +6094,48 @@
       "note": "",
       "direction_text": "fade (spread)",
       "points": 0.0,
-      "n": 29,
+      "n": 36,
       "windows": {
        "2020-2024": {
         "pct": 36.84,
         "n": 19
        },
        "2021-2025": {
-        "pct": 36.84,
-        "n": 19
+        "pct": 46.15,
+        "n": 26
        }
       },
       "mechanism": "Travel: international hangover with no bye week to recover."
+     },
+     {
+      "name": "division_lookahead",
+      "tier": "watch",
+      "expression": "sandwich_game,lookahead",
+      "market": "spread",
+      "inputs": [
+       "next_div_game",
+       "next_opp"
+      ],
+      "values": [
+       "LAC: sandwich_game=no, lookahead=yes [next_div_game=0, next_opp=BUF]",
+       "LV: sandwich_game=no, lookahead=no [next_div_game=0, next_opp=NO]"
+      ],
+      "result": "NOT FIRED",
+      "note": "",
+      "direction_text": "fade (spread)",
+      "points": 0.0,
+      "n": 499,
+      "windows": {
+       "2020-2024": {
+        "pct": 56.99,
+        "n": 94
+       },
+       "2021-2025": {
+        "pct": 56.38,
+        "n": 95
+       }
+      },
+      "mechanism": "Attention: next game is a division game against an elite opponent."
      },
      {
       "name": "dome_team_cold_wind",
@@ -4980,7 +6154,7 @@
        "LV: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-20, dome_team=yes, home_roof=dome, roof=dome, wind=n/a]"
       ],
       "result": "NOT WIRED",
-      "note": "same: wind is unknown before kickoff (also outside its window: needs months Nov-Jan)",
+      "note": "same: the forecast is shown in WEATHER, the angle stays unwired until intake (also outside its window: needs months Nov-Jan)",
       "direction_text": "under (total)",
       "points": 0.0,
       "n": 87,
@@ -5110,15 +6284,15 @@
       "note": "",
       "direction_text": "bet (spread)",
       "points": 0.0,
-      "n": 159,
+      "n": 82,
       "windows": {
        "2020-2024": {
         "pct": 66.67,
-        "n": 32
+        "n": 12
        },
        "2021-2025": {
-        "pct": 62.07,
-        "n": 34
+        "pct": 61.54,
+        "n": 16
        }
       },
       "mechanism": "Coaching: experienced staff (season 5+ with the team) handles a division stretch after a division loss (Q's hypothesis: they cover)."
@@ -5129,14 +6303,14 @@
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": null,
+      "move": "open LAC -7 (2026-09-15_1050 ) -> latest LAC -6.5 (2026-09-20_07064); move +0.5 over 7 snapshot(s); key numbers crossed: 7.0",
       "verdict": "no lean"
      },
      "total": {
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": null,
+      "move": "open over 43.5 (2026-09-15_1050 ) -> latest over 43.5 (2026-09-20_07064); move +0 over 7 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      }
     }
@@ -5144,16 +6318,82 @@
    "shadow_lean": {
     "spread": {
      "side": "LAC",
-     "line": -7.0,
-     "price": -105,
-     "book": "draftkings",
+     "line": -6.5,
+     "price": -115,
+     "book": "fanduel",
      "tier": "D",
      "net_lean": 0.0,
      "forced_default": true,
-     "line_stale": true,
-     "pulled_at": "2026-09-15T10:52:00-07:00"
+     "line_stale": false,
+     "pulled_at": "2026-09-20T07:06:49-07:00"
     },
     "total": null
+   },
+   "tag": "NO BET",
+   "tag_rank": 14,
+   "tag_reason": "No angles fired",
+   "tag_market": "spread",
+   "tag_tier": "D",
+   "tag_keys": {
+    "net_survivor_weight": 0.0,
+    "survivor_angles_fired": 0,
+    "price_edge": 0.0,
+    "kickoff": "2026-09-20T13:05:00-07:00"
+   },
+   "weather": {
+    "status": "dome",
+    "badge": null,
+    "wind_mph": null,
+    "wind_max_3h_mph": null,
+    "gust_mph": null,
+    "temp_f": null,
+    "precip_in_3h": null,
+    "detail": "indoor venue: wind not applicable",
+    "venue": "SoFi Stadium",
+    "roof": "dome",
+    "lat": 33.9535,
+    "lon": -118.3392,
+    "kickoff_utc": "2026-09-20T20:05:00+00:00",
+    "fetched_at": "2026-09-20T08:37:53.603047-07:00",
+    "source_host": "api.open-meteo.com"
+   },
+   "movement": {
+    "spread": {
+     "market": "spreads",
+     "side": "LAC",
+     "snapshots": 7,
+     "open": -7.0,
+     "open_at": "2026-09-15_1050 America/Phoenix",
+     "open_books": 3,
+     "latest": -6.5,
+     "latest_at": "2026-09-20_070649 America/Phoenix",
+     "latest_books": 3,
+     "open_price": -105,
+     "latest_price": -115,
+     "move": 0.5,
+     "toward_lean": null,
+     "direction": null,
+     "key_crossed": [
+      7.0
+     ]
+    },
+    "total": {
+     "market": "totals",
+     "side": "over",
+     "snapshots": 7,
+     "open": 43.5,
+     "open_at": "2026-09-15_1050 America/Phoenix",
+     "open_books": 3,
+     "latest": 43.5,
+     "latest_at": "2026-09-20_070649 America/Phoenix",
+     "latest_books": 3,
+     "open_price": -110,
+     "latest_price": -110,
+     "move": 0.0,
+     "toward_lean": null,
+     "direction": null,
+     "key_crossed": []
+    }
    }
   },
   {
@@ -5164,20 +6404,125 @@
    "kickoff_phoenix": "2026-09-20T13:25:00-07:00",
    "kickoff_display": "Sun 09/20 13:25",
    "spread": {
-    "lean_side": null,
-    "lean_points": 0.0,
-    "verdict": "angles cancel",
-    "survivors_same_way": 0,
+    "lean_side": "MIA",
+    "lean_points": 0.75,
+    "verdict": "SHORTLIST",
+    "survivors_same_way": 2,
     "watch_same_way": 0,
-    "survivors_against": 0,
-    "rule_a": false,
-    "rule_b": null,
-    "number_to_shop": null,
-    "opener_consensus": null,
-    "moved_toward_lean": null,
-    "lean_remaining": null,
-    "angles_for": [],
-    "angles_against": []
+    "survivors_against": 1,
+    "rule_a": true,
+    "rule_b": true,
+    "number_to_shop": {
+     "line": 13.5,
+     "price": -110,
+     "book": "draftkings",
+     "reachable_by": [
+      "Q",
+      "Mike",
+      "Marques"
+     ],
+     "consensus": 13.5,
+     "books_quoting": 3
+    },
+    "opener_consensus": 13.5,
+    "moved_toward_lean": 0.0,
+    "lean_remaining": 0.75,
+    "angles_for": [
+     {
+      "name": "sandwich_game",
+      "expression": "sandwich_game",
+      "tier": "survivor",
+      "market": "spread",
+      "direction": "fade",
+      "direction_label": "fade SF -> lean MIA",
+      "flagged_team": "SF",
+      "lean_side": "MIA",
+      "points": 0.75,
+      "n": 2741,
+      "windows": {
+       "2020-2024": {
+        "pct": 56.3,
+        "n": 473
+       },
+       "2021-2025": {
+        "pct": 55.14,
+        "n": 490
+       }
+      },
+      "mechanism": "Attention: a division game next week pulls preparation focus forward."
+     },
+     {
+      "name": "off_international",
+      "expression": "off_international",
+      "tier": "survivor",
+      "market": "spread",
+      "direction": "fade",
+      "direction_label": "fade SF -> lean MIA",
+      "flagged_team": "SF",
+      "lean_side": "MIA",
+      "points": 0.5,
+      "n": 112,
+      "windows": {
+       "2020-2024": {
+        "pct": 52.94,
+        "n": 34
+       },
+       "2021-2025": {
+        "pct": 54.17,
+        "n": 48
+       }
+      },
+      "mechanism": "Travel: hangover after an international game (long haul plus time change)."
+     },
+     {
+      "name": "off_international_no_bye",
+      "expression": "off_international_no_bye",
+      "tier": "watch",
+      "market": "spread",
+      "direction": "fade",
+      "direction_label": "fade SF -> lean MIA (below floor - not counted: needs both windows >= 52.4%)",
+      "flagged_team": "SF",
+      "lean_side": "MIA",
+      "points": 0.0,
+      "n": 36,
+      "windows": {
+       "2020-2024": {
+        "pct": 36.84,
+        "n": 19
+       },
+       "2021-2025": {
+        "pct": 46.15,
+        "n": 26
+       }
+      },
+      "mechanism": "Travel: international hangover with no bye week to recover."
+     }
+    ],
+    "angles_against": [
+     {
+      "name": "off_thursday",
+      "expression": "off_thursday",
+      "tier": "survivor",
+      "market": "spread",
+      "direction": "bet",
+      "direction_label": "bet SF -> lean SF",
+      "flagged_team": "SF",
+      "lean_side": "SF",
+      "points": 0.5,
+      "n": 632,
+      "windows": {
+       "2020-2024": {
+        "pct": 54.49,
+        "n": 170
+       },
+       "2021-2025": {
+        "pct": 54.19,
+        "n": 182
+       }
+      },
+      "mechanism": "Rest: mini-bye of 9+ days after a Thursday game."
+     }
+    ]
    },
    "total": {
     "lean_side": null,
@@ -5228,16 +6573,16 @@
      "direction_label": "fade SF -> lean MIA",
      "flagged_team": "SF",
      "lean_side": "MIA",
-     "points": 0.5,
-     "n": 5137,
+     "points": 0.75,
+     "n": 2741,
      "windows": {
       "2020-2024": {
-       "pct": 53.23,
-       "n": 921
+       "pct": 56.3,
+       "n": 473
       },
       "2021-2025": {
-       "pct": 52.73,
-       "n": 922
+       "pct": 55.14,
+       "n": 490
       }
      },
      "mechanism": "Attention: a division game next week pulls preparation focus forward."
@@ -5245,22 +6590,22 @@
     {
      "name": "off_international",
      "expression": "off_international",
-     "tier": "watch",
+     "tier": "survivor",
      "market": "spread",
      "direction": "fade",
      "direction_label": "fade SF -> lean MIA",
      "flagged_team": "SF",
      "lean_side": "MIA",
-     "points": 0.0,
-     "n": 98,
+     "points": 0.5,
+     "n": 112,
      "windows": {
       "2020-2024": {
        "pct": 52.94,
        "n": 34
       },
       "2021-2025": {
-       "pct": 52.94,
-       "n": 34
+       "pct": 54.17,
+       "n": 48
       }
      },
      "mechanism": "Travel: hangover after an international game (long haul plus time change)."
@@ -5271,19 +6616,19 @@
      "tier": "watch",
      "market": "spread",
      "direction": "fade",
-     "direction_label": "fade SF -> lean MIA",
+     "direction_label": "fade SF -> lean MIA (below floor - not counted: needs both windows >= 52.4%)",
      "flagged_team": "SF",
      "lean_side": "MIA",
      "points": 0.0,
-     "n": 29,
+     "n": 36,
      "windows": {
       "2020-2024": {
        "pct": 36.84,
        "n": 19
       },
       "2021-2025": {
-       "pct": 36.84,
-       "n": 19
+       "pct": 46.15,
+       "n": 26
       }
      },
      "mechanism": "Travel: international hangover with no bye week to recover."
@@ -5340,19 +6685,48 @@
       "result": "FIRED",
       "note": "",
       "direction_text": "fade (spread) -> fade SF -> lean MIA",
-      "points": 0.5,
-      "n": 5137,
+      "points": 0.75,
+      "n": 2741,
       "windows": {
        "2020-2024": {
-        "pct": 53.23,
-        "n": 921
+        "pct": 56.3,
+        "n": 473
        },
        "2021-2025": {
-        "pct": 52.73,
-        "n": 922
+        "pct": 55.14,
+        "n": 490
        }
       },
       "mechanism": "Attention: a division game next week pulls preparation focus forward."
+     },
+     {
+      "name": "off_international",
+      "tier": "survivor",
+      "expression": "off_international",
+      "market": "spread",
+      "inputs": [
+       "prev_is_international"
+      ],
+      "values": [
+       "SF: off_international=yes [prev_is_international=yes]",
+       "MIA: off_international=no [prev_is_international=no]"
+      ],
+      "result": "FIRED",
+      "note": "",
+      "direction_text": "fade (spread) -> fade SF -> lean MIA",
+      "points": 0.5,
+      "n": 112,
+      "windows": {
+       "2020-2024": {
+        "pct": 52.94,
+        "n": 34
+       },
+       "2021-2025": {
+        "pct": 54.17,
+        "n": 48
+       }
+      },
+      "mechanism": "Travel: hangover after an international game (long haul plus time change)."
      },
      {
       "name": "dome_team_outdoors_cold",
@@ -5399,7 +6773,7 @@
        "MIA: high_wind=no [wind=n/a]"
       ],
       "result": "NOT WIRED",
-      "note": "needs a forecast wind source; the schedule feed only records wind after the game",
+      "note": "not wired to the kickoff forecast yet: the WEATHER section shows the forecast wind (3.4) for reading only; wiring the angle to forecast wind is an intake decision (its backtest used post-game wind)",
       "direction_text": "under (total)",
       "points": 0.75,
       "n": 1298,
@@ -5447,35 +6821,6 @@
       "mechanism": "Travel: third or later consecutive game away from home; cumulative travel fatigue."
      },
      {
-      "name": "off_international",
-      "tier": "watch",
-      "expression": "off_international",
-      "market": "spread",
-      "inputs": [
-       "prev_is_international"
-      ],
-      "values": [
-       "SF: off_international=yes [prev_is_international=yes]",
-       "MIA: off_international=no [prev_is_international=no]"
-      ],
-      "result": "FIRED",
-      "note": "",
-      "direction_text": "fade (spread) -> fade SF -> lean MIA",
-      "points": 0.0,
-      "n": 98,
-      "windows": {
-       "2020-2024": {
-        "pct": 52.94,
-        "n": 34
-       },
-       "2021-2025": {
-        "pct": 52.94,
-        "n": 34
-       }
-      },
-      "mechanism": "Travel: hangover after an international game (long haul plus time change)."
-     },
-     {
       "name": "off_international_no_bye",
       "tier": "watch",
       "expression": "off_international_no_bye",
@@ -5491,20 +6836,50 @@
       ],
       "result": "FIRED",
       "note": "",
-      "direction_text": "fade (spread) -> fade SF -> lean MIA",
+      "direction_text": "fade (spread) -> fade SF -> lean MIA (below floor - not counted: needs both windows >= 52.4%)",
       "points": 0.0,
-      "n": 29,
+      "n": 36,
       "windows": {
        "2020-2024": {
         "pct": 36.84,
         "n": 19
        },
        "2021-2025": {
-        "pct": 36.84,
-        "n": 19
+        "pct": 46.15,
+        "n": 26
        }
       },
       "mechanism": "Travel: international hangover with no bye week to recover."
+     },
+     {
+      "name": "division_lookahead",
+      "tier": "watch",
+      "expression": "sandwich_game,lookahead",
+      "market": "spread",
+      "inputs": [
+       "next_div_game",
+       "next_opp"
+      ],
+      "values": [
+       "SF: sandwich_game=yes, lookahead=no [next_div_game=1, next_opp=ARI]",
+       "MIA: sandwich_game=no, lookahead=no [next_div_game=0, next_opp=KC]"
+      ],
+      "result": "NOT FIRED",
+      "note": "",
+      "direction_text": "fade (spread)",
+      "points": 0.0,
+      "n": 499,
+      "windows": {
+       "2020-2024": {
+        "pct": 56.99,
+        "n": 94
+       },
+       "2021-2025": {
+        "pct": 56.38,
+        "n": 95
+       }
+      },
+      "mechanism": "Attention: next game is a division game against an elite opponent."
      },
      {
       "name": "dome_team_cold_wind",
@@ -5523,7 +6898,7 @@
        "MIA: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-20, dome_team=no, home_roof=outdoors, roof=outdoors, wind=n/a]"
       ],
       "result": "NOT WIRED",
-      "note": "same: wind is unknown before kickoff (also outside its window: needs months Nov-Jan)",
+      "note": "same: the forecast is shown in WEATHER, the angle stays unwired until intake (also outside its window: needs months Nov-Jan)",
       "direction_text": "under (total)",
       "points": 0.0,
       "n": 87,
@@ -5653,15 +7028,15 @@
       "note": "",
       "direction_text": "bet (spread)",
       "points": 0.0,
-      "n": 159,
+      "n": 82,
       "windows": {
        "2020-2024": {
         "pct": 66.67,
-        "n": 32
+        "n": 12
        },
        "2021-2025": {
-        "pct": 62.07,
-        "n": 34
+        "pct": 61.54,
+        "n": 16
        }
       },
       "mechanism": "Coaching: experienced staff (season 5+ with the team) handles a division stretch after a division loss (Q's hypothesis: they cover)."
@@ -5669,17 +7044,17 @@
     ],
     "lean_math": {
      "spread": {
-      "net": "sum of fired weights: SF 0.5, MIA 0.5; net 0; cap +/-1.5 -> lean none",
-      "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
-      "rule_b": "not checked (no lean)",
-      "move": null,
-      "verdict": "angles cancel"
+      "net": "sum of fired weights: SF 0.5, MIA 1.25; net 0.75 toward MIA; cap +/-1.5 -> lean MIA 0.75",
+      "rule_a": "survivors same direction: 2 of 2 needed (or 1 survivor + 1 watch); watch same direction: 0 counted (1 below floor - not counted); survivors against: 1 -> pass",
+      "rule_b": "opener MIA +13.5 vs best now MIA +13.5 (-110) at draftkings; moved +0 toward MIA (negative = away), lean 0.75 -> pass (number not gone)",
+      "move": "open MIA +13.5 (2026-09-15_1050 ) -> latest MIA +13.5 (2026-09-20_07064); move +0 over 7 snapshot(s); flat (+0); key numbers crossed: none",
+      "verdict": "SHORTLIST"
      },
      "total": {
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": null,
+      "move": "open over 45.5 (2026-09-15_1050 ) -> latest over 45 (2026-09-20_07064); move -0.5 over 7 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      }
     }
@@ -5689,14 +7064,86 @@
      "side": "MIA",
      "line": 13.5,
      "price": -110,
-     "book": "betmgm",
-     "tier": "C",
-     "net_lean": 0.0,
+     "book": "draftkings",
+     "tier": "A",
+     "net_lean": 0.75,
      "forced_default": false,
-     "line_stale": true,
-     "pulled_at": "2026-09-15T10:52:00-07:00"
+     "line_stale": false,
+     "pulled_at": "2026-09-20T07:06:49-07:00"
     },
     "total": null
+   },
+   "tag": "BET",
+   "tag_rank": 1,
+   "tag_reason": "Rule (a) met: 2 survivors for MIA",
+   "tag_market": "spread",
+   "tag_tier": "A",
+   "tag_keys": {
+    "net_survivor_weight": 0.75,
+    "survivor_angles_fired": 2,
+    "price_edge": 0.0,
+    "kickoff": "2026-09-20T13:25:00-07:00"
+   },
+   "weather": {
+    "status": "forecast",
+    "badge": null,
+    "detail": null,
+    "wind_mph": 8.9,
+    "wind_max_3h_mph": 11.6,
+    "gust_mph": 16.6,
+    "temp_f": 65.1,
+    "precip_in_3h": 0.0,
+    "kickoff_hour_utc": "2026-09-20T20:00:00+00:00",
+    "hours": [
+     "2026-09-20T20:00:00+00:00",
+     "2026-09-20T21:00:00+00:00",
+     "2026-09-20T22:00:00+00:00",
+     "2026-09-20T23:00:00+00:00"
+    ],
+    "source": "open-meteo forecast (10 m wind, mph; 2 m temp, F)",
+    "venue": "Levi's Stadium",
+    "roof": "outdoors",
+    "lat": 37.4033,
+    "lon": -121.9694,
+    "kickoff_utc": "2026-09-20T20:25:00+00:00",
+    "fetched_at": "2026-09-20T08:37:53.603047-07:00",
+    "source_host": "api.open-meteo.com"
+   },
+   "movement": {
+    "spread": {
+     "market": "spreads",
+     "side": "MIA",
+     "snapshots": 7,
+     "open": 13.5,
+     "open_at": "2026-09-15_1050 America/Phoenix",
+     "open_books": 3,
+     "latest": 13.5,
+     "latest_at": "2026-09-20_070649 America/Phoenix",
+     "latest_books": 3,
+     "open_price": -115,
+     "latest_price": -110,
+     "move": 0.0,
+     "toward_lean": 0.0,
+     "direction": "flat",
+     "key_crossed": []
+    },
+    "total": {
+     "market": "totals",
+     "side": "over",
+     "snapshots": 7,
+     "open": 45.5,
+     "open_at": "2026-09-15_1050 America/Phoenix",
+     "open_books": 3,
+     "latest": 45.0,
+     "latest_at": "2026-09-20_070649 America/Phoenix",
+     "latest_books": 3,
+     "open_price": -108,
+     "latest_price": -108,
+     "move": -0.5,
+     "toward_lean": null,
+     "direction": null,
+     "key_crossed": []
+    }
    }
   },
   {
@@ -5708,28 +7155,28 @@
    "kickoff_display": "Sun 09/20 13:25",
    "spread": {
     "lean_side": "SEA",
-    "lean_points": 0.5,
-    "verdict": "not enough angles (1 survivor, 0 watch same way)",
+    "lean_points": 0.75,
+    "verdict": "not enough angles (1 survivor, 0 watch same way; 1 watch below floor - not counted)",
     "survivors_same_way": 1,
     "watch_same_way": 0,
     "survivors_against": 0,
     "rule_a": false,
     "rule_b": true,
     "number_to_shop": {
-     "line": -4.5,
-     "price": -105,
+     "line": -3.5,
+     "price": -120,
      "book": "draftkings",
      "reachable_by": [
       "Q",
       "Mike",
       "Marques"
      ],
-     "consensus": -4.5,
+     "consensus": -4.0,
      "books_quoting": 3
     },
     "opener_consensus": -4.5,
-    "moved_toward_lean": 0.0,
-    "lean_remaining": 0.5,
+    "moved_toward_lean": -1.0,
+    "lean_remaining": 1.75,
     "angles_for": [
      {
       "name": "sandwich_game",
@@ -5740,19 +7187,42 @@
       "direction_label": "fade ARI -> lean SEA",
       "flagged_team": "ARI",
       "lean_side": "SEA",
-      "points": 0.5,
-      "n": 5137,
+      "points": 0.75,
+      "n": 2741,
       "windows": {
        "2020-2024": {
-        "pct": 53.23,
-        "n": 921
+        "pct": 56.3,
+        "n": 473
        },
        "2021-2025": {
-        "pct": 52.73,
-        "n": 922
+        "pct": 55.14,
+        "n": 490
        }
       },
       "mechanism": "Attention: a division game next week pulls preparation focus forward."
+     },
+     {
+      "name": "division_lookahead",
+      "expression": "sandwich_game,lookahead",
+      "tier": "watch",
+      "market": "spread",
+      "direction": "fade",
+      "direction_label": "fade ARI -> lean SEA (manual: watch - not counted)",
+      "flagged_team": "ARI",
+      "lean_side": "SEA",
+      "points": 0.0,
+      "n": 499,
+      "windows": {
+       "2020-2024": {
+        "pct": 56.99,
+        "n": 94
+       },
+       "2021-2025": {
+        "pct": 56.38,
+        "n": 95
+       }
+      },
+      "mechanism": "Attention: next game is a division game against an elite opponent."
      }
     ],
     "angles_against": []
@@ -5783,19 +7253,42 @@
      "direction_label": "fade ARI -> lean SEA",
      "flagged_team": "ARI",
      "lean_side": "SEA",
-     "points": 0.5,
-     "n": 5137,
+     "points": 0.75,
+     "n": 2741,
      "windows": {
       "2020-2024": {
-       "pct": 53.23,
-       "n": 921
+       "pct": 56.3,
+       "n": 473
       },
       "2021-2025": {
-       "pct": 52.73,
-       "n": 922
+       "pct": 55.14,
+       "n": 490
       }
      },
      "mechanism": "Attention: a division game next week pulls preparation focus forward."
+    },
+    {
+     "name": "division_lookahead",
+     "expression": "sandwich_game,lookahead",
+     "tier": "watch",
+     "market": "spread",
+     "direction": "fade",
+     "direction_label": "fade ARI -> lean SEA (manual: watch - not counted)",
+     "flagged_team": "ARI",
+     "lean_side": "SEA",
+     "points": 0.0,
+     "n": 499,
+     "windows": {
+      "2020-2024": {
+       "pct": 56.99,
+       "n": 94
+      },
+      "2021-2025": {
+       "pct": 56.38,
+       "n": 95
+      }
+     },
+     "mechanism": "Attention: next game is a division game against an elite opponent."
     }
    ],
    "matrix": {
@@ -5849,19 +7342,48 @@
       "result": "FIRED",
       "note": "",
       "direction_text": "fade (spread) -> fade ARI -> lean SEA",
-      "points": 0.5,
-      "n": 5137,
+      "points": 0.75,
+      "n": 2741,
       "windows": {
        "2020-2024": {
-        "pct": 53.23,
-        "n": 921
+        "pct": 56.3,
+        "n": 473
        },
        "2021-2025": {
-        "pct": 52.73,
-        "n": 922
+        "pct": 55.14,
+        "n": 490
        }
       },
       "mechanism": "Attention: a division game next week pulls preparation focus forward."
+     },
+     {
+      "name": "off_international",
+      "tier": "survivor",
+      "expression": "off_international",
+      "market": "spread",
+      "inputs": [
+       "prev_is_international"
+      ],
+      "values": [
+       "ARI: off_international=no [prev_is_international=no]",
+       "SEA: off_international=no [prev_is_international=no]"
+      ],
+      "result": "NOT FIRED",
+      "note": "",
+      "direction_text": "fade (spread)",
+      "points": 0.5,
+      "n": 112,
+      "windows": {
+       "2020-2024": {
+        "pct": 52.94,
+        "n": 34
+       },
+       "2021-2025": {
+        "pct": 54.17,
+        "n": 48
+       }
+      },
+      "mechanism": "Travel: hangover after an international game (long haul plus time change)."
      },
      {
       "name": "dome_team_outdoors_cold",
@@ -5908,7 +7430,7 @@
        "SEA: high_wind=no [wind=n/a]"
       ],
       "result": "NOT WIRED",
-      "note": "needs a forecast wind source; the schedule feed only records wind after the game",
+      "note": "not wired to the kickoff forecast yet: the WEATHER section shows the forecast wind (3.4) for reading only; wiring the angle to forecast wind is an intake decision (its backtest used post-game wind)",
       "direction_text": "under (total)",
       "points": 0.75,
       "n": 1298,
@@ -5956,35 +7478,6 @@
       "mechanism": "Travel: third or later consecutive game away from home; cumulative travel fatigue."
      },
      {
-      "name": "off_international",
-      "tier": "watch",
-      "expression": "off_international",
-      "market": "spread",
-      "inputs": [
-       "prev_is_international"
-      ],
-      "values": [
-       "ARI: off_international=no [prev_is_international=no]",
-       "SEA: off_international=no [prev_is_international=no]"
-      ],
-      "result": "NOT FIRED",
-      "note": "",
-      "direction_text": "fade (spread)",
-      "points": 0.0,
-      "n": 98,
-      "windows": {
-       "2020-2024": {
-        "pct": 52.94,
-        "n": 34
-       },
-       "2021-2025": {
-        "pct": 52.94,
-        "n": 34
-       }
-      },
-      "mechanism": "Travel: hangover after an international game (long haul plus time change)."
-     },
-     {
       "name": "off_international_no_bye",
       "tier": "watch",
       "expression": "off_international_no_bye",
@@ -6002,18 +7495,48 @@
       "note": "",
       "direction_text": "fade (spread)",
       "points": 0.0,
-      "n": 29,
+      "n": 36,
       "windows": {
        "2020-2024": {
         "pct": 36.84,
         "n": 19
        },
        "2021-2025": {
-        "pct": 36.84,
-        "n": 19
+        "pct": 46.15,
+        "n": 26
        }
       },
       "mechanism": "Travel: international hangover with no bye week to recover."
+     },
+     {
+      "name": "division_lookahead",
+      "tier": "watch",
+      "expression": "sandwich_game,lookahead",
+      "market": "spread",
+      "inputs": [
+       "next_div_game",
+       "next_opp"
+      ],
+      "values": [
+       "ARI: sandwich_game=yes, lookahead=yes [next_div_game=1, next_opp=SF]",
+       "SEA: sandwich_game=no, lookahead=no [next_div_game=0, next_opp=WAS]"
+      ],
+      "result": "FIRED",
+      "note": "",
+      "direction_text": "fade (spread) -> fade ARI -> lean SEA (manual: watch - not counted)",
+      "points": 0.0,
+      "n": 499,
+      "windows": {
+       "2020-2024": {
+        "pct": 56.99,
+        "n": 94
+       },
+       "2021-2025": {
+        "pct": 56.38,
+        "n": 95
+       }
+      },
+      "mechanism": "Attention: next game is a division game against an elite opponent."
      },
      {
       "name": "dome_team_cold_wind",
@@ -6032,7 +7555,7 @@
        "SEA: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-20, dome_team=no, home_roof=outdoors, roof=n/a, wind=n/a]"
       ],
       "result": "NOT WIRED",
-      "note": "same: wind is unknown before kickoff (also outside its window: needs months Nov-Jan)",
+      "note": "same: the forecast is shown in WEATHER, the angle stays unwired until intake (also outside its window: needs months Nov-Jan)",
       "direction_text": "under (total)",
       "points": 0.0,
       "n": 87,
@@ -6162,15 +7685,15 @@
       "note": "",
       "direction_text": "bet (spread)",
       "points": 0.0,
-      "n": 159,
+      "n": 82,
       "windows": {
        "2020-2024": {
         "pct": 66.67,
-        "n": 32
+        "n": 12
        },
        "2021-2025": {
-        "pct": 62.07,
-        "n": 34
+        "pct": 61.54,
+        "n": 16
        }
       },
       "mechanism": "Coaching: experienced staff (season 5+ with the team) handles a division stretch after a division loss (Q's hypothesis: they cover)."
@@ -6178,17 +7701,17 @@
     ],
     "lean_math": {
      "spread": {
-      "net": "sum of fired weights: SEA 0.5; net 0.5 toward SEA; cap +/-1.5 -> lean SEA 0.5",
-      "rule_a": "survivors same direction: 1 of 2 needed (or 1 survivor + 1 watch); watch same direction: 0; survivors against: 0 -> fail",
-      "rule_b": "opener SEA -4.5 vs best now SEA -4.5 (-105) at draftkings; moved +0 toward SEA (negative = away), lean 0.5 -> pass (number not gone)",
-      "move": null,
-      "verdict": "not enough angles (1 survivor, 0 watch same way)"
+      "net": "sum of fired weights: SEA 0.75; net 0.75 toward SEA; cap +/-1.5 -> lean SEA 0.75",
+      "rule_a": "survivors same direction: 1 of 2 needed (or 1 survivor + 1 watch); watch same direction: 0 counted (1 below floor - not counted); survivors against: 0 -> fail",
+      "rule_b": "opener SEA -4.5 vs best now SEA -3.5 (-120) at draftkings; moved -1 toward SEA (negative = away), lean 0.75 -> pass (number not gone)",
+      "move": "open SEA -4.5 (2026-09-15_1050 ) -> latest SEA -4 (2026-09-20_07064); move +0.5 over 7 snapshot(s); against lean (-0.5); key numbers crossed: none",
+      "verdict": "not enough angles (1 survivor, 0 watch same way; 1 watch below floor - not counted)"
      },
      "total": {
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": null,
+      "move": "open over 41.5 (2026-09-15_1050 ) -> latest over 41 (2026-09-20_07064); move -0.5 over 7 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      }
     }
@@ -6196,16 +7719,88 @@
    "shadow_lean": {
     "spread": {
      "side": "SEA",
-     "line": -4.5,
-     "price": -105,
+     "line": -3.5,
+     "price": -120,
      "book": "draftkings",
      "tier": "B",
-     "net_lean": 0.5,
+     "net_lean": 0.75,
      "forced_default": false,
-     "line_stale": true,
-     "pulled_at": "2026-09-15T10:52:00-07:00"
+     "line_stale": false,
+     "pulled_at": "2026-09-20T07:06:49-07:00"
     },
     "total": null
+   },
+   "tag": "POSSIBLE BET",
+   "tag_rank": 2,
+   "tag_reason": "Survivor lean SEA, rule (a) not met: 1 of 2",
+   "tag_market": "spread",
+   "tag_tier": "B",
+   "tag_keys": {
+    "net_survivor_weight": 0.75,
+    "survivor_angles_fired": 1,
+    "price_edge": 0.5,
+    "kickoff": "2026-09-20T13:25:00-07:00"
+   },
+   "weather": {
+    "status": "forecast",
+    "badge": null,
+    "detail": null,
+    "wind_mph": 4.5,
+    "wind_max_3h_mph": 6.2,
+    "gust_mph": 13.0,
+    "temp_f": 99.4,
+    "precip_in_3h": 0.0,
+    "kickoff_hour_utc": "2026-09-20T20:00:00+00:00",
+    "hours": [
+     "2026-09-20T20:00:00+00:00",
+     "2026-09-20T21:00:00+00:00",
+     "2026-09-20T22:00:00+00:00",
+     "2026-09-20T23:00:00+00:00"
+    ],
+    "source": "open-meteo forecast (10 m wind, mph; 2 m temp, F)",
+    "venue": "State Farm Stadium",
+    "roof": "retractable",
+    "lat": 33.5276,
+    "lon": -112.2626,
+    "kickoff_utc": "2026-09-20T20:25:00+00:00",
+    "fetched_at": "2026-09-20T08:37:53.603047-07:00",
+    "source_host": "api.open-meteo.com"
+   },
+   "movement": {
+    "spread": {
+     "market": "spreads",
+     "side": "SEA",
+     "snapshots": 7,
+     "open": -4.5,
+     "open_at": "2026-09-15_1050 America/Phoenix",
+     "open_books": 3,
+     "latest": -4.0,
+     "latest_at": "2026-09-20_070649 America/Phoenix",
+     "latest_books": 3,
+     "open_price": -105,
+     "latest_price": -108,
+     "move": 0.5,
+     "toward_lean": -0.5,
+     "direction": "against lean",
+     "key_crossed": []
+    },
+    "total": {
+     "market": "totals",
+     "side": "over",
+     "snapshots": 7,
+     "open": 41.5,
+     "open_at": "2026-09-15_1050 America/Phoenix",
+     "open_books": 3,
+     "latest": 41.0,
+     "latest_at": "2026-09-20_070649 America/Phoenix",
+     "latest_books": 3,
+     "open_price": -110,
+     "latest_price": -108,
+     "move": -0.5,
+     "toward_lean": null,
+     "direction": null,
+     "key_crossed": []
+    }
    }
   },
   {
@@ -6299,19 +7894,48 @@
       "result": "NOT FIRED",
       "note": "",
       "direction_text": "fade (spread)",
-      "points": 0.5,
-      "n": 5137,
+      "points": 0.75,
+      "n": 2741,
       "windows": {
        "2020-2024": {
-        "pct": 53.23,
-        "n": 921
+        "pct": 56.3,
+        "n": 473
        },
        "2021-2025": {
-        "pct": 52.73,
-        "n": 922
+        "pct": 55.14,
+        "n": 490
        }
       },
       "mechanism": "Attention: a division game next week pulls preparation focus forward."
+     },
+     {
+      "name": "off_international",
+      "tier": "survivor",
+      "expression": "off_international",
+      "market": "spread",
+      "inputs": [
+       "prev_is_international"
+      ],
+      "values": [
+       "DAL: off_international=no [prev_is_international=no]",
+       "WAS: off_international=no [prev_is_international=no]"
+      ],
+      "result": "NOT FIRED",
+      "note": "",
+      "direction_text": "fade (spread)",
+      "points": 0.5,
+      "n": 112,
+      "windows": {
+       "2020-2024": {
+        "pct": 52.94,
+        "n": 34
+       },
+       "2021-2025": {
+        "pct": 54.17,
+        "n": 48
+       }
+      },
+      "mechanism": "Travel: hangover after an international game (long haul plus time change)."
      },
      {
       "name": "dome_team_outdoors_cold",
@@ -6358,7 +7982,7 @@
        "WAS: high_wind=no [wind=n/a]"
       ],
       "result": "NOT WIRED",
-      "note": "needs a forecast wind source; the schedule feed only records wind after the game",
+      "note": "not wired to the kickoff forecast yet: the WEATHER section shows the forecast wind (3.4) for reading only; wiring the angle to forecast wind is an intake decision (its backtest used post-game wind)",
       "direction_text": "under (total)",
       "points": 0.75,
       "n": 1298,
@@ -6406,35 +8030,6 @@
       "mechanism": "Travel: third or later consecutive game away from home; cumulative travel fatigue."
      },
      {
-      "name": "off_international",
-      "tier": "watch",
-      "expression": "off_international",
-      "market": "spread",
-      "inputs": [
-       "prev_is_international"
-      ],
-      "values": [
-       "DAL: off_international=no [prev_is_international=no]",
-       "WAS: off_international=no [prev_is_international=no]"
-      ],
-      "result": "NOT FIRED",
-      "note": "",
-      "direction_text": "fade (spread)",
-      "points": 0.0,
-      "n": 98,
-      "windows": {
-       "2020-2024": {
-        "pct": 52.94,
-        "n": 34
-       },
-       "2021-2025": {
-        "pct": 52.94,
-        "n": 34
-       }
-      },
-      "mechanism": "Travel: hangover after an international game (long haul plus time change)."
-     },
-     {
       "name": "off_international_no_bye",
       "tier": "watch",
       "expression": "off_international_no_bye",
@@ -6452,18 +8047,48 @@
       "note": "",
       "direction_text": "fade (spread)",
       "points": 0.0,
-      "n": 29,
+      "n": 36,
       "windows": {
        "2020-2024": {
         "pct": 36.84,
         "n": 19
        },
        "2021-2025": {
-        "pct": 36.84,
-        "n": 19
+        "pct": 46.15,
+        "n": 26
        }
       },
       "mechanism": "Travel: international hangover with no bye week to recover."
+     },
+     {
+      "name": "division_lookahead",
+      "tier": "watch",
+      "expression": "sandwich_game,lookahead",
+      "market": "spread",
+      "inputs": [
+       "next_div_game",
+       "next_opp"
+      ],
+      "values": [
+       "DAL: sandwich_game=no, lookahead=no [next_div_game=0, next_opp=BAL]",
+       "WAS: sandwich_game=no, lookahead=yes [next_div_game=0, next_opp=SEA]"
+      ],
+      "result": "NOT FIRED",
+      "note": "",
+      "direction_text": "fade (spread)",
+      "points": 0.0,
+      "n": 499,
+      "windows": {
+       "2020-2024": {
+        "pct": 56.99,
+        "n": 94
+       },
+       "2021-2025": {
+        "pct": 56.38,
+        "n": 95
+       }
+      },
+      "mechanism": "Attention: next game is a division game against an elite opponent."
      },
      {
       "name": "dome_team_cold_wind",
@@ -6482,7 +8107,7 @@
        "WAS: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-20, dome_team=no, home_roof=outdoors, roof=n/a, wind=n/a]"
       ],
       "result": "NOT WIRED",
-      "note": "same: wind is unknown before kickoff (also outside its window: needs months Nov-Jan)",
+      "note": "same: the forecast is shown in WEATHER, the angle stays unwired until intake (also outside its window: needs months Nov-Jan)",
       "direction_text": "under (total)",
       "points": 0.0,
       "n": 87,
@@ -6612,15 +8237,15 @@
       "note": "",
       "direction_text": "bet (spread)",
       "points": 0.0,
-      "n": 159,
+      "n": 82,
       "windows": {
        "2020-2024": {
         "pct": 66.67,
-        "n": 32
+        "n": 12
        },
        "2021-2025": {
-        "pct": 62.07,
-        "n": 34
+        "pct": 61.54,
+        "n": 16
        }
       },
       "mechanism": "Coaching: experienced staff (season 5+ with the team) handles a division stretch after a division loss (Q's hypothesis: they cover)."
@@ -6631,14 +8256,14 @@
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": null,
+      "move": "open DAL -4 (2026-09-15_1050 ) -> latest DAL -4 (2026-09-20_07064); move +0 over 7 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      },
      "total": {
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": null,
+      "move": "open over 50.5 (2026-09-15_1050 ) -> latest over 50.5 (2026-09-20_07064); move +0 over 7 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      }
     }
@@ -6647,15 +8272,87 @@
     "spread": {
      "side": "DAL",
      "line": -3.5,
-     "price": -115,
-     "book": "fanduel",
+     "price": -120,
+     "book": "draftkings",
      "tier": "D",
      "net_lean": 0.0,
      "forced_default": true,
-     "line_stale": true,
-     "pulled_at": "2026-09-15T10:52:00-07:00"
+     "line_stale": false,
+     "pulled_at": "2026-09-20T07:06:49-07:00"
     },
     "total": null
+   },
+   "tag": "NO BET",
+   "tag_rank": 15,
+   "tag_reason": "No angles fired",
+   "tag_market": "spread",
+   "tag_tier": "D",
+   "tag_keys": {
+    "net_survivor_weight": 0.0,
+    "survivor_angles_fired": 0,
+    "price_edge": 0.0,
+    "kickoff": "2026-09-20T13:25:00-07:00"
+   },
+   "weather": {
+    "status": "forecast",
+    "badge": null,
+    "detail": null,
+    "wind_mph": 6.1,
+    "wind_max_3h_mph": 6.4,
+    "gust_mph": 8.1,
+    "temp_f": 96.0,
+    "precip_in_3h": 0.0,
+    "kickoff_hour_utc": "2026-09-20T20:00:00+00:00",
+    "hours": [
+     "2026-09-20T20:00:00+00:00",
+     "2026-09-20T21:00:00+00:00",
+     "2026-09-20T22:00:00+00:00",
+     "2026-09-20T23:00:00+00:00"
+    ],
+    "source": "open-meteo forecast (10 m wind, mph; 2 m temp, F)",
+    "venue": "AT&T Stadium",
+    "roof": "retractable",
+    "lat": 32.7473,
+    "lon": -97.0945,
+    "kickoff_utc": "2026-09-20T20:25:00+00:00",
+    "fetched_at": "2026-09-20T08:37:53.603047-07:00",
+    "source_host": "api.open-meteo.com"
+   },
+   "movement": {
+    "spread": {
+     "market": "spreads",
+     "side": "DAL",
+     "snapshots": 7,
+     "open": -4.0,
+     "open_at": "2026-09-15_1050 America/Phoenix",
+     "open_books": 3,
+     "latest": -4.0,
+     "latest_at": "2026-09-20_070649 America/Phoenix",
+     "latest_books": 3,
+     "open_price": -110,
+     "latest_price": -105,
+     "move": 0.0,
+     "toward_lean": null,
+     "direction": null,
+     "key_crossed": []
+    },
+    "total": {
+     "market": "totals",
+     "side": "over",
+     "snapshots": 7,
+     "open": 50.5,
+     "open_at": "2026-09-15_1050 America/Phoenix",
+     "open_books": 3,
+     "latest": 50.5,
+     "latest_at": "2026-09-20_070649 America/Phoenix",
+     "latest_books": 3,
+     "open_price": -108,
+     "latest_price": -118,
+     "move": 0.0,
+     "toward_lean": null,
+     "direction": null,
+     "key_crossed": []
+    }
    }
   },
   {
@@ -6667,28 +8364,28 @@
    "kickoff_display": "Sun 09/20 17:20",
    "spread": {
     "lean_side": "KC",
-    "lean_points": 0.5,
-    "verdict": "not enough angles (1 survivor, 0 watch same way)",
+    "lean_points": 0.75,
+    "verdict": "not enough angles (1 survivor, 0 watch same way; 1 watch below floor - not counted)",
     "survivors_same_way": 1,
     "watch_same_way": 0,
     "survivors_against": 0,
     "rule_a": false,
     "rule_b": true,
     "number_to_shop": {
-     "line": -6.5,
-     "price": -115,
-     "book": "fanduel",
+     "line": -6.0,
+     "price": -108,
+     "book": "draftkings",
      "reachable_by": [
       "Q",
       "Mike",
       "Marques"
      ],
-     "consensus": -6.5,
+     "consensus": -6.25,
      "books_quoting": 2
     },
     "opener_consensus": -6.5,
-    "moved_toward_lean": 0.0,
-    "lean_remaining": 0.5,
+    "moved_toward_lean": -0.5,
+    "lean_remaining": 1.25,
     "angles_for": [
      {
       "name": "sandwich_game",
@@ -6699,19 +8396,42 @@
       "direction_label": "fade IND -> lean KC",
       "flagged_team": "IND",
       "lean_side": "KC",
-      "points": 0.5,
-      "n": 5137,
+      "points": 0.75,
+      "n": 2741,
       "windows": {
        "2020-2024": {
-        "pct": 53.23,
-        "n": 921
+        "pct": 56.3,
+        "n": 473
        },
        "2021-2025": {
-        "pct": 52.73,
-        "n": 922
+        "pct": 55.14,
+        "n": 490
        }
       },
       "mechanism": "Attention: a division game next week pulls preparation focus forward."
+     },
+     {
+      "name": "division_lookahead",
+      "expression": "sandwich_game,lookahead",
+      "tier": "watch",
+      "market": "spread",
+      "direction": "fade",
+      "direction_label": "fade IND -> lean KC (manual: watch - not counted)",
+      "flagged_team": "IND",
+      "lean_side": "KC",
+      "points": 0.0,
+      "n": 499,
+      "windows": {
+       "2020-2024": {
+        "pct": 56.99,
+        "n": 94
+       },
+       "2021-2025": {
+        "pct": 56.38,
+        "n": 95
+       }
+      },
+      "mechanism": "Attention: next game is a division game against an elite opponent."
      }
     ],
     "angles_against": []
@@ -6742,19 +8462,42 @@
      "direction_label": "fade IND -> lean KC",
      "flagged_team": "IND",
      "lean_side": "KC",
-     "points": 0.5,
-     "n": 5137,
+     "points": 0.75,
+     "n": 2741,
      "windows": {
       "2020-2024": {
-       "pct": 53.23,
-       "n": 921
+       "pct": 56.3,
+       "n": 473
       },
       "2021-2025": {
-       "pct": 52.73,
-       "n": 922
+       "pct": 55.14,
+       "n": 490
       }
      },
      "mechanism": "Attention: a division game next week pulls preparation focus forward."
+    },
+    {
+     "name": "division_lookahead",
+     "expression": "sandwich_game,lookahead",
+     "tier": "watch",
+     "market": "spread",
+     "direction": "fade",
+     "direction_label": "fade IND -> lean KC (manual: watch - not counted)",
+     "flagged_team": "IND",
+     "lean_side": "KC",
+     "points": 0.0,
+     "n": 499,
+     "windows": {
+      "2020-2024": {
+       "pct": 56.99,
+       "n": 94
+      },
+      "2021-2025": {
+       "pct": 56.38,
+       "n": 95
+      }
+     },
+     "mechanism": "Attention: next game is a division game against an elite opponent."
     }
    ],
    "matrix": {
@@ -6808,19 +8551,48 @@
       "result": "FIRED",
       "note": "",
       "direction_text": "fade (spread) -> fade IND -> lean KC",
-      "points": 0.5,
-      "n": 5137,
+      "points": 0.75,
+      "n": 2741,
       "windows": {
        "2020-2024": {
-        "pct": 53.23,
-        "n": 921
+        "pct": 56.3,
+        "n": 473
        },
        "2021-2025": {
-        "pct": 52.73,
-        "n": 922
+        "pct": 55.14,
+        "n": 490
        }
       },
       "mechanism": "Attention: a division game next week pulls preparation focus forward."
+     },
+     {
+      "name": "off_international",
+      "tier": "survivor",
+      "expression": "off_international",
+      "market": "spread",
+      "inputs": [
+       "prev_is_international"
+      ],
+      "values": [
+       "KC: off_international=no [prev_is_international=no]",
+       "IND: off_international=no [prev_is_international=no]"
+      ],
+      "result": "NOT FIRED",
+      "note": "",
+      "direction_text": "fade (spread)",
+      "points": 0.5,
+      "n": 112,
+      "windows": {
+       "2020-2024": {
+        "pct": 52.94,
+        "n": 34
+       },
+       "2021-2025": {
+        "pct": 54.17,
+        "n": 48
+       }
+      },
+      "mechanism": "Travel: hangover after an international game (long haul plus time change)."
      },
      {
       "name": "dome_team_outdoors_cold",
@@ -6867,7 +8639,7 @@
        "IND: high_wind=no [wind=n/a]"
       ],
       "result": "NOT WIRED",
-      "note": "needs a forecast wind source; the schedule feed only records wind after the game",
+      "note": "not wired to the kickoff forecast yet: the WEATHER section shows the forecast wind (3.4) for reading only; wiring the angle to forecast wind is an intake decision (its backtest used post-game wind)",
       "direction_text": "under (total)",
       "points": 0.75,
       "n": 1298,
@@ -6915,35 +8687,6 @@
       "mechanism": "Travel: third or later consecutive game away from home; cumulative travel fatigue."
      },
      {
-      "name": "off_international",
-      "tier": "watch",
-      "expression": "off_international",
-      "market": "spread",
-      "inputs": [
-       "prev_is_international"
-      ],
-      "values": [
-       "KC: off_international=no [prev_is_international=no]",
-       "IND: off_international=no [prev_is_international=no]"
-      ],
-      "result": "NOT FIRED",
-      "note": "",
-      "direction_text": "fade (spread)",
-      "points": 0.0,
-      "n": 98,
-      "windows": {
-       "2020-2024": {
-        "pct": 52.94,
-        "n": 34
-       },
-       "2021-2025": {
-        "pct": 52.94,
-        "n": 34
-       }
-      },
-      "mechanism": "Travel: hangover after an international game (long haul plus time change)."
-     },
-     {
       "name": "off_international_no_bye",
       "tier": "watch",
       "expression": "off_international_no_bye",
@@ -6961,18 +8704,48 @@
       "note": "",
       "direction_text": "fade (spread)",
       "points": 0.0,
-      "n": 29,
+      "n": 36,
       "windows": {
        "2020-2024": {
         "pct": 36.84,
         "n": 19
        },
        "2021-2025": {
-        "pct": 36.84,
-        "n": 19
+        "pct": 46.15,
+        "n": 26
        }
       },
       "mechanism": "Travel: international hangover with no bye week to recover."
+     },
+     {
+      "name": "division_lookahead",
+      "tier": "watch",
+      "expression": "sandwich_game,lookahead",
+      "market": "spread",
+      "inputs": [
+       "next_div_game",
+       "next_opp"
+      ],
+      "values": [
+       "KC: sandwich_game=no, lookahead=no [next_div_game=0, next_opp=MIA]",
+       "IND: sandwich_game=yes, lookahead=yes [next_div_game=1, next_opp=HOU]"
+      ],
+      "result": "FIRED",
+      "note": "",
+      "direction_text": "fade (spread) -> fade IND -> lean KC (manual: watch - not counted)",
+      "points": 0.0,
+      "n": 499,
+      "windows": {
+       "2020-2024": {
+        "pct": 56.99,
+        "n": 94
+       },
+       "2021-2025": {
+        "pct": 56.38,
+        "n": 95
+       }
+      },
+      "mechanism": "Attention: next game is a division game against an elite opponent."
      },
      {
       "name": "dome_team_cold_wind",
@@ -6991,7 +8764,7 @@
        "IND: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-20, dome_team=yes, home_roof=closed, roof=outdoors, wind=n/a]"
       ],
       "result": "NOT WIRED",
-      "note": "same: wind is unknown before kickoff (also outside its window: needs months Nov-Jan)",
+      "note": "same: the forecast is shown in WEATHER, the angle stays unwired until intake (also outside its window: needs months Nov-Jan)",
       "direction_text": "under (total)",
       "points": 0.0,
       "n": 87,
@@ -7121,15 +8894,15 @@
       "note": "",
       "direction_text": "bet (spread)",
       "points": 0.0,
-      "n": 159,
+      "n": 82,
       "windows": {
        "2020-2024": {
         "pct": 66.67,
-        "n": 32
+        "n": 12
        },
        "2021-2025": {
-        "pct": 62.07,
-        "n": 34
+        "pct": 61.54,
+        "n": 16
        }
       },
       "mechanism": "Coaching: experienced staff (season 5+ with the team) handles a division stretch after a division loss (Q's hypothesis: they cover)."
@@ -7137,17 +8910,17 @@
     ],
     "lean_math": {
      "spread": {
-      "net": "sum of fired weights: KC 0.5; net 0.5 toward KC; cap +/-1.5 -> lean KC 0.5",
-      "rule_a": "survivors same direction: 1 of 2 needed (or 1 survivor + 1 watch); watch same direction: 0; survivors against: 0 -> fail",
-      "rule_b": "opener KC -6.5 vs best now KC -6.5 (-115) at fanduel; moved +0 toward KC (negative = away), lean 0.5 -> pass (number not gone)",
-      "move": null,
-      "verdict": "not enough angles (1 survivor, 0 watch same way)"
+      "net": "sum of fired weights: KC 0.75; net 0.75 toward KC; cap +/-1.5 -> lean KC 0.75",
+      "rule_a": "survivors same direction: 1 of 2 needed (or 1 survivor + 1 watch); watch same direction: 0 counted (1 below floor - not counted); survivors against: 0 -> fail",
+      "rule_b": "opener KC -6.5 vs best now KC -6 (-108) at draftkings; moved -0.5 toward KC (negative = away), lean 0.75 -> pass (number not gone)",
+      "move": "open KC -6.5 (2026-09-15_1050 ) -> latest KC -6.25 (2026-09-20_07064); move +0.25 over 7 snapshot(s); against lean (-0.25); key numbers crossed: none",
+      "verdict": "not enough angles (1 survivor, 0 watch same way; 1 watch below floor - not counted)"
      },
      "total": {
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": null,
+      "move": "open over 47.5 (2026-09-15_1050 ) -> latest over 46.5 (2026-09-20_07064); move -1 over 7 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      }
     }
@@ -7155,16 +8928,88 @@
    "shadow_lean": {
     "spread": {
      "side": "KC",
-     "line": -6.5,
-     "price": -115,
-     "book": "fanduel",
+     "line": -6.0,
+     "price": -108,
+     "book": "draftkings",
      "tier": "B",
-     "net_lean": 0.5,
+     "net_lean": 0.75,
      "forced_default": false,
-     "line_stale": true,
-     "pulled_at": "2026-09-15T10:52:00-07:00"
+     "line_stale": false,
+     "pulled_at": "2026-09-20T07:06:49-07:00"
     },
     "total": null
+   },
+   "tag": "POSSIBLE BET",
+   "tag_rank": 3,
+   "tag_reason": "Survivor lean KC, rule (a) not met: 1 of 2",
+   "tag_market": "spread",
+   "tag_tier": "B",
+   "tag_keys": {
+    "net_survivor_weight": 0.75,
+    "survivor_angles_fired": 1,
+    "price_edge": 0.25,
+    "kickoff": "2026-09-20T17:20:00-07:00"
+   },
+   "weather": {
+    "status": "forecast",
+    "badge": null,
+    "detail": null,
+    "wind_mph": 8.9,
+    "wind_max_3h_mph": 8.9,
+    "gust_mph": 15.9,
+    "temp_f": 71.6,
+    "precip_in_3h": 0.0,
+    "kickoff_hour_utc": "2026-09-21T00:00:00+00:00",
+    "hours": [
+     "2026-09-21T00:00:00+00:00",
+     "2026-09-21T01:00:00+00:00",
+     "2026-09-21T02:00:00+00:00",
+     "2026-09-21T03:00:00+00:00"
+    ],
+    "source": "open-meteo forecast (10 m wind, mph; 2 m temp, F)",
+    "venue": "GEHA Field at Arrowhead Stadium",
+    "roof": "outdoors",
+    "lat": 39.0489,
+    "lon": -94.4839,
+    "kickoff_utc": "2026-09-21T00:20:00+00:00",
+    "fetched_at": "2026-09-20T08:37:53.603047-07:00",
+    "source_host": "api.open-meteo.com"
+   },
+   "movement": {
+    "spread": {
+     "market": "spreads",
+     "side": "KC",
+     "snapshots": 7,
+     "open": -6.5,
+     "open_at": "2026-09-15_1050 America/Phoenix",
+     "open_books": 2,
+     "latest": -6.25,
+     "latest_at": "2026-09-20_070649 America/Phoenix",
+     "latest_books": 2,
+     "open_price": -117,
+     "latest_price": -105,
+     "move": 0.25,
+     "toward_lean": -0.25,
+     "direction": "against lean",
+     "key_crossed": []
+    },
+    "total": {
+     "market": "totals",
+     "side": "over",
+     "snapshots": 7,
+     "open": 47.5,
+     "open_at": "2026-09-15_1050 America/Phoenix",
+     "open_books": 3,
+     "latest": 46.5,
+     "latest_at": "2026-09-20_070649 America/Phoenix",
+     "latest_books": 3,
+     "open_price": -105,
+     "latest_price": -110,
+     "move": -1.0,
+     "toward_lean": null,
+     "direction": null,
+     "key_crossed": []
+    }
    }
   },
   {
@@ -7175,102 +9020,20 @@
    "kickoff_phoenix": "2026-09-21T17:15:00-07:00",
    "kickoff_display": "Mon 09/21 17:15",
    "spread": {
-    "lean_side": "LA",
-    "lean_points": 0.5,
-    "verdict": "not enough angles (1 survivor, 0 watch same way)",
-    "survivors_same_way": 1,
+    "lean_side": null,
+    "lean_points": 0.0,
+    "verdict": "angles cancel",
+    "survivors_same_way": 0,
     "watch_same_way": 0,
     "survivors_against": 0,
     "rule_a": false,
-    "rule_b": true,
-    "number_to_shop": {
-     "line": -7.0,
-     "price": -115,
-     "book": "draftkings",
-     "reachable_by": [
-      "Q",
-      "Mike",
-      "Marques"
-     ],
-     "consensus": -7.0,
-     "books_quoting": 3
-    },
-    "opener_consensus": -7.0,
-    "moved_toward_lean": 0.0,
-    "lean_remaining": 0.5,
-    "angles_for": [
-     {
-      "name": "off_thursday",
-      "expression": "off_thursday",
-      "tier": "survivor",
-      "market": "spread",
-      "direction": "bet",
-      "direction_label": "bet LA -> lean LA",
-      "flagged_team": "LA",
-      "lean_side": "LA",
-      "points": 0.5,
-      "n": 632,
-      "windows": {
-       "2020-2024": {
-        "pct": 54.49,
-        "n": 170
-       },
-       "2021-2025": {
-        "pct": 54.19,
-        "n": 182
-       }
-      },
-      "mechanism": "Rest: mini-bye of 9+ days after a Thursday game."
-     }
-    ],
-    "angles_against": [
-     {
-      "name": "off_international",
-      "expression": "off_international",
-      "tier": "watch",
-      "market": "spread",
-      "direction": "fade",
-      "direction_label": "fade LA -> lean NYG",
-      "flagged_team": "LA",
-      "lean_side": "NYG",
-      "points": 0.0,
-      "n": 98,
-      "windows": {
-       "2020-2024": {
-        "pct": 52.94,
-        "n": 34
-       },
-       "2021-2025": {
-        "pct": 52.94,
-        "n": 34
-       }
-      },
-      "mechanism": "Travel: hangover after an international game (long haul plus time change)."
-     },
-     {
-      "name": "off_international_no_bye",
-      "expression": "off_international_no_bye",
-      "tier": "watch",
-      "market": "spread",
-      "direction": "fade",
-      "direction_label": "fade LA -> lean NYG",
-      "flagged_team": "LA",
-      "lean_side": "NYG",
-      "points": 0.0,
-      "n": 29,
-      "windows": {
-       "2020-2024": {
-        "pct": 36.84,
-        "n": 19
-       },
-       "2021-2025": {
-        "pct": 36.84,
-        "n": 19
-       }
-      },
-      "mechanism": "Travel: international hangover with no bye week to recover."
-     }
-    ]
+    "rule_b": null,
+    "number_to_shop": null,
+    "opener_consensus": null,
+    "moved_toward_lean": null,
+    "lean_remaining": null,
+    "angles_for": [],
+    "angles_against": []
    },
    "total": {
     "lean_side": null,
@@ -7315,22 +9078,22 @@
     {
      "name": "off_international",
      "expression": "off_international",
-     "tier": "watch",
+     "tier": "survivor",
      "market": "spread",
      "direction": "fade",
      "direction_label": "fade LA -> lean NYG",
      "flagged_team": "LA",
      "lean_side": "NYG",
-     "points": 0.0,
-     "n": 98,
+     "points": 0.5,
+     "n": 112,
      "windows": {
       "2020-2024": {
        "pct": 52.94,
        "n": 34
       },
       "2021-2025": {
-       "pct": 52.94,
-       "n": 34
+       "pct": 54.17,
+       "n": 48
       }
      },
      "mechanism": "Travel: hangover after an international game (long haul plus time change)."
@@ -7341,19 +9104,19 @@
      "tier": "watch",
      "market": "spread",
      "direction": "fade",
-     "direction_label": "fade LA -> lean NYG",
+     "direction_label": "fade LA -> lean NYG (below floor - not counted: needs both windows >= 52.4%)",
      "flagged_team": "LA",
      "lean_side": "NYG",
      "points": 0.0,
-     "n": 29,
+     "n": 36,
      "windows": {
       "2020-2024": {
        "pct": 36.84,
        "n": 19
       },
       "2021-2025": {
-       "pct": 36.84,
-       "n": 19
+       "pct": 46.15,
+       "n": 26
       }
      },
      "mechanism": "Travel: international hangover with no bye week to recover."
@@ -7410,19 +9173,48 @@
       "result": "NOT FIRED",
       "note": "",
       "direction_text": "fade (spread)",
-      "points": 0.5,
-      "n": 5137,
+      "points": 0.75,
+      "n": 2741,
       "windows": {
        "2020-2024": {
-        "pct": 53.23,
-        "n": 921
+        "pct": 56.3,
+        "n": 473
        },
        "2021-2025": {
-        "pct": 52.73,
-        "n": 922
+        "pct": 55.14,
+        "n": 490
        }
       },
       "mechanism": "Attention: a division game next week pulls preparation focus forward."
+     },
+     {
+      "name": "off_international",
+      "tier": "survivor",
+      "expression": "off_international",
+      "market": "spread",
+      "inputs": [
+       "prev_is_international"
+      ],
+      "values": [
+       "LA: off_international=yes [prev_is_international=yes]",
+       "NYG: off_international=no [prev_is_international=no]"
+      ],
+      "result": "FIRED",
+      "note": "",
+      "direction_text": "fade (spread) -> fade LA -> lean NYG",
+      "points": 0.5,
+      "n": 112,
+      "windows": {
+       "2020-2024": {
+        "pct": 52.94,
+        "n": 34
+       },
+       "2021-2025": {
+        "pct": 54.17,
+        "n": 48
+       }
+      },
+      "mechanism": "Travel: hangover after an international game (long haul plus time change)."
      },
      {
       "name": "dome_team_outdoors_cold",
@@ -7469,7 +9261,7 @@
        "NYG: high_wind=no [wind=n/a]"
       ],
       "result": "NOT WIRED",
-      "note": "needs a forecast wind source; the schedule feed only records wind after the game",
+      "note": "not wired to the kickoff forecast yet: the WEATHER section shows the forecast wind (3.4) for reading only; wiring the angle to forecast wind is an intake decision (its backtest used post-game wind)",
       "direction_text": "under (total)",
       "points": 0.75,
       "n": 1298,
@@ -7517,35 +9309,6 @@
       "mechanism": "Travel: third or later consecutive game away from home; cumulative travel fatigue."
      },
      {
-      "name": "off_international",
-      "tier": "watch",
-      "expression": "off_international",
-      "market": "spread",
-      "inputs": [
-       "prev_is_international"
-      ],
-      "values": [
-       "LA: off_international=yes [prev_is_international=yes]",
-       "NYG: off_international=no [prev_is_international=no]"
-      ],
-      "result": "FIRED",
-      "note": "",
-      "direction_text": "fade (spread) -> fade LA -> lean NYG",
-      "points": 0.0,
-      "n": 98,
-      "windows": {
-       "2020-2024": {
-        "pct": 52.94,
-        "n": 34
-       },
-       "2021-2025": {
-        "pct": 52.94,
-        "n": 34
-       }
-      },
-      "mechanism": "Travel: hangover after an international game (long haul plus time change)."
-     },
-     {
       "name": "off_international_no_bye",
       "tier": "watch",
       "expression": "off_international_no_bye",
@@ -7561,20 +9324,50 @@
       ],
       "result": "FIRED",
       "note": "",
-      "direction_text": "fade (spread) -> fade LA -> lean NYG",
+      "direction_text": "fade (spread) -> fade LA -> lean NYG (below floor - not counted: needs both windows >= 52.4%)",
       "points": 0.0,
-      "n": 29,
+      "n": 36,
       "windows": {
        "2020-2024": {
         "pct": 36.84,
         "n": 19
        },
        "2021-2025": {
-        "pct": 36.84,
-        "n": 19
+        "pct": 46.15,
+        "n": 26
        }
       },
       "mechanism": "Travel: international hangover with no bye week to recover."
+     },
+     {
+      "name": "division_lookahead",
+      "tier": "watch",
+      "expression": "sandwich_game,lookahead",
+      "market": "spread",
+      "inputs": [
+       "next_div_game",
+       "next_opp"
+      ],
+      "values": [
+       "LA: sandwich_game=no, lookahead=yes [next_div_game=0, next_opp=DEN]",
+       "NYG: sandwich_game=no, lookahead=no [next_div_game=0, next_opp=TEN]"
+      ],
+      "result": "NOT FIRED",
+      "note": "",
+      "direction_text": "fade (spread)",
+      "points": 0.0,
+      "n": 499,
+      "windows": {
+       "2020-2024": {
+        "pct": 56.99,
+        "n": 94
+       },
+       "2021-2025": {
+        "pct": 56.38,
+        "n": 95
+       }
+      },
+      "mechanism": "Attention: next game is a division game against an elite opponent."
      },
      {
       "name": "dome_team_cold_wind",
@@ -7593,7 +9386,7 @@
        "NYG: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-21, dome_team=no, home_roof=outdoors, roof=dome, wind=n/a]"
       ],
       "result": "NOT WIRED",
-      "note": "same: wind is unknown before kickoff (also outside its window: needs months Nov-Jan)",
+      "note": "same: the forecast is shown in WEATHER, the angle stays unwired until intake (also outside its window: needs months Nov-Jan)",
       "direction_text": "under (total)",
       "points": 0.0,
       "n": 87,
@@ -7723,15 +9516,15 @@
       "note": "",
       "direction_text": "bet (spread)",
       "points": 0.0,
-      "n": 159,
+      "n": 82,
       "windows": {
        "2020-2024": {
         "pct": 66.67,
-        "n": 32
+        "n": 12
        },
        "2021-2025": {
-        "pct": 62.07,
-        "n": 34
+        "pct": 61.54,
+        "n": 16
        }
       },
       "mechanism": "Coaching: experienced staff (season 5+ with the team) handles a division stretch after a division loss (Q's hypothesis: they cover)."
@@ -7739,17 +9532,17 @@
     ],
     "lean_math": {
      "spread": {
-      "net": "sum of fired weights: LA 0.5, NYG 0; net 0.5 toward LA; cap +/-1.5 -> lean LA 0.5",
-      "rule_a": "survivors same direction: 1 of 2 needed (or 1 survivor + 1 watch); watch same direction: 0; survivors against: 0 -> fail",
-      "rule_b": "opener LA -7 vs best now LA -7 (-115) at draftkings; moved +0 toward LA (negative = away), lean 0.5 -> pass (number not gone)",
-      "move": null,
-      "verdict": "not enough angles (1 survivor, 0 watch same way)"
+      "net": "sum of fired weights: LA 0.5, NYG 0.5; net 0; cap +/-1.5 -> lean none",
+      "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
+      "rule_b": "not checked (no lean)",
+      "move": "open LA -7 (2026-09-15_1050 ) -> latest LA -7 (2026-09-20_07064); move +0 over 7 snapshot(s); key numbers crossed: none",
+      "verdict": "angles cancel"
      },
      "total": {
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": null,
+      "move": "open over 48.5 (2026-09-15_1050 ) -> latest over 47.5 (2026-09-20_07064); move -1 over 7 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      }
     }
@@ -7758,15 +9551,79 @@
     "spread": {
      "side": "LA",
      "line": -7.0,
-     "price": -115,
+     "price": -108,
      "book": "draftkings",
-     "tier": "B",
-     "net_lean": 0.5,
-     "forced_default": false,
-     "line_stale": true,
-     "pulled_at": "2026-09-15T10:52:00-07:00"
+     "tier": "D",
+     "net_lean": 0.0,
+     "forced_default": true,
+     "line_stale": false,
+     "pulled_at": "2026-09-20T07:06:49-07:00"
     },
     "total": null
+   },
+   "tag": "NO BET",
+   "tag_rank": 16,
+   "tag_reason": "Angles cancel",
+   "tag_market": "spread",
+   "tag_tier": "D",
+   "tag_keys": {
+    "net_survivor_weight": 0.0,
+    "survivor_angles_fired": 0,
+    "price_edge": 0.0,
+    "kickoff": "2026-09-21T17:15:00-07:00"
+   },
+   "weather": {
+    "status": "dome",
+    "badge": null,
+    "wind_mph": null,
+    "wind_max_3h_mph": null,
+    "gust_mph": null,
+    "temp_f": null,
+    "precip_in_3h": null,
+    "detail": "indoor venue: wind not applicable",
+    "venue": "SoFi Stadium",
+    "roof": "dome",
+    "lat": 33.9535,
+    "lon": -118.3392,
+    "kickoff_utc": "2026-09-22T00:15:00+00:00",
+    "fetched_at": "2026-09-20T08:37:53.603047-07:00",
+    "source_host": "api.open-meteo.com"
+   },
+   "movement": {
+    "spread": {
+     "market": "spreads",
+     "side": "LA",
+     "snapshots": 7,
+     "open": -7.0,
+     "open_at": "2026-09-15_1050 America/Phoenix",
+     "open_books": 3,
+     "latest": -7.0,
+     "latest_at": "2026-09-20_070649 America/Phoenix",
+     "latest_books": 3,
+     "open_price": -115,
+     "latest_price": -108,
+     "move": 0.0,
+     "toward_lean": null,
+     "direction": null,
+     "key_crossed": []
+    },
+    "total": {
+     "market": "totals",
+     "side": "over",
+     "snapshots": 7,
+     "open": 48.5,
+     "open_at": "2026-09-15_1050 America/Phoenix",
+     "open_books": 3,
+     "latest": 47.5,
+     "latest_at": "2026-09-20_070649 America/Phoenix",
+     "latest_books": 3,
+     "open_price": -105,
+     "latest_price": -115,
+     "move": -1.0,
+     "toward_lean": null,
+     "direction": null,
+     "key_crossed": []
+    }
    }
   }
  ],
@@ -7774,17 +9631,17 @@
   {
    "name": "high_wind",
    "tier": "survivor",
-   "reason": "needs a forecast wind source; the schedule feed only records wind after the game"
+   "reason": "not wired to the kickoff forecast yet: the WEATHER section shows the forecast wind (3.4) for reading only; wiring the angle to forecast wind is an intake decision (its backtest used post-game wind)"
   },
   {
    "name": "dome_team_cold_wind",
    "tier": "watch",
-   "reason": "same: wind is unknown before kickoff"
+   "reason": "same: the forecast is shown in WEATHER, the angle stays unwired until intake"
   }
  ],
- "angle_board_generated": "2026-09-15 11:06 America/Phoenix",
+ "angle_board_generated": "2026-09-19 18:42 America/Phoenix",
  "harness_log": {
-  "runs": 115,
+  "runs": 188,
   "distinct_expressions": 32
  }
 }

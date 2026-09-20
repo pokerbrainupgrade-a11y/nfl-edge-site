@@ -7,7 +7,7 @@
   var TZ = 'America/Phoenix';
   var STALE_DAYS = 8;
   var BETTORS = ['Q', 'Mike', 'Marques'];
-  var state = { manifest: null, angles: null, shadow: null, weeks: {}, leansOnly: false, sortDesc: false, angleFilter: 'all' };
+  var state = { manifest: null, angles: null, shadow: null, weeks: {}, leansOnly: false, sortDesc: false, sortBy: 'rank', angleFilter: 'all', tagFilter: 'all' };
   var $main = document.getElementById('main');
   var $updated = document.getElementById('updated');
   var $stale = document.getElementById('stale');
@@ -85,6 +85,11 @@
   }
   function latestId() { return state.manifest && state.manifest.latest_week; }
 
+  function publishText() {
+    var p = state.manifest && state.manifest.last_publish;
+    if (!p) return '';
+    return 'publish: deployed ' + esc(p.week) + ' at ' + esc(p.published_at) + ' (engine ' + esc(p.engine_head) + ')';
+  }
   function headerFromLatest() {
     var id = latestId();
     var entry = null;
@@ -100,6 +105,93 @@
       $stale.hidden = true;
     }
   }
+
+  // ------------------------------------------------------------ 10.1 tags (BET / POSSIBLE BET / NO BET)
+  // Pure rendering of week.games[].tag / tag_rank / tag_reason and week.counts.lanes, computed by the scan
+  // (src/tags.py from config/tags.yaml). No rule lives here; export_site.validate() audits tag == rule(tier).
+  var TAG_CLASS = { 'BET': 'tag-bet', 'POSSIBLE BET': 'tag-possible', 'NO BET': 'tag-nobet' };
+  function lanesOf(w) { return (w.tags && w.tags.lanes) || ['BET', 'POSSIBLE BET', 'NO BET']; }
+  function tagged(w) { return (w.games || []).some(function (g) { return g.tag; }); }
+  function tagPill(g, withRank) {
+    if (!g.tag) return '<span class="pill tag">untagged</span>';
+    return (withRank && g.tag_rank != null ? '<span class="rank num">#' + esc(g.tag_rank) + '</span> ' : '') +
+      '<span class="pill ' + (TAG_CLASS[g.tag] || 'tag') + '">' + esc(g.tag) + '</span>';
+  }
+  function staleBadge(w) {
+    var lp = w.odds_pull || {};
+    return (!lp.succeeded || lp.stale) ? ' <span class="pill stale" title="' + esc(lp.detail || 'line pull stale') + '">line stale</span>' : '';
+  }
+  // 3.4: kickoff forecast line (information only; the wind angles do not read it yet)
+  function weatherLine(g) {
+    var wx = g.weather;
+    if (!wx) return '';
+    if (wx.status === 'dome') return '<div class="small muted">Weather: indoor venue' + (wx.venue ? ' (' + esc(wx.venue) + ')' : '') + '</div>';
+    if (wx.status === 'forecast') {
+      return '<div class="small">Weather at kickoff: wind <b class="num">' + esc(wx.wind_mph) + ' mph</b>' +
+        (wx.wind_max_3h_mph != null && wx.wind_max_3h_mph !== wx.wind_mph ? ' <span class="muted">(up to ' + esc(wx.wind_max_3h_mph) + ' over 3 h)</span>' : '') +
+        (wx.gust_mph != null ? ', gusts <span class="num">' + esc(wx.gust_mph) + '</span>' : '') +
+        (wx.temp_f != null ? ', <span class="num">' + esc(wx.temp_f) + '°F</span>' : '') +
+        (wx.venue ? ' <span class="muted">· ' + esc(wx.venue) + (wx.roof ? ', ' + esc(wx.roof) : '') + '</span>' : '') +
+        ' <span class="muted">· forecast, information only</span></div>';
+    }
+    return '<div class="small"><span class="pill stale">' + esc(wx.badge || 'wind unknown') + '</span> <span class="muted">' + esc(wx.detail || '') + '</span></div>';
+  }
+  function tagLine(g, w) {
+    return '<div class="tagline">' + tagPill(g, true) + staleBadge(w) + ' <span class="small muted">' + esc(g.tag_reason || '') + '</span></div>';
+  }
+  function laneStrip(w, linkTo) {
+    var c = (w.counts || {}).lanes;
+    if (!c) return '';
+    return '<div class="lanes">' + lanesOf(w).map(function (lane) {
+      var inner = '<div class="k">' + esc(lane) + '</div><div class="v">' + esc(c[lane] != null ? c[lane] : '—') + '</div>';
+      var cls = 'lane ' + (TAG_CLASS[lane] || '') + (state.tagFilter === lane ? ' on' : '');
+      return linkTo ? '<a class="' + cls + '" href="' + linkTo + '">' + inner + '</a>'
+                    : '<button type="button" class="' + cls + '" data-lane="' + esc(lane) + '">' + inner + '</button>';
+    }).join('') + '</div>';
+  }
+  function byRank(a, b) {
+    var ra = a.tag_rank == null ? 1e9 : a.tag_rank, rb = b.tag_rank == null ? 1e9 : b.tag_rank;
+    return ra - rb || String(a.kickoff_phoenix).localeCompare(String(b.kickoff_phoenix));
+  }
+  function laneLists(w) {
+    if (!tagged(w)) return '<div class="empty">This week\'s scan predates the tags (10.1). Rescan to tag it.</div>';
+    var games = (w.games || []).slice().sort(byRank);
+    return lanesOf(w).map(function (lane) {
+      var rows = games.filter(function (g) { return g.tag === lane; });
+      var h = '<h3 class="lane-h">' + '<span class="pill ' + (TAG_CLASS[lane] || 'tag') + '">' + esc(lane) + '</span> <span class="small muted">' + rows.length + '</span></h3>';
+      if (!rows.length) return h + '<div class="small muted">none</div>';
+      return h + '<ul class="lean-list">' + rows.map(function (g) {
+        var mk = g.tag_market || 'spread', m = g[mk] || {};
+        return '<li><span class="rank num">#' + esc(g.tag_rank) + '</span><a class="m" href="#/weeks/' + esc(w.id) + '/' + esc(g.game_id) + '">' + esc(g.matchup) + '</a>' +
+          '<span class="small muted">' + esc(g.kickoff_display) + '</span>' +
+          (m.lean_side ? '<span>' + esc(mk) + ' <b>' + esc(leanText(m)) + '</b></span>' : '') +
+          '<span class="small muted">' + esc(g.tag_reason || '') + '</span>' + staleBadge(w) + '</li>';
+      }).join('') + '</ul>';
+    }).join('');
+  }
+  function tagFilterBar(w) {
+    var opts = ['all'].concat(lanesOf(w));
+    return '<div class="filter tagf">' + opts.map(function (o) {
+      return '<button type="button" class="btn' + (state.tagFilter === o ? ' on' : '') + '" data-f="' + esc(o) + '">' + esc(o === 'all' ? 'All' : o) + '</button>';
+    }).join('') + '</div>';
+  }
+  // 6.4 movement column (LOW 1218657325195692): pure rendering of week.games[].movement[market]
+  function moveCell(g) {
+    var mv = g.movement || {};
+    var parts = [];
+    ['spread', 'total'].forEach(function (mk) {
+      var f = mv[mk];
+      if (!f || f.open == null || f.latest == null) return;
+      var fmt = function (x) { return mk === 'spread' ? signed(x) : String(x); };
+      var s = '<span class="mv"><b>' + esc(mk === 'spread' ? f.side : mk) + '</b> ' + esc(fmt(f.open)) + ' → ' + esc(fmt(f.latest)) +
+        ' <span class="num">(' + esc(signed(f.move)) + ')</span>' +
+        (f.direction ? ' <span class="' + (f.direction === 'toward lean' ? 'mv-for' : f.direction === 'against lean' ? 'mv-against' : 'muted') + '">' + esc(f.direction) + '</span>' : '') +
+        (f.key_crossed && f.key_crossed.length ? ' <span class="pill tag">key ' + esc(f.key_crossed.join(', ')) + '</span>' : '') + '</span>';
+      parts.push(s);
+    });
+    return parts.length ? parts.join('<br>') : '<span class="muted">no snapshot history</span>';
+  }
+  function tagFiltered(games) { return games.filter(function (g) { return state.tagFilter === 'all' || g.tag === state.tagFilter; }); }
 
   // ------------------------------------------------------------ shared renderers
   function shopHtml(market, m) {
@@ -233,7 +325,10 @@
     loadWeek(id).then(function (w) {
       var html = '<h1>Dashboard <span class="small muted">' + esc(weekTitle(w)) + '</span></h1>';
       html += pullBanner(w);
+      if (publishText()) html += '<div class="small muted">' + publishText() + '</div>';
       html += statStrip(w);
+      html += '<h2>Lanes <span class="small muted">' + esc(lanesOf(w).map(function (l) { return l + ' ' + (((w.counts || {}).lanes || {})[l] != null ? w.counts.lanes[l] : '—'); }).join(' · ')) + '</span></h2>';
+      html += laneStrip(w, '#/weeks/' + w.id) + laneLists(w);
       html += '<h2>This week\'s shortlist (' + esc((w.counts || {}).shortlist) + ')</h2>' + shortlistSection(w);
       html += '<h2>Games with a lean</h2>' + leansList(w);
       html += '<p class="small"><a href="#/weeks/' + esc(w.id) + '">Open the full Week ' + esc(w.week) + ' view →</a></p>';
@@ -286,13 +381,18 @@
         '<span>survivors <b class="num">' + esc(w.counts.survivors) + '</b> · watch <b class="num">' + esc(w.counts.watch) + '</b></span>' +
         '<span>expressions tested <b class="num">' + esc(w.counts.expressions_tested) + '</b></span>' +
         (w.data_refresh ? '<span>data refresh <b>' + esc(w.data_refresh) + '</b></span>' : '') +
+        (w.weather ? '<span>weather <b>' + esc(w.weather.status) + '</b>' + (w.weather.badge ? ' <span class="pill stale">' + esc(w.weather.badge) + '</span>' : '') + ' <span class="muted">' + esc(w.weather.detail || '') + '</span></span>' : '') +
         '</div>';
       html += '<details class="small"><summary>How this week was scored</summary><p><b>Lean</b> = sum of survivor weights on a market, capped at ±' +
         esc((w.rules || {}).lean_cap_points) + ' points. Watch angles weigh 0.</p><p><b>Shortlist</b>: ' + esc((w.rules || {}).shortlist) + '</p>' +
-        '<p>Line pull counts as stale after ' + esc((w.rules || {}).stale_after_hours) + ' hours. <a href="#/appendix/how-to-read">Full reading guide →</a></p></details>';
+        '<p>Line pull counts as stale after ' + esc((w.rules || {}).stale_after_hours) + ' hours. <a href="#/appendix/how-to-read">Full reading guide →</a></p>' +
+        (w.tags ? '<p><b>Tags</b> (10.1): BET = shadow tier A (rule (a) met), POSSIBLE BET = tier B (survivor lean, rule (a) not met), NO BET = tier C or D. ' +
+          'Ranked within a lane by net survivor weight, survivors fired, number-to-shop edge vs consensus, then kickoff. A stale line pull shows a badge and does not change the tag. Rule file: config/tags.yaml v' + esc(w.tags.version) + '.</p>' : '') +
+        '</details>';
+      html += '<h2>Lanes</h2>' + laneStrip(w, null);
       html += '<h2>Shortlist (' + esc(w.counts.shortlist) + ')</h2>' + shortlistSection(w);
       html += gotwHtml(w);
-      html += '<h2>All games</h2>' + gamesTable(w);
+      html += '<h2 id="all-games">All games</h2>' + gamesTable(w);
       html += '<h2>Angles by game</h2>' + gameCards(w);
       html += '<h2>Not wired this week</h2>' + notWired(w);
       $main.innerHTML = html;
@@ -316,7 +416,7 @@
     var weeks = state.manifest.weeks || [];
     var opts = weeks.map(function (w, i) {
       return '<option value="' + esc(w.id) + '"' + (i === idx ? ' selected' : '') + '>' + esc(w.id) + ' — Week ' + esc(w.week) + ', ' + esc(w.season) +
-        (w.counts ? ' (' + esc(w.counts.shortlist) + ' shortlisted)' : '') + '</option>';
+        (w.counts ? ' (' + esc(w.counts.shortlist) + ' shortlisted' + (w.counts.lanes ? ', BET ' + esc(w.counts.lanes['BET']) : '') + ')' : '') + '</option>';
     }).join('');
     // newest first in the manifest: "prev" = older = higher index
     var prevDisabled = idx == null || idx >= weeks.length - 1;
@@ -327,25 +427,33 @@
       '<button class="btn" id="wk-next" type="button"' + (nextDisabled ? ' disabled' : '') + '>Newer ›</button>' +
       '</div>';
   }
-  function gamesTable(w) {
-    var games = w.games.slice();
-    games.sort(function (a, b) {
+  function sortGames(games) {
+    var out = games.slice();
+    if (state.sortBy === 'rank' && out.some(function (g) { return g.tag_rank != null; })) return out.sort(byRank);
+    out.sort(function (a, b) {
       var c = String(a.kickoff_phoenix).localeCompare(String(b.kickoff_phoenix));
       return state.sortDesc ? -c : c;
     });
-    var shown = games.filter(function (g) { return !state.leansOnly || (g.spread && g.spread.lean_side) || (g.total && g.total.lean_side); });
-    var h = '<div class="toolbar">' +
+    return out;
+  }
+  function gamesTable(w) {
+    var games = sortGames(w.games);
+    var shown = tagFiltered(games.filter(function (g) { return !state.leansOnly || (g.spread && g.spread.lean_side) || (g.total && g.total.lean_side); }));
+    var h = (tagged(w) ? tagFilterBar(w) : '') + '<div class="toolbar">' +
       '<label class="chk"><input type="checkbox" id="leans-only"' + (state.leansOnly ? ' checked' : '') + '> Leans only</label>' +
-      '<button class="btn" id="sort-kick" type="button">Kickoff ' + (state.sortDesc ? '↓ latest first' : '↑ earliest first') + '</button>' +
+      '<button class="btn" id="sort-kick" type="button">' + (state.sortBy === 'rank' ? 'Sorted by rank · switch to kickoff' : 'Kickoff ' + (state.sortDesc ? '↓ latest first' : '↑ earliest first')) + '</button>' +
       '<span class="small muted">' + shown.length + ' of ' + games.length + ' games</span></div>';
-    if (!shown.length) return h + '<div class="empty">No game carries a lean this week.</div>';
-    h += '<div class="tbl-wrap"><table class="tbl"><thead><tr><th>Game</th><th>Kick (Phx)</th><th>Spread lean</th><th class="wrap">Spread verdict</th><th>Total lean</th><th class="wrap">Total verdict</th></tr></thead><tbody>';
+    if (!shown.length) return h + '<div class="empty">No game matches the filter.</div>';
+    h += '<div class="tbl-wrap"><table class="tbl"><thead><tr><th>#</th><th>Tag</th><th>Game</th><th>Kick (Phx)</th><th>Spread lean</th><th class="wrap">Spread verdict</th><th>Total lean</th><th class="wrap">Total verdict</th><th class="wrap">Move (open → latest)</th><th class="wrap">Why</th></tr></thead><tbody>';
     shown.forEach(function (g) {
       var hasLean = (g.spread && g.spread.lean_side) || (g.total && g.total.lean_side);
-      h += '<tr' + (hasLean ? ' class="lean"' : '') + '><td><a href="#/weeks/' + esc(w.id) + '/' + esc(g.game_id) + '">' + esc(g.matchup) + '</a></td>' +
+      h += '<tr' + (hasLean ? ' class="lean"' : '') + '><td class="num">' + esc(g.tag_rank != null ? g.tag_rank : '—') + '</td><td>' + tagPill(g, false) + staleBadge(w) + '</td>' +
+        '<td><a href="#/weeks/' + esc(w.id) + '/' + esc(g.game_id) + '">' + esc(g.matchup) + '</a></td>' +
         '<td class="num">' + esc(g.kickoff_display) + '</td>' +
         '<td class="num">' + esc(leanText(g.spread)) + '</td><td class="wrap">' + esc(g.spread.verdict) + '</td>' +
-        '<td class="num">' + esc(leanText(g.total)) + '</td><td class="wrap">' + esc(g.total.verdict) + '</td></tr>';
+        '<td class="num">' + esc(leanText(g.total)) + '</td><td class="wrap">' + esc(g.total.verdict) + '</td>' +
+        '<td class="wrap small">' + moveCell(g) + '</td>' +
+        '<td class="wrap small">' + esc(g.tag_reason || '') + '</td></tr>';
     });
     return h + '</tbody></table></div>';
   }
@@ -394,7 +502,8 @@
     return h;
   }
   function gameCards(w) {
-    var games = w.games.slice().sort(function (a, b) { return String(a.kickoff_phoenix).localeCompare(String(b.kickoff_phoenix)); });
+    var games = tagFiltered(sortGames(w.games));
+    if (!games.length) return '<div class="empty">No game matches the filter.</div>';
     var anyMatrix = games.some(function (g) { return g.matrix && g.matrix.angles && g.matrix.angles.length; });
     var intro = anyMatrix
       ? '<p class="small muted">Tap "Every angle" under a game to see every survivor and watch angle, fired or not, the tagger inputs it reads, their values for both teams (home first), and the lean math that produced the verdict. Shortlisted games start open.</p>'
@@ -405,7 +514,9 @@
         '<div class="game-line"><h3 style="margin:0">' + esc(g.matchup) + '</h3><span class="small muted">' + esc(g.kickoff_display) + '</span>' +
         '<span class="small">spread <b>' + esc(leanText(g.spread)) + '</b> · ' + esc(g.spread.verdict) + '</span>' +
         '<span class="small">total <b>' + esc(leanText(g.total)) + '</b> · ' + esc(g.total.verdict) + '</span></div>';
+      if (g.tag) h += tagLine(g, w);
       h += shadowLeanHtml(g);
+      h += weatherLine(g);
       ['spread', 'total'].forEach(function (mk) { if (g[mk] && g[mk].number_to_shop) h += shopHtml(mk, g[mk]); });
       if (fired.length) h += '<ul class="angles">' + fired.map(function (a) { return angleLi(a, false); }).join('') + '</ul>';
       else h += '<div class="small muted">No angle fired.</div>';
@@ -433,7 +544,22 @@
     var lo = document.getElementById('leans-only');
     var sk = document.getElementById('sort-kick');
     if (lo) lo.addEventListener('change', function () { state.leansOnly = lo.checked; route(); });
-    if (sk) sk.addEventListener('click', function () { state.sortDesc = !state.sortDesc; route(); });
+    if (sk) sk.addEventListener('click', function () {
+      if (state.sortBy === 'rank') { state.sortBy = 'kick'; state.sortDesc = false; }
+      else if (!state.sortDesc) { state.sortDesc = true; }
+      else { state.sortBy = 'rank'; state.sortDesc = false; }
+      route();
+    });
+    // 10.1: lane buttons and the tag filter share one state; both re-render the week
+    var fb = document.querySelectorAll('.tagf .btn, .lanes button.lane');
+    for (var i = 0; i < fb.length; i++) {
+      fb[i].addEventListener('click', function (ev) {
+        var f = ev.currentTarget.getAttribute('data-f') || ev.currentTarget.getAttribute('data-lane');
+        state.tagFilter = (f === state.tagFilter && !ev.currentTarget.getAttribute('data-f')) ? 'all' : f;
+        route();
+        var t = document.getElementById('all-games'); if (t) t.scrollIntoView({ block: 'start' });
+      });
+    }
   }
 
   // ------------------------------------------------------------ appendix
@@ -444,8 +570,50 @@
     ['glossary', 'Glossary'],
     ['house-rules', 'House rules'],
     ['data-sources', 'Data sources and freshness'],
+    ['market-baseline', 'Market baseline (7.1)'],
     ['changelog', 'Changelog']
   ];
+  // 7.1: reports/market_baseline.md is copied to data/market_baseline.md by make site; rendered here with a
+  // deliberately small markdown subset (headings, tables, paragraphs, bold, code). Nothing is computed on the page.
+  function mdToHtml(md) {
+    var lines = md.split(/\r?\n/), out = [], para = [], table = null;
+    function inline(t) {
+      return esc(t).replace(/`([^`]+)`/g, '<code>$1</code>').replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>');
+    }
+    function flushP() { if (para.length) { out.push('<p>' + inline(para.join(' ')) + '</p>'); para = []; } }
+    function flushT() {
+      if (!table) return;
+      var h = '<div class="tbl-wrap"><table class="tbl"><thead><tr>' + table.head.map(function (c) { return '<th>' + inline(c) + '</th>'; }).join('') + '</tr></thead><tbody>';
+      table.rows.forEach(function (r) { h += '<tr>' + r.map(function (c) { return '<td class="wrap">' + inline(c) + '</td>'; }).join('') + '</tr>'; });
+      out.push(h + '</tbody></table></div>'); table = null;
+    }
+    lines.forEach(function (ln) {
+      var m;
+      if (/^\s*\|/.test(ln)) {
+        var cells = ln.replace(/^\s*\||\|\s*$/g, '').split('|').map(function (c) { return c.trim(); });
+        if (/^\s*\|?\s*:?-{2,}/.test(ln)) return;           // the |---| separator row
+        flushP();
+        if (!table) table = { head: cells, rows: [] }; else table.rows.push(cells);
+        return;
+      }
+      flushT();
+      if ((m = ln.match(/^(#{1,4})\s+(.*)$/))) { flushP(); var lvl = Math.min(m[1].length + 1, 4); out.push('<h' + lvl + '>' + inline(m[2]) + '</h' + lvl + '>'); return; }
+      if ((m = ln.match(/^\s*[-*]\s+(.*)$/))) { flushP(); out.push('<ul><li>' + inline(m[1]) + '</li></ul>'); return; }
+      if (!ln.trim()) { flushP(); return; }
+      para.push(ln.trim());
+    });
+    flushP(); flushT();
+    return out.join('\n').replace(/<\/ul>\n<ul>/g, '');
+  }
+  function marketBaseline() {
+    var file = state.manifest && state.manifest.reports && state.manifest.reports.market_baseline;
+    if (!file) return '<div class="empty">reports/market_baseline.md has not been exported to the site yet (run make site on the Mac).</div>';
+    var box = '<div id="mb" class="card plain"><div class="loading">Loading the market baseline…</div></div>';
+    fetch('data/' + file + '?v=' + Math.floor(Date.now() / 60000), { cache: 'no-store' }).then(function (r) { return r.text(); }).then(function (t) {
+      var el = document.getElementById('mb'); if (el) el.innerHTML = mdToHtml(t);
+    }).catch(function () { var el = document.getElementById('mb'); if (el) el.innerHTML = '<div class="banner bad">Could not load the report.</div>'; });
+    return '<p class="small muted">7.1 market accuracy baseline: how far closing spreads and totals miss, by season, week bucket, spread size, favorite side, primetime and divisional. Infrastructure, not a tested angle; nothing here is a suggestion to bet. Source: <code>reports/market_baseline.md</code> (make baseline).</p>' + box;
+  }
   // 6.9: success definition + breakeven math. The breakeven numbers are computed here, not typed.
   function breakevenPct(american) {
     var p = american < 0 ? (-american) / ((-american) + 100) : 100 / (american + 100);
@@ -522,6 +690,8 @@
       '<dt>Pull timestamps</dt><dd id="pull-ts">' + pullTimestamps() + '</dd>' +
       '<dt>Retention</dt><dd>One JSON file per week under <code>data/weeks/</code>. Re-running a week overwrites only that week. Git history is the archive.</dd>' +
       '</dl></section>';
+
+    html += '<section class="ap" id="market-baseline"><h2>Market baseline (7.1)</h2>' + marketBaseline() + '</section>';
 
     html += '<section class="ap" id="changelog"><h2>Changelog</h2>' +
       '<div class="card ph"><h3>Changelog ' + pill('ph', 'Placeholder') + '</h3><p class="small muted">Site and angle-library changes will be listed here once the process is agreed. For now, the build log in the source repo is the record.</p></div></section>';

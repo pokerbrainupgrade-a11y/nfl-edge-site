@@ -162,6 +162,23 @@ p { margin: .4em 0; }
 .pill.dead { background: var(--dead-bg); color: var(--dead); }
 .pill.ph { background: var(--dead-bg); color: var(--dead); border: 1px dashed var(--dead); }
 .pill.tag { background: var(--bg-2); color: var(--muted); border: 1px solid var(--line); font-weight: 600; }
+/* 10.1 tags: BET / POSSIBLE BET / NO BET pills, the stale-line badge, the rank number, the lane strip */
+.pill.tag-bet { background: var(--survivor-bg); color: var(--survivor); border: 1px solid var(--survivor); }
+.pill.tag-possible { background: var(--watch-bg); color: var(--watch); border: 1px solid var(--watch); }
+.pill.tag-nobet { background: var(--dead-bg); color: var(--dead); border: 1px solid var(--line); }
+.pill.stale { background: var(--warn-bg); color: var(--warn-fg); font-weight: 600; }
+.rank { font-weight: 700; color: var(--muted); }
+.tagline { display: flex; flex-wrap: wrap; gap: 4px 8px; align-items: center; margin: 6px 0; }
+.lanes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 8px 0 12px; }
+.lane { display: block; text-align: left; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 8px 10px; min-width: 0; color: var(--fg); text-decoration: none; font: inherit; cursor: pointer; border-left-width: 4px; }
+.lane.tag-bet { border-left-color: var(--survivor); }
+.lane.tag-possible { border-left-color: var(--watch); }
+.lane.tag-nobet { border-left-color: var(--dead); }
+.lane.on { outline: 2px solid var(--accent); }
+.lane .k { font-size: .72rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.lane .v { font-size: 1.35rem; font-weight: 700; font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.lane-h { margin: 14px 0 4px; }
+.lean-list .rank { min-width: 2.2em; }
 
 /* tables scroll inside their own box */
 .tbl-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; max-width: 100%; border: 1px solid var(--line); border-radius: var(--radius); background: var(--card); }
@@ -253,3 +270,6 @@ details.mx > summary .small { font-weight: 400; }
 .shadow-lean b { font-family: var(--mono); font-variant-numeric: tabular-nums; }
 .shadow-tbl { min-width: 0; margin-top: 8px; font-size: .85rem; }
 .shadow-tbl th, .shadow-tbl td { padding: 5px 7px; }
+.mv-for { color: var(--survivor); font-weight: 600; }
+.mv-against { color: var(--against); font-weight: 600; }
+.mv { white-space: normal; }

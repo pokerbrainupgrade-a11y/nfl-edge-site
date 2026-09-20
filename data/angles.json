@@ -1,5 +1,5 @@
 {
- "site_schema_version": 1,
+ "site_schema_version": 2,
  "source": "config/angles.yaml",
  "generated": "2026-09-19 18:42 America/Phoenix",
  "sample": "REG 1999-2025 at closing lines",
@@ -146,7 +146,7 @@
     "recent_n_combined": 114,
     "flipped_vs_full_sample": false
    },
-   "not_wired_reason": "needs a forecast wind source; the schedule feed only records wind after the game"
+   "not_wired_reason": "not wired to the kickoff forecast yet: the WEATHER section shows the forecast wind (3.4) for reading only; wiring the angle to forecast wind is an intake decision (its backtest used post-game wind)"
   },
   {
    "name": "long_road_trip",
@@ -250,7 +250,7 @@
     "recent_n_combined": 27,
     "flipped_vs_full_sample": false
    },
-   "not_wired_reason": "same: wind is unknown before kickoff"
+   "not_wired_reason": "same: the forecast is shown in WEATHER, the angle stays unwired until intake"
   },
   {
    "name": "early_body_clock_long_road_trip",
