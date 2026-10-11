@@ -1,27 +1,27 @@
 {
- "site_schema_version": 2,
+ "site_schema_version": 3,
  "source": {
-  "scan_schema_version": 2,
+  "scan_schema_version": 3,
   "file": "reports/scan_wk02.json"
  },
  "id": "2026-W02",
  "season": 2026,
  "week": 2,
- "generated_at": "2026-09-20T08:38:04-07:00",
+ "generated_at": "2026-09-20T12:28:19-07:00",
  "timezone": "America/Phoenix",
  "odds_pull": {
   "succeeded": true,
   "fetched_at": "2026-09-20T07:06:49-07:00",
-  "age_hours": 1.5,
+  "age_hours": 5.4,
   "stale": false,
-  "detail": "pull 2026-09-20_070649 America/Phoenix, 1.5 h old"
+  "detail": "pull 2026-09-20_070649 America/Phoenix, 5.4 h old"
  },
  "books": [
   "betmgm",
   "draftkings",
   "fanduel"
  ],
- "data_refresh": "skipped",
+ "data_refresh": "ok 2026-09-20 12:28",
  "rules": {
   "lean_cap_points": 1.5,
   "stale_after_hours": 36,
@@ -66,8 +66,8 @@
   "status": "ok",
   "detail": "14 game(s) with a kickoff forecast, 0 unknown, 2 indoor",
   "host": "api.open-meteo.com",
-  "fetched_at": "2026-09-20T08:37:53.603047-07:00",
-  "snapshot": "/Users/quincypbu/NFL-Edge/data/weather/forecast_2026-09-20_083804.json",
+  "fetched_at": "2026-09-20T12:28:11.422547-07:00",
+  "snapshot": "/sessions/rcw-01b9ktydyua6lz1hghrg7bpb/mnt/NFL-Edge/data/weather/forecast_2026-09-20_122819.json",
   "counts": {
    "forecast": 14,
    "unknown": 0,
@@ -202,7 +202,30 @@
      },
      "mechanism": "Rest: mini-bye of 9+ days after a Thursday game."
     }
-   ]
+   ],
+   "interpretation": {
+    "bet": "Bet Miami to cover, not to win: MIA +13.5 at -110 on DraftKings.",
+    "band": "thin",
+    "heading": "WHAT THIS MEANS",
+    "what_this_means": [
+     {
+      "label": "Strength",
+      "text": "thin - about one angle's worth of agreement. Toward Miami: 2 survivor angle(s) and 0 watch angle(s) that count. Against it: 1 survivor angle(s). 1 further watch angle(s) fired toward Miami but sit below the counting floor and carry no weight. Net lean 0.75 toward Miami. That figure is a strength score, not points: 0.5, 0.75 or 1.0 per angle by its worst recent-window hit rate, summed for and against, capped at 1.5. It is not an edge in points and there is no fair line behind it."
+     },
+     {
+      "label": "Movement",
+      "text": "The number has not moved since it opened at 13.5. The shortlist rule lets the market move up to 0.75 - the strength score, used here as a staleness budget, not as points of value - before the read counts as spent; all 0.75 of that budget is left."
+     },
+     {
+      "label": "The number",
+      "text": "13.5 at DraftKings is the best posted number and all 3 books quoting it sit on 13.5. Shopping further gains nothing."
+     },
+     {
+      "label": "Who can bet it",
+      "text": "All of Q, Mike and Marques can reach DraftKings."
+     }
+    ]
+   }
   }
  ],
  "shortlist_empty_message": null,
@@ -783,7 +806,7 @@
     "lat": 42.7738,
     "lon": -78.787,
     "kickoff_utc": "2026-09-18T00:15:00+00:00",
-    "fetched_at": "2026-09-20T08:37:53.603047-07:00",
+    "fetched_at": "2026-09-20T12:28:11.422547-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {
@@ -1317,10 +1340,10 @@
     "status": "forecast",
     "badge": null,
     "detail": null,
-    "wind_mph": 3.6,
-    "wind_max_3h_mph": 4.0,
-    "gust_mph": 6.3,
-    "temp_f": 81.1,
+    "wind_mph": 2.5,
+    "wind_max_3h_mph": 3.6,
+    "gust_mph": 7.2,
+    "temp_f": 81.2,
     "precip_in_3h": 0.0,
     "kickoff_hour_utc": "2026-09-20T17:00:00+00:00",
     "hours": [
@@ -1335,7 +1358,7 @@
     "lat": 33.7554,
     "lon": -84.401,
     "kickoff_utc": "2026-09-20T17:00:00+00:00",
-    "fetched_at": "2026-09-20T08:37:53.603047-07:00",
+    "fetched_at": "2026-09-20T12:28:11.422547-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {
@@ -1869,10 +1892,10 @@
     "status": "forecast",
     "badge": null,
     "detail": null,
-    "wind_mph": 1.0,
-    "wind_max_3h_mph": 5.6,
-    "gust_mph": 6.9,
-    "temp_f": 92.3,
+    "wind_mph": 3.7,
+    "wind_max_3h_mph": 4.6,
+    "gust_mph": 6.3,
+    "temp_f": 92.2,
     "precip_in_3h": 0.0,
     "kickoff_hour_utc": "2026-09-20T17:00:00+00:00",
     "hours": [
@@ -1887,7 +1910,7 @@
     "lat": 29.6847,
     "lon": -95.4107,
     "kickoff_utc": "2026-09-20T17:00:00+00:00",
-    "fetched_at": "2026-09-20T08:37:53.603047-07:00",
+    "fetched_at": "2026-09-20T12:28:11.422547-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {
@@ -2421,11 +2444,11 @@
     "status": "forecast",
     "badge": null,
     "detail": null,
-    "wind_mph": 3.0,
-    "wind_max_3h_mph": 4.6,
-    "gust_mph": 5.1,
-    "temp_f": 85.7,
-    "precip_in_3h": 0.0,
+    "wind_mph": 1.4,
+    "wind_max_3h_mph": 11.5,
+    "gust_mph": 15.0,
+    "temp_f": 88.4,
+    "precip_in_3h": 0.03,
     "kickoff_hour_utc": "2026-09-20T17:00:00+00:00",
     "hours": [
      "2026-09-20T17:00:00+00:00",
@@ -2439,7 +2462,7 @@
     "lat": 27.9759,
     "lon": -82.5033,
     "kickoff_utc": "2026-09-20T17:00:00+00:00",
-    "fetched_at": "2026-09-20T08:37:53.603047-07:00",
+    "fetched_at": "2026-09-20T12:28:11.422547-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {
@@ -2973,11 +2996,11 @@
     "status": "forecast",
     "badge": null,
     "detail": null,
-    "wind_mph": 8.8,
-    "wind_max_3h_mph": 8.8,
-    "gust_mph": 22.1,
-    "temp_f": 67.3,
-    "precip_in_3h": 0.06,
+    "wind_mph": 4.5,
+    "wind_max_3h_mph": 8.7,
+    "gust_mph": 20.6,
+    "temp_f": 67.1,
+    "precip_in_3h": 0.18,
     "kickoff_hour_utc": "2026-09-20T17:00:00+00:00",
     "hours": [
      "2026-09-20T17:00:00+00:00",
@@ -2991,7 +3014,7 @@
     "lat": 40.8135,
     "lon": -74.0745,
     "kickoff_utc": "2026-09-20T17:00:00+00:00",
-    "fetched_at": "2026-09-20T08:37:53.603047-07:00",
+    "fetched_at": "2026-09-20T12:28:11.422547-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {
@@ -3525,11 +3548,11 @@
     "status": "forecast",
     "badge": null,
     "detail": null,
-    "wind_mph": 13.3,
-    "wind_max_3h_mph": 13.3,
-    "gust_mph": 22.6,
-    "temp_f": 65.9,
-    "precip_in_3h": 0.5,
+    "wind_mph": 10.4,
+    "wind_max_3h_mph": 11.3,
+    "gust_mph": 19.5,
+    "temp_f": 64.9,
+    "precip_in_3h": 0.17,
     "kickoff_hour_utc": "2026-09-20T17:00:00+00:00",
     "hours": [
      "2026-09-20T17:00:00+00:00",
@@ -3543,7 +3566,7 @@
     "lat": 41.8623,
     "lon": -87.6167,
     "kickoff_utc": "2026-09-20T17:00:00+00:00",
-    "fetched_at": "2026-09-20T08:37:53.603047-07:00",
+    "fetched_at": "2026-09-20T12:28:11.422547-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {
@@ -4077,10 +4100,10 @@
     "status": "forecast",
     "badge": null,
     "detail": null,
-    "wind_mph": 8.1,
-    "wind_max_3h_mph": 8.1,
-    "gust_mph": 14.1,
-    "temp_f": 76.8,
+    "wind_mph": 5.9,
+    "wind_max_3h_mph": 5.9,
+    "gust_mph": 12.3,
+    "temp_f": 77.8,
     "precip_in_3h": 0.0,
     "kickoff_hour_utc": "2026-09-20T17:00:00+00:00",
     "hours": [
@@ -4095,7 +4118,7 @@
     "lat": 39.278,
     "lon": -76.6227,
     "kickoff_utc": "2026-09-20T17:00:00+00:00",
-    "fetched_at": "2026-09-20T08:37:53.603047-07:00",
+    "fetched_at": "2026-09-20T12:28:11.422547-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {
@@ -4629,10 +4652,10 @@
     "status": "forecast",
     "badge": null,
     "detail": null,
-    "wind_mph": 3.2,
-    "wind_max_3h_mph": 6.9,
-    "gust_mph": 12.5,
-    "temp_f": 95.7,
+    "wind_mph": 4.0,
+    "wind_max_3h_mph": 4.0,
+    "gust_mph": 11.2,
+    "temp_f": 87.8,
     "precip_in_3h": 0.0,
     "kickoff_hour_utc": "2026-09-20T17:00:00+00:00",
     "hours": [
@@ -4647,7 +4670,7 @@
     "lat": 36.1665,
     "lon": -86.7713,
     "kickoff_utc": "2026-09-20T17:00:00+00:00",
-    "fetched_at": "2026-09-20T08:37:53.603047-07:00",
+    "fetched_at": "2026-09-20T12:28:11.422547-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {
@@ -5240,11 +5263,11 @@
     "status": "forecast",
     "badge": null,
     "detail": null,
-    "wind_mph": 2.3,
-    "wind_max_3h_mph": 6.3,
-    "gust_mph": 16.1,
-    "temp_f": 58.5,
-    "precip_in_3h": 0.09,
+    "wind_mph": 4.3,
+    "wind_max_3h_mph": 7.6,
+    "gust_mph": 17.4,
+    "temp_f": 60.6,
+    "precip_in_3h": 0.04,
     "kickoff_hour_utc": "2026-09-20T17:00:00+00:00",
     "hours": [
      "2026-09-20T17:00:00+00:00",
@@ -5258,7 +5281,7 @@
     "lat": 42.0909,
     "lon": -71.2643,
     "kickoff_utc": "2026-09-20T17:00:00+00:00",
-    "fetched_at": "2026-09-20T08:37:53.603047-07:00",
+    "fetched_at": "2026-09-20T12:28:11.422547-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {
@@ -5792,10 +5815,10 @@
     "status": "forecast",
     "badge": null,
     "detail": null,
-    "wind_mph": 7.2,
-    "wind_max_3h_mph": 12.4,
-    "gust_mph": 16.3,
-    "temp_f": 75.7,
+    "wind_mph": 8.7,
+    "wind_max_3h_mph": 8.9,
+    "gust_mph": 16.8,
+    "temp_f": 75.0,
     "precip_in_3h": 0.0,
     "kickoff_hour_utc": "2026-09-20T20:00:00+00:00",
     "hours": [
@@ -5810,7 +5833,7 @@
     "lat": 39.7439,
     "lon": -105.0201,
     "kickoff_utc": "2026-09-20T20:05:00+00:00",
-    "fetched_at": "2026-09-20T08:37:53.603047-07:00",
+    "fetched_at": "2026-09-20T12:28:11.422547-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {
@@ -6354,7 +6377,7 @@
     "lat": 33.9535,
     "lon": -118.3392,
     "kickoff_utc": "2026-09-20T20:05:00+00:00",
-    "fetched_at": "2026-09-20T08:37:53.603047-07:00",
+    "fetched_at": "2026-09-20T12:28:11.422547-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {
@@ -7088,10 +7111,10 @@
     "status": "forecast",
     "badge": null,
     "detail": null,
-    "wind_mph": 8.9,
-    "wind_max_3h_mph": 11.6,
-    "gust_mph": 16.6,
-    "temp_f": 65.1,
+    "wind_mph": 5.4,
+    "wind_max_3h_mph": 9.8,
+    "gust_mph": 12.5,
+    "temp_f": 63.4,
     "precip_in_3h": 0.0,
     "kickoff_hour_utc": "2026-09-20T20:00:00+00:00",
     "hours": [
@@ -7106,7 +7129,7 @@
     "lat": 37.4033,
     "lon": -121.9694,
     "kickoff_utc": "2026-09-20T20:25:00+00:00",
-    "fetched_at": "2026-09-20T08:37:53.603047-07:00",
+    "fetched_at": "2026-09-20T12:28:11.422547-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {
@@ -7745,10 +7768,10 @@
     "status": "forecast",
     "badge": null,
     "detail": null,
-    "wind_mph": 4.5,
-    "wind_max_3h_mph": 6.2,
-    "gust_mph": 13.0,
-    "temp_f": 99.4,
+    "wind_mph": 4.9,
+    "wind_max_3h_mph": 4.9,
+    "gust_mph": 11.4,
+    "temp_f": 99.7,
     "precip_in_3h": 0.0,
     "kickoff_hour_utc": "2026-09-20T20:00:00+00:00",
     "hours": [
@@ -7763,7 +7786,7 @@
     "lat": 33.5276,
     "lon": -112.2626,
     "kickoff_utc": "2026-09-20T20:25:00+00:00",
-    "fetched_at": "2026-09-20T08:37:53.603047-07:00",
+    "fetched_at": "2026-09-20T12:28:11.422547-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {
@@ -8297,10 +8320,10 @@
     "status": "forecast",
     "badge": null,
     "detail": null,
-    "wind_mph": 6.1,
-    "wind_max_3h_mph": 6.4,
+    "wind_mph": 4.9,
+    "wind_max_3h_mph": 6.5,
     "gust_mph": 8.1,
-    "temp_f": 96.0,
+    "temp_f": 96.9,
     "precip_in_3h": 0.0,
     "kickoff_hour_utc": "2026-09-20T20:00:00+00:00",
     "hours": [
@@ -8315,7 +8338,7 @@
     "lat": 32.7473,
     "lon": -97.0945,
     "kickoff_utc": "2026-09-20T20:25:00+00:00",
-    "fetched_at": "2026-09-20T08:37:53.603047-07:00",
+    "fetched_at": "2026-09-20T12:28:11.422547-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {
@@ -8954,10 +8977,10 @@
     "status": "forecast",
     "badge": null,
     "detail": null,
-    "wind_mph": 8.9,
-    "wind_max_3h_mph": 8.9,
-    "gust_mph": 15.9,
-    "temp_f": 71.6,
+    "wind_mph": 8.1,
+    "wind_max_3h_mph": 8.1,
+    "gust_mph": 17.0,
+    "temp_f": 71.1,
     "precip_in_3h": 0.0,
     "kickoff_hour_utc": "2026-09-21T00:00:00+00:00",
     "hours": [
@@ -8972,7 +8995,7 @@
     "lat": 39.0489,
     "lon": -94.4839,
     "kickoff_utc": "2026-09-21T00:20:00+00:00",
-    "fetched_at": "2026-09-20T08:37:53.603047-07:00",
+    "fetched_at": "2026-09-20T12:28:11.422547-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {
@@ -9586,7 +9609,7 @@
     "lat": 33.9535,
     "lon": -118.3392,
     "kickoff_utc": "2026-09-22T00:15:00+00:00",
-    "fetched_at": "2026-09-20T08:37:53.603047-07:00",
+    "fetched_at": "2026-09-20T12:28:11.422547-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {

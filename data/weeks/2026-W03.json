@@ -1,27 +1,397 @@
 {
- "site_schema_version": 2,
+ "week_resolution": {
+  "flag": null,
+  "status": "verified",
+  "run_week": 3,
+  "run_week_source": "lookup",
+  "week": 3,
+  "season": 2026,
+  "source": "schedule row lookup: each slate game matched to games.parquet by home + away + kickoff date (America/Phoenix), week read from that row",
+  "slate_source": "odds pull 2026-09-27_133514 America/Phoenix (odds_latest.parquet)",
+  "slate_window": {
+   "start": "2026-09-28T09:48:25-07:00",
+   "end": "2026-09-28T23:59:59-07:00"
+  },
+  "slate_games": 1,
+  "matched": 1,
+  "unmatched": [],
+  "weeks_seen": {
+   "wk03": 1
+  },
+  "disagreeing": [],
+  "schedule": {
+   "pulled_at": "2026-09-28 09:48 America/Phoenix",
+   "age_days": 0.0,
+   "stale": false,
+   "max_age_days": 7,
+   "refreshed": false,
+   "error": null
+  },
+  "checked_at": "2026-09-28T09:48:25-07:00",
+  "detail": "all 1 slate games between Mon 09/28 09:48 and Mon 09/28 23:59 matched schedule rows labelled week 3",
+  "ledger": "shadow rows from this run are written with week_status=verified"
+ },
+ "bet_cards": [
+  {
+   "game_id": "2026_03_ATL_GB",
+   "matchup": "ATL@GB",
+   "home": "GB",
+   "away": "ATL",
+   "kickoff_display": "Thu 09/24 17:15",
+   "kickoff_phoenix": "2026-09-24T17:15:00-07:00",
+   "tag": "POSSIBLE BET",
+   "tag_rank": 1,
+   "market": "spread",
+   "side": "GB",
+   "bet": null,
+   "line": null,
+   "price": null,
+   "book": null,
+   "estimate": {
+    "basis": "backtested cover rate",
+    "angle": "sandwich_game",
+    "weight": 0.75,
+    "pct": 55.14,
+    "n": 490,
+    "window": "2021-2025"
+   },
+   "breakeven_pct": null,
+   "edge_pts": null,
+   "worst_line": null,
+   "becomes_bet_line": null,
+   "place_label": "WATCH",
+   "warning": null,
+   "lines": [
+    {
+     "label": "THE LINE",
+     "text": "No number is posted at a book we track yet."
+    },
+    {
+     "label": "WHAT IT MEANS",
+     "text": "Nothing to bet until a book we track posts a number."
+    },
+    {
+     "label": "OUR EDGE",
+     "text": "No price is quoted, so the breakeven and the edge cannot be stated."
+    },
+    {
+     "label": "WATCH",
+     "text": "Nothing to place yet."
+    }
+   ]
+  },
+  {
+   "game_id": "2026_03_CAR_CLE",
+   "matchup": "CAR@CLE",
+   "home": "CLE",
+   "away": "CAR",
+   "kickoff_display": "Sun 09/27 10:00",
+   "kickoff_phoenix": "2026-09-27T10:00:00-07:00",
+   "tag": "POSSIBLE BET",
+   "tag_rank": 2,
+   "market": "spread",
+   "side": "CAR",
+   "bet": null,
+   "line": null,
+   "price": null,
+   "book": null,
+   "estimate": {
+    "basis": "backtested cover rate",
+    "angle": "sandwich_game",
+    "weight": 0.75,
+    "pct": 55.14,
+    "n": 490,
+    "window": "2021-2025"
+   },
+   "breakeven_pct": null,
+   "edge_pts": null,
+   "worst_line": null,
+   "becomes_bet_line": null,
+   "place_label": "WATCH",
+   "warning": null,
+   "lines": [
+    {
+     "label": "THE LINE",
+     "text": "No number is posted at a book we track yet."
+    },
+    {
+     "label": "WHAT IT MEANS",
+     "text": "Nothing to bet until a book we track posts a number."
+    },
+    {
+     "label": "OUR EDGE",
+     "text": "No price is quoted, so the breakeven and the edge cannot be stated."
+    },
+    {
+     "label": "WATCH",
+     "text": "Nothing to place yet."
+    }
+   ]
+  },
+  {
+   "game_id": "2026_03_CIN_PIT",
+   "matchup": "CIN@PIT",
+   "home": "PIT",
+   "away": "CIN",
+   "kickoff_display": "Sun 09/27 10:00",
+   "kickoff_phoenix": "2026-09-27T10:00:00-07:00",
+   "tag": "POSSIBLE BET",
+   "tag_rank": 3,
+   "market": "spread",
+   "side": "CIN",
+   "bet": null,
+   "line": null,
+   "price": null,
+   "book": null,
+   "estimate": {
+    "basis": "backtested cover rate",
+    "angle": "sandwich_game",
+    "weight": 0.75,
+    "pct": 55.14,
+    "n": 490,
+    "window": "2021-2025"
+   },
+   "breakeven_pct": null,
+   "edge_pts": null,
+   "worst_line": null,
+   "becomes_bet_line": null,
+   "place_label": "WATCH",
+   "warning": null,
+   "lines": [
+    {
+     "label": "THE LINE",
+     "text": "No number is posted at a book we track yet."
+    },
+    {
+     "label": "WHAT IT MEANS",
+     "text": "Nothing to bet until a book we track posts a number."
+    },
+    {
+     "label": "OUR EDGE",
+     "text": "No price is quoted, so the breakeven and the edge cannot be stated."
+    },
+    {
+     "label": "WATCH",
+     "text": "Nothing to place yet."
+    }
+   ]
+  },
+  {
+   "game_id": "2026_03_KC_MIA",
+   "matchup": "KC@MIA",
+   "home": "MIA",
+   "away": "KC",
+   "kickoff_display": "Sun 09/27 10:00",
+   "kickoff_phoenix": "2026-09-27T10:00:00-07:00",
+   "tag": "POSSIBLE BET",
+   "tag_rank": 4,
+   "market": "spread",
+   "side": "MIA",
+   "bet": null,
+   "line": null,
+   "price": null,
+   "book": null,
+   "estimate": {
+    "basis": "backtested cover rate",
+    "angle": "sandwich_game",
+    "weight": 0.75,
+    "pct": 55.14,
+    "n": 490,
+    "window": "2021-2025"
+   },
+   "breakeven_pct": null,
+   "edge_pts": null,
+   "worst_line": null,
+   "becomes_bet_line": null,
+   "place_label": "WATCH",
+   "warning": null,
+   "lines": [
+    {
+     "label": "THE LINE",
+     "text": "No number is posted at a book we track yet."
+    },
+    {
+     "label": "WHAT IT MEANS",
+     "text": "Nothing to bet until a book we track posts a number."
+    },
+    {
+     "label": "OUR EDGE",
+     "text": "No price is quoted, so the breakeven and the edge cannot be stated."
+    },
+    {
+     "label": "WATCH",
+     "text": "Nothing to place yet."
+    }
+   ]
+  },
+  {
+   "game_id": "2026_03_LAC_BUF",
+   "matchup": "LAC@BUF",
+   "home": "BUF",
+   "away": "LAC",
+   "kickoff_display": "Sun 09/27 10:00",
+   "kickoff_phoenix": "2026-09-27T10:00:00-07:00",
+   "tag": "POSSIBLE BET",
+   "tag_rank": 7,
+   "market": "spread",
+   "side": "LAC",
+   "bet": null,
+   "line": null,
+   "price": null,
+   "book": null,
+   "estimate": {
+    "basis": "backtested cover rate",
+    "angle": "sandwich_game",
+    "weight": 0.75,
+    "pct": 55.14,
+    "n": 490,
+    "window": "2021-2025"
+   },
+   "breakeven_pct": null,
+   "edge_pts": null,
+   "worst_line": null,
+   "becomes_bet_line": null,
+   "place_label": "WATCH",
+   "warning": null,
+   "lines": [
+    {
+     "label": "THE LINE",
+     "text": "No number is posted at a book we track yet."
+    },
+    {
+     "label": "WHAT IT MEANS",
+     "text": "Nothing to bet until a book we track posts a number."
+    },
+    {
+     "label": "OUR EDGE",
+     "text": "No price is quoted, so the breakeven and the edge cannot be stated."
+    },
+    {
+     "label": "WATCH",
+     "text": "Nothing to place yet."
+    }
+   ]
+  },
+  {
+   "game_id": "2026_03_NE_JAX",
+   "matchup": "NE@JAX",
+   "home": "JAX",
+   "away": "NE",
+   "kickoff_display": "Sun 09/27 10:00",
+   "kickoff_phoenix": "2026-09-27T10:00:00-07:00",
+   "tag": "POSSIBLE BET",
+   "tag_rank": 5,
+   "market": "spread",
+   "side": "JAX",
+   "bet": null,
+   "line": null,
+   "price": null,
+   "book": null,
+   "estimate": {
+    "basis": "backtested cover rate",
+    "angle": "sandwich_game",
+    "weight": 0.75,
+    "pct": 55.14,
+    "n": 490,
+    "window": "2021-2025"
+   },
+   "breakeven_pct": null,
+   "edge_pts": null,
+   "worst_line": null,
+   "becomes_bet_line": null,
+   "place_label": "WATCH",
+   "warning": null,
+   "lines": [
+    {
+     "label": "THE LINE",
+     "text": "No number is posted at a book we track yet."
+    },
+    {
+     "label": "WHAT IT MEANS",
+     "text": "Nothing to bet until a book we track posts a number."
+    },
+    {
+     "label": "OUR EDGE",
+     "text": "No price is quoted, so the breakeven and the edge cannot be stated."
+    },
+    {
+     "label": "WATCH",
+     "text": "Nothing to place yet."
+    }
+   ]
+  },
+  {
+   "game_id": "2026_03_NYJ_DET",
+   "matchup": "NYJ@DET",
+   "home": "DET",
+   "away": "NYJ",
+   "kickoff_display": "Sun 09/27 10:00",
+   "kickoff_phoenix": "2026-09-27T10:00:00-07:00",
+   "tag": "POSSIBLE BET",
+   "tag_rank": 6,
+   "market": "spread",
+   "side": "DET",
+   "bet": null,
+   "line": null,
+   "price": null,
+   "book": null,
+   "estimate": {
+    "basis": "backtested cover rate",
+    "angle": "off_thursday",
+    "weight": 0.5,
+    "pct": 54.19,
+    "n": 182,
+    "window": "2021-2025"
+   },
+   "breakeven_pct": null,
+   "edge_pts": null,
+   "worst_line": null,
+   "becomes_bet_line": null,
+   "place_label": "WATCH",
+   "warning": null,
+   "lines": [
+    {
+     "label": "THE LINE",
+     "text": "No number is posted at a book we track yet."
+    },
+    {
+     "label": "WHAT IT MEANS",
+     "text": "Nothing to bet until a book we track posts a number."
+    },
+    {
+     "label": "OUR EDGE",
+     "text": "No price is quoted, so the breakeven and the edge cannot be stated."
+    },
+    {
+     "label": "WATCH",
+     "text": "Nothing to place yet."
+    }
+   ]
+  }
+ ],
+ "site_schema_version": 6,
  "source": {
-  "scan_schema_version": 2,
+  "scan_schema_version": 6,
   "file": "reports/scan_wk03.json"
  },
  "id": "2026-W03",
  "season": 2026,
  "week": 3,
- "generated_at": "2026-09-20T08:38:15-07:00",
+ "generated_at": "2026-09-28T09:48:36-07:00",
  "timezone": "America/Phoenix",
  "odds_pull": {
   "succeeded": true,
-  "fetched_at": "2026-09-20T07:06:49-07:00",
-  "age_hours": 1.5,
+  "fetched_at": "2026-09-27T13:35:14-07:00",
+  "age_hours": 20.2,
   "stale": false,
-  "detail": "pull 2026-09-20_070649 America/Phoenix, 1.5 h old"
+  "detail": "pull 2026-09-27_133514 America/Phoenix, 20.2 h old"
  },
  "books": [
   "betmgm",
   "draftkings",
   "fanduel"
  ],
- "data_refresh": "skipped",
+ "data_refresh": "ok 2026-09-28 09:48",
  "rules": {
   "lean_cap_points": 1.5,
   "stale_after_hours": 36,
@@ -66,8 +436,8 @@
   "status": "ok",
   "detail": "14 game(s) with a kickoff forecast, 0 unknown, 2 indoor",
   "host": "api.open-meteo.com",
-  "fetched_at": "2026-09-20T08:38:04.889287-07:00",
-  "snapshot": "/Users/quincypbu/NFL-Edge/data/weather/forecast_2026-09-20_083815.json",
+  "fetched_at": "2026-09-28T09:48:25.291531-07:00",
+  "snapshot": "/sessions/rcw-01prgmdgmkctufvlftmawsmp/mnt/NFL-Edge/data/weather/forecast_2026-09-28_094836.json",
   "counts": {
    "forecast": 14,
    "unknown": 0,
@@ -79,18 +449,18 @@
  "shortlist_empty_message": "No game met both rules this week. That is a valid, honest output.",
  "game_of_week": {
   "section_title": "GAME OF THE WEEK - how the system read one game",
-  "game_id": "2026_03_NE_JAX",
-  "matchup": "NE@JAX",
-  "kickoff_display": "Sun 09/27 10:00",
+  "game_id": "2026_03_ATL_GB",
+  "matchup": "ATL@GB",
+  "kickoff_display": "Thu 09/24 17:15",
   "market": "spread",
-  "reason": "Why this game: the week's highest net lean, 0.75 points, is shared by ATL@GB, CAR@CLE, CIN@PIT, KC@MIA, NE@JAX; NE@JAX fired the most angles (2, survivor and watch together) - rule 2.",
+  "reason": "Why this game: the week's highest net lean (0.75 on the strength scale) and most fired angles (2) are shared by ATL@GB, NE@JAX; ATL@GB kicks off earliest - rule 3.",
   "steps": [
    {
     "n": 1,
     "title": "What we knew about the game",
     "lines": [
-     "NE at JAX, kickoff Sun 09/27 10:00 America/Phoenix. Roof: outdoors.",
-     "On the spread, the market opened at JAX -2 (consensus of the first odds pull carrying this game) and the best current number on the leaned side is JAX -1.5 (-115) at fanduel."
+     "ATL at GB, kickoff Thu 09/24 17:15 America/Phoenix. Roof: outdoors.",
+     "The scan leans GB on the spread, but no book we track has posted a line for this game yet."
     ]
    },
    {
@@ -98,28 +468,28 @@
     "title": "The situational tags computed for each team",
     "lines": [
      "The tagger computed these situational flags from the schedule history, with the raw inputs it read next to them (yes/no flags first, then the values behind them; home team first):",
-     "JAX (home): off_thursday=no, prev_weekday=Sunday, rest_days=7, sandwich_game=no, next_div_game=0, off_international=no, prev_is_international=no, dome_team_outdoors_cold=no, gameday=2026-09-27, dome_team=no, home_roof=outdoors, roof=outdoors, high_wind=no, wind=n/a, long_road_trip=no, road_streak=0, neutral_site=no, is_home=yes, off_international_no_bye=no, lookahead=no, next_opp=CIN, early_body_clock=no, body_clock_kickoff_hour=13, off_mnf_road=no, tz_crossed=0, prev_neutral_site=no, prev_is_home=no, off_division_loss=no, coach_tenure_seasons=2, prev_div_game=0, prev_team_margin=n/a, coach_first_season_with_team=2025.",
-     "NE (away): off_thursday=no, prev_weekday=Sunday, rest_days=7, sandwich_game=yes, next_div_game=1, off_international=no, prev_is_international=no, dome_team_outdoors_cold=no, gameday=2026-09-27, dome_team=no, home_roof=outdoors, roof=outdoors, high_wind=no, wind=n/a, long_road_trip=no, road_streak=1, neutral_site=no, is_home=no, off_international_no_bye=no, lookahead=yes, next_opp=BUF, early_body_clock=no, body_clock_kickoff_hour=13, off_mnf_road=no, tz_crossed=0, prev_neutral_site=no, prev_is_home=yes, off_division_loss=no, coach_tenure_seasons=2, prev_div_game=0, prev_team_margin=n/a, coach_first_season_with_team=2025."
+     "GB (home): off_thursday=no, prev_weekday=Sunday, rest_days=4, sandwich_game=no, next_div_game=0, off_international=no, prev_is_international=no, dome_team_outdoors_cold=no, gameday=2026-09-24, dome_team=no, home_roof=outdoors, roof=outdoors, high_wind=no, wind=5, long_road_trip=no, road_streak=0, neutral_site=no, is_home=yes, off_international_no_bye=no, lookahead=no, next_opp=TB, early_body_clock=no, body_clock_kickoff_hour=19.25, off_mnf_road=no, tz_crossed=0, prev_neutral_site=no, prev_is_home=no, off_division_loss=no, coach_tenure_seasons=8, prev_div_game=0, prev_team_margin=3, coach_first_season_with_team=2019.",
+     "ATL (away): off_thursday=no, prev_weekday=Sunday, rest_days=4, sandwich_game=yes, next_div_game=1, off_international=no, prev_is_international=no, dome_team_outdoors_cold=no, gameday=2026-09-24, dome_team=yes, home_roof=closed, roof=outdoors, high_wind=no, wind=5, long_road_trip=no, road_streak=1, neutral_site=no, is_home=no, off_international_no_bye=no, lookahead=no, next_opp=NO, early_body_clock=no, body_clock_kickoff_hour=20.25, off_mnf_road=no, tz_crossed=-1, prev_neutral_site=no, prev_is_home=yes, off_division_loss=yes, coach_tenure_seasons=7, prev_div_game=1, prev_team_margin=-31, coach_first_season_with_team=2020."
     ]
    },
    {
     "n": 3,
     "title": "Each angle checked against this game",
     "lines": [
-     "off_thursday (0.5 pt) - Rest: mini-bye of 9+ days after a Thursday game. This game: JAX: off_thursday=no [prev_weekday=Sunday, rest_days=7]; NE: off_thursday=no [prev_weekday=Sunday, rest_days=7]. Result: NOT FIRED - neither team meets it.",
-     "sandwich_game (0.75 pt) - Attention: a division game next week pulls preparation focus forward. This game: JAX: sandwich_game=no [next_div_game=0]; NE: sandwich_game=yes [next_div_game=1]. Result: FIRED (fade NE -> lean JAX). Backtest n 2741; recent windows 2020-2024: 56.3% (n 473) / 2021-2025: 55.1% (n 490).",
-     "off_international (0.5 pt) - Travel: hangover after an international game (long haul plus time change). This game: JAX: off_international=no [prev_is_international=no]; NE: off_international=no [prev_is_international=no]. Result: NOT FIRED - neither team meets it.",
-     "dome_team_outdoors_cold (0.5 pt) - Environment: a team built for controlled conditions playing outdoors in November-January. This game: JAX: dome_team_outdoors_cold=no [gameday=2026-09-27, dome_team=no, home_roof=outdoors, roof=outdoors]; NE: dome_team_outdoors_cold=no [gameday=2026-09-27, dome_team=no, home_roof=outdoors, roof=outdoors]. Result: OUT OF SEASON - needs months Nov-Jan; this game is Sep 27.",
-     "high_wind (0.75 pt) - Environment: 15+ mph wind suppresses passing and kicking; bears on totals. This game: JAX: high_wind=no [wind=n/a]; NE: high_wind=no [wind=n/a]. Result: NOT WIRED - not wired to the kickoff forecast yet: the WEATHER section shows the forecast wind (3.4) for reading only; wiring the angle to forecast wind is an intake decision (its backtest used post-game wind).",
-     "The 8 watch angles carry zero weight; they only count toward the shortlist rule. Fired here: division_lookahead fired (fade NE -> lean JAX (manual: watch - not counted); n 499, 2020-2024: 57.0% (n 94) / 2021-2025: 56.4% (n 95)). The other 7 did not fire."
+     "off_thursday (weight 0.5) - Rest: mini-bye of 9+ days after a Thursday game. This game: GB: off_thursday=no [prev_weekday=Sunday, rest_days=4]; ATL: off_thursday=no [prev_weekday=Sunday, rest_days=4]. Result: NOT FIRED - neither team meets it.",
+     "sandwich_game (weight 0.75) - Attention: a division game next week pulls preparation focus forward. This game: GB: sandwich_game=no [next_div_game=0]; ATL: sandwich_game=yes [next_div_game=1]. Result: FIRED (fade ATL -> lean GB). Backtest n 2741; recent windows 2020-2024: 56.3% (n 473) / 2021-2025: 55.1% (n 490).",
+     "off_international (weight 0.5) - Travel: hangover after an international game (long haul plus time change). This game: GB: off_international=no [prev_is_international=no]; ATL: off_international=no [prev_is_international=no]. Result: NOT FIRED - neither team meets it.",
+     "dome_team_outdoors_cold (weight 0.5) - Environment: a team built for controlled conditions playing outdoors in November-January. This game: GB: dome_team_outdoors_cold=no [gameday=2026-09-24, dome_team=no, home_roof=outdoors, roof=outdoors]; ATL: dome_team_outdoors_cold=no [gameday=2026-09-24, dome_team=yes, home_roof=closed, roof=outdoors]. Result: OUT OF SEASON - needs months Nov-Jan; this game is Sep 24.",
+     "high_wind (weight 0.75) - Environment: 15+ mph wind suppresses passing and kicking; bears on totals. This game: GB: high_wind=no [wind=5]; ATL: high_wind=no [wind=5]. Result: NOT WIRED - not wired to the kickoff forecast yet: the WEATHER section shows the forecast wind (3.4) for reading only; wiring the angle to forecast wind is an intake decision (its backtest used post-game wind).",
+     "The 8 watch angles carry zero weight; they only count toward the shortlist rule. Fired here: division_stretch_veteran_coach fired (bet ATL -> lean ATL; n 82, 2020-2024: 66.7% (n 12) / 2021-2025: 61.5% (n 16)). The other 7 did not fire."
     ]
    },
    {
     "n": 4,
     "title": "The lean math",
     "lines": [
-     "Each fired survivor pushes its market by its weight in points toward the side its mechanism names; fires on opposite sides offset; the net is capped at +/-1.5 points. Watch angles add 0.",
-     "spread: sum of fired weights: JAX 0.75; net 0.75 toward JAX; cap +/-1.5 -> lean JAX 0.75.",
+     "Each fired survivor's weight (0.5, 0.75 or 1.0 - a strength score set by its worst recent-window hit rate, not a number of points) is added on the side its mechanism names; weights on opposite sides offset; the net is capped at +/-1.5. Watch angles add 0. How the score is built: the site appendix, How we grade.",
+     "spread: sum of fired weights: GB 0.75, ATL 0; net 0.75 toward GB; cap +/-1.5 -> lean GB 0.75.",
      "total: sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none."
     ]
    },
@@ -127,16 +497,16 @@
     "n": 5,
     "title": "The line check",
     "lines": [
-     "The line check protects against chasing a number the market has already taken: if the line has moved toward the lean by as much as the lean itself, the value is gone.",
-     "spread: opener JAX -2 vs best now JAX -1.5 (-115) at fanduel; moved -0.5 toward JAX (negative = away), lean 0.75 -> pass (number not gone)."
+     "The line check protects against chasing a number the market has already taken. It compares two different things on purpose: the market's movement since the opener, measured in points of the line, against the strength score, used as a staleness budget. Once the number has moved toward the lean by as much as the score, the read counts as spent. That coupling is a named, unvalidated rule (references/interpretation.yaml, movement_rule).",
+     "spread: no line posted yet."
     ]
    },
    {
     "n": 6,
     "title": "The verdict, and what would have changed it",
     "lines": [
-     "Verdict - spread: not enough angles (1 survivor, 0 watch same way; 1 watch below floor - not counted); total: no lean.",
-     "What would have changed it (spread): One more survivor angle on the JAX side - or one watch angle agreeing - would have passed the angle-count rule; the number had not moved, so that alone would have put this on the shortlist."
+     "Verdict - spread: not enough angles (1 survivor, 0 watch same way); total: no lean.",
+     "What would have changed it (spread): One more survivor angle on the GB side - or one watch angle agreeing - would have passed the angle-count rule; the line check would then have decided it."
     ]
    }
   ]
@@ -157,22 +527,11 @@
     "watch_same_way": 0,
     "survivors_against": 0,
     "rule_a": false,
-    "rule_b": true,
-    "number_to_shop": {
-     "line": -6.5,
-     "price": -115,
-     "book": "draftkings",
-     "reachable_by": [
-      "Q",
-      "Mike",
-      "Marques"
-     ],
-     "consensus": -6.5,
-     "books_quoting": 2
-    },
-    "opener_consensus": -6.0,
-    "moved_toward_lean": 0.5,
-    "lean_remaining": 0.25,
+    "rule_b": null,
+    "number_to_shop": null,
+    "opener_consensus": null,
+    "moved_toward_lean": null,
+    "lean_remaining": null,
     "angles_for": [
      {
       "name": "sandwich_game",
@@ -198,7 +557,31 @@
       "mechanism": "Attention: a division game next week pulls preparation focus forward."
      }
     ],
-    "angles_against": []
+    "angles_against": [
+     {
+      "name": "division_stretch_veteran_coach",
+      "expression": "off_division_loss,sandwich_game,coach_tenure_seasons>=5",
+      "tier": "watch",
+      "market": "spread",
+      "direction": "bet",
+      "direction_label": "bet ATL -> lean ATL",
+      "flagged_team": "ATL",
+      "lean_side": "ATL",
+      "points": 0.0,
+      "n": 82,
+      "windows": {
+       "2020-2024": {
+        "pct": 66.67,
+        "n": 12
+       },
+       "2021-2025": {
+        "pct": 61.54,
+        "n": 16
+       }
+      },
+      "mechanism": "Coaching: experienced staff (season 5+ with the team) handles a division stretch after a division loss (Q's hypothesis: they cover)."
+     }
+    ]
    },
    "total": {
     "lean_side": null,
@@ -239,6 +622,29 @@
       }
      },
      "mechanism": "Attention: a division game next week pulls preparation focus forward."
+    },
+    {
+     "name": "division_stretch_veteran_coach",
+     "expression": "off_division_loss,sandwich_game,coach_tenure_seasons>=5",
+     "tier": "watch",
+     "market": "spread",
+     "direction": "bet",
+     "direction_label": "bet ATL -> lean ATL",
+     "flagged_team": "ATL",
+     "lean_side": "ATL",
+     "points": 0.0,
+     "n": 82,
+     "windows": {
+      "2020-2024": {
+       "pct": 66.67,
+       "n": 12
+      },
+      "2021-2025": {
+       "pct": 61.54,
+       "n": 16
+      }
+     },
+     "mechanism": "Coaching: experienced staff (season 5+ with the team) handles a division stretch after a division loss (Q's hypothesis: they cover)."
     }
    ],
    "matrix": {
@@ -348,7 +754,7 @@
       ],
       "values": [
        "GB: dome_team_outdoors_cold=no [gameday=2026-09-24, dome_team=no, home_roof=outdoors, roof=outdoors]",
-       "ATL: dome_team_outdoors_cold=no [gameday=2026-09-24, dome_team=no, home_roof=n/a, roof=outdoors]"
+       "ATL: dome_team_outdoors_cold=no [gameday=2026-09-24, dome_team=yes, home_roof=closed, roof=outdoors]"
       ],
       "result": "OUT OF SEASON",
       "note": "needs months Nov-Jan; this game is Sep 24",
@@ -376,8 +782,8 @@
        "wind"
       ],
       "values": [
-       "GB: high_wind=no [wind=n/a]",
-       "ATL: high_wind=no [wind=n/a]"
+       "GB: high_wind=no [wind=5]",
+       "ATL: high_wind=no [wind=5]"
       ],
       "result": "NOT WIRED",
       "note": "not wired to the kickoff forecast yet: the WEATHER section shows the forecast wind (3.4) for reading only; wiring the angle to forecast wind is an intake decision (its backtest used post-game wind)",
@@ -501,8 +907,8 @@
        "wind"
       ],
       "values": [
-       "GB: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-24, dome_team=no, home_roof=outdoors, roof=outdoors, wind=n/a]",
-       "ATL: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-24, dome_team=no, home_roof=n/a, roof=outdoors, wind=n/a]"
+       "GB: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-24, dome_team=no, home_roof=outdoors, roof=outdoors, wind=5]",
+       "ATL: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-24, dome_team=yes, home_roof=closed, roof=outdoors, wind=5]"
       ],
       "result": "NOT WIRED",
       "note": "same: the forecast is shown in WEATHER, the angle stays unwired until intake (also outside its window: needs months Nov-Jan)",
@@ -628,12 +1034,12 @@
        "coach_first_season_with_team"
       ],
       "values": [
-       "GB: off_division_loss=no, sandwich_game=no, coach_tenure_seasons=8 (needs >=5) [prev_div_game=0, prev_team_margin=n/a, next_div_game=0, coach_first_season_with_team=2019]",
-       "ATL: off_division_loss=no, sandwich_game=yes, coach_tenure_seasons=7 (needs >=5) [prev_div_game=1, prev_team_margin=n/a, next_div_game=1, coach_first_season_with_team=2020]"
+       "GB: off_division_loss=no, sandwich_game=no, coach_tenure_seasons=8 (needs >=5) [prev_div_game=0, prev_team_margin=3, next_div_game=0, coach_first_season_with_team=2019]",
+       "ATL: off_division_loss=yes, sandwich_game=yes, coach_tenure_seasons=7 (needs >=5) [prev_div_game=1, prev_team_margin=-31, next_div_game=1, coach_first_season_with_team=2020]"
       ],
-      "result": "NOT FIRED",
+      "result": "FIRED",
       "note": "",
-      "direction_text": "bet (spread)",
+      "direction_text": "bet (spread) -> bet ATL -> lean ATL",
       "points": 0.0,
       "n": 82,
       "windows": {
@@ -651,17 +1057,17 @@
     ],
     "lean_math": {
      "spread": {
-      "net": "sum of fired weights: GB 0.75; net 0.75 toward GB; cap +/-1.5 -> lean GB 0.75",
+      "net": "sum of fired weights: GB 0.75, ATL 0; net 0.75 toward GB; cap +/-1.5 -> lean GB 0.75",
       "rule_a": "survivors same direction: 1 of 2 needed (or 1 survivor + 1 watch); watch same direction: 0 counted; survivors against: 0 -> fail",
-      "rule_b": "opener GB -6 vs best now GB -6.5 (-115) at draftkings; moved +0.5 toward GB (negative = away), lean 0.75 -> pass (number not gone)",
-      "move": "open GB -6 (2026-09-19_1756 ) -> latest GB -6.5 (2026-09-20_07064); move -0.5 over 5 snapshot(s); toward lean (+0.5); key numbers crossed: none",
+      "rule_b": "no line posted yet",
+      "move": "open GB -6 (2026-09-19_1756 ) -> latest GB -4.5 (2026-09-24_07040); move +1.5 over 7 snapshot(s); against lean (-1.5); key numbers crossed: none",
       "verdict": "not enough angles (1 survivor, 0 watch same way)"
      },
      "total": {
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": "open over 46 (2026-09-19_1756 ) -> latest over 46 (2026-09-20_07064); move +0 over 5 snapshot(s); key numbers crossed: none",
+      "move": "open over 46 (2026-09-19_1756 ) -> latest over 43 (2026-09-24_07040); move -3 over 7 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      }
     }
@@ -669,19 +1075,19 @@
    "shadow_lean": {
     "spread": {
      "side": "GB",
-     "line": -6.5,
-     "price": -115,
-     "book": "draftkings",
+     "line": null,
+     "price": null,
+     "book": null,
      "tier": "B",
      "net_lean": 0.75,
      "forced_default": false,
-     "line_stale": false,
-     "pulled_at": "2026-09-20T07:06:49-07:00"
+     "line_stale": true,
+     "pulled_at": null
     },
     "total": null
    },
    "tag": "POSSIBLE BET",
-   "tag_rank": 3,
+   "tag_rank": 1,
    "tag_reason": "Survivor lean GB, rule (a) not met: 1 of 2",
    "tag_market": "spread",
    "tag_tier": "B",
@@ -695,10 +1101,10 @@
     "status": "forecast",
     "badge": null,
     "detail": null,
-    "wind_mph": 3.0,
-    "wind_max_3h_mph": 4.2,
-    "gust_mph": 4.5,
-    "temp_f": 54.7,
+    "wind_mph": 1.8,
+    "wind_max_3h_mph": 2.0,
+    "gust_mph": 6.0,
+    "temp_f": 61.4,
     "precip_in_3h": 0.0,
     "kickoff_hour_utc": "2026-09-25T00:00:00+00:00",
     "hours": [
@@ -713,40 +1119,40 @@
     "lat": 44.5013,
     "lon": -88.0622,
     "kickoff_utc": "2026-09-25T00:15:00+00:00",
-    "fetched_at": "2026-09-20T08:38:04.889287-07:00",
+    "fetched_at": "2026-09-28T09:48:25.291531-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {
     "spread": {
      "market": "spreads",
      "side": "GB",
-     "snapshots": 5,
+     "snapshots": 7,
      "open": -6.0,
      "open_at": "2026-09-19_1756 America/Phoenix",
      "open_books": 2,
-     "latest": -6.5,
-     "latest_at": "2026-09-20_070649 America/Phoenix",
-     "latest_books": 2,
+     "latest": -4.5,
+     "latest_at": "2026-09-24_070407 America/Phoenix",
+     "latest_books": 3,
      "open_price": -117,
      "latest_price": -115,
-     "move": -0.5,
-     "toward_lean": 0.5,
-     "direction": "toward lean",
+     "move": 1.5,
+     "toward_lean": -1.5,
+     "direction": "against lean",
      "key_crossed": []
     },
     "total": {
      "market": "totals",
      "side": "over",
-     "snapshots": 5,
+     "snapshots": 7,
      "open": 46.0,
      "open_at": "2026-09-19_1756 America/Phoenix",
      "open_books": 2,
-     "latest": 46.0,
-     "latest_at": "2026-09-20_070649 America/Phoenix",
-     "latest_books": 2,
+     "latest": 43.0,
+     "latest_at": "2026-09-24_070407 America/Phoenix",
+     "latest_books": 3,
      "open_price": -112,
-     "latest_price": -112,
-     "move": 0.0,
+     "latest_price": -105,
+     "move": -3.0,
      "toward_lean": null,
      "direction": null,
      "key_crossed": []
@@ -768,22 +1174,11 @@
     "watch_same_way": 0,
     "survivors_against": 0,
     "rule_a": false,
-    "rule_b": true,
-    "number_to_shop": {
-     "line": -2.5,
-     "price": -115,
-     "book": "draftkings",
-     "reachable_by": [
-      "Q",
-      "Mike",
-      "Marques"
-     ],
-     "consensus": -2.75,
-     "books_quoting": 2
-    },
-    "opener_consensus": -2.75,
-    "moved_toward_lean": -0.25,
-    "lean_remaining": 1.0,
+    "rule_b": null,
+    "number_to_shop": null,
+    "opener_consensus": null,
+    "moved_toward_lean": null,
+    "lean_remaining": null,
     "angles_for": [
      {
       "name": "sandwich_game",
@@ -987,8 +1382,8 @@
        "wind"
       ],
       "values": [
-       "CLE: high_wind=no [wind=n/a]",
-       "CAR: high_wind=no [wind=n/a]"
+       "CLE: high_wind=no [wind=12]",
+       "CAR: high_wind=no [wind=12]"
       ],
       "result": "NOT WIRED",
       "note": "not wired to the kickoff forecast yet: the WEATHER section shows the forecast wind (3.4) for reading only; wiring the angle to forecast wind is an intake decision (its backtest used post-game wind)",
@@ -1112,8 +1507,8 @@
        "wind"
       ],
       "values": [
-       "CLE: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-27, dome_team=no, home_roof=outdoors, roof=outdoors, wind=n/a]",
-       "CAR: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-27, dome_team=no, home_roof=outdoors, roof=outdoors, wind=n/a]"
+       "CLE: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-27, dome_team=no, home_roof=outdoors, roof=outdoors, wind=12]",
+       "CAR: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-27, dome_team=no, home_roof=outdoors, roof=outdoors, wind=12]"
       ],
       "result": "NOT WIRED",
       "note": "same: the forecast is shown in WEATHER, the angle stays unwired until intake (also outside its window: needs months Nov-Jan)",
@@ -1239,8 +1634,8 @@
        "coach_first_season_with_team"
       ],
       "values": [
-       "CLE: off_division_loss=no, sandwich_game=yes, coach_tenure_seasons=1 (needs >=5) [prev_div_game=0, prev_team_margin=n/a, next_div_game=1, coach_first_season_with_team=2026]",
-       "CAR: off_division_loss=no, sandwich_game=no, coach_tenure_seasons=3 (needs >=5) [prev_div_game=1, prev_team_margin=n/a, next_div_game=0, coach_first_season_with_team=2024]"
+       "CLE: off_division_loss=no, sandwich_game=yes, coach_tenure_seasons=1 (needs >=5) [prev_div_game=0, prev_team_margin=4, next_div_game=1, coach_first_season_with_team=2026]",
+       "CAR: off_division_loss=no, sandwich_game=no, coach_tenure_seasons=3 (needs >=5) [prev_div_game=1, prev_team_margin=31, next_div_game=0, coach_first_season_with_team=2024]"
       ],
       "result": "NOT FIRED",
       "note": "",
@@ -1264,15 +1659,15 @@
      "spread": {
       "net": "sum of fired weights: CAR 0.75; net 0.75 toward CAR; cap +/-1.5 -> lean CAR 0.75",
       "rule_a": "survivors same direction: 1 of 2 needed (or 1 survivor + 1 watch); watch same direction: 0 counted; survivors against: 0 -> fail",
-      "rule_b": "opener CAR -2.75 vs best now CAR -2.5 (-115) at draftkings; moved -0.25 toward CAR (negative = away), lean 0.75 -> pass (number not gone)",
-      "move": "open CAR -2.75 (2026-09-19_1756 ) -> latest CAR -2.75 (2026-09-20_07064); move +0 over 5 snapshot(s); flat (+0); key numbers crossed: none",
+      "rule_b": "no line posted yet",
+      "move": "open CAR -2.75 (2026-09-19_1756 ) -> latest CAR -3 (2026-09-24_07040); move -0.25 over 7 snapshot(s); toward lean (+0.25); key numbers crossed: 3.0",
       "verdict": "not enough angles (1 survivor, 0 watch same way)"
      },
      "total": {
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": "open over 40 (2026-09-19_1756 ) -> latest over 40 (2026-09-20_07064); move +0 over 5 snapshot(s); key numbers crossed: none",
+      "move": "open over 40 (2026-09-19_1756 ) -> latest over 42 (2026-09-24_07040); move +2 over 7 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      }
     }
@@ -1280,14 +1675,14 @@
    "shadow_lean": {
     "spread": {
      "side": "CAR",
-     "line": -2.5,
-     "price": -115,
-     "book": "draftkings",
+     "line": null,
+     "price": null,
+     "book": null,
      "tier": "B",
      "net_lean": 0.75,
      "forced_default": false,
-     "line_stale": false,
-     "pulled_at": "2026-09-20T07:06:49-07:00"
+     "line_stale": true,
+     "pulled_at": null
     },
     "total": null
    },
@@ -1299,17 +1694,17 @@
    "tag_keys": {
     "net_survivor_weight": 0.75,
     "survivor_angles_fired": 1,
-    "price_edge": 0.25,
+    "price_edge": 0.0,
     "kickoff": "2026-09-27T10:00:00-07:00"
    },
    "weather": {
     "status": "forecast",
     "badge": null,
     "detail": null,
-    "wind_mph": 10.9,
-    "wind_max_3h_mph": 14.0,
-    "gust_mph": 16.3,
-    "temp_f": 67.1,
+    "wind_mph": 11.4,
+    "wind_max_3h_mph": 11.7,
+    "gust_mph": 17.7,
+    "temp_f": 69.2,
     "precip_in_3h": 0.0,
     "kickoff_hour_utc": "2026-09-27T17:00:00+00:00",
     "hours": [
@@ -1324,40 +1719,42 @@
     "lat": 41.5061,
     "lon": -81.6995,
     "kickoff_utc": "2026-09-27T17:00:00+00:00",
-    "fetched_at": "2026-09-20T08:38:04.889287-07:00",
+    "fetched_at": "2026-09-28T09:48:25.291531-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {
     "spread": {
      "market": "spreads",
      "side": "CAR",
-     "snapshots": 5,
+     "snapshots": 7,
      "open": -2.75,
      "open_at": "2026-09-19_1756 America/Phoenix",
      "open_books": 2,
-     "latest": -2.75,
-     "latest_at": "2026-09-20_070649 America/Phoenix",
-     "latest_books": 2,
+     "latest": -3.0,
+     "latest_at": "2026-09-24_070407 America/Phoenix",
+     "latest_books": 3,
      "open_price": -111,
-     "latest_price": -111,
-     "move": 0.0,
-     "toward_lean": 0.0,
-     "direction": "flat",
-     "key_crossed": []
+     "latest_price": -102,
+     "move": -0.25,
+     "toward_lean": 0.25,
+     "direction": "toward lean",
+     "key_crossed": [
+      3.0
+     ]
     },
     "total": {
      "market": "totals",
      "side": "over",
-     "snapshots": 5,
+     "snapshots": 7,
      "open": 40.0,
      "open_at": "2026-09-19_1756 America/Phoenix",
      "open_books": 2,
-     "latest": 40.0,
-     "latest_at": "2026-09-20_070649 America/Phoenix",
-     "latest_books": 2,
+     "latest": 42.0,
+     "latest_at": "2026-09-24_070407 America/Phoenix",
+     "latest_books": 3,
      "open_price": -107,
-     "latest_price": -107,
-     "move": 0.0,
+     "latest_price": -110,
+     "move": 2.0,
      "toward_lean": null,
      "direction": null,
      "key_crossed": []
@@ -1379,22 +1776,11 @@
     "watch_same_way": 0,
     "survivors_against": 0,
     "rule_a": false,
-    "rule_b": true,
-    "number_to_shop": {
-     "line": -2.5,
-     "price": -106,
-     "book": "fanduel",
-     "reachable_by": [
-      "Q",
-      "Mike",
-      "Marques"
-     ],
-     "consensus": -2.5,
-     "books_quoting": 2
-    },
-    "opener_consensus": -2.5,
-    "moved_toward_lean": 0.0,
-    "lean_remaining": 0.75,
+    "rule_b": null,
+    "number_to_shop": null,
+    "opener_consensus": null,
+    "moved_toward_lean": null,
+    "lean_remaining": null,
     "angles_for": [
      {
       "name": "sandwich_game",
@@ -1598,8 +1984,8 @@
        "wind"
       ],
       "values": [
-       "PIT: high_wind=no [wind=n/a]",
-       "CIN: high_wind=no [wind=n/a]"
+       "PIT: high_wind=no [wind=12]",
+       "CIN: high_wind=no [wind=12]"
       ],
       "result": "NOT WIRED",
       "note": "not wired to the kickoff forecast yet: the WEATHER section shows the forecast wind (3.4) for reading only; wiring the angle to forecast wind is an intake decision (its backtest used post-game wind)",
@@ -1723,8 +2109,8 @@
        "wind"
       ],
       "values": [
-       "PIT: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-27, dome_team=no, home_roof=outdoors, roof=outdoors, wind=n/a]",
-       "CIN: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-27, dome_team=no, home_roof=outdoors, roof=outdoors, wind=n/a]"
+       "PIT: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-27, dome_team=no, home_roof=outdoors, roof=outdoors, wind=12]",
+       "CIN: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-27, dome_team=no, home_roof=outdoors, roof=outdoors, wind=12]"
       ],
       "result": "NOT WIRED",
       "note": "same: the forecast is shown in WEATHER, the angle stays unwired until intake (also outside its window: needs months Nov-Jan)",
@@ -1850,8 +2236,8 @@
        "coach_first_season_with_team"
       ],
       "values": [
-       "PIT: off_division_loss=no, sandwich_game=yes, coach_tenure_seasons=1 (needs >=5) [prev_div_game=0, prev_team_margin=n/a, next_div_game=1, coach_first_season_with_team=2026]",
-       "CIN: off_division_loss=no, sandwich_game=no, coach_tenure_seasons=8 (needs >=5) [prev_div_game=0, prev_team_margin=n/a, next_div_game=0, coach_first_season_with_team=2019]"
+       "PIT: off_division_loss=no, sandwich_game=yes, coach_tenure_seasons=1 (needs >=5) [prev_div_game=0, prev_team_margin=-17, next_div_game=1, coach_first_season_with_team=2026]",
+       "CIN: off_division_loss=no, sandwich_game=no, coach_tenure_seasons=8 (needs >=5) [prev_div_game=0, prev_team_margin=14, next_div_game=0, coach_first_season_with_team=2019]"
       ],
       "result": "NOT FIRED",
       "note": "",
@@ -1875,15 +2261,15 @@
      "spread": {
       "net": "sum of fired weights: CIN 0.75; net 0.75 toward CIN; cap +/-1.5 -> lean CIN 0.75",
       "rule_a": "survivors same direction: 1 of 2 needed (or 1 survivor + 1 watch); watch same direction: 0 counted; survivors against: 0 -> fail",
-      "rule_b": "opener CIN -2.5 vs best now CIN -2.5 (-106) at fanduel; moved +0 toward CIN (negative = away), lean 0.75 -> pass (number not gone)",
-      "move": "open CIN -2.5 (2026-09-19_1756 ) -> latest CIN -2.5 (2026-09-20_07064); move +0 over 5 snapshot(s); flat (+0); key numbers crossed: none",
+      "rule_b": "no line posted yet",
+      "move": "open CIN -2.5 (2026-09-19_1756 ) -> latest CIN -3.5 (2026-09-24_07040); move -1 over 7 snapshot(s); toward lean (+1); key numbers crossed: 3.0",
       "verdict": "not enough angles (1 survivor, 0 watch same way)"
      },
      "total": {
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": "open over 46 (2026-09-19_1756 ) -> latest over 46 (2026-09-20_07064); move +0 over 5 snapshot(s); key numbers crossed: none",
+      "move": "open over 46 (2026-09-19_1756 ) -> latest over 42.5 (2026-09-24_07040); move -3.5 over 7 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      }
     }
@@ -1891,19 +2277,19 @@
    "shadow_lean": {
     "spread": {
      "side": "CIN",
-     "line": -2.5,
-     "price": -106,
-     "book": "fanduel",
+     "line": null,
+     "price": null,
+     "book": null,
      "tier": "B",
      "net_lean": 0.75,
      "forced_default": false,
-     "line_stale": false,
-     "pulled_at": "2026-09-20T07:06:49-07:00"
+     "line_stale": true,
+     "pulled_at": null
     },
     "total": null
    },
    "tag": "POSSIBLE BET",
-   "tag_rank": 4,
+   "tag_rank": 3,
    "tag_reason": "Survivor lean CIN, rule (a) not met: 1 of 2",
    "tag_market": "spread",
    "tag_tier": "B",
@@ -1917,11 +2303,11 @@
     "status": "forecast",
     "badge": null,
     "detail": null,
-    "wind_mph": 6.2,
-    "wind_max_3h_mph": 6.2,
-    "gust_mph": 13.9,
-    "temp_f": 62.8,
-    "precip_in_3h": 0.01,
+    "wind_mph": 11.5,
+    "wind_max_3h_mph": 12.2,
+    "gust_mph": 21.5,
+    "temp_f": 71.1,
+    "precip_in_3h": 0.0,
     "kickoff_hour_utc": "2026-09-27T17:00:00+00:00",
     "hours": [
      "2026-09-27T17:00:00+00:00",
@@ -1935,40 +2321,42 @@
     "lat": 40.4468,
     "lon": -80.0158,
     "kickoff_utc": "2026-09-27T17:00:00+00:00",
-    "fetched_at": "2026-09-20T08:38:04.889287-07:00",
+    "fetched_at": "2026-09-28T09:48:25.291531-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {
     "spread": {
      "market": "spreads",
      "side": "CIN",
-     "snapshots": 5,
+     "snapshots": 7,
      "open": -2.5,
      "open_at": "2026-09-19_1756 America/Phoenix",
      "open_books": 2,
-     "latest": -2.5,
-     "latest_at": "2026-09-20_070649 America/Phoenix",
-     "latest_books": 2,
+     "latest": -3.5,
+     "latest_at": "2026-09-24_070407 America/Phoenix",
+     "latest_books": 3,
      "open_price": -108,
      "latest_price": -108,
-     "move": 0.0,
-     "toward_lean": 0.0,
-     "direction": "flat",
-     "key_crossed": []
+     "move": -1.0,
+     "toward_lean": 1.0,
+     "direction": "toward lean",
+     "key_crossed": [
+      3.0
+     ]
     },
     "total": {
      "market": "totals",
      "side": "over",
-     "snapshots": 5,
+     "snapshots": 7,
      "open": 46.0,
      "open_at": "2026-09-19_1756 America/Phoenix",
      "open_books": 2,
-     "latest": 46.0,
-     "latest_at": "2026-09-20_070649 America/Phoenix",
-     "latest_books": 2,
+     "latest": 42.5,
+     "latest_at": "2026-09-24_070407 America/Phoenix",
+     "latest_books": 3,
      "open_price": -107,
-     "latest_price": -107,
-     "move": 0.0,
+     "latest_price": -110,
+     "move": -3.5,
      "toward_lean": null,
      "direction": null,
      "key_crossed": []
@@ -2121,8 +2509,8 @@
        "roof"
       ],
       "values": [
-       "IND: dome_team_outdoors_cold=no [gameday=2026-09-27, dome_team=yes, home_roof=closed, roof=n/a]",
-       "HOU: dome_team_outdoors_cold=no [gameday=2026-09-27, dome_team=yes, home_roof=closed, roof=n/a]"
+       "IND: dome_team_outdoors_cold=no [gameday=2026-09-27, dome_team=yes, home_roof=closed, roof=open]",
+       "HOU: dome_team_outdoors_cold=no [gameday=2026-09-27, dome_team=yes, home_roof=closed, roof=open]"
       ],
       "result": "OUT OF SEASON",
       "note": "needs months Nov-Jan; this game is Sep 27",
@@ -2275,8 +2663,8 @@
        "wind"
       ],
       "values": [
-       "IND: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-27, dome_team=yes, home_roof=closed, roof=n/a, wind=n/a]",
-       "HOU: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-27, dome_team=yes, home_roof=closed, roof=n/a, wind=n/a]"
+       "IND: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-27, dome_team=yes, home_roof=closed, roof=open, wind=n/a]",
+       "HOU: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-27, dome_team=yes, home_roof=closed, roof=open, wind=n/a]"
       ],
       "result": "NOT WIRED",
       "note": "same: the forecast is shown in WEATHER, the angle stays unwired until intake (also outside its window: needs months Nov-Jan)",
@@ -2402,8 +2790,8 @@
        "coach_first_season_with_team"
       ],
       "values": [
-       "IND: off_division_loss=no, sandwich_game=no, coach_tenure_seasons=4 (needs >=5) [prev_div_game=0, prev_team_margin=n/a, next_div_game=0, coach_first_season_with_team=2023]",
-       "HOU: off_division_loss=no, sandwich_game=no, coach_tenure_seasons=4 (needs >=5) [prev_div_game=0, prev_team_margin=n/a, next_div_game=0, coach_first_season_with_team=2023]"
+       "IND: off_division_loss=no, sandwich_game=no, coach_tenure_seasons=4 (needs >=5) [prev_div_game=0, prev_team_margin=-3, next_div_game=0, coach_first_season_with_team=2023]",
+       "HOU: off_division_loss=no, sandwich_game=no, coach_tenure_seasons=4 (needs >=5) [prev_div_game=0, prev_team_margin=-14, next_div_game=0, coach_first_season_with_team=2023]"
       ],
       "result": "NOT FIRED",
       "note": "",
@@ -2428,14 +2816,14 @@
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": "open IND +2.5 (2026-09-19_1756 ) -> latest IND +2.5 (2026-09-20_07064); move +0 over 5 snapshot(s); key numbers crossed: none",
+      "move": "open IND +2.5 (2026-09-19_1756 ) -> latest IND +2.5 (2026-09-24_07040); move +0 over 7 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      },
      "total": {
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": "open over 45 (2026-09-19_1756 ) -> latest over 45 (2026-09-20_07064); move +0 over 5 snapshot(s); key numbers crossed: none",
+      "move": "open over 45 (2026-09-19_1756 ) -> latest over 42.5 (2026-09-24_07040); move -2.5 over 7 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      }
     }
@@ -2443,14 +2831,14 @@
    "shadow_lean": {
     "spread": {
      "side": "IND",
-     "line": 2.5,
-     "price": -105,
-     "book": "fanduel",
+     "line": null,
+     "price": null,
+     "book": null,
      "tier": "D",
      "net_lean": 0.0,
      "forced_default": true,
-     "line_stale": false,
-     "pulled_at": "2026-09-20T07:06:49-07:00"
+     "line_stale": true,
+     "pulled_at": null
     },
     "total": null
    },
@@ -2469,10 +2857,10 @@
     "status": "forecast",
     "badge": null,
     "detail": null,
-    "wind_mph": 6.1,
-    "wind_max_3h_mph": 8.8,
-    "gust_mph": 10.5,
-    "temp_f": 69.7,
+    "wind_mph": 3.7,
+    "wind_max_3h_mph": 7.4,
+    "gust_mph": 12.3,
+    "temp_f": 71.1,
     "precip_in_3h": 0.0,
     "kickoff_hour_utc": "2026-09-27T17:00:00+00:00",
     "hours": [
@@ -2487,22 +2875,22 @@
     "lat": 39.7601,
     "lon": -86.1639,
     "kickoff_utc": "2026-09-27T17:00:00+00:00",
-    "fetched_at": "2026-09-20T08:38:04.889287-07:00",
+    "fetched_at": "2026-09-28T09:48:25.291531-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {
     "spread": {
      "market": "spreads",
      "side": "IND",
-     "snapshots": 5,
+     "snapshots": 7,
      "open": 2.5,
      "open_at": "2026-09-19_1756 America/Phoenix",
      "open_books": 2,
      "latest": 2.5,
-     "latest_at": "2026-09-20_070649 America/Phoenix",
-     "latest_books": 2,
+     "latest_at": "2026-09-24_070407 America/Phoenix",
+     "latest_books": 3,
      "open_price": -107,
-     "latest_price": -107,
+     "latest_price": -110,
      "move": 0.0,
      "toward_lean": null,
      "direction": null,
@@ -2511,16 +2899,16 @@
     "total": {
      "market": "totals",
      "side": "over",
-     "snapshots": 5,
+     "snapshots": 7,
      "open": 45.0,
      "open_at": "2026-09-19_1756 America/Phoenix",
      "open_books": 2,
-     "latest": 45.0,
-     "latest_at": "2026-09-20_070649 America/Phoenix",
-     "latest_books": 2,
+     "latest": 42.5,
+     "latest_at": "2026-09-24_070407 America/Phoenix",
+     "latest_books": 3,
      "open_price": -110,
-     "latest_price": -110,
-     "move": 0.0,
+     "latest_price": -112,
+     "move": -2.5,
      "toward_lean": null,
      "direction": null,
      "key_crossed": []
@@ -2542,22 +2930,11 @@
     "watch_same_way": 0,
     "survivors_against": 0,
     "rule_a": false,
-    "rule_b": true,
-    "number_to_shop": {
-     "line": 8.5,
-     "price": -105,
-     "book": "fanduel",
-     "reachable_by": [
-      "Q",
-      "Mike",
-      "Marques"
-     ],
-     "consensus": 8.5,
-     "books_quoting": 2
-    },
-    "opener_consensus": 8.5,
-    "moved_toward_lean": 0.0,
-    "lean_remaining": 0.75,
+    "rule_b": null,
+    "number_to_shop": null,
+    "opener_consensus": null,
+    "moved_toward_lean": null,
+    "lean_remaining": null,
     "angles_for": [
      {
       "name": "sandwich_game",
@@ -2761,8 +3138,8 @@
        "wind"
       ],
       "values": [
-       "MIA: high_wind=no [wind=n/a]",
-       "KC: high_wind=no [wind=n/a]"
+       "MIA: high_wind=no [wind=5]",
+       "KC: high_wind=no [wind=5]"
       ],
       "result": "NOT WIRED",
       "note": "not wired to the kickoff forecast yet: the WEATHER section shows the forecast wind (3.4) for reading only; wiring the angle to forecast wind is an intake decision (its backtest used post-game wind)",
@@ -2886,8 +3263,8 @@
        "wind"
       ],
       "values": [
-       "MIA: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-27, dome_team=no, home_roof=outdoors, roof=outdoors, wind=n/a]",
-       "KC: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-27, dome_team=no, home_roof=outdoors, roof=outdoors, wind=n/a]"
+       "MIA: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-27, dome_team=no, home_roof=outdoors, roof=outdoors, wind=5]",
+       "KC: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-27, dome_team=no, home_roof=outdoors, roof=outdoors, wind=5]"
       ],
       "result": "NOT WIRED",
       "note": "same: the forecast is shown in WEATHER, the angle stays unwired until intake (also outside its window: needs months Nov-Jan)",
@@ -3013,8 +3390,8 @@
        "coach_first_season_with_team"
       ],
       "values": [
-       "MIA: off_division_loss=no, sandwich_game=no, coach_tenure_seasons=1 (needs >=5) [prev_div_game=0, prev_team_margin=n/a, next_div_game=0, coach_first_season_with_team=2026]",
-       "KC: off_division_loss=no, sandwich_game=yes, coach_tenure_seasons=14 (needs >=5) [prev_div_game=0, prev_team_margin=n/a, next_div_game=1, coach_first_season_with_team=2013]"
+       "MIA: off_division_loss=no, sandwich_game=no, coach_tenure_seasons=1 (needs >=5) [prev_div_game=0, prev_team_margin=-22, next_div_game=0, coach_first_season_with_team=2026]",
+       "KC: off_division_loss=no, sandwich_game=yes, coach_tenure_seasons=14 (needs >=5) [prev_div_game=0, prev_team_margin=3, next_div_game=1, coach_first_season_with_team=2013]"
       ],
       "result": "NOT FIRED",
       "note": "",
@@ -3038,15 +3415,15 @@
      "spread": {
       "net": "sum of fired weights: MIA 0.75; net 0.75 toward MIA; cap +/-1.5 -> lean MIA 0.75",
       "rule_a": "survivors same direction: 1 of 2 needed (or 1 survivor + 1 watch); watch same direction: 0 counted; survivors against: 0 -> fail",
-      "rule_b": "opener MIA +8.5 vs best now MIA +8.5 (-105) at fanduel; moved +0 toward MIA (negative = away), lean 0.75 -> pass (number not gone)",
-      "move": "open MIA +8.5 (2026-09-19_1756 ) -> latest MIA +8.5 (2026-09-20_07064); move +0 over 5 snapshot(s); flat (+0); key numbers crossed: none",
+      "rule_b": "no line posted yet",
+      "move": "open MIA +8.5 (2026-09-19_1756 ) -> latest MIA +10.5 (2026-09-24_07040); move +2 over 7 snapshot(s); against lean (-2); key numbers crossed: none",
       "verdict": "not enough angles (1 survivor, 0 watch same way)"
      },
      "total": {
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": "open over 44.5 (2026-09-19_1756 ) -> latest over 44.5 (2026-09-20_07064); move +0 over 5 snapshot(s); key numbers crossed: none",
+      "move": "open over 44.5 (2026-09-19_1756 ) -> latest over 46 (2026-09-24_07040); move +1.5 over 7 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      }
     }
@@ -3054,19 +3431,19 @@
    "shadow_lean": {
     "spread": {
      "side": "MIA",
-     "line": 8.5,
-     "price": -105,
-     "book": "fanduel",
+     "line": null,
+     "price": null,
+     "book": null,
      "tier": "B",
      "net_lean": 0.75,
      "forced_default": false,
-     "line_stale": false,
-     "pulled_at": "2026-09-20T07:06:49-07:00"
+     "line_stale": true,
+     "pulled_at": null
     },
     "total": null
    },
    "tag": "POSSIBLE BET",
-   "tag_rank": 5,
+   "tag_rank": 4,
    "tag_reason": "Survivor lean MIA, rule (a) not met: 1 of 2",
    "tag_market": "spread",
    "tag_tier": "B",
@@ -3080,11 +3457,11 @@
     "status": "forecast",
     "badge": null,
     "detail": null,
-    "wind_mph": 5.9,
-    "wind_max_3h_mph": 5.9,
-    "gust_mph": 5.6,
-    "temp_f": 89.1,
-    "precip_in_3h": 0.3,
+    "wind_mph": 2.8,
+    "wind_max_3h_mph": 6.4,
+    "gust_mph": 7.8,
+    "temp_f": 84.6,
+    "precip_in_3h": 0.0,
     "kickoff_hour_utc": "2026-09-27T17:00:00+00:00",
     "hours": [
      "2026-09-27T17:00:00+00:00",
@@ -3098,40 +3475,40 @@
     "lat": 25.958,
     "lon": -80.2389,
     "kickoff_utc": "2026-09-27T17:00:00+00:00",
-    "fetched_at": "2026-09-20T08:38:04.889287-07:00",
+    "fetched_at": "2026-09-28T09:48:25.291531-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {
     "spread": {
      "market": "spreads",
      "side": "MIA",
-     "snapshots": 5,
+     "snapshots": 7,
      "open": 8.5,
      "open_at": "2026-09-19_1756 America/Phoenix",
      "open_books": 2,
-     "latest": 8.5,
-     "latest_at": "2026-09-20_070649 America/Phoenix",
-     "latest_books": 2,
+     "latest": 10.5,
+     "latest_at": "2026-09-24_070407 America/Phoenix",
+     "latest_books": 3,
      "open_price": -107,
-     "latest_price": -107,
-     "move": 0.0,
-     "toward_lean": 0.0,
-     "direction": "flat",
+     "latest_price": -105,
+     "move": 2.0,
+     "toward_lean": -2.0,
+     "direction": "against lean",
      "key_crossed": []
     },
     "total": {
      "market": "totals",
      "side": "over",
-     "snapshots": 5,
+     "snapshots": 7,
      "open": 44.5,
      "open_at": "2026-09-19_1756 America/Phoenix",
      "open_books": 2,
-     "latest": 44.5,
-     "latest_at": "2026-09-20_070649 America/Phoenix",
-     "latest_books": 2,
+     "latest": 46.0,
+     "latest_at": "2026-09-24_070407 America/Phoenix",
+     "latest_books": 3,
      "open_price": -110,
-     "latest_price": -110,
-     "move": 0.0,
+     "latest_price": -108,
+     "move": 1.5,
      "toward_lean": null,
      "direction": null,
      "key_crossed": []
@@ -3454,8 +3831,8 @@
        "wind"
       ],
       "values": [
-       "BUF: high_wind=no [wind=n/a]",
-       "LAC: high_wind=no [wind=n/a]"
+       "BUF: high_wind=no [wind=12]",
+       "LAC: high_wind=no [wind=12]"
       ],
       "result": "NOT WIRED",
       "note": "not wired to the kickoff forecast yet: the WEATHER section shows the forecast wind (3.4) for reading only; wiring the angle to forecast wind is an intake decision (its backtest used post-game wind)",
@@ -3579,8 +3956,8 @@
        "wind"
       ],
       "values": [
-       "BUF: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-27, dome_team=no, home_roof=outdoors, roof=outdoors, wind=n/a]",
-       "LAC: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-27, dome_team=yes, home_roof=dome, roof=outdoors, wind=n/a]"
+       "BUF: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-27, dome_team=no, home_roof=outdoors, roof=outdoors, wind=12]",
+       "LAC: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-27, dome_team=yes, home_roof=dome, roof=outdoors, wind=12]"
       ],
       "result": "NOT WIRED",
       "note": "same: the forecast is shown in WEATHER, the angle stays unwired until intake (also outside its window: needs months Nov-Jan)",
@@ -3707,7 +4084,7 @@
       ],
       "values": [
        "BUF: off_division_loss=no, sandwich_game=yes, coach_tenure_seasons=10 (needs >=5) [prev_div_game=0, prev_team_margin=10, next_div_game=1, coach_first_season_with_team=2017]",
-       "LAC: off_division_loss=no, sandwich_game=no, coach_tenure_seasons=3 (needs >=5) [prev_div_game=1, prev_team_margin=n/a, next_div_game=0, coach_first_season_with_team=2024]"
+       "LAC: off_division_loss=yes, sandwich_game=no, coach_tenure_seasons=3 (needs >=5) [prev_div_game=1, prev_team_margin=-12, next_div_game=0, coach_first_season_with_team=2024]"
       ],
       "result": "NOT FIRED",
       "note": "",
@@ -3732,14 +4109,14 @@
       "net": "sum of fired weights: BUF 0.5, LAC 0.75; net 0.25 toward LAC; cap +/-1.5 -> lean LAC 0.25",
       "rule_a": "survivors same direction: 1 of 2 needed (or 1 survivor + 1 watch); watch same direction: 0 counted (1 below floor - not counted); survivors against: 1 -> fail",
       "rule_b": "no line posted yet",
-      "move": "no snapshot history for this game yet",
+      "move": "open LAC +7 (2026-09-22_07023) -> latest LAC +7 (2026-09-24_07040); move +0 over 2 snapshot(s); flat (+0); key numbers crossed: none",
       "verdict": "not enough angles (1 survivor, 0 watch same way; 1 watch below floor - not counted)"
      },
      "total": {
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": "no snapshot history for this game yet",
+      "move": "open over 50.5 (2026-09-22_07023) -> latest over 50.5 (2026-09-24_07040); move +0 over 2 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      }
     }
@@ -3753,7 +4130,7 @@
      "tier": "B",
      "net_lean": 0.25,
      "forced_default": false,
-     "line_stale": false,
+     "line_stale": true,
      "pulled_at": null
     },
     "total": null
@@ -3773,10 +4150,10 @@
     "status": "forecast",
     "badge": null,
     "detail": null,
-    "wind_mph": 15.0,
-    "wind_max_3h_mph": 15.0,
-    "gust_mph": 22.8,
-    "temp_f": 67.2,
+    "wind_mph": 12.1,
+    "wind_max_3h_mph": 12.8,
+    "gust_mph": 20.1,
+    "temp_f": 67.4,
     "precip_in_3h": 0.0,
     "kickoff_hour_utc": "2026-09-27T17:00:00+00:00",
     "hours": [
@@ -3791,12 +4168,44 @@
     "lat": 42.7738,
     "lon": -78.787,
     "kickoff_utc": "2026-09-27T17:00:00+00:00",
-    "fetched_at": "2026-09-20T08:38:04.889287-07:00",
+    "fetched_at": "2026-09-28T09:48:25.291531-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {
-    "spread": null,
-    "total": null
+    "spread": {
+     "market": "spreads",
+     "side": "LAC",
+     "snapshots": 2,
+     "open": 7.0,
+     "open_at": "2026-09-22_070236 America/Phoenix",
+     "open_books": 3,
+     "latest": 7.0,
+     "latest_at": "2026-09-24_070407 America/Phoenix",
+     "latest_books": 3,
+     "open_price": -108,
+     "latest_price": -105,
+     "move": 0.0,
+     "toward_lean": 0.0,
+     "direction": "flat",
+     "key_crossed": []
+    },
+    "total": {
+     "market": "totals",
+     "side": "over",
+     "snapshots": 2,
+     "open": 50.5,
+     "open_at": "2026-09-22_070236 America/Phoenix",
+     "open_books": 3,
+     "latest": 50.5,
+     "latest_at": "2026-09-24_070407 America/Phoenix",
+     "latest_books": 3,
+     "open_price": -105,
+     "latest_price": -105,
+     "move": 0.0,
+     "toward_lean": null,
+     "direction": null,
+     "key_crossed": []
+    }
    }
   },
   {
@@ -3814,22 +4223,11 @@
     "watch_same_way": 0,
     "survivors_against": 0,
     "rule_a": false,
-    "rule_b": true,
-    "number_to_shop": {
-     "line": -1.5,
-     "price": -115,
-     "book": "fanduel",
-     "reachable_by": [
-      "Q",
-      "Mike",
-      "Marques"
-     ],
-     "consensus": -2.0,
-     "books_quoting": 2
-    },
-    "opener_consensus": -2.0,
-    "moved_toward_lean": -0.5,
-    "lean_remaining": 1.25,
+    "rule_b": null,
+    "number_to_shop": null,
+    "opener_consensus": null,
+    "moved_toward_lean": null,
+    "lean_remaining": null,
     "angles_for": [
      {
       "name": "sandwich_game",
@@ -4079,8 +4477,8 @@
        "wind"
       ],
       "values": [
-       "JAX: high_wind=no [wind=n/a]",
-       "NE: high_wind=no [wind=n/a]"
+       "JAX: high_wind=no [wind=7]",
+       "NE: high_wind=no [wind=7]"
       ],
       "result": "NOT WIRED",
       "note": "not wired to the kickoff forecast yet: the WEATHER section shows the forecast wind (3.4) for reading only; wiring the angle to forecast wind is an intake decision (its backtest used post-game wind)",
@@ -4204,8 +4602,8 @@
        "wind"
       ],
       "values": [
-       "JAX: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-27, dome_team=no, home_roof=outdoors, roof=outdoors, wind=n/a]",
-       "NE: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-27, dome_team=no, home_roof=outdoors, roof=outdoors, wind=n/a]"
+       "JAX: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-27, dome_team=no, home_roof=outdoors, roof=outdoors, wind=7]",
+       "NE: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-27, dome_team=no, home_roof=outdoors, roof=outdoors, wind=7]"
       ],
       "result": "NOT WIRED",
       "note": "same: the forecast is shown in WEATHER, the angle stays unwired until intake (also outside its window: needs months Nov-Jan)",
@@ -4331,8 +4729,8 @@
        "coach_first_season_with_team"
       ],
       "values": [
-       "JAX: off_division_loss=no, sandwich_game=no, coach_tenure_seasons=2 (needs >=5) [prev_div_game=0, prev_team_margin=n/a, next_div_game=0, coach_first_season_with_team=2025]",
-       "NE: off_division_loss=no, sandwich_game=yes, coach_tenure_seasons=2 (needs >=5) [prev_div_game=0, prev_team_margin=n/a, next_div_game=1, coach_first_season_with_team=2025]"
+       "JAX: off_division_loss=no, sandwich_game=no, coach_tenure_seasons=2 (needs >=5) [prev_div_game=0, prev_team_margin=-7, next_div_game=0, coach_first_season_with_team=2025]",
+       "NE: off_division_loss=no, sandwich_game=yes, coach_tenure_seasons=2 (needs >=5) [prev_div_game=0, prev_team_margin=17, next_div_game=1, coach_first_season_with_team=2025]"
       ],
       "result": "NOT FIRED",
       "note": "",
@@ -4356,15 +4754,15 @@
      "spread": {
       "net": "sum of fired weights: JAX 0.75; net 0.75 toward JAX; cap +/-1.5 -> lean JAX 0.75",
       "rule_a": "survivors same direction: 1 of 2 needed (or 1 survivor + 1 watch); watch same direction: 0 counted (1 below floor - not counted); survivors against: 0 -> fail",
-      "rule_b": "opener JAX -2 vs best now JAX -1.5 (-115) at fanduel; moved -0.5 toward JAX (negative = away), lean 0.75 -> pass (number not gone)",
-      "move": "open JAX -2 (2026-09-19_1756 ) -> latest JAX -2 (2026-09-20_07064); move +0 over 5 snapshot(s); flat (+0); key numbers crossed: none",
+      "rule_b": "no line posted yet",
+      "move": "open JAX -2 (2026-09-19_1756 ) -> latest JAX -3 (2026-09-24_07040); move -1 over 7 snapshot(s); toward lean (+1); key numbers crossed: 3.0",
       "verdict": "not enough angles (1 survivor, 0 watch same way; 1 watch below floor - not counted)"
      },
      "total": {
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": "open over 46 (2026-09-19_1756 ) -> latest over 46 (2026-09-20_07064); move +0 over 5 snapshot(s); key numbers crossed: none",
+      "move": "open over 46 (2026-09-19_1756 ) -> latest over 45.5 (2026-09-24_07040); move -0.5 over 7 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      }
     }
@@ -4372,26 +4770,26 @@
    "shadow_lean": {
     "spread": {
      "side": "JAX",
-     "line": -1.5,
-     "price": -115,
-     "book": "fanduel",
+     "line": null,
+     "price": null,
+     "book": null,
      "tier": "B",
      "net_lean": 0.75,
      "forced_default": false,
-     "line_stale": false,
-     "pulled_at": "2026-09-20T07:06:49-07:00"
+     "line_stale": true,
+     "pulled_at": null
     },
     "total": null
    },
    "tag": "POSSIBLE BET",
-   "tag_rank": 1,
+   "tag_rank": 5,
    "tag_reason": "Survivor lean JAX, rule (a) not met: 1 of 2",
    "tag_market": "spread",
    "tag_tier": "B",
    "tag_keys": {
     "net_survivor_weight": 0.75,
     "survivor_angles_fired": 1,
-    "price_edge": 0.5,
+    "price_edge": 0.0,
     "kickoff": "2026-09-27T10:00:00-07:00"
    },
    "weather": {
@@ -4399,9 +4797,9 @@
     "badge": null,
     "detail": null,
     "wind_mph": 5.8,
-    "wind_max_3h_mph": 5.8,
-    "gust_mph": 6.3,
-    "temp_f": 88.3,
+    "wind_max_3h_mph": 6.0,
+    "gust_mph": 9.4,
+    "temp_f": 81.6,
     "precip_in_3h": 0.0,
     "kickoff_hour_utc": "2026-09-27T17:00:00+00:00",
     "hours": [
@@ -4416,40 +4814,42 @@
     "lat": 30.324,
     "lon": -81.6373,
     "kickoff_utc": "2026-09-27T17:00:00+00:00",
-    "fetched_at": "2026-09-20T08:38:04.889287-07:00",
+    "fetched_at": "2026-09-28T09:48:25.291531-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {
     "spread": {
      "market": "spreads",
      "side": "JAX",
-     "snapshots": 5,
+     "snapshots": 7,
      "open": -2.0,
      "open_at": "2026-09-19_1756 America/Phoenix",
      "open_books": 2,
-     "latest": -2.0,
-     "latest_at": "2026-09-20_070649 America/Phoenix",
-     "latest_books": 2,
+     "latest": -3.0,
+     "latest_at": "2026-09-24_070407 America/Phoenix",
+     "latest_books": 3,
      "open_price": -112,
-     "latest_price": -112,
-     "move": 0.0,
-     "toward_lean": 0.0,
-     "direction": "flat",
-     "key_crossed": []
+     "latest_price": -108,
+     "move": -1.0,
+     "toward_lean": 1.0,
+     "direction": "toward lean",
+     "key_crossed": [
+      3.0
+     ]
     },
     "total": {
      "market": "totals",
      "side": "over",
-     "snapshots": 5,
+     "snapshots": 7,
      "open": 46.0,
      "open_at": "2026-09-19_1756 America/Phoenix",
      "open_books": 2,
-     "latest": 46.0,
-     "latest_at": "2026-09-20_070649 America/Phoenix",
-     "latest_books": 2,
+     "latest": 45.5,
+     "latest_at": "2026-09-24_070407 America/Phoenix",
+     "latest_books": 3,
      "open_price": -107,
-     "latest_price": -107,
-     "move": 0.0,
+     "latest_price": -115,
+     "move": -0.5,
      "toward_lean": null,
      "direction": null,
      "key_crossed": []
@@ -4932,7 +5332,7 @@
       ],
       "values": [
        "DET: off_division_loss=no, sandwich_game=no, coach_tenure_seasons=6 (needs >=5) [prev_div_game=0, prev_team_margin=-10, next_div_game=0, coach_first_season_with_team=2021]",
-       "NYJ: off_division_loss=no, sandwich_game=no, coach_tenure_seasons=2 (needs >=5) [prev_div_game=0, prev_team_margin=n/a, next_div_game=0, coach_first_season_with_team=2025]"
+       "NYJ: off_division_loss=no, sandwich_game=no, coach_tenure_seasons=2 (needs >=5) [prev_div_game=0, prev_team_margin=-3, next_div_game=0, coach_first_season_with_team=2025]"
       ],
       "result": "NOT FIRED",
       "note": "",
@@ -4957,14 +5357,14 @@
       "net": "sum of fired weights: DET 0.5; net 0.5 toward DET; cap +/-1.5 -> lean DET 0.5",
       "rule_a": "survivors same direction: 1 of 2 needed (or 1 survivor + 1 watch); watch same direction: 0 counted; survivors against: 0 -> fail",
       "rule_b": "no line posted yet",
-      "move": "no snapshot history for this game yet",
+      "move": "open DET -6.5 (2026-09-22_07023) -> latest DET -6.5 (2026-09-24_07040); move +0 over 2 snapshot(s); flat (+0); key numbers crossed: none",
       "verdict": "not enough angles (1 survivor, 0 watch same way)"
      },
      "total": {
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": "no snapshot history for this game yet",
+      "move": "open over 48.5 (2026-09-22_07023) -> latest over 47.5 (2026-09-24_07040); move -1 over 2 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      }
     }
@@ -4978,7 +5378,7 @@
      "tier": "B",
      "net_lean": 0.5,
      "forced_default": false,
-     "line_stale": false,
+     "line_stale": true,
      "pulled_at": null
     },
     "total": null
@@ -5008,12 +5408,44 @@
     "lat": 42.34,
     "lon": -83.0456,
     "kickoff_utc": "2026-09-27T17:00:00+00:00",
-    "fetched_at": "2026-09-20T08:38:04.889287-07:00",
+    "fetched_at": "2026-09-28T09:48:25.291531-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {
-    "spread": null,
-    "total": null
+    "spread": {
+     "market": "spreads",
+     "side": "DET",
+     "snapshots": 2,
+     "open": -6.5,
+     "open_at": "2026-09-22_070236 America/Phoenix",
+     "open_books": 3,
+     "latest": -6.5,
+     "latest_at": "2026-09-24_070407 America/Phoenix",
+     "latest_books": 3,
+     "open_price": -115,
+     "latest_price": -115,
+     "move": 0.0,
+     "toward_lean": 0.0,
+     "direction": "flat",
+     "key_crossed": []
+    },
+    "total": {
+     "market": "totals",
+     "side": "over",
+     "snapshots": 2,
+     "open": 48.5,
+     "open_at": "2026-09-22_070236 America/Phoenix",
+     "open_books": 3,
+     "latest": 47.5,
+     "latest_at": "2026-09-24_070407 America/Phoenix",
+     "latest_books": 3,
+     "open_price": -105,
+     "latest_price": -110,
+     "move": -1.0,
+     "toward_lean": null,
+     "direction": null,
+     "key_crossed": []
+    }
    }
   },
   {
@@ -5191,8 +5623,8 @@
        "wind"
       ],
       "values": [
-       "WAS: high_wind=no [wind=n/a]",
-       "SEA: high_wind=no [wind=n/a]"
+       "WAS: high_wind=no [wind=13]",
+       "SEA: high_wind=no [wind=13]"
       ],
       "result": "NOT WIRED",
       "note": "not wired to the kickoff forecast yet: the WEATHER section shows the forecast wind (3.4) for reading only; wiring the angle to forecast wind is an intake decision (its backtest used post-game wind)",
@@ -5316,8 +5748,8 @@
        "wind"
       ],
       "values": [
-       "WAS: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-27, dome_team=no, home_roof=outdoors, roof=outdoors, wind=n/a]",
-       "SEA: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-27, dome_team=no, home_roof=outdoors, roof=outdoors, wind=n/a]"
+       "WAS: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-27, dome_team=no, home_roof=outdoors, roof=outdoors, wind=13]",
+       "SEA: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-27, dome_team=no, home_roof=outdoors, roof=outdoors, wind=13]"
       ],
       "result": "NOT WIRED",
       "note": "same: the forecast is shown in WEATHER, the angle stays unwired until intake (also outside its window: needs months Nov-Jan)",
@@ -5443,8 +5875,8 @@
        "coach_first_season_with_team"
       ],
       "values": [
-       "WAS: off_division_loss=no, sandwich_game=no, coach_tenure_seasons=3 (needs >=5) [prev_div_game=1, prev_team_margin=n/a, next_div_game=0, coach_first_season_with_team=2024]",
-       "SEA: off_division_loss=no, sandwich_game=no, coach_tenure_seasons=3 (needs >=5) [prev_div_game=1, prev_team_margin=n/a, next_div_game=0, coach_first_season_with_team=2024]"
+       "WAS: off_division_loss=yes, sandwich_game=no, coach_tenure_seasons=3 (needs >=5) [prev_div_game=1, prev_team_margin=-17, next_div_game=0, coach_first_season_with_team=2024]",
+       "SEA: off_division_loss=no, sandwich_game=no, coach_tenure_seasons=3 (needs >=5) [prev_div_game=1, prev_team_margin=24, next_div_game=0, coach_first_season_with_team=2024]"
       ],
       "result": "NOT FIRED",
       "note": "",
@@ -5469,14 +5901,14 @@
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": "open WAS +2 (2026-09-19_1756 ) -> latest WAS +2.5 (2026-09-20_07064); move +0.5 over 5 snapshot(s); key numbers crossed: none",
+      "move": "open WAS +2 (2026-09-19_1756 ) -> latest WAS +7 (2026-09-24_07040); move +5 over 7 snapshot(s); key numbers crossed: 3.0, 7.0",
       "verdict": "no lean"
      },
      "total": {
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": "open over 42 (2026-09-19_1756 ) -> latest over 41.5 (2026-09-20_07064); move -0.5 over 5 snapshot(s); key numbers crossed: none",
+      "move": "open over 42 (2026-09-19_1756 ) -> latest over 64.5 (2026-09-27_13351); move +22.5 over 8 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      }
     }
@@ -5484,14 +5916,14 @@
    "shadow_lean": {
     "spread": {
      "side": "WAS",
-     "line": 2.5,
-     "price": -110,
-     "book": "draftkings",
+     "line": null,
+     "price": null,
+     "book": null,
      "tier": "D",
      "net_lean": 0.0,
      "forced_default": true,
-     "line_stale": false,
-     "pulled_at": "2026-09-20T07:06:49-07:00"
+     "line_stale": true,
+     "pulled_at": null
     },
     "total": null
    },
@@ -5510,11 +5942,11 @@
     "status": "forecast",
     "badge": null,
     "detail": null,
-    "wind_mph": 12.7,
-    "wind_max_3h_mph": 13.7,
-    "gust_mph": 34.4,
-    "temp_f": 55.1,
-    "precip_in_3h": 0.17,
+    "wind_mph": 10.6,
+    "wind_max_3h_mph": 13.4,
+    "gust_mph": 33.3,
+    "temp_f": 59.5,
+    "precip_in_3h": 0.0,
     "kickoff_hour_utc": "2026-09-27T17:00:00+00:00",
     "hours": [
      "2026-09-27T17:00:00+00:00",
@@ -5528,40 +5960,43 @@
     "lat": 38.9076,
     "lon": -76.8645,
     "kickoff_utc": "2026-09-27T17:00:00+00:00",
-    "fetched_at": "2026-09-20T08:38:04.889287-07:00",
+    "fetched_at": "2026-09-28T09:48:25.291531-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {
     "spread": {
      "market": "spreads",
      "side": "WAS",
-     "snapshots": 5,
+     "snapshots": 7,
      "open": 2.0,
      "open_at": "2026-09-19_1756 America/Phoenix",
      "open_books": 2,
-     "latest": 2.5,
-     "latest_at": "2026-09-20_070649 America/Phoenix",
-     "latest_books": 1,
+     "latest": 7.0,
+     "latest_at": "2026-09-24_070407 America/Phoenix",
+     "latest_books": 3,
      "open_price": -110,
-     "latest_price": -110,
-     "move": 0.5,
+     "latest_price": -105,
+     "move": 5.0,
      "toward_lean": null,
      "direction": null,
-     "key_crossed": []
+     "key_crossed": [
+      3.0,
+      7.0
+     ]
     },
     "total": {
      "market": "totals",
      "side": "over",
-     "snapshots": 5,
+     "snapshots": 8,
      "open": 42.0,
      "open_at": "2026-09-19_1756 America/Phoenix",
      "open_books": 2,
-     "latest": 41.5,
-     "latest_at": "2026-09-20_070649 America/Phoenix",
+     "latest": 64.5,
+     "latest_at": "2026-09-27_133514 America/Phoenix",
      "latest_books": 1,
      "open_price": -107,
-     "latest_price": -110,
-     "move": -0.5,
+     "latest_price": 223,
+     "move": 22.5,
      "toward_lean": null,
      "direction": null,
      "key_crossed": []
@@ -5743,8 +6178,8 @@
        "wind"
       ],
       "values": [
-       "NYG: high_wind=no [wind=n/a]",
-       "TEN: high_wind=no [wind=n/a]"
+       "NYG: high_wind=no [wind=10]",
+       "TEN: high_wind=no [wind=10]"
       ],
       "result": "NOT WIRED",
       "note": "not wired to the kickoff forecast yet: the WEATHER section shows the forecast wind (3.4) for reading only; wiring the angle to forecast wind is an intake decision (its backtest used post-game wind)",
@@ -5868,8 +6303,8 @@
        "wind"
       ],
       "values": [
-       "NYG: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-27, dome_team=no, home_roof=outdoors, roof=outdoors, wind=n/a]",
-       "TEN: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-27, dome_team=no, home_roof=outdoors, roof=outdoors, wind=n/a]"
+       "NYG: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-27, dome_team=no, home_roof=outdoors, roof=outdoors, wind=10]",
+       "TEN: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-27, dome_team=no, home_roof=outdoors, roof=outdoors, wind=10]"
       ],
       "result": "NOT WIRED",
       "note": "same: the forecast is shown in WEATHER, the angle stays unwired until intake (also outside its window: needs months Nov-Jan)",
@@ -5995,8 +6430,8 @@
        "coach_first_season_with_team"
       ],
       "values": [
-       "NYG: off_division_loss=no, sandwich_game=no, coach_tenure_seasons=1 (needs >=5) [prev_div_game=0, prev_team_margin=n/a, next_div_game=0, coach_first_season_with_team=2026]",
-       "TEN: off_division_loss=no, sandwich_game=no, coach_tenure_seasons=1 (needs >=5) [prev_div_game=0, prev_team_margin=n/a, next_div_game=0, coach_first_season_with_team=2026]"
+       "NYG: off_division_loss=no, sandwich_game=no, coach_tenure_seasons=1 (needs >=5) [prev_div_game=0, prev_team_margin=-22, next_div_game=0, coach_first_season_with_team=2026]",
+       "TEN: off_division_loss=no, sandwich_game=no, coach_tenure_seasons=1 (needs >=5) [prev_div_game=0, prev_team_margin=-4, next_div_game=0, coach_first_season_with_team=2026]"
       ],
       "result": "NOT FIRED",
       "note": "",
@@ -6021,14 +6456,14 @@
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": "open NYG -5.5 (2026-09-19_1756 ) -> latest NYG -5.5 (2026-09-20_07064); move +0 over 5 snapshot(s); key numbers crossed: none",
+      "move": "open NYG -5.5 (2026-09-19_1756 ) -> latest NYG -3 (2026-09-24_07040); move +2.5 over 7 snapshot(s); key numbers crossed: 3.0",
       "verdict": "no lean"
      },
      "total": {
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": "open over 43 (2026-09-19_1756 ) -> latest over 43 (2026-09-20_07064); move +0 over 5 snapshot(s); key numbers crossed: none",
+      "move": "open over 43 (2026-09-19_1756 ) -> latest over 38.5 (2026-09-24_07040); move -4.5 over 7 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      }
     }
@@ -6036,14 +6471,14 @@
    "shadow_lean": {
     "spread": {
      "side": "NYG",
-     "line": -5.5,
-     "price": -110,
-     "book": "draftkings",
+     "line": null,
+     "price": null,
+     "book": null,
      "tier": "D",
      "net_lean": 0.0,
      "forced_default": true,
-     "line_stale": false,
-     "pulled_at": "2026-09-20T07:06:49-07:00"
+     "line_stale": true,
+     "pulled_at": null
     },
     "total": null
    },
@@ -6062,11 +6497,11 @@
     "status": "forecast",
     "badge": null,
     "detail": null,
-    "wind_mph": 17.9,
-    "wind_max_3h_mph": 17.9,
-    "gust_mph": 37.8,
-    "temp_f": 55.1,
-    "precip_in_3h": 0.08,
+    "wind_mph": 12.7,
+    "wind_max_3h_mph": 12.8,
+    "gust_mph": 32.4,
+    "temp_f": 62.0,
+    "precip_in_3h": 0.05,
     "kickoff_hour_utc": "2026-09-27T17:00:00+00:00",
     "hours": [
      "2026-09-27T17:00:00+00:00",
@@ -6080,40 +6515,42 @@
     "lat": 40.8135,
     "lon": -74.0745,
     "kickoff_utc": "2026-09-27T17:00:00+00:00",
-    "fetched_at": "2026-09-20T08:38:04.889287-07:00",
+    "fetched_at": "2026-09-28T09:48:25.291531-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {
     "spread": {
      "market": "spreads",
      "side": "NYG",
-     "snapshots": 5,
+     "snapshots": 7,
      "open": -5.5,
      "open_at": "2026-09-19_1756 America/Phoenix",
      "open_books": 2,
-     "latest": -5.5,
-     "latest_at": "2026-09-20_070649 America/Phoenix",
-     "latest_books": 2,
+     "latest": -3.0,
+     "latest_at": "2026-09-24_070407 America/Phoenix",
+     "latest_books": 3,
      "open_price": -115,
-     "latest_price": -115,
-     "move": 0.0,
+     "latest_price": -102,
+     "move": 2.5,
      "toward_lean": null,
      "direction": null,
-     "key_crossed": []
+     "key_crossed": [
+      3.0
+     ]
     },
     "total": {
      "market": "totals",
      "side": "over",
-     "snapshots": 5,
+     "snapshots": 7,
      "open": 43.0,
      "open_at": "2026-09-19_1756 America/Phoenix",
      "open_books": 2,
-     "latest": 43.0,
-     "latest_at": "2026-09-20_070649 America/Phoenix",
-     "latest_books": 2,
+     "latest": 38.5,
+     "latest_at": "2026-09-24_070407 America/Phoenix",
+     "latest_books": 3,
      "open_price": -110,
      "latest_price": -110,
-     "move": 0.0,
+     "move": -4.5,
      "toward_lean": null,
      "direction": null,
      "key_crossed": []
@@ -6267,7 +6704,7 @@
       ],
       "values": [
        "SF: dome_team_outdoors_cold=no [gameday=2026-09-27, dome_team=no, home_roof=outdoors, roof=outdoors]",
-       "ARI: dome_team_outdoors_cold=no [gameday=2026-09-27, dome_team=no, home_roof=n/a, roof=outdoors]"
+       "ARI: dome_team_outdoors_cold=no [gameday=2026-09-27, dome_team=yes, home_roof=closed, roof=outdoors]"
       ],
       "result": "OUT OF SEASON",
       "note": "needs months Nov-Jan; this game is Sep 27",
@@ -6295,8 +6732,8 @@
        "wind"
       ],
       "values": [
-       "SF: high_wind=no [wind=n/a]",
-       "ARI: high_wind=no [wind=n/a]"
+       "SF: high_wind=no [wind=4]",
+       "ARI: high_wind=no [wind=4]"
       ],
       "result": "NOT WIRED",
       "note": "not wired to the kickoff forecast yet: the WEATHER section shows the forecast wind (3.4) for reading only; wiring the angle to forecast wind is an intake decision (its backtest used post-game wind)",
@@ -6420,8 +6857,8 @@
        "wind"
       ],
       "values": [
-       "SF: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-27, dome_team=no, home_roof=outdoors, roof=outdoors, wind=n/a]",
-       "ARI: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-27, dome_team=no, home_roof=n/a, roof=outdoors, wind=n/a]"
+       "SF: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-27, dome_team=no, home_roof=outdoors, roof=outdoors, wind=4]",
+       "ARI: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-27, dome_team=yes, home_roof=closed, roof=outdoors, wind=4]"
       ],
       "result": "NOT WIRED",
       "note": "same: the forecast is shown in WEATHER, the angle stays unwired until intake (also outside its window: needs months Nov-Jan)",
@@ -6547,8 +6984,8 @@
        "coach_first_season_with_team"
       ],
       "values": [
-       "SF: off_division_loss=no, sandwich_game=no, coach_tenure_seasons=10 (needs >=5) [prev_div_game=0, prev_team_margin=n/a, next_div_game=0, coach_first_season_with_team=2017]",
-       "ARI: off_division_loss=no, sandwich_game=no, coach_tenure_seasons=4 (needs >=5) [prev_div_game=1, prev_team_margin=n/a, next_div_game=0, coach_first_season_with_team=2023]"
+       "SF: off_division_loss=no, sandwich_game=no, coach_tenure_seasons=10 (needs >=5) [prev_div_game=0, prev_team_margin=22, next_div_game=0, coach_first_season_with_team=2017]",
+       "ARI: off_division_loss=yes, sandwich_game=no, coach_tenure_seasons=4 (needs >=5) [prev_div_game=1, prev_team_margin=-24, next_div_game=0, coach_first_season_with_team=2023]"
       ],
       "result": "NOT FIRED",
       "note": "",
@@ -6573,14 +7010,14 @@
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": "open SF -8.5 (2026-09-19_1756 ) -> latest SF -8.5 (2026-09-20_07064); move +0 over 5 snapshot(s); key numbers crossed: none",
+      "move": "open SF -8.5 (2026-09-19_1756 ) -> latest SF -15.5 (2026-09-27_13351); move -7 over 8 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      },
      "total": {
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": "open over 48 (2026-09-19_1756 ) -> latest over 48 (2026-09-20_07064); move +0 over 5 snapshot(s); key numbers crossed: none",
+      "move": "open over 48 (2026-09-19_1756 ) -> latest over 47.5 (2026-09-27_13351); move -0.5 over 8 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      }
     }
@@ -6588,14 +7025,14 @@
    "shadow_lean": {
     "spread": {
      "side": "SF",
-     "line": -8.5,
-     "price": -110,
-     "book": "draftkings",
+     "line": -14.5,
+     "price": -114,
+     "book": "fanduel",
      "tier": "D",
      "net_lean": 0.0,
      "forced_default": true,
-     "line_stale": false,
-     "pulled_at": "2026-09-20T07:06:49-07:00"
+     "line_stale": true,
+     "pulled_at": "2026-09-27T13:35:14-07:00"
     },
     "total": null
    },
@@ -6614,10 +7051,10 @@
     "status": "forecast",
     "badge": null,
     "detail": null,
-    "wind_mph": 4.6,
-    "wind_max_3h_mph": 8.6,
-    "gust_mph": 8.3,
-    "temp_f": 76.2,
+    "wind_mph": 8.6,
+    "wind_max_3h_mph": 17.0,
+    "gust_mph": 21.9,
+    "temp_f": 68.0,
     "precip_in_3h": 0.0,
     "kickoff_hour_utc": "2026-09-27T20:00:00+00:00",
     "hours": [
@@ -6632,23 +7069,23 @@
     "lat": 37.4033,
     "lon": -121.9694,
     "kickoff_utc": "2026-09-27T20:05:00+00:00",
-    "fetched_at": "2026-09-20T08:38:04.889287-07:00",
+    "fetched_at": "2026-09-28T09:48:25.291531-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {
     "spread": {
      "market": "spreads",
      "side": "SF",
-     "snapshots": 5,
+     "snapshots": 8,
      "open": -8.5,
      "open_at": "2026-09-19_1756 America/Phoenix",
      "open_books": 2,
-     "latest": -8.5,
-     "latest_at": "2026-09-20_070649 America/Phoenix",
-     "latest_books": 2,
+     "latest": -15.5,
+     "latest_at": "2026-09-27_133514 America/Phoenix",
+     "latest_books": 3,
      "open_price": -112,
-     "latest_price": -112,
-     "move": 0.0,
+     "latest_price": -113,
+     "move": -7.0,
      "toward_lean": null,
      "direction": null,
      "key_crossed": []
@@ -6656,16 +7093,16 @@
     "total": {
      "market": "totals",
      "side": "over",
-     "snapshots": 5,
+     "snapshots": 8,
      "open": 48.0,
      "open_at": "2026-09-19_1756 America/Phoenix",
      "open_books": 2,
-     "latest": 48.0,
-     "latest_at": "2026-09-20_070649 America/Phoenix",
-     "latest_books": 2,
+     "latest": 47.5,
+     "latest_at": "2026-09-27_133514 America/Phoenix",
+     "latest_books": 3,
      "open_price": -110,
      "latest_price": -110,
-     "move": 0.0,
+     "move": -0.5,
      "toward_lean": null,
      "direction": null,
      "key_crossed": []
@@ -6847,8 +7284,8 @@
        "wind"
       ],
       "values": [
-       "TB: high_wind=no [wind=n/a]",
-       "MIN: high_wind=no [wind=n/a]"
+       "TB: high_wind=no [wind=7]",
+       "MIN: high_wind=no [wind=7]"
       ],
       "result": "NOT WIRED",
       "note": "not wired to the kickoff forecast yet: the WEATHER section shows the forecast wind (3.4) for reading only; wiring the angle to forecast wind is an intake decision (its backtest used post-game wind)",
@@ -6972,8 +7409,8 @@
        "wind"
       ],
       "values": [
-       "TB: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-27, dome_team=no, home_roof=outdoors, roof=outdoors, wind=n/a]",
-       "MIN: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-27, dome_team=yes, home_roof=dome, roof=outdoors, wind=n/a]"
+       "TB: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-27, dome_team=no, home_roof=outdoors, roof=outdoors, wind=7]",
+       "MIN: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-27, dome_team=yes, home_roof=dome, roof=outdoors, wind=7]"
       ],
       "result": "NOT WIRED",
       "note": "same: the forecast is shown in WEATHER, the angle stays unwired until intake (also outside its window: needs months Nov-Jan)",
@@ -7099,8 +7536,8 @@
        "coach_first_season_with_team"
       ],
       "values": [
-       "TB: off_division_loss=no, sandwich_game=no, coach_tenure_seasons=5 (needs >=5) [prev_div_game=0, prev_team_margin=n/a, next_div_game=0, coach_first_season_with_team=2022]",
-       "MIN: off_division_loss=no, sandwich_game=no, coach_tenure_seasons=5 (needs >=5) [prev_div_game=1, prev_team_margin=n/a, next_div_game=0, coach_first_season_with_team=2022]"
+       "TB: off_division_loss=no, sandwich_game=no, coach_tenure_seasons=5 (needs >=5) [prev_div_game=0, prev_team_margin=-4, next_div_game=0, coach_first_season_with_team=2022]",
+       "MIN: off_division_loss=no, sandwich_game=no, coach_tenure_seasons=5 (needs >=5) [prev_div_game=1, prev_team_margin=6, next_div_game=0, coach_first_season_with_team=2022]"
       ],
       "result": "NOT FIRED",
       "note": "",
@@ -7125,14 +7562,14 @@
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": "open TB -1.5 (2026-09-19_1756 ) -> latest TB -1.5 (2026-09-20_07064); move +0 over 5 snapshot(s); key numbers crossed: none",
+      "move": "open TB -1.5 (2026-09-19_1756 ) -> latest TB +2.5 (2026-09-27_13351); move +4 over 8 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      },
      "total": {
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": "open over 46 (2026-09-19_1756 ) -> latest over 46 (2026-09-20_07064); move +0 over 5 snapshot(s); key numbers crossed: none",
+      "move": "open over 46 (2026-09-19_1756 ) -> latest over 53.5 (2026-09-27_13351); move +7.5 over 8 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      }
     }
@@ -7140,14 +7577,14 @@
    "shadow_lean": {
     "spread": {
      "side": "TB",
-     "line": -1.5,
-     "price": -105,
-     "book": "fanduel",
+     "line": 2.5,
+     "price": 100,
+     "book": "betmgm",
      "tier": "D",
      "net_lean": 0.0,
      "forced_default": true,
-     "line_stale": false,
-     "pulled_at": "2026-09-20T07:06:49-07:00"
+     "line_stale": true,
+     "pulled_at": "2026-09-27T13:35:14-07:00"
     },
     "total": null
    },
@@ -7166,10 +7603,10 @@
     "status": "forecast",
     "badge": null,
     "detail": null,
-    "wind_mph": 9.3,
-    "wind_max_3h_mph": 9.7,
-    "gust_mph": 8.5,
-    "temp_f": 88.5,
+    "wind_mph": 5.0,
+    "wind_max_3h_mph": 5.8,
+    "gust_mph": 11.4,
+    "temp_f": 84.7,
     "precip_in_3h": 0.0,
     "kickoff_hour_utc": "2026-09-27T20:00:00+00:00",
     "hours": [
@@ -7184,23 +7621,23 @@
     "lat": 27.9759,
     "lon": -82.5033,
     "kickoff_utc": "2026-09-27T20:05:00+00:00",
-    "fetched_at": "2026-09-20T08:38:04.889287-07:00",
+    "fetched_at": "2026-09-28T09:48:25.291531-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {
     "spread": {
      "market": "spreads",
      "side": "TB",
-     "snapshots": 5,
+     "snapshots": 8,
      "open": -1.5,
      "open_at": "2026-09-19_1756 America/Phoenix",
      "open_books": 2,
-     "latest": -1.5,
-     "latest_at": "2026-09-20_070649 America/Phoenix",
-     "latest_books": 2,
+     "latest": 2.5,
+     "latest_at": "2026-09-27_133514 America/Phoenix",
+     "latest_books": 3,
      "open_price": -107,
-     "latest_price": -107,
-     "move": 0.0,
+     "latest_price": -109,
+     "move": 4.0,
      "toward_lean": null,
      "direction": null,
      "key_crossed": []
@@ -7208,16 +7645,16 @@
     "total": {
      "market": "totals",
      "side": "over",
-     "snapshots": 5,
+     "snapshots": 8,
      "open": 46.0,
      "open_at": "2026-09-19_1756 America/Phoenix",
      "open_books": 2,
-     "latest": 46.0,
-     "latest_at": "2026-09-20_070649 America/Phoenix",
-     "latest_books": 2,
+     "latest": 53.5,
+     "latest_at": "2026-09-27_133514 America/Phoenix",
+     "latest_books": 3,
      "open_price": -110,
-     "latest_price": -110,
-     "move": 0.0,
+     "latest_price": -115,
+     "move": 7.5,
      "toward_lean": null,
      "direction": null,
      "key_crossed": []
@@ -7370,8 +7807,8 @@
        "roof"
       ],
       "values": [
-       "DAL: dome_team_outdoors_cold=no [gameday=2026-09-27, dome_team=no, home_roof=n/a, roof=n/a]",
-       "BAL: dome_team_outdoors_cold=no [gameday=2026-09-27, dome_team=no, home_roof=outdoors, roof=n/a]"
+       "DAL: dome_team_outdoors_cold=no [gameday=2026-09-27, dome_team=yes, home_roof=closed, roof=open]",
+       "BAL: dome_team_outdoors_cold=no [gameday=2026-09-27, dome_team=no, home_roof=outdoors, roof=open]"
       ],
       "result": "OUT OF SEASON",
       "note": "needs months Nov-Jan; this game is Sep 27",
@@ -7399,8 +7836,8 @@
        "wind"
       ],
       "values": [
-       "DAL: high_wind=no [wind=n/a]",
-       "BAL: high_wind=no [wind=n/a]"
+       "DAL: high_wind=no [wind=7]",
+       "BAL: high_wind=no [wind=7]"
       ],
       "result": "NOT WIRED",
       "note": "not wired to the kickoff forecast yet: the WEATHER section shows the forecast wind (3.4) for reading only; wiring the angle to forecast wind is an intake decision (its backtest used post-game wind)",
@@ -7524,8 +7961,8 @@
        "wind"
       ],
       "values": [
-       "DAL: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-27, dome_team=no, home_roof=n/a, roof=n/a, wind=n/a]",
-       "BAL: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-27, dome_team=no, home_roof=outdoors, roof=n/a, wind=n/a]"
+       "DAL: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-27, dome_team=yes, home_roof=closed, roof=open, wind=7]",
+       "BAL: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-27, dome_team=no, home_roof=outdoors, roof=open, wind=7]"
       ],
       "result": "NOT WIRED",
       "note": "same: the forecast is shown in WEATHER, the angle stays unwired until intake (also outside its window: needs months Nov-Jan)",
@@ -7651,8 +8088,8 @@
        "coach_first_season_with_team"
       ],
       "values": [
-       "DAL: off_division_loss=no, sandwich_game=no, coach_tenure_seasons=2 (needs >=5) [prev_div_game=1, prev_team_margin=n/a, next_div_game=0, coach_first_season_with_team=2025]",
-       "BAL: off_division_loss=no, sandwich_game=no, coach_tenure_seasons=1 (needs >=5) [prev_div_game=0, prev_team_margin=n/a, next_div_game=0, coach_first_season_with_team=2026]"
+       "DAL: off_division_loss=no, sandwich_game=no, coach_tenure_seasons=2 (needs >=5) [prev_div_game=1, prev_team_margin=17, next_div_game=0, coach_first_season_with_team=2025]",
+       "BAL: off_division_loss=no, sandwich_game=no, coach_tenure_seasons=1 (needs >=5) [prev_div_game=0, prev_team_margin=-7, next_div_game=0, coach_first_season_with_team=2026]"
       ],
       "result": "NOT FIRED",
       "note": "",
@@ -7677,14 +8114,14 @@
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": "open DAL +3.25 (2026-09-19_1756 ) -> latest DAL +3.25 (2026-09-20_07064); move +0 over 5 snapshot(s); key numbers crossed: none",
+      "move": "open DAL +3.25 (2026-09-19_1756 ) -> latest DAL +1.5 (2026-09-27_13351); move -1.75 over 8 snapshot(s); key numbers crossed: 3.0",
       "verdict": "no lean"
      },
      "total": {
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": "open over 52.5 (2026-09-19_1756 ) -> latest over 52.5 (2026-09-20_07064); move +0 over 5 snapshot(s); key numbers crossed: none",
+      "move": "open over 52.5 (2026-09-19_1756 ) -> latest over 51.5 (2026-09-27_13351); move -1 over 8 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      }
     }
@@ -7692,14 +8129,14 @@
    "shadow_lean": {
     "spread": {
      "side": "DAL",
-     "line": 3.5,
-     "price": -118,
+     "line": 1.5,
+     "price": -120,
      "book": "fanduel",
      "tier": "D",
      "net_lean": 0.0,
      "forced_default": true,
-     "line_stale": false,
-     "pulled_at": "2026-09-20T07:06:49-07:00"
+     "line_stale": true,
+     "pulled_at": "2026-09-27T13:35:14-07:00"
     },
     "total": null
    },
@@ -7718,11 +8155,11 @@
     "status": "forecast",
     "badge": null,
     "detail": null,
-    "wind_mph": 9.2,
-    "wind_max_3h_mph": 9.2,
-    "gust_mph": 24.2,
-    "temp_f": 70.6,
-    "precip_in_3h": 0.0,
+    "wind_mph": 5.1,
+    "wind_max_3h_mph": 5.1,
+    "gust_mph": 16.1,
+    "temp_f": 72.1,
+    "precip_in_3h": 0.02,
     "kickoff_hour_utc": "2026-09-27T20:00:00+00:00",
     "hours": [
      "2026-09-27T20:00:00+00:00",
@@ -7736,40 +8173,42 @@
     "lat": -22.9121,
     "lon": -43.2302,
     "kickoff_utc": "2026-09-27T20:25:00+00:00",
-    "fetched_at": "2026-09-20T08:38:04.889287-07:00",
+    "fetched_at": "2026-09-28T09:48:25.291531-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {
     "spread": {
      "market": "spreads",
      "side": "DAL",
-     "snapshots": 5,
+     "snapshots": 8,
      "open": 3.25,
      "open_at": "2026-09-19_1756 America/Phoenix",
      "open_books": 2,
-     "latest": 3.25,
-     "latest_at": "2026-09-20_070649 America/Phoenix",
-     "latest_books": 2,
+     "latest": 1.5,
+     "latest_at": "2026-09-27_133514 America/Phoenix",
+     "latest_books": 3,
      "open_price": -114,
-     "latest_price": -114,
-     "move": 0.0,
+     "latest_price": -120,
+     "move": -1.75,
      "toward_lean": null,
      "direction": null,
-     "key_crossed": []
+     "key_crossed": [
+      3.0
+     ]
     },
     "total": {
      "market": "totals",
      "side": "over",
-     "snapshots": 5,
+     "snapshots": 8,
      "open": 52.5,
      "open_at": "2026-09-19_1756 America/Phoenix",
      "open_books": 2,
-     "latest": 52.5,
-     "latest_at": "2026-09-20_070649 America/Phoenix",
-     "latest_books": 2,
+     "latest": 51.5,
+     "latest_at": "2026-09-27_133514 America/Phoenix",
+     "latest_books": 3,
      "open_price": -107,
-     "latest_price": -107,
-     "move": 0.0,
+     "latest_price": -108,
+     "move": -1.0,
      "toward_lean": null,
      "direction": null,
      "key_crossed": []
@@ -8203,8 +8642,8 @@
        "coach_first_season_with_team"
       ],
       "values": [
-       "NO: off_division_loss=no, sandwich_game=no, coach_tenure_seasons=2 (needs >=5) [prev_div_game=0, prev_team_margin=n/a, next_div_game=1, coach_first_season_with_team=2025]",
-       "LV: off_division_loss=no, sandwich_game=no, coach_tenure_seasons=1 (needs >=5) [prev_div_game=1, prev_team_margin=n/a, next_div_game=1, coach_first_season_with_team=2026]"
+       "NO: off_division_loss=no, sandwich_game=no, coach_tenure_seasons=2 (needs >=5) [prev_div_game=0, prev_team_margin=7, next_div_game=1, coach_first_season_with_team=2025]",
+       "LV: off_division_loss=no, sandwich_game=no, coach_tenure_seasons=1 (needs >=5) [prev_div_game=1, prev_team_margin=12, next_div_game=1, coach_first_season_with_team=2026]"
       ],
       "result": "NOT FIRED",
       "note": "",
@@ -8229,14 +8668,14 @@
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": "open NO -3 (2026-09-19_1756 ) -> latest NO -3 (2026-09-20_07064); move +0 over 5 snapshot(s); key numbers crossed: none",
+      "move": "open NO -3 (2026-09-19_1756 ) -> latest NO +1.5 (2026-09-27_13351); move +4.5 over 8 snapshot(s); key numbers crossed: 3.0",
       "verdict": "no lean"
      },
      "total": {
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": "open over 45 (2026-09-19_1756 ) -> latest over 45 (2026-09-20_07064); move +0 over 5 snapshot(s); key numbers crossed: none",
+      "move": "open over 45 (2026-09-19_1756 ) -> latest over 43.5 (2026-09-27_13351); move -1.5 over 8 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      }
     }
@@ -8244,14 +8683,14 @@
    "shadow_lean": {
     "spread": {
      "side": "NO",
-     "line": -3.0,
-     "price": -110,
-     "book": "draftkings",
+     "line": 1.5,
+     "price": -118,
+     "book": "betmgm",
      "tier": "D",
      "net_lean": 0.0,
      "forced_default": true,
-     "line_stale": false,
-     "pulled_at": "2026-09-20T07:06:49-07:00"
+     "line_stale": true,
+     "pulled_at": "2026-09-27T13:35:14-07:00"
     },
     "total": null
    },
@@ -8280,40 +8719,42 @@
     "lat": 29.9511,
     "lon": -90.0812,
     "kickoff_utc": "2026-09-27T20:25:00+00:00",
-    "fetched_at": "2026-09-20T08:38:04.889287-07:00",
+    "fetched_at": "2026-09-28T09:48:25.291531-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {
     "spread": {
      "market": "spreads",
      "side": "NO",
-     "snapshots": 5,
+     "snapshots": 8,
      "open": -3.0,
      "open_at": "2026-09-19_1756 America/Phoenix",
      "open_books": 2,
-     "latest": -3.0,
-     "latest_at": "2026-09-20_070649 America/Phoenix",
-     "latest_books": 2,
+     "latest": 1.5,
+     "latest_at": "2026-09-27_133514 America/Phoenix",
+     "latest_books": 3,
      "open_price": -112,
-     "latest_price": -112,
-     "move": 0.0,
+     "latest_price": -119,
+     "move": 4.5,
      "toward_lean": null,
      "direction": null,
-     "key_crossed": []
+     "key_crossed": [
+      3.0
+     ]
     },
     "total": {
      "market": "totals",
      "side": "over",
-     "snapshots": 5,
+     "snapshots": 8,
      "open": 45.0,
      "open_at": "2026-09-19_1756 America/Phoenix",
      "open_books": 2,
-     "latest": 45.0,
-     "latest_at": "2026-09-20_070649 America/Phoenix",
-     "latest_books": 2,
+     "latest": 43.5,
+     "latest_at": "2026-09-27_133514 America/Phoenix",
+     "latest_books": 3,
      "open_price": -112,
-     "latest_price": -112,
-     "move": 0.0,
+     "latest_price": -118,
+     "move": -1.5,
      "toward_lean": null,
      "direction": null,
      "key_crossed": []
@@ -8495,8 +8936,8 @@
        "wind"
       ],
       "values": [
-       "DEN: high_wind=no [wind=n/a]",
-       "LA: high_wind=no [wind=n/a]"
+       "DEN: high_wind=no [wind=10]",
+       "LA: high_wind=no [wind=10]"
       ],
       "result": "NOT WIRED",
       "note": "not wired to the kickoff forecast yet: the WEATHER section shows the forecast wind (3.4) for reading only; wiring the angle to forecast wind is an intake decision (its backtest used post-game wind)",
@@ -8620,8 +9061,8 @@
        "wind"
       ],
       "values": [
-       "DEN: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-27, dome_team=no, home_roof=outdoors, roof=outdoors, wind=n/a]",
-       "LA: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-27, dome_team=yes, home_roof=dome, roof=outdoors, wind=n/a]"
+       "DEN: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-27, dome_team=no, home_roof=outdoors, roof=outdoors, wind=10]",
+       "LA: dome_team_outdoors_cold=no, high_wind=no [gameday=2026-09-27, dome_team=yes, home_roof=dome, roof=outdoors, wind=10]"
       ],
       "result": "NOT WIRED",
       "note": "same: the forecast is shown in WEATHER, the angle stays unwired until intake (also outside its window: needs months Nov-Jan)",
@@ -8747,8 +9188,8 @@
        "coach_first_season_with_team"
       ],
       "values": [
-       "DEN: off_division_loss=no, sandwich_game=no, coach_tenure_seasons=4 (needs >=5) [prev_div_game=0, prev_team_margin=n/a, next_div_game=0, coach_first_season_with_team=2023]",
-       "LA: off_division_loss=no, sandwich_game=no, coach_tenure_seasons=10 (needs >=5) [prev_div_game=0, prev_team_margin=n/a, next_div_game=0, coach_first_season_with_team=2017]"
+       "DEN: off_division_loss=no, sandwich_game=no, coach_tenure_seasons=4 (needs >=5) [prev_div_game=0, prev_team_margin=7, next_div_game=0, coach_first_season_with_team=2023]",
+       "LA: off_division_loss=no, sandwich_game=no, coach_tenure_seasons=10 (needs >=5) [prev_div_game=0, prev_team_margin=22, next_div_game=0, coach_first_season_with_team=2017]"
       ],
       "result": "NOT FIRED",
       "note": "",
@@ -8773,14 +9214,14 @@
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": "open DEN +2.5 (2026-09-19_1756 ) -> latest DEN +2.5 (2026-09-20_07064); move +0 over 5 snapshot(s); key numbers crossed: none",
+      "move": "open DEN +2.5 (2026-09-19_1756 ) -> latest DEN +1.5 (2026-09-27_13351); move -1 over 8 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      },
      "total": {
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": "open over 46.5 (2026-09-19_1756 ) -> latest over 46.5 (2026-09-20_07064); move +0 over 5 snapshot(s); key numbers crossed: none",
+      "move": "open over 46.5 (2026-09-19_1756 ) -> latest over 44.5 (2026-09-27_13351); move -2 over 8 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      }
     }
@@ -8789,13 +9230,13 @@
     "spread": {
      "side": "DEN",
      "line": 2.5,
-     "price": -110,
-     "book": "draftkings",
+     "price": -118,
+     "book": "fanduel",
      "tier": "D",
      "net_lean": 0.0,
      "forced_default": true,
-     "line_stale": false,
-     "pulled_at": "2026-09-20T07:06:49-07:00"
+     "line_stale": true,
+     "pulled_at": "2026-09-27T13:35:14-07:00"
     },
     "total": null
    },
@@ -8814,10 +9255,10 @@
     "status": "forecast",
     "badge": null,
     "detail": null,
-    "wind_mph": 11.4,
-    "wind_max_3h_mph": 11.4,
-    "gust_mph": 15.2,
-    "temp_f": 83.8,
+    "wind_mph": 7.8,
+    "wind_max_3h_mph": 7.8,
+    "gust_mph": 12.3,
+    "temp_f": 86.1,
     "precip_in_3h": 0.0,
     "kickoff_hour_utc": "2026-09-28T00:00:00+00:00",
     "hours": [
@@ -8832,23 +9273,23 @@
     "lat": 39.7439,
     "lon": -105.0201,
     "kickoff_utc": "2026-09-28T00:20:00+00:00",
-    "fetched_at": "2026-09-20T08:38:04.889287-07:00",
+    "fetched_at": "2026-09-28T09:48:25.291531-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {
     "spread": {
      "market": "spreads",
      "side": "DEN",
-     "snapshots": 5,
+     "snapshots": 8,
      "open": 2.5,
      "open_at": "2026-09-19_1756 America/Phoenix",
      "open_books": 2,
-     "latest": 2.5,
-     "latest_at": "2026-09-20_070649 America/Phoenix",
-     "latest_books": 2,
+     "latest": 1.5,
+     "latest_at": "2026-09-27_133514 America/Phoenix",
+     "latest_books": 3,
      "open_price": -111,
-     "latest_price": -111,
-     "move": 0.0,
+     "latest_price": -108,
+     "move": -1.0,
      "toward_lean": null,
      "direction": null,
      "key_crossed": []
@@ -8856,16 +9297,16 @@
     "total": {
      "market": "totals",
      "side": "over",
-     "snapshots": 5,
+     "snapshots": 8,
      "open": 46.5,
      "open_at": "2026-09-19_1756 America/Phoenix",
      "open_books": 2,
-     "latest": 46.5,
-     "latest_at": "2026-09-20_070649 America/Phoenix",
-     "latest_books": 2,
+     "latest": 44.5,
+     "latest_at": "2026-09-27_133514 America/Phoenix",
+     "latest_books": 3,
      "open_price": -107,
-     "latest_price": -107,
-     "move": 0.0,
+     "latest_price": -105,
+     "move": -2.0,
      "toward_lean": null,
      "direction": null,
      "key_crossed": []
@@ -9299,8 +9740,8 @@
        "coach_first_season_with_team"
       ],
       "values": [
-       "CHI: off_division_loss=no, sandwich_game=no, coach_tenure_seasons=2 (needs >=5) [prev_div_game=1, prev_team_margin=n/a, next_div_game=0, coach_first_season_with_team=2025]",
-       "PHI: off_division_loss=no, sandwich_game=no, coach_tenure_seasons=6 (needs >=5) [prev_div_game=0, prev_team_margin=n/a, next_div_game=0, coach_first_season_with_team=2021]"
+       "CHI: off_division_loss=yes, sandwich_game=no, coach_tenure_seasons=2 (needs >=5) [prev_div_game=1, prev_team_margin=-6, next_div_game=0, coach_first_season_with_team=2025]",
+       "PHI: off_division_loss=no, sandwich_game=no, coach_tenure_seasons=6 (needs >=5) [prev_div_game=0, prev_team_margin=4, next_div_game=0, coach_first_season_with_team=2021]"
       ],
       "result": "NOT FIRED",
       "note": "",
@@ -9325,14 +9766,14 @@
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": "open CHI -1.5 (2026-09-19_1756 ) -> latest CHI -1.5 (2026-09-20_07064); move +0 over 5 snapshot(s); key numbers crossed: none",
+      "move": "open CHI -1.5 (2026-09-19_1756 ) -> latest CHI +4.5 (2026-09-27_13351); move +6 over 8 snapshot(s); key numbers crossed: 3.0",
       "verdict": "no lean"
      },
      "total": {
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": "open over 48 (2026-09-19_1756 ) -> latest over 48 (2026-09-20_07064); move +0 over 5 snapshot(s); key numbers crossed: none",
+      "move": "open over 48 (2026-09-19_1756 ) -> latest over 41.5 (2026-09-27_13351); move -6.5 over 8 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      }
     }
@@ -9340,14 +9781,14 @@
    "shadow_lean": {
     "spread": {
      "side": "CHI",
-     "line": -1.5,
-     "price": -104,
-     "book": "fanduel",
+     "line": 4.5,
+     "price": -110,
+     "book": "draftkings",
      "tier": "D",
      "net_lean": 0.0,
      "forced_default": true,
-     "line_stale": false,
-     "pulled_at": "2026-09-20T07:06:49-07:00"
+     "line_stale": true,
+     "pulled_at": "2026-09-27T13:35:14-07:00"
     },
     "total": null
    },
@@ -9366,10 +9807,10 @@
     "status": "forecast",
     "badge": null,
     "detail": null,
-    "wind_mph": 5.8,
-    "wind_max_3h_mph": 5.8,
-    "gust_mph": 8.5,
-    "temp_f": 68.0,
+    "wind_mph": 4.5,
+    "wind_max_3h_mph": 5.1,
+    "gust_mph": 7.2,
+    "temp_f": 62.0,
     "precip_in_3h": 0.0,
     "kickoff_hour_utc": "2026-09-29T00:00:00+00:00",
     "hours": [
@@ -9384,40 +9825,42 @@
     "lat": 41.8623,
     "lon": -87.6167,
     "kickoff_utc": "2026-09-29T00:15:00+00:00",
-    "fetched_at": "2026-09-20T08:38:04.889287-07:00",
+    "fetched_at": "2026-09-28T09:48:25.291531-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {
     "spread": {
      "market": "spreads",
      "side": "CHI",
-     "snapshots": 5,
+     "snapshots": 8,
      "open": -1.5,
      "open_at": "2026-09-19_1756 America/Phoenix",
      "open_books": 2,
-     "latest": -1.5,
-     "latest_at": "2026-09-20_070649 America/Phoenix",
-     "latest_books": 2,
+     "latest": 4.5,
+     "latest_at": "2026-09-27_133514 America/Phoenix",
+     "latest_books": 3,
      "open_price": -104,
-     "latest_price": -104,
-     "move": 0.0,
+     "latest_price": -110,
+     "move": 6.0,
      "toward_lean": null,
      "direction": null,
-     "key_crossed": []
+     "key_crossed": [
+      3.0
+     ]
     },
     "total": {
      "market": "totals",
      "side": "over",
-     "snapshots": 5,
+     "snapshots": 8,
      "open": 48.0,
      "open_at": "2026-09-19_1756 America/Phoenix",
      "open_books": 2,
-     "latest": 48.0,
-     "latest_at": "2026-09-20_070649 America/Phoenix",
-     "latest_books": 2,
+     "latest": 41.5,
+     "latest_at": "2026-09-27_133514 America/Phoenix",
+     "latest_books": 3,
      "open_price": -106,
-     "latest_price": -106,
-     "move": 0.0,
+     "latest_price": -108,
+     "move": -6.5,
      "toward_lean": null,
      "direction": null,
      "key_crossed": []

@@ -1,17 +1,18 @@
 {
- "generated_at": "2026-09-18T08:32:23-07:00",
+ "generated_at": "2026-10-09T09:01:06-07:00",
  "timezone": "America/Phoenix",
  "stale_entry_hours": 12,
  "counts": {
-  "rows": 16,
-  "settled": 1,
-  "pending": 15,
-  "stale": 16
+  "rows": 47,
+  "settled": 33,
+  "pending": 14,
+  "stale": 16,
+  "week_unverified": 0
  },
  "tiers": [
   {
    "tier": "A",
-   "rows": 0,
+   "rows": 1,
    "settled": 0,
    "stale": 0,
    "graded_fresh": 0,
@@ -21,43 +22,79 @@
   },
   {
    "tier": "B",
-   "rows": 4,
-   "settled": 0,
+   "rows": 18,
+   "settled": 11,
    "stale": 4,
-   "graded_fresh": 0,
-   "mean_clv": null,
-   "beat_close_pct": null,
-   "ats": "0-0-0"
+   "graded_fresh": 7,
+   "mean_clv": -0.0215,
+   "beat_close_pct": 28.6,
+   "ats": "5-6-0"
   },
   {
    "tier": "C",
    "rows": 1,
-   "settled": 0,
+   "settled": 1,
    "stale": 1,
    "graded_fresh": 0,
    "mean_clv": null,
    "beat_close_pct": null,
-   "ats": "0-0-0"
+   "ats": "0-1-0"
   },
   {
    "tier": "D",
-   "rows": 11,
-   "settled": 1,
+   "rows": 27,
+   "settled": 21,
    "stale": 11,
-   "graded_fresh": 0,
-   "mean_clv": null,
-   "beat_close_pct": null,
-   "ats": "1-0-0"
+   "graded_fresh": 10,
+   "mean_clv": -0.0256,
+   "beat_close_pct": 30.0,
+   "ats": "10-10-1"
   },
   {
    "tier": "ALL",
-   "rows": 16,
-   "settled": 1,
+   "rows": 47,
+   "settled": 33,
    "stale": 16,
-   "graded_fresh": 0,
-   "mean_clv": null,
-   "beat_close_pct": null,
-   "ats": "1-0-0"
+   "graded_fresh": 17,
+   "mean_clv": -0.0239,
+   "beat_close_pct": 29.4,
+   "ats": "15-17-1"
   }
- ]
+ ],
+ "by_source_caller": [
+  {
+   "source": "model",
+   "caller": "engine",
+   "n": 47,
+   "settled": 33,
+   "graded": 17,
+   "mean_clv": -0.0239,
+   "beat_close_pct": 29.4,
+   "wlp": "15-17-1"
+  },
+  {
+   "source": "gut",
+   "caller": "Mike",
+   "n": 3,
+   "settled": 3,
+   "graded": 3,
+   "mean_clv": -0.0163,
+   "beat_close_pct": 0.0,
+   "wlp": "2-1-0"
+  },
+  {
+   "source": "gut",
+   "caller": "Q",
+   "n": 3,
+   "settled": 3,
+   "graded": 3,
+   "mean_clv": -0.0235,
+   "beat_close_pct": 0.0,
+   "wlp": "2-1-0"
+  }
+ ],
+ "calls": {
+  "rows": 6,
+  "settled": 6
+ }
 }
