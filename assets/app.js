@@ -1,7 +1,7 @@
 /* NFL Edge — desktop Command Center + phone Companion (UI sprint 2026-10-10, Asana 1219380564320263).
    Plain JS, hash routing, renders from data/*.json only (D2: read-only; nothing here computes a tag, a rank, an edge,
    a weight or an angle status; see docs/ui/field_map.md for every path read).
-   Routes: #/week[/<id>[/<game_id>]] | #/slate[/<id>] | #/angles | #/ledger | #/system[/<section>]
+   Routes: #/week[/<id>[/<game_id>]] | #/slate[/<id>] | #/angles | #/ledger | #/system[/<section>] | #/props (SPRINT 2026-10-11c P4: read-only board from data/props.json)
    Old links keep rendering: #/dashboard -> #/week, #/weeks[/<id>[/<game>]] -> #/week/..., #/appendix[/<s>] -> #/system/<s>. */
 (function () {
   'use strict';
@@ -43,6 +43,10 @@
   const tagHtml = (tag) => tag ? '<span class="tag ' + (TAG_CLASS[tag] || 'unknown') + '">' + esc(tag) + '</span>' : '<span class="tag unknown">Not classified</span>';
   const pill = (cls, text) => '<span class="pill ' + esc(cls) + '">' + esc(text || cls) + '</span>';
   const chip = (cls, text) => '<span class="chip ' + esc(cls) + '">' + esc(text) + '</span>';
+  // reskin 2026-10-13: machine identifiers (off_thursday) display as readable labels (Off Thursday); the original stays in title=
+  const label = (s) => esc(String(s == null ? '' : s).replace(/_/g, ' ').replace(/\b[a-z]/g, (c) => c.toUpperCase()));
+  const named = (s, cls) => '<span class="' + esc(cls || 'nm') + '" title="' + esc(s) + '">' + label(s) + '</span>';
+  const bookTile = (b) => { const t = String(b || '').replace(/[^A-Za-z0-9 ]/g, ' ').trim().split(/\s+/).map((x) => x[0]).join('').slice(0, 2).toUpperCase() || '?'; return '<span class="bk" aria-hidden="true">' + esc(t) + '</span>'; };
   function fetchJSON(path) {
     return fetch(path + (path.indexOf('?') < 0 ? '?' : '&') + 'v=' + Math.floor(Date.now() / 60000), { cache: 'no-store' }).then((r) => {
       if (!r.ok) throw new Error(path + ' -> HTTP ' + r.status);
@@ -57,7 +61,11 @@
     target: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg>',
     chev: '<svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>',
     clock: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
-    chart: '<svg viewBox="0 0 24 24"><path d="M4 19V5M4 19h16M8 15l4-5 3 3 5-7"/></svg>'
+    chart: '<svg viewBox="0 0 24 24"><path d="M4 19V5M4 19h16M8 15l4-5 3 3 5-7"/></svg>',
+    archive: '<svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="5" rx="1.5"/><path d="M5 9v10a1.5 1.5 0 0 0 1.5 1.5h11A1.5 1.5 0 0 0 19 19V9M10 13h4"/></svg>',
+    shield: '<svg viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg>',
+    shieldx: '<svg viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/><path d="M12 8v5M12 16h.01"/></svg>',
+    list: '<svg viewBox="0 0 24 24"><path d="M4 7h3M4 12h3M4 17h3M10 7h10M10 12h10M10 17h10"/></svg>'
   };
 
   // ------------------------------------------------------------ data access
@@ -85,12 +93,14 @@
     const age = ageHours(lp.fetched_at);
     if (lp.stale) return { cls: 'warn', word: 'Stale', detail: lp.detail || 'stale at scan time' };
     if (limit != null && age != null && age > limit && !allPlayed(w)) return { cls: 'warn', word: 'Stale', detail: 'captured ' + Math.floor(age) + ' h ago, past the ' + limit + ' h window' };
+    if (allPlayed(w)) return { cls: 'archive', word: 'Captured', detail: lp.detail || 'captured odds from the saved scan' };
     return { cls: 'ok', word: 'Current', detail: lp.detail || '' };
   }
   function scanState(w) {
     if (!w) return { cls: 'bad', word: 'Missing', detail: 'Latest weekly scan unavailable' };
     const age = ageHours(w.generated_at);
     if (age != null && age > STALE_SCAN_DAYS * 24 && !allPlayed(w)) return { cls: 'warn', word: 'Stale', detail: 'scan is ' + Math.floor(age / 24) + ' days old' };
+    if (allPlayed(w)) return { cls: 'archive', word: 'Saved', detail: 'saved scan ' + tsFull(w.generated_at) };
     return { cls: 'ok', word: 'Current', detail: 'scan ' + tsFull(w.generated_at) };
   }
   function verifyState(w) {
@@ -109,7 +119,7 @@
     else if (os.cls === 'warn') out.push('<div class="banner warn" id="banner-odds"><b>Odds last captured ' + esc(tsShort((w.odds_pull || {}).fetched_at)) + '</b> (' + esc(os.detail) + ') — check the sportsbook before recording a bet.</div>');
     const vs = verifyState(w);
     if (vs.cls === 'warn') out.push('<div class="banner warn" id="banner-week"><b>' + esc(w.week_resolution.flag) + '.</b> ' + esc(w.week_resolution.detail || '') + '</div>');
-    if (allPlayed(w)) out.push('<div class="banner info" id="banner-hist"><b>Historical week.</b> Every kickoff in ' + esc(w.id) + ' has passed; the suggestions and prices are the record of that scan, not current.</div>');
+    if (allPlayed(w)) out.push('<div class="banner hist" id="banner-hist">' + ICON.archive + '<span><b>Historical week.</b> Every kickoff in ' + esc(w.id) + ' has passed. What follows is the latest saved scan and its captured odds, not current live data.</span></div>');
     return out.join('');
   }
 
@@ -148,13 +158,18 @@
 
   // ------------------------------------------------------------ shared pieces
   function headRow(w, title, ctl) {
-    return '<div class="head"><div><h1>' + esc(title) + '</h1><div class="subl">NFL ' + esc(w.season) + ' regular season · Scan <span class="num">' + esc(tsFull(w.generated_at)) +
-      '</span> · Odds <span class="num">' + esc(tsFull((w.odds_pull || {}).fetched_at)) + '</span></div></div>' + (ctl ? '<div class="ctl">' + ctl + '</div>' : '') + '</div>';
+    const hist = allPlayed(w), vs = verifyState(w), books = (w.books || []).join(', ');
+    return '<div class="head"><div><h1>' + esc(title) + (hist ? ' <span class="apill">' + ICON.archive + 'Archived · Week ' + esc(w.week) + '</span>' : '') + '</h1>' +
+      '<div class="meta"><span>NFL ' + esc(w.season) + ' regular season</span>' +
+      '<span>' + ICON.clock + (hist ? 'Saved scan ' : 'Scan ') + '<span class="num">' + esc(tsFull(w.generated_at)) + '</span></span>' +
+      '<span>' + ICON.clock + 'Captured odds <span class="num">' + esc(tsFull((w.odds_pull || {}).fetched_at)) + '</span></span>' +
+      '<span class="' + (vs.cls === 'ok' ? 'v-ok' : 'v-warn') + '">' + (vs.cls === 'ok' ? ICON.shield : ICON.shieldx) + 'Week ' + esc(vs.word.toLowerCase()) + '</span>' +
+      (books ? '<span>' + esc(books) + '</span>' : '') + '</div></div>' + (ctl ? '<div class="ctl">' + ctl + '</div>' : '') + '</div>';
   }
   function suggestion(w, g) {
     // the scanner's own words only: the bet card for BET / POSSIBLE BET rows; NO BET rows have no card
     const c = cardFor(w, g.game_id);
-    if (c) return { text: c.bet, price: c.price, book: c.book, card: c, q: c.market + ' · ' + c.place_label };
+    if (c) return { text: c.bet, price: c.price, book: c.book, card: c, q: c.market + ' · ' + c.place_label, mk: c.market };
     if (g.tag === 'NO BET') return { text: 'No suggested wager', price: null, book: null, card: null, q: g.tag_reason || '' };
     return { text: 'No recommendation recorded', price: null, book: null, card: null, q: w.bet_cards ? '' : 'this scan predates bet cards' };
   }
@@ -162,13 +177,14 @@
     const n = shop(g);
     if (!n) return '<span class="muted">Price unavailable</span>';
     const mk = g.tag_market || 'spread', m = g[mk] || {};
-    return '<span class="price">' + esc(lineText(mk, m.lean_side, n.line)) + ' (' + esc(price(n.price)) + ')</span><div class="q">' + esc(n.book) + ' · ' + esc(tsShort((w.odds_pull || {}).fetched_at)) + '</div>';
+    return '<div class="price">' + esc(lineText(mk, m.lean_side, n.line)) + ' <span class="pr">' + esc(price(n.price)) + '</span></div><div class="q bq">' + bookTile(n.book) + esc(n.book) + '<span class="cap">' + ICON.clock + esc(tsShort((w.odds_pull || {}).fetched_at)) + '</span></div>';
   }
   function angleCell(g) {
     const f = g.angles_fired || [];
     if (!f.length) return '<span class="muted">No angle fired</span>';
     const cnt = f.filter((a) => a.tier === 'survivor').length;
-    return '<span class="n1">' + esc(f[0].name) + '</span> ' + pill(f[0].tier) + (f.length > 1 ? '<div class="q">+' + (f.length - 1) + ' more · ' + cnt + ' survivor</div>' : '');
+    const more = f.length - 1;
+    return named(f[0].name, 'n1') + ' ' + pill(f[0].tier) + (more > 0 ? '<div class="q evc"><span class="evchip">' + more + ' more angle' + (more === 1 ? '' : 's') + '</span>' + (cnt ? '<span class="evchip surv">' + cnt + ' survivor</span>' : '') + '</div>' : '');
   }
   function coverage(w) {
     const wr = w.week_resolution || null;
@@ -178,7 +194,7 @@
   }
   function clvTile() {
     const c = state.clv && state.clv.all;
-    if (!c) return { value: '—', sub: 'No system-sourced bets logged', cls: '' };
+    if (!c) return { value: 'No bets logged', sub: 'CLV appears once real bets are graded', cls: 'txt' };
     return { value: signed(c.mean_clv_prob, 4), sub: 'mean CLV (probability) · n ' + c.graded + ' graded of ' + c.bets + ' real bets', cls: '' };
   }
 
@@ -197,10 +213,9 @@
       html += '<div class="kpis desk">' +
         '<div class="kpi bet" id="kpi-bet"><div class="k">BET</div><div class="v">' + esc(ln['BET'] != null ? ln['BET'] : '—') + '</div><div class="s">Qualified by the latest scan</div>' + ICON.target.replace('<svg', '<svg class="ic"') + '</div>' +
         '<div class="kpi possible" id="kpi-possible"><div class="k">POSSIBLE BET</div><div class="v">' + esc(ln['POSSIBLE BET'] != null ? ln['POSSIBLE BET'] : '—') + '</div><div class="s">Watch / conditional review</div>' + ICON.eye.replace('<svg', '<svg class="ic"') + '</div>' +
-        '<div class="kpi" id="kpi-cov"><div class="k">Slate coverage</div><div class="v">' + esc(cov.value) + '</div><div class="s">' + esc(cov.sub) + '</div>' + ICON.check.replace('<svg', '<svg class="ic"') + '</div>' +
-        '<div class="kpi" id="kpi-clv"><div class="k">Real-bet CLV</div><div class="v" id="kpi-clv-v">' + esc(clv.value) + '</div><div class="s">' + esc(clv.sub) + '</div>' + ICON.chart.replace('<svg', '<svg class="ic"') + '</div>' +
+        '<div class="kpi quiet" id="kpi-cov"><div class="k">Slate coverage</div><div class="v">' + esc(cov.value) + '</div><div class="s">' + esc(cov.sub) + '</div>' + ICON.list.replace('<svg', '<svg class="ic"') + '</div>' +
+        '<div class="kpi quiet" id="kpi-clv"><div class="k">Real-bet CLV</div><div class="v ' + esc(clv.cls) + '" id="kpi-clv-v">' + esc(clv.value) + '</div><div class="s">' + esc(clv.sub) + '</div>' + ICON.chart.replace('<svg', '<svg class="ic"') + '</div>' +
         '</div>';
-      html += '<div class="asofline">As of the ' + esc(tsFull(w.generated_at)) + ' scan · odds captured ' + esc(tsFull((w.odds_pull || {}).fetched_at)) + ' · ' + esc((w.books || []).join(', ') || 'books unavailable') + '</div>';
       html += phoneFeed(w);   // S5: the phone Week feed (hidden on desktop by CSS; the desktop panels are hidden on the phone)
       html += '<div class="grid2 desk"><div class="col">' + oppsPanel(w) + '</div><div class="col">' + integrityPanel(w) + angleEvidencePanel(w) + '</div></div>';
       html += '<div class="grid2 lower desk"><div class="col">' + movementPanel(w) + '</div><div class="col">' + clvPanel() + '</div></div>';
@@ -235,8 +250,8 @@
     if (s.card) h += '<div class="off">' + esc(s.card.market) + ' · ' + esc(s.card.place_label) + '</div>';
     if (n) h += '<div class="off">Best captured offer: <span class="num">' + esc(lineText(g.tag_market || 'spread', (g[g.tag_market || 'spread'] || {}).lean_side, n.line)) + ' (' + esc(price(n.price)) + ')</span> · ' + esc(n.book) + '</div>';
     else h += '<div class="off">Quote unavailable</div>';
-    h += '<div class="off">Odds captured ' + esc(tsShort((w.odds_pull || {}).fetched_at)) + (os.cls !== 'ok' ? ' · ' + pill('stale', 'STALE — recheck before betting') : '') + '</div>';
-    h += '<div class="ev">' + (f.length ? '<span>' + esc(f[0].name) + '</span>' + pill(f[0].tier) + (f.length > 1 ? '<span class="muted">+' + (f.length - 1) + ' more</span>' : '') : '<span class="muted">Evidence unavailable</span>') + '</div>';
+    h += '<div class="off">Odds captured ' + esc(tsShort((w.odds_pull || {}).fetched_at)) + (os.cls === 'warn' || os.cls === 'bad' ? ' · ' + pill('stale', 'STALE — recheck before betting') : '') + '</div>';
+    h += '<div class="ev">' + (f.length ? named(f[0].name, 'n1') + pill(f[0].tier) + (f.length > 1 ? '<span class="muted">+' + (f.length - 1) + ' more</span>' : '') : '<span class="muted">Evidence unavailable</span>') + '</div>';
     h += '<a class="cta rev-link" href="' + href + '">Review evidence ›</a></div>';
     return h;
   }
@@ -266,10 +281,10 @@
     const shown = games.filter((g) => state.filter === 'all' ? g.tag !== 'NO BET' || state.nobetOpen : g.tag === state.filter);
     const nobet = games.filter((g) => g.tag === 'NO BET');
     const seg = ['all'].concat(LANES).map((o) => '<button type="button" data-f="' + esc(o) + '" class="' + (state.filter === o ? 'on' : '') + '">' + esc(o === 'all' ? 'All' : o === 'POSSIBLE BET' ? 'POSSIBLE' : o) + '</button>').join('');
-    let h = '<div class="panel opps" id="opps"><div class="ph"><h2>' + ICON.target + 'Ranked Opportunities</h2><div class="ctl"><span class="seg" id="seg">' + seg + '</span><span class="sub">' + games.length + ' games</span></div></div><div class="pb">';
+    let h = '<div class="panel opps" id="opps"><div class="ph"><h2>' + ICON.target + 'Ranked Opportunities</h2><div class="ctl"><span class="seg" id="seg">' + seg + '</span><span class="gcount">' + games.length + ' games</span></div></div><div class="pb">';
     if (!games.length) { h += '<div class="empty"><b>No games in this scan.</b></div></div></div>'; return h; }
     if ((ln['BET'] || 0) === 0 && state.filter === 'all') h += '<div class="banner info" id="nobet-week"><b>No BET suggestions this week.</b> A valid result of the scan: POSSIBLE BET and NO BET games are listed below.</div>';
-    h += '<div class="tbl-wrap"><table class="tbl"><thead><tr><th>Matchup</th><th>Scanner status</th><th>Suggested market</th><th>Angle evidence</th><th>Best captured offer</th><th></th></tr></thead><tbody>';
+    h += '<div class="tbl-wrap"><table class="tbl"><thead><tr><th>Matchup</th><th>Status</th><th>Suggested market</th><th>Angle evidence</th><th class="num">Captured odds</th><th></th></tr></thead><tbody>';
     if (!shown.length) h += '<tr><td colspan="6"><div class="empty">No game carries that tag this week.</div></td></tr>';
     shown.forEach((g) => { h += oppRow(w, g); });
     h += '</tbody></table></div>';
@@ -280,9 +295,9 @@
   function oppRow(w, g) {
     const s = suggestion(w, g);
     return '<tr class="row" id="g-' + esc(g.game_id) + '" data-game="' + esc(g.game_id) + '"><td><div class="mu">' + esc(g.away) + ' @ ' + esc(g.home) + '</div><div class="ko">' + esc(kick(g.kickoff_phoenix)) + '</div></td>' +
-      '<td>' + tagHtml(g.tag) + (g.tag_rank != null ? '<div class="q num">#' + esc(g.tag_rank) + '</div>' : '') + '</td>' +
-      '<td><div class="sug">' + esc(s.text) + (s.price != null ? ' <span class="muted">(' + esc(price(s.price)) + ')</span>' : '') + '</div><div class="q">' + esc(s.q) + '</div></td>' +
-      '<td class="ang">' + angleCell(g) + '</td><td>' + offerHtml(w, g) + '</td>' +
+      '<td class="st">' + tagHtml(g.tag) + (g.tag_rank != null ? '<span class="rank num">#' + esc(g.tag_rank) + '</span>' : '') + '</td>' +
+      '<td><div class="sug">' + esc(s.text) + '</div><div class="q">' + esc(s.mk ? s.mk + (s.price != null ? ' · at ' + price(s.price) : '') : s.q) + '</div></td>' +
+      '<td class="ang">' + angleCell(g) + '</td><td class="off">' + offerHtml(w, g) + '</td>' +
       '<td><a class="rev" href="#/week/' + esc(w.id) + '/' + esc(g.game_id) + '" aria-label="Review ' + esc(g.matchup) + '">' + ICON.chev + '</a></td></tr>';
   }
   function integrityPanel(w) {
@@ -290,17 +305,18 @@
     const led = state.clv ? { cls: 'ok', word: 'Connected', d: state.clv.all.bets + ' real bets · exported ' + tsShort(state.clv.generated_at) } : { cls: 'neutral', word: 'Not connected', d: 'No system-sourced bets logged' };
     const sh = state.shadow ? { cls: 'ok', word: 'Available', d: state.shadow.counts.rows + ' rows · ' + state.shadow.counts.settled + ' settled · graded ' + tsShort(state.shadow.generated_at) } : { cls: 'neutral', word: 'Not available', d: 'no shadow summary' };
     const wx = w.weather ? { cls: w.weather.status === 'ok' ? 'ok' : 'warn', word: w.weather.status === 'ok' ? 'Current' : w.weather.status, d: (w.weather.detail || '') + ' · ' + tsShort(w.weather.fetched_at) } : { cls: 'neutral', word: 'Not checked', d: 'no forecast in this scan' };
-    return '<div class="panel" id="integrity"><div class="ph"><h2>' + ICON.db + 'Data Integrity</h2></div><div class="pb">' +
-      '<div class="tile"><div class="k">Scanner run</div><div class="v num">' + esc(tsFull(w.generated_at)) + '</div><div class="d">' + esc(ss.word === 'Current' ? 'Completed · ' + (w.counts || {}).games + ' games tagged' : ss.detail) + '</div><div class="d">Verification not connected (the 4-check gate is read by a human)</div></div>' +
-      '<div class="rows">' +
+    return '<div class="panel compact" id="integrity"><div class="ph"><h2>' + ICON.db + 'Data Integrity</h2></div><div class="pb">' +
+      '<div class="istat">' + chip(ss.cls, 'Scan ' + ss.word.toLowerCase()) + chip(os.cls, 'Odds ' + os.word.toLowerCase()) + chip(vs.cls, vs.word) + '</div>' +
+      '<div class="tile"><div class="k">' + ICON.clock + 'Scanner run</div><div class="v num">' + esc(tsFull(w.generated_at)) + '</div><div class="d">' + esc(ss.word === 'Current' || ss.word === 'Saved' ? 'Completed · ' + (w.counts || {}).games + ' games tagged' : ss.detail) + '</div><div class="d">' + ICON.shieldx + 'Verification not connected (the 4-check gate is read by a human)</div></div>' +
+      '<details class="disc idet"><summary>Details</summary><div class="rows">' +
       '<div class="row2"><span class="k">Weekly scanner</span>' + chip(ss.cls, ss.word) + '<span class="d">' + esc(ss.detail) + '</span></div>' +
       '<div class="row2"><span class="k">Odds capture</span>' + chip(os.cls, os.word) + '<span class="d">' + esc(tsFull((w.odds_pull || {}).fetched_at)) + (os.detail ? ' · ' + esc(os.detail) : '') + '</span></div>' +
-      '<div class="row2"><span class="k">Week verification</span>' + chip(vs.cls, vs.word) + '<span class="d">' + esc(vs.detail) + '</span></div>' +
+      '<div class="row2"><span class="k">' + (vs.cls === 'ok' ? ICON.shield : ICON.shieldx) + 'Week verification</span>' + chip(vs.cls, vs.word) + '<span class="d">' + esc(vs.detail) + '</span></div>' +
       '<div class="row2"><span class="k">Game coverage</span>' + chip(cov.value === '—' ? 'neutral' : 'ok', cov.value === '—' ? 'Unknown' : cov.value) + '<span class="d">' + esc(cov.sub) + '</span></div>' +
       '<div class="row2"><span class="k">Weather fetch</span>' + chip(wx.cls, wx.word) + '<span class="d">' + esc(wx.d) + '</span></div>' +
       '<div class="row2"><span class="k">Real-bet ledger</span>' + chip(led.cls, led.word) + '<span class="d">' + esc(led.d) + '</span></div>' +
       '<div class="row2"><span class="k">Shadow ledger</span>' + chip(sh.cls, sh.word) + '<span class="d">' + esc(sh.d) + ' · zero stake, separate</span></div>' +
-      '</div></div><div class="pfoot">Scheduled odds pulls: Tue / Thu / Sun mornings · Phoenix time. Next pull time is not exposed by the scheduler.</div></div>';
+      '</div></details></div><div class="pfoot">Scheduled odds pulls: Tue / Thu / Sun mornings · Phoenix time. Next pull time is not exposed by the scheduler.</div></div>';
   }
   // S3: Angle Evidence (H4.8). Registry counts from angles.json; "fired this week" aggregated from games[].angles_fired.
   function angleEvidencePanel(w) {
@@ -315,10 +331,10 @@
     if (!names.length) h += '<div class="empty">No angle fired on any game this week.</div>';
     names.forEach((n) => {
       const f = fired[n], ticks = Array.from({ length: Math.min(nGames, 16) }, (_, i) => '<i class="' + (i < f.n ? 'on' : '') + '"></i>').join('');
-      h += '<div class="arow"><span class="nm">' + esc(n) + '</span>' + pill(f.tier) + '<span class="ticks" aria-hidden="true">' + ticks + '</span><span class="ct">' + esc(f.n) + '</span></div>';
+      h += '<div class="arow">' + named(n, 'nm') + pill(f.tier) + '<span class="ticks" aria-hidden="true">' + ticks + '</span><span class="ct">' + esc(f.n) + '</span></div>';
     });
     const nw = w.not_wired || [];
-    if (nw.length) h += '<div class="note small muted" style="margin-top:8px">Not wired this week: ' + esc(nw.map((x) => x.name).join(', ')) + ' (forecast wind is shown for reading only).</div>';
+    if (nw.length) h += '<div class="note small muted" style="margin-top:8px">Not wired this week: ' + nw.map((x) => label(x.name)).join(', ') + ' (forecast wind is shown for reading only).</div>';
     h += '<div class="note small muted" style="margin-top:6px">Registry: ' + esc((lib.harness_log || {}).distinct_expressions != null ? lib.harness_log.distinct_expressions + ' expressions tested over ' + lib.harness_log.runs + ' runs' : 'harness log unavailable') + '. More expressions tested does not strengthen any one of them.</div>';
     return h + '</div></div>';
   }
@@ -380,7 +396,7 @@
       const sl = slot(g.kickoff_phoenix);
       if (sl !== cur) { cur = sl; h += '<tr><td colspan="7" class="dayhead">' + esc(sl) + '</td></tr>'; }
       const s = suggestion(w, g), n = shop(g), os = oddsState(w);
-      const ls = !n ? 'Price unavailable' : (os.cls === 'ok' ? 'Captured ' + tsShort((w.odds_pull || {}).fetched_at) : os.word + ' · captured ' + tsShort((w.odds_pull || {}).fetched_at));
+      const ls = !n ? 'Price unavailable' : (os.cls === 'ok' || os.cls === 'archive' ? 'Captured ' + tsShort((w.odds_pull || {}).fetched_at) : os.word + ' · captured ' + tsShort((w.odds_pull || {}).fetched_at));
       h += '<tr id="mx-' + esc(g.game_id) + '"><td class="num">' + esc(kick(g.kickoff_phoenix)) + '</td><td><b>' + esc(g.away) + ' @ ' + esc(g.home) + '</b></td><td>' + tagHtml(g.tag) + '</td>' +
         '<td class="num">' + esc(s.text) + (s.price != null ? ' (' + esc(price(s.price)) + ')' : '') + '</td><td class="num">' + esc((g.angles_fired || []).length) + '</td><td class="small">' + esc(ls) + '</td>' +
         '<td><a class="rev" href="#/week/' + esc(w.id) + '/' + esc(g.game_id) + '" aria-label="Review ' + esc(g.matchup) + '">' + ICON.chev + '</a></td></tr>';
@@ -444,7 +460,7 @@
       const win = a.windows || {};
       const wtv = score(a.points);   // the configured strength-score contribution (a count of agreeing evidence, no unit)
       const wv = Object.keys(win).map((k) => k + ' ' + pct(win[k].pct) + ' (n ' + win[k].n + ')').join(' · ');
-      return '<div class="ang"><span class="nm">' + esc(a.name) + '</span> ' + pill(against ? 'against' : a.tier, against ? 'against' : a.tier) + ' <span class="small sec">' + esc(a.direction_label || '') + '</span>' +
+      return '<div class="ang">' + named(a.name, 'nm') + ' ' + pill(against ? 'against' : a.tier, against ? 'against' : a.tier) + ' <span class="small sec">' + esc(a.direction_label || '') + '</span>' +
         '<div class="win">' + esc(wv || 'windows unavailable') + ' · n ' + esc(a.n) + (a.tier === 'survivor' ? ' · weight ' + esc(wtv) : ' · no weight') + '</div>' +
         (a.mechanism ? '<div class="mech">' + esc(a.mechanism) + '</div>' : '') + '</div>';
     }).join('');
@@ -462,7 +478,7 @@
     h += '<section><h3>Suggested market</h3>';
     if (c) {
       h += '<div class="rec">' + esc(c.bet) + ' <small>(' + esc(price(c.price)) + ') · ' + esc(c.book) + '</small></div>' +
-        '<div class="small sec" style="margin-top:4px">' + esc(c.market) + ' · ' + esc(c.place_label) + ' · captured ' + esc(tsFull((w.odds_pull || {}).fetched_at)) + (os.cls !== 'ok' ? ' · ' + pill('stale', 'STALE — recheck before betting') : '') + '</div>';
+        '<div class="small sec" style="margin-top:4px">' + esc(c.market) + ' · ' + esc(c.place_label) + ' · captured ' + esc(tsFull((w.odds_pull || {}).fetched_at)) + (os.cls === 'warn' || os.cls === 'bad' ? ' · ' + pill('stale', 'STALE — recheck before betting') : '') + '</div>';
       if (c.worst_line != null) h += '<div class="small sec">Only at ' + esc(lineText(c.market, c.side, c.worst_line)) + ' or better (the card\'s own limit).</div>';
     } else {
       h += '<div class="rec">' + esc(s.text) + '</div><div class="small sec">' + esc(s.q) + '</div>';
@@ -481,7 +497,7 @@
     if (g.matrix && g.matrix.angles && g.matrix.angles.length) {
       const mx = g.matrix, wins = mx.windows || [];
       h += '<details class="disc mx"><summary>Every angle checked (' + mx.angles.length + ')</summary><div class="tbl-wrap"><table class="tbl stack"><thead><tr><th>Angle</th><th>Result</th><th>Values this game</th>' + wins.map((x) => '<th class="num">' + esc(x) + '</th>').join('') + '</tr></thead><tbody>' +
-        mx.angles.map((a) => '<tr><td data-k="Angle"><b>' + esc(a.name) + '</b> ' + pill(a.tier) + '<div class="q small sec">' + esc(a.direction_text || '') + '</div></td><td data-k="Result"><span class="res ' + ({ 'FIRED': 'fired', 'NOT FIRED': 'notfired', 'NOT WIRED': 'notwired', 'OUT OF SEASON': 'season' }[a.result] || 'notfired') + '">' + esc(a.result) + '</span>' + (a.note ? '<div class="q small muted">' + esc(a.note) + '</div>' : '') + '</td>' +
+        mx.angles.map((a) => '<tr><td data-k="Angle"><b title="' + esc(a.name) + '">' + label(a.name) + '</b> ' + pill(a.tier) + '<div class="q small sec">' + esc(a.direction_text || '') + '</div></td><td data-k="Result"><span class="res ' + ({ 'FIRED': 'fired', 'NOT FIRED': 'notfired', 'NOT WIRED': 'notwired', 'OUT OF SEASON': 'season' }[a.result] || 'notfired') + '">' + esc(a.result) + '</span>' + (a.note ? '<div class="q small muted">' + esc(a.note) + '</div>' : '') + '</td>' +
           '<td data-k="Values" class="mono">' + (a.values || []).map(esc).join('<br>') + '</td>' + wins.map((x) => { const v = (a.windows || {})[x]; return '<td data-k="' + esc(x) + '" class="num">' + (v ? pct(v.pct) + ' <span class="muted">(n ' + esc(v.n) + ')</span>' : '—') + '</td>'; }).join('') + '</tr>').join('') +
         '</tbody></table></div>' + (mx.lean_math ? '<div class="small sec" style="margin-top:8px">' + ['spread', 'total'].map((k) => mx.lean_math[k] ? '<div><b>' + k + '</b>: ' + esc(mx.lean_math[k].net) + ' · ' + esc(mx.lean_math[k].verdict) + '</div>' : '').join('') + '</div>' : '') + '</details>';
     }
@@ -555,7 +571,7 @@
       (lib.angles || []).forEach((a) => {
         const bt = a.backtest || {}, win = bt.windows || {};
         const wv = (k) => win[k] ? pct(win[k].pct) + ' <span class="muted">(n ' + esc(win[k].n) + ')</span>' : '—';
-        html += '<tr class="' + esc(a.status) + '"><td data-k="Angle"><b>' + esc(a.name) + '</b><div class="q"><code>' + esc(a.expression) + '</code></div></td><td data-k="Status">' + pill(a.status) + (a.not_wired_reason ? ' ' + pill('against', 'not wired') : '') + '</td>' +
+        html += '<tr class="' + esc(a.status) + '"><td data-k="Angle"><b title="' + esc(a.name) + '">' + label(a.name) + '</b><div class="q"><code>' + esc(a.name) + '</code> <code>' + esc(a.expression) + '</code></div></td><td data-k="Status">' + pill(a.status) + (a.not_wired_reason ? ' ' + pill('against', 'not wired') : '') + '</td>' +
           '<td data-k="Direction">' + esc(a.direction ? a.direction + ' · ' + a.market : '—') + '</td><td data-k="Weight" class="num">' + esc(a.status === 'dead' ? '—' : score(a.weight_points)) + '</td><td data-k="n" class="num">' + esc(bt.n_full != null ? bt.n_full : '—') + '</td>' +
           '<td data-k="2020-2024" class="num">' + wv('2020-2024') + '</td><td data-k="2021-2025" class="num">' + wv('2021-2025') + '</td><td data-k="Mechanism" class="small sec">' + esc(a.description || '') + (a.not_wired_reason ? '<div class="q">Not wired: ' + esc(a.not_wired_reason) + '</div>' : '') + '</td></tr>';
       });
@@ -722,6 +738,183 @@
     return '<p class="small muted">How far closing spreads and totals miss, by season, week bucket, spread size, favourite side, primetime and divisional. Infrastructure, not a tested angle; nothing here is a suggestion to bet.</p><div id="mb"><div class="loading">Loading…</div></div>';
   }
 
+  // ------------------------------------------------------------ view: Props (#/props) — SPRINT 2026-10-11c P4 (Asana 1219402058853465)
+  // Read-only board from data/props.json (written by `make props-board`, never by the scanner or the exporter). D1: no prop
+  // carries a tag or a "PLACE THIS BET" line; the research-only banner sits above everything. D4: every edge is a win %
+  // against the % the price needs. A missing or empty file renders "No prop capture yet" and touches nothing else.
+  const PROPS_FILE = 'data/props.json';
+  const PROPS_BANNER = 'Research only. The system does not issue prop bets before the Nov 10 review.';
+  const PROPS_STALE_HOURS = 36;
+  const BOOK_NAMES = { draftkings: 'DraftKings', fanduel: 'FanDuel', betmgm: 'BetMGM', williamhill_us: 'Caesars', espnbet: 'ESPN Bet', fanatics: 'Fanatics',
+                       betrivers: 'BetRivers', hardrockbet: 'Hard Rock Bet', bovada: 'Bovada', betonlineag: 'BetOnline', lowvig: 'LowVig', mybookieag: 'MyBookie', betus: 'BetUS', ballybet: 'Bally Bet' };
+  const bookName = (k) => BOOK_NAMES[k] || String(k || 'book unknown');
+  const propsState = { market: 'all', ours: false };
+  const BAND_WORDS = { '<= -200': 'at −200 or shorter', '-199..-110': 'between −199 and −110', '-109..+109': 'between −109 and +109',
+                       '+110..+199': 'between +110 and +199', '+200..+499': 'between +200 and +499', '+500 and up': 'at +500 or longer' };
+  const bandWords = (b) => BAND_WORDS[b] || String(b);
+  const cap1 = (s) => s ? s.charAt(0).toUpperCase() + s.slice(1) : s;
+  const fmtN = (n) => n == null ? '—' : Number(n).toLocaleString('en-US');
+  // a side's quote under the filter: with "our books only" the best price at one of our books, else the board's best
+  function pq(q) {
+    if (!q) return null;
+    if (propsState.ours) return q.best && q.best.cand ? q.best : (q.ours || null);
+    return q.best || null;
+  }
+  const quoteText = (q) => q ? price(q.price) + ' at ' + bookName(q.book) : null;
+  function marketVisible(m) {
+    if (propsState.market === 'all') return true;
+    return m.market === propsState.market;
+  }
+  function mainLine(m) {
+    const main = m.main;
+    if (!main) return '';
+    const o = pq(main.over), u = pq(main.under);
+    if (!o && !u) return propsState.ours ? '<div class="pline"><b>' + esc(m.label) + ' ' + esc(main.line) + ':</b> <span class="muted">not posted at our books in this pull</span></div>' : '';
+    let s = '<b>' + esc(m.label) + ' ' + esc(main.line) + ':</b> ';
+    const bits = [];
+    if (o) bits.push('best over <span class="num">' + esc(quoteText(o)) + '</span>' + (!propsState.ours && !o.cand && main.over.ours ? ' <span class="muted">(ours ' + esc(quoteText(main.over.ours)) + ')</span>' : ''));
+    if (u) bits.push('best under <span class="num">' + esc(quoteText(u)) + '</span>' + (!propsState.ours && !u.cand && main.under.ours ? ' <span class="muted">(ours ' + esc(quoteText(main.under.ours)) + ')</span>' : ''));
+    s += bits.join(', ') + '.';
+    if (main.cons != null) s += " Market's fair chance of the over: <span class=\"num\">" + esc(Number(main.cons).toFixed(0)) + '%</span> <span class="muted">(' + esc(main.ncons) + ' books, vig removed)</span>.';
+    else s += ' <span class="muted">Fair chance unavailable (one book at this line).</span>';
+    return '<div class="pline">' + s + '</div>';
+  }
+  function rungLines(m) {
+    const rungs = (m.rungs || []).map((r) => {
+      const o = pq(r.over), u = pq(r.under);
+      if (!o && !u) return null;
+      const parts = [];
+      if (o) parts.push('over ' + quoteText(o) + ' (' + Number(o.be).toFixed(1) + '% needed)');
+      if (u) parts.push('under ' + quoteText(u) + ' (' + Number(u.be).toFixed(1) + '% needed)');
+      return '<div class="rung"><span class="num">' + esc(r.line) + '</span> · ' + esc(parts.join(' · ')) + '</div>';
+    }).filter(Boolean);
+    if (!rungs.length) return '';
+    return '<details class="rungs"><summary>' + rungs.length + ' more line' + (rungs.length === 1 ? '' : 's') + ' <span class="muted">(one-sided prices: the vig stays in; "needed" is the raw breakeven)</span></summary>' + rungs.join('') + '</details>';
+  }
+  function marketLines(m) {
+    if (m.market === 'player_anytime_td') {
+      const y = pq(m.yes);
+      if (!y) return propsState.ours ? '<div class="pline"><b>anytime touchdown:</b> <span class="muted">not posted at our books</span></div>' : '';
+      return '<div class="pline"><b>anytime touchdown:</b> best <span class="num">' + esc(quoteText(y)) + '</span>, price needs <span class="num">' + esc(Number(y.be).toFixed(1)) + '%</span>' + (!propsState.ours && !y.cand && m.yes.ours ? ' <span class="muted">(ours ' + esc(quoteText(m.yes.ours)) + ')</span>' : '') + '. <span class="muted">One-sided: the vig stays in.</span></div>';
+    }
+    if (m.market === 'player_tds_over') {
+      const rungs = (m.rungs || []).map((r) => { const o = pq(r.over); return o ? (Math.ceil(Number(r.line)) + '+ at ' + quoteText(o) + ' (' + Number(o.be).toFixed(1) + '% needed)') : null; }).filter(Boolean);
+      if (!rungs.length) return '';
+      return '<div class="pline"><b>touchdowns ladder:</b> <span class="num">' + esc(rungs.join(' · ')) + '</span> <span class="muted">One-sided.</span></div>';
+    }
+    return mainLine(m) + rungLines(m);
+  }
+  function playerRow(p) {
+    const lines = (p.markets || []).filter(marketVisible).map(marketLines).filter(Boolean);
+    if (!lines.length) return '';
+    return '<div class="prow"><div class="pname">' + esc(p.player) + '</div>' + lines.join('') + '</div>';
+  }
+  function marketOptions(d) {
+    const seen = {};
+    (d.this_week || []).forEach((g) => (g.players || []).forEach((p) => (p.markets || []).forEach((m) => { seen[m.market] = m.label; })));
+    const keys = Object.keys(seen).sort();
+    return '<option value="all"' + (propsState.market === 'all' ? ' selected' : '') + '>All markets</option>' +
+      keys.map((k) => '<option value="' + esc(k) + '"' + (propsState.market === k ? ' selected' : '') + '>' + esc(cap1(seen[k])) + '</option>').join('');
+  }
+  function propsFreshness(d, w) {
+    const m = d.meta || {};
+    const age = ageHours(m.pull_at);
+    const limit = (w && w.rules && w.rules.stale_after_hours) || PROPS_STALE_HOURS;
+    const stale = age != null && age > limit;
+    return { age: age, limit: limit, stale: stale, when: tsShort(m.pull_at) };
+  }
+  function pricesPanel(d, w) {
+    const m = d.meta || {}, fr = propsFreshness(d, w);
+    const games = d.this_week || [];
+    let h = '<div class="panel" id="props-prices"><div class="ph"><h2>' + ICON.target + "This week's prop prices</h2><span class=\"sub\">" + esc(games.length) + ' game' + (games.length === 1 ? '' : 's') + ' · ' + esc(games.reduce((n, g) => n + (g.players || []).length, 0)) + ' players · captured ' + esc(fr.when) + '</span></div><div class="pb">';
+    h += '<div class="pctl"><label class="small sec" for="pf-market">Market</label><select id="pf-market" class="btn" aria-label="Market">' + marketOptions(d) + '</select>' +
+      '<button type="button" class="btn' + (propsState.ours ? ' on' : '') + '" id="pf-ours" aria-pressed="' + (propsState.ours ? 'true' : 'false') + '">Our books only</button>' +
+      '<span class="small muted">Best price on the board; "ours" = the best of ' + esc((m.books_seen || []).filter((b) => (d.shadow && d.shadow.candidate_books || []).indexOf(b) >= 0).map(bookName).join(', ') || 'DraftKings, FanDuel, BetMGM') + '.</span></div>';
+    if (!games.length) return h + '<div class="empty" id="props-empty"><b>No prop capture yet</b>' + esc(m.note || '') + '</div></div></div>';
+    games.forEach((g) => {
+      const rows = (g.players || []).map(playerRow).filter(Boolean);
+      h += '<details class="pgame" id="pg-' + esc(g.event_id) + '"' + (g.started ? '' : ' open') + '><summary><span class="mu">' + esc(g.away) + ' @ ' + esc(g.home) + '</span><span class="small num sec">' + esc(kick(g.kickoff)) + '</span>' +
+        (g.started ? pill('neutral', 'Kicked off — prices are the record of the pull') : pill('survivor', 'Not started')) + '<span class="small muted">' + esc(rows.length) + ' player' + (rows.length === 1 ? '' : 's') + (g.week != null ? ' · week ' + esc(g.week) : '') + '</span></summary>';
+      h += rows.length ? rows.join('') : '<div class="empty">No price in this pull matches the filter.</div>';
+      h += '</details>';
+    });
+    if (m.size_note) h += '<div class="note small muted" style="margin-top:8px">File trimmed to the size budget: ' + esc(m.size_note) + '</div>';
+    return h + '</div></div>';
+  }
+  function hitPanel(d) {
+    const hr = d.hit_rate || {}, tbl = hr.table || [];
+    let h = '<div class="panel" id="props-hit"><div class="ph"><h2>' + ICON.chart + 'How props have actually hit</h2><span class="sub">every captured price, graded on the real stat line · ' + esc(fmtN(hr.rows)) + ' rows</span></div><div class="pb">';
+    h += '<p class="small sec">Each row: the share of prices in that band that cashed against the share the price needed. "Price needed" has the vig removed where the same book quoted the other side (two-sided), else it is the raw breakeven. Rows with fewer than ' + esc(hr.small_sample_n || 100) + ' graded are greyed: too few to trust. Descriptive, not an angle.</p>';
+    if (!tbl.length) return h + '<div class="empty" id="props-hit-empty"><b>Nothing graded yet.</b>' + esc(hr.note || '') + '</div></div></div>';
+    let cur = null;
+    tbl.forEach((r) => {
+      if (r.market !== cur) { cur = r.market; h += '<div class="tiny" style="margin:10px 0 2px">' + esc(cap1(r.label || r.market)) + '</div>'; }
+      const n = Number(r.wins) + Number(r.losses);
+      const s = cap1(r.label || r.market) + ' ' + bandWords(r.band) + ': hit ' + (r.hit_pct == null ? '—' : Number(r.hit_pct).toFixed(1) + '%') + ' of the time, price needed ' + (r.implied_pct == null ? '—' : Number(r.implied_pct).toFixed(1) + '%') + '. ' + fmtN(n) + ' graded.';
+      h += '<div class="hrow' + (r.small_sample ? ' small' : '') + '"><span class="s">' + esc(s) + '</span><span class="nums">W ' + esc(r.wins) + ' · L ' + esc(r.losses) + ' · P ' + esc(r.pushes) + ' · diff ' + esc(signed(r.diff_pts)) + ' pts · two-sided ' + esc(r.two_sided) + '</span>' + (r.small_sample ? pill('neutral', 'too few to trust') : '') + '</div>';
+    });
+    return h + '</div></div>';
+  }
+  function shadowCard(p) {
+    const res = p.result ? pill(p.result === 'hit' ? 'survivor' : p.result === 'miss' ? 'against' : 'neutral', p.result === 'pending' ? 'pending' : p.result.replace('_', ' ')) : '';
+    let h = '<div class="card sc"><div class="l1"><span class="tag nobet">SHADOW · $0</span>' + res + '<span class="small muted num">' + esc(kick(p.kickoff)) + '</span></div>';
+    h += '<div class="mu">' + esc(p.game) + ' · ' + esc(p.player) + '</div>';
+    h += '<ul class="lines">' + (p.card || []).map((c, i) => '<li class="' + (i === 3 ? 'shadow' : '') + '"><b>' + esc(c.label) + '</b>' + esc(c.text) + '</li>').join('') + '</ul>';
+    if (p.clv_pts != null) h += '<div class="small sec" style="margin-top:6px">Closing-line value <span class="num">' + esc(signed(p.clv_pts, 2)) + ' pts</span> vs the ' + esc(stamp(p.close_stamp)) + ' pull</div>';
+    else if (p.clv_note) h += '<div class="small muted" style="margin-top:6px">Closing-line value: ' + esc(p.clv_note) + '</div>';
+    return h + '</div>';
+  }
+  function shadowPanel2(d) {
+    const sh = d.shadow || {}, rec = sh.record || {};
+    let h = '<div class="panel" id="props-shadow"><div class="ph"><h2>' + ICON.eye + 'Shadow picks (no money)</h2><span class="sub">zero stake · logged before kickoff · graded on hit rate and closing-line value</span></div><div class="pb">';
+    h += '<p class="small sec">Rule ' + esc(sh.rule_version || '—') + ': a pick exists only when one of our books (' + esc((sh.candidate_books || []).map(bookName).join(', ')) + ') posts a price whose breakeven sits at least <span class="num">' + esc(sh.min_edge_pts) + '</span> points below the other books\' no-vig consensus at the same line' + (sh.min_edge_placeholder ? ' <span class="muted">(placeholder bar — Q decides)</span>' : '') + '. A price rule, not a prediction. Nothing here is a bet.</p>';
+    const picks = sh.this_week || [];
+    if (!picks.length) h += '<div class="empty" id="shadow-empty"><b>No shadow picks this week.</b>' + ((sh.evaluated_pulls || []).length ? esc((sh.evaluated_pulls || []).length) + ' pull' + ((sh.evaluated_pulls || []).length === 1 ? '' : 's') + ' evaluated (' + esc((sh.evaluated_pulls || []).map(stamp).join(', ')) + '); no price cleared the bar.' : 'No pull evaluated yet.') + '</div>';
+    else picks.forEach((p) => { h += shadowCard(p); });
+    h += '<div class="tiny" style="margin:12px 0 6px">Running record · all weeks</div>';
+    h += '<div class="cnts"><div class="cnt"><div class="v">' + esc(rec.picks != null ? rec.picks : '—') + '</div><div class="k">PICKS</div></div><div class="cnt"><div class="v">' + esc(rec.settled != null ? rec.settled : '—') + '</div><div class="k">SETTLED</div></div>' +
+      '<div class="cnt"><div class="v">' + esc(rec.hit_pct == null ? '—' : Number(rec.hit_pct).toFixed(1) + '%') + '</div><div class="k">HIT RATE</div></div><div class="cnt"><div class="v">' + esc(rec.avg_breakeven_pct == null ? '—' : Number(rec.avg_breakeven_pct).toFixed(1) + '%') + '</div><div class="k">AVG BREAKEVEN</div></div>' +
+      '<div class="cnt"><div class="v">' + esc(rec.avg_clv_pts == null ? '—' : signed(rec.avg_clv_pts, 2)) + '</div><div class="k">AVG CLV (PTS)</div></div><div class="cnt"><div class="v">' + esc(rec.clv_n != null ? rec.clv_n : '—') + '</div><div class="k">CLV SAMPLE</div></div></div>';
+    h += '<p class="small muted">Program gate (read 2026-11-10): at least 40 settled shadow picks with average closing-line value above 0. ' + (sh.note ? esc(sh.note) : '') + '</p>';
+    return h + '</div></div>';
+  }
+  function renderProps(w, d, err) {
+    const m = (d && d.meta) || {};
+    const banner = '<div class="banner info" id="banner-props-research"><b>Research only.</b> ' + esc((m.banner || PROPS_BANNER).replace(/^Research only\.\s*/, '')) + '</div>';
+    let html = '<div class="head"><div><h1>Props</h1><div class="subl">Player prop prices · how they have hit · zero-stake shadow picks</div></div></div>';
+    html += banner;
+    const empty = !d || !m.pull_stamp;
+    if (empty) {
+      html += '<div class="empty" id="props-empty"><b>No prop capture yet</b>' + (err ? 'The props file could not be read. ' : '') + esc(m.note || 'Nothing to show until a prop pull is on disk and the board is built.') + '</div>';
+      if (d && d.shadow) html += shadowPanel2(d);
+      $main.innerHTML = html;
+      window.scrollTo(0, 0);
+      announce('props', w);
+      return;
+    }
+    const fr = propsFreshness(d, w);
+    if (fr.stale) html += '<div class="banner warn" id="banner-props-odds"><b>Prop prices last captured ' + esc(fr.when) + '</b> (captured ' + esc(Math.floor(fr.age)) + ' h ago, past the ' + esc(fr.limit) + ' h window) — the books have moved; check the sportsbook before relying on a price.</div>';
+    html += '<div class="asofline" id="props-asof">Prop prices captured ' + esc(tsFull(m.pull_at)) + ' · pull ' + esc(stamp(m.pull_stamp)) + ' · ' + esc((m.books_seen || []).map(bookName).join(', ') || 'books unavailable') + (m.credits_remaining != null ? ' · Odds API credits remaining ' + esc(fmtN(m.credits_remaining)) : '') + (m.week != null ? ' · week ' + esc(m.week) : '') + '</div>';
+    html += pricesPanel(d, w) + hitPanel(d) + shadowPanel2(d);
+    $main.innerHTML = html;
+    const sel = document.getElementById('pf-market');
+    if (sel) sel.addEventListener('change', () => { propsState.market = sel.value; state.keepScroll = window.scrollY; renderProps(w, d, null); });
+    const ours = document.getElementById('pf-ours');
+    if (ours) ours.addEventListener('click', () => { propsState.ours = !propsState.ours; state.keepScroll = window.scrollY; renderProps(w, d, null); });
+    window.scrollTo(0, state.keepScroll != null ? state.keepScroll : 0);
+    state.keepScroll = null;
+    announce('props', w);
+  }
+  function viewProps() {
+    setNav('props');
+    const latest = latestId();
+    const go = (w) => {
+      renderChrome(w);
+      fetchJSON(PROPS_FILE).then((d) => renderProps(w, d, null)).catch((err) => renderProps(w, null, err));
+    };
+    (latest ? loadWeek(latest) : Promise.resolve(null)).then(go).catch(() => go(null));
+  }
+
   // ------------------------------------------------------------ failure + the bets.js hook
   function fail(err) {
     state.rendered = null;
@@ -757,6 +950,7 @@
     if (page === 'slate') return viewSlate(p[1] || null, p[2] || null);
     if (page === 'angles') return viewAngles();
     if (page === 'ledger') return viewLedger();
+    if (page === 'props') return viewProps();
     if (page === 'system') return viewSystem(p[1] || null);
     location.replace('#/week');
   }

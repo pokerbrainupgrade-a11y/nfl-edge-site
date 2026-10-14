@@ -4,33 +4,33 @@
   "source": "schedule row lookup: each slate game matched to games.parquet by home + away + kickoff date (America/Phoenix), week read from that row",
   "slate_source": "odds pull 2026-10-11_075704 America/Phoenix (odds_latest.parquet)",
   "slate_window": {
-   "start": "2026-10-11T12:06:20-07:00",
-   "end": "2026-10-12T23:59:59-07:00"
+   "start": "2026-10-13T17:54:06-07:00",
+   "end": "2026-10-19T23:59:59-07:00"
   },
-  "slate_games": 5,
-  "matched": 5,
+  "slate_games": 10,
+  "matched": 10,
   "unmatched": [],
   "weeks_seen": {
-   "wk05": 5
+   "wk06": 10
   },
   "disagreeing": [],
   "schedule": {
    "pulled_at": "2026-10-09 09:01 America/Phoenix",
-   "age_days": 2.1,
+   "age_days": 4.4,
    "stale": false,
    "max_age_days": 7,
    "refreshed": false,
    "error": null
   },
-  "checked_at": "2026-10-11T12:06:20-07:00",
-  "week": 5,
+  "checked_at": "2026-10-13T17:54:06-07:00",
+  "week": 6,
   "status": "verified",
   "flag": null,
-  "detail": "all 5 slate games between Sun 10/11 12:06 and Mon 10/12 23:59 matched schedule rows labelled week 5; latest_week = 2026-W05",
-  "run_week": 5,
+  "detail": "all 10 slate games between Tue 10/13 17:54 and Mon 10/19 23:59 matched schedule rows labelled week 6; no scan file for wk06 yet, latest_week = null",
+  "run_week": 6,
   "run_week_source": "lookup",
   "ledger": null,
-  "latest_week_source": "lookup",
+  "latest_week_source": "lookup (no file for the looked-up week yet)",
   "weeks_on_disk": [
    "2026-W05",
    "2026-W03",
@@ -39,8 +39,8 @@
  },
  "site_schema_version": 7,
  "timezone": "America/Phoenix",
- "exported_at": "2026-10-11T12:06:21-07:00",
- "latest_week": "2026-W05",
+ "exported_at": "2026-10-13T17:54:06-07:00",
+ "latest_week": null,
  "weeks": [
   {
    "id": "2026-W05",
@@ -104,9 +104,9 @@
   }
  ],
  "last_publish": {
-  "week": "2026-W05",
-  "published_at": "2026-10-11 12:06 America/Phoenix",
-  "engine_head": "4d6c684",
+  "week": "None",
+  "published_at": "2026-10-13 17:54 America/Phoenix",
+  "engine_head": "5ca8837",
   "url": "https://pokerbrainupgrade-a11y.github.io/nfl-edge-site/"
  },
  "reports": {
