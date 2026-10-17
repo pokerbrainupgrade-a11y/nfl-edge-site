@@ -7,46 +7,46 @@
   "week": 6,
   "season": 2026,
   "source": "schedule row lookup: each slate game matched to games.parquet by home + away + kickoff date (America/Phoenix), week read from that row",
-  "slate_source": "odds pull 2026-10-13_175713 America/Phoenix (odds_latest.parquet)",
+  "slate_source": "odds pull 2026-10-17_075233 America/Phoenix (odds_latest.parquet)",
   "slate_window": {
-   "start": "2026-10-13T17:57:14-07:00",
+   "start": "2026-10-17T09:25:31-07:00",
    "end": "2026-10-19T23:59:59-07:00"
   },
-  "slate_games": 14,
-  "matched": 14,
+  "slate_games": 13,
+  "matched": 13,
   "unmatched": [],
   "weeks_seen": {
-   "wk06": 14
+   "wk06": 13
   },
   "disagreeing": [],
   "schedule": {
-   "pulled_at": "2026-10-13 17:57 America/Phoenix",
+   "pulled_at": "2026-10-17 09:25 America/Phoenix",
    "age_days": 0.0,
    "stale": false,
    "max_age_days": 7,
    "refreshed": false,
    "error": null
   },
-  "checked_at": "2026-10-13T17:57:14-07:00",
-  "detail": "all 14 slate games between Tue 10/13 17:57 and Mon 10/19 23:59 matched schedule rows labelled week 6",
+  "checked_at": "2026-10-17T09:25:31-07:00",
+  "detail": "all 13 slate games between Sat 10/17 09:25 and Mon 10/19 23:59 matched schedule rows labelled week 6",
   "ledger": "shadow rows from this run are written with week_status=verified"
  },
  "bet_cards": [
   {
-   "game_id": "2026_06_BAL_CLE",
-   "matchup": "BAL@CLE",
-   "home": "CLE",
-   "away": "BAL",
-   "kickoff_display": "Sun 10/18 10:00",
-   "kickoff_phoenix": "2026-10-18T10:00:00-07:00",
-   "tag": "POSSIBLE BET",
-   "tag_rank": 3,
-   "tag_tier": "B",
+   "game_id": "2026_06_HOU_JAX",
+   "matchup": "HOU@JAX",
+   "home": "JAX",
+   "away": "HOU",
+   "kickoff_display": "Sun 10/18 06:30",
+   "kickoff_phoenix": "2026-10-18T06:30:00-07:00",
+   "tag": "BET",
+   "tag_rank": 1,
+   "tag_tier": "A",
    "market": "spread",
-   "side": "CLE",
-   "bet": "CLE +4.5",
-   "line": 4.5,
-   "price": -108,
+   "side": "HOU",
+   "bet": "HOU +2.5",
+   "line": 2.5,
+   "price": 100,
    "book": "draftkings",
    "estimate": {
     "basis": "backtested cover rate",
@@ -56,81 +56,30 @@
     "n": 490,
     "window": "2021-2025"
    },
-   "breakeven_pct": 51.92,
-   "edge_pts": 3.22,
-   "becomes_bet_bar_pts": 5.0,
-   "worst_line": null,
-   "becomes_bet_line": 5.5,
-   "at_bar_now": false,
-   "place_label": "WATCH",
+   "breakeven_pct": 50.0,
+   "edge_pts": 5.14,
+   "becomes_bet_bar_pts": null,
+   "worst_line": 0.5,
+   "becomes_bet_line": null,
+   "at_bar_now": null,
+   "place_label": "PLACE THIS BET",
    "warning": null,
    "lines": [
     {
      "label": "THE LINE",
-     "text": "CLE +4.5 (-108) at DraftKings, pulled Tue 10/13 17:57 America/Phoenix."
+     "text": "HOU +2.5 (+100) at DraftKings, pulled Sat 10/17 07:52 America/Phoenix."
     },
     {
      "label": "WHAT IT MEANS",
-     "text": "Cleveland wins the bet if they win the game or lose by 4 or fewer."
+     "text": "Houston wins the bet if they win the game or lose by 2 or fewer."
     },
     {
      "label": "OUR EDGE",
-     "text": "Backtested cover rate: about 55% (sandwich_game, worst recent window, n=490). At -108 you need 51.9% to break even. Edge: +3.2 percentage points."
+     "text": "Backtested cover rate: about 55% (sandwich_game, worst recent window, n=490). At +100 you need 50.0% to break even. Edge: +5.1 percentage points."
     },
     {
-     "label": "WATCH",
-     "text": "Watch \u2014 not a bet at this price: edge +3.2 against the bar of 5 percentage points for a bet on price alone. Becomes a bet at CLE +5.5 or better."
-    }
-   ]
-  },
-  {
-   "game_id": "2026_06_PIT_TB",
-   "matchup": "PIT@TB",
-   "home": "TB",
-   "away": "PIT",
-   "kickoff_display": "Sun 10/18 10:00",
-   "kickoff_phoenix": "2026-10-18T10:00:00-07:00",
-   "tag": "POSSIBLE BET",
-   "tag_rank": 6,
-   "tag_tier": "B",
-   "market": "spread",
-   "side": "PIT",
-   "bet": "PIT -2.5",
-   "line": -2.5,
-   "price": -108,
-   "book": "betmgm",
-   "estimate": {
-    "basis": "backtested cover rate",
-    "angle": "sandwich_game",
-    "weight": 0.75,
-    "pct": 55.14,
-    "n": 490,
-    "window": "2021-2025"
-   },
-   "breakeven_pct": 51.92,
-   "edge_pts": 3.22,
-   "becomes_bet_bar_pts": 5.0,
-   "worst_line": null,
-   "becomes_bet_line": -1.5,
-   "at_bar_now": false,
-   "place_label": "WATCH",
-   "warning": null,
-   "lines": [
-    {
-     "label": "THE LINE",
-     "text": "PIT -2.5 (-108) at BetMGM, pulled Tue 10/13 17:57 America/Phoenix."
-    },
-    {
-     "label": "WHAT IT MEANS",
-     "text": "Pittsburgh must win by 3 or more. Win by 2 or less, or lose, and the bet loses."
-    },
-    {
-     "label": "OUR EDGE",
-     "text": "Backtested cover rate: about 55% (sandwich_game, worst recent window, n=490). At -108 you need 51.9% to break even. Edge: +3.2 percentage points."
-    },
-    {
-     "label": "WATCH",
-     "text": "Watch \u2014 not a bet at this price: edge +3.2 against the bar of 5 percentage points for a bet on price alone. Becomes a bet at PIT -1.5 or better."
+     "label": "PLACE THIS BET",
+     "text": "Take HOU +2.5. Do not take it worse than HOU +0.5."
     }
    ]
   },
@@ -169,7 +118,7 @@
    "lines": [
     {
      "label": "THE LINE",
-     "text": "SF -7.5 (-108) at DraftKings, pulled Tue 10/13 17:57 America/Phoenix."
+     "text": "SF -7.5 (-108) at DraftKings, pulled Sat 10/17 07:52 America/Phoenix."
     },
     {
      "label": "WHAT IT MEANS",
@@ -182,6 +131,108 @@
     {
      "label": "WATCH",
      "text": "Watch \u2014 not a bet at this price: edge +3.2 against the bar of 5 percentage points for a bet on price alone. Becomes a bet at SF -7 or better."
+    }
+   ]
+  },
+  {
+   "game_id": "2026_06_BAL_CLE",
+   "matchup": "BAL@CLE",
+   "home": "CLE",
+   "away": "BAL",
+   "kickoff_display": "Sun 10/18 10:00",
+   "kickoff_phoenix": "2026-10-18T10:00:00-07:00",
+   "tag": "POSSIBLE BET",
+   "tag_rank": 3,
+   "tag_tier": "B",
+   "market": "spread",
+   "side": "CLE",
+   "bet": "CLE +3",
+   "line": 3.0,
+   "price": -108,
+   "book": "draftkings",
+   "estimate": {
+    "basis": "backtested cover rate",
+    "angle": "sandwich_game",
+    "weight": 0.75,
+    "pct": 55.14,
+    "n": 490,
+    "window": "2021-2025"
+   },
+   "breakeven_pct": 47.27,
+   "edge_pts": 2.93,
+   "becomes_bet_bar_pts": 5.0,
+   "worst_line": null,
+   "becomes_bet_line": 3.5,
+   "at_bar_now": false,
+   "place_label": "WATCH",
+   "warning": null,
+   "lines": [
+    {
+     "label": "THE LINE",
+     "text": "CLE +3 (-108) at DraftKings, pulled Sat 10/17 07:52 America/Phoenix."
+    },
+    {
+     "label": "WHAT IT MEANS",
+     "text": "Cleveland wins the bet if they win the game or lose by 2 or fewer. Lose by exactly 3 and the bet pushes: the stake comes back."
+    },
+    {
+     "label": "OUR EDGE",
+     "text": "Backtested cover rate: about 55% (sandwich_game, worst recent window, n=490). At -108 on a whole number you need 47.3% to break even after pushes. Edge: +2.9 percentage points."
+    },
+    {
+     "label": "WATCH",
+     "text": "Watch \u2014 not a bet at this price: edge +2.9 against the bar of 5 percentage points for a bet on price alone. Becomes a bet at CLE +3.5 or better."
+    }
+   ]
+  },
+  {
+   "game_id": "2026_06_PIT_TB",
+   "matchup": "PIT@TB",
+   "home": "TB",
+   "away": "PIT",
+   "kickoff_display": "Sun 10/18 10:00",
+   "kickoff_phoenix": "2026-10-18T10:00:00-07:00",
+   "tag": "POSSIBLE BET",
+   "tag_rank": 6,
+   "tag_tier": "B",
+   "market": "spread",
+   "side": "PIT",
+   "bet": "PIT -2.5",
+   "line": -2.5,
+   "price": -110,
+   "book": "fanduel",
+   "estimate": {
+    "basis": "backtested cover rate",
+    "angle": "sandwich_game",
+    "weight": 0.75,
+    "pct": 55.14,
+    "n": 490,
+    "window": "2021-2025"
+   },
+   "breakeven_pct": 52.38,
+   "edge_pts": 2.76,
+   "becomes_bet_bar_pts": 5.0,
+   "worst_line": null,
+   "becomes_bet_line": -1.5,
+   "at_bar_now": false,
+   "place_label": "WATCH",
+   "warning": null,
+   "lines": [
+    {
+     "label": "THE LINE",
+     "text": "PIT -2.5 (-110) at FanDuel, pulled Sat 10/17 07:52 America/Phoenix."
+    },
+    {
+     "label": "WHAT IT MEANS",
+     "text": "Pittsburgh must win by 3 or more. Win by 2 or less, or lose, and the bet loses."
+    },
+    {
+     "label": "OUR EDGE",
+     "text": "Backtested cover rate: about 55% (sandwich_game, worst recent window, n=490). At -110 you need 52.4% to break even. Edge: +2.8 percentage points."
+    },
+    {
+     "label": "WATCH",
+     "text": "Watch \u2014 not a bet at this price: edge +2.8 against the bar of 5 percentage points for a bet on price alone. Becomes a bet at PIT -1.5 or better."
     }
    ]
   },
@@ -220,7 +271,7 @@
    "lines": [
     {
      "label": "THE LINE",
-     "text": "NE -7 (-112) at BetMGM, pulled Tue 10/13 17:57 America/Phoenix."
+     "text": "NE -7 (-112) at BetMGM, pulled Sat 10/17 07:52 America/Phoenix."
     },
     {
      "label": "WHAT IT MEANS",
@@ -250,8 +301,8 @@
    "side": "DAL",
    "bet": "DAL +1.5",
    "line": 1.5,
-   "price": -115,
-   "book": "draftkings",
+   "price": -114,
+   "book": "fanduel",
    "estimate": {
     "basis": "backtested cover rate",
     "angle": "off_thursday",
@@ -260,8 +311,8 @@
     "n": 182,
     "window": "2021-2025"
    },
-   "breakeven_pct": 53.49,
-   "edge_pts": 0.7,
+   "breakeven_pct": 53.27,
+   "edge_pts": 0.92,
    "becomes_bet_bar_pts": 5.0,
    "worst_line": null,
    "becomes_bet_line": 3.0,
@@ -271,7 +322,7 @@
    "lines": [
     {
      "label": "THE LINE",
-     "text": "DAL +1.5 (-115) at DraftKings, pulled Tue 10/13 17:57 America/Phoenix."
+     "text": "DAL +1.5 (-114) at FanDuel, pulled Sat 10/17 07:52 America/Phoenix."
     },
     {
      "label": "WHAT IT MEANS",
@@ -279,62 +330,11 @@
     },
     {
      "label": "OUR EDGE",
-     "text": "Backtested cover rate: about 54% (off_thursday, worst recent window, n=182). At -115 you need 53.5% to break even. Edge: +0.7 percentage points."
+     "text": "Backtested cover rate: about 54% (off_thursday, worst recent window, n=182). At -114 you need 53.3% to break even. Edge: +0.9 percentage points."
     },
     {
      "label": "WATCH",
-     "text": "Watch \u2014 not a bet at this price: edge +0.7 against the bar of 5 percentage points for a bet on price alone. Becomes a bet at DAL +3 or better."
-    }
-   ]
-  },
-  {
-   "game_id": "2026_06_HOU_JAX",
-   "matchup": "HOU@JAX",
-   "home": "JAX",
-   "away": "HOU",
-   "kickoff_display": "Sun 10/18 06:30",
-   "kickoff_phoenix": "2026-10-18T06:30:00-07:00",
-   "tag": "BET",
-   "tag_rank": 1,
-   "tag_tier": "A",
-   "market": "spread",
-   "side": "HOU",
-   "bet": "HOU +3",
-   "line": 3.0,
-   "price": -120,
-   "book": "draftkings",
-   "estimate": {
-    "basis": "backtested cover rate",
-    "angle": "sandwich_game",
-    "weight": 0.75,
-    "pct": 55.14,
-    "n": 490,
-    "window": "2021-2025"
-   },
-   "breakeven_pct": 49.66,
-   "edge_pts": 0.54,
-   "becomes_bet_bar_pts": null,
-   "worst_line": null,
-   "becomes_bet_line": null,
-   "at_bar_now": null,
-   "place_label": "PLACE THIS BET",
-   "warning": null,
-   "lines": [
-    {
-     "label": "THE LINE",
-     "text": "HOU +3 (-120) at DraftKings, pulled Tue 10/13 17:57 America/Phoenix."
-    },
-    {
-     "label": "WHAT IT MEANS",
-     "text": "Houston wins the bet if they win the game or lose by 2 or fewer. Lose by exactly 3 and the bet pushes: the stake comes back."
-    },
-    {
-     "label": "OUR EDGE",
-     "text": "Backtested cover rate: about 55% (sandwich_game, worst recent window, n=490). At -120 on a whole number you need 49.7% to break even after pushes. Edge: +0.5 percentage points."
-    },
-    {
-     "label": "PLACE THIS BET",
-     "text": "Take HOU +3. Only at HOU +3 or better."
+     "text": "Watch \u2014 not a bet at this price: edge +0.9 against the bar of 5 percentage points for a bet on price alone. Becomes a bet at DAL +3 or better."
     }
    ]
   }
@@ -347,21 +347,21 @@
  "id": "2026-W06",
  "season": 2026,
  "week": 6,
- "generated_at": "2026-10-13T17:57:26-07:00",
+ "generated_at": "2026-10-17T09:25:43-07:00",
  "timezone": "America/Phoenix",
  "odds_pull": {
   "succeeded": true,
-  "fetched_at": "2026-10-13T17:57:13-07:00",
-  "age_hours": 0.0,
+  "fetched_at": "2026-10-17T07:52:33-07:00",
+  "age_hours": 1.6,
   "stale": false,
-  "detail": "pull 2026-10-13_175713 America/Phoenix, 0.0 h old"
+  "detail": "pull 2026-10-17_075233 America/Phoenix, 1.6 h old"
  },
  "books": [
   "betmgm",
   "draftkings",
   "fanduel"
  ],
- "data_refresh": "ok 2026-10-13 17:57",
+ "data_refresh": "ok 2026-10-17 09:25",
  "rules": {
   "lean_cap_points": 1.5,
   "stale_after_hours": 36,
@@ -406,8 +406,8 @@
   "status": "ok",
   "detail": "12 game(s) with a kickoff forecast, 0 unknown, 2 indoor",
   "host": "api.open-meteo.com",
-  "fetched_at": "2026-10-13T17:57:16.412639-07:00",
-  "snapshot": "/Users/quincypbu/NFL-Edge/data/weather/forecast_2026-10-13_175726.json",
+  "fetched_at": "2026-10-17T09:25:33.892401-07:00",
+  "snapshot": "/sessions/rcw-013jq81d1ght5pdmnswzbd8f/mnt/NFL-Edge/data/weather/forecast_2026-10-17_092543.json",
   "counts": {
    "forecast": 12,
    "unknown": 0,
@@ -433,8 +433,8 @@
    "rule_a": true,
    "rule_b": true,
    "number_to_shop": {
-    "line": 3.0,
-    "price": -120,
+    "line": 2.5,
+    "price": 100,
     "book": "draftkings",
     "reachable_by": [
      "Q",
@@ -445,8 +445,8 @@
     "books_quoting": 3
    },
    "opener_consensus": 3.0,
-   "moved_toward_lean": 0.0,
-   "lean_remaining": 0.75,
+   "moved_toward_lean": 0.5,
+   "lean_remaining": 0.25,
    "angles_for": [
     {
      "name": "sandwich_game",
@@ -519,9 +519,9 @@
     }
    ],
    "angles_against": [],
-   "edge_pts": 0.54,
+   "edge_pts": 5.14,
    "interpretation": {
-    "bet": "Bet Houston to cover, not to win: HOU +3 at -120 on DraftKings.",
+    "bet": "Bet Houston to cover, not to win: HOU +2.5 at +100 on DraftKings.",
     "band": "thin",
     "heading": "WHAT THIS MEANS",
     "what_this_means": [
@@ -531,11 +531,11 @@
      },
      {
       "label": "Movement",
-      "text": "The number has not moved since it opened at 3. The shortlist rule lets the market move up to 0.75 (the strength score, used as the staleness budget) before the read counts as spent; all 0.75 of that budget is left."
+      "text": "The market has already moved +0.5 toward Houston since it opened (3 -> 2.5), so part of this read is priced in. The shortlist rule lets it move up to 0.75 (the strength score, used as the staleness budget) before the read counts as spent; 0.25 of that budget is left."
      },
      {
       "label": "The number",
-      "text": "3 at DraftKings is the best of the 3 books quoting it, 0.5 better than the 2.5 consensus. Nothing better is posted at a book in config/books.txt."
+      "text": "2.5 at DraftKings is the best posted number and all 3 books quoting it sit on 2.5. Shopping further gains nothing."
      },
      {
       "label": "Who can bet it",
@@ -559,7 +559,7 @@
     "title": "What we knew about the game",
     "lines": [
      "HOU at JAX, kickoff Sun 10/18 06:30 America/Phoenix. Roof: outdoors.",
-     "On the spread, the market opened at HOU +3 (consensus of the first odds pull carrying this game) and the best current number on the leaned side is HOU +3 (-120) at draftkings."
+     "On the spread, the market opened at HOU +3 (consensus of the first odds pull carrying this game) and the best current number on the leaned side is HOU +2.5 (+100) at draftkings."
     ]
    },
    {
@@ -597,7 +597,7 @@
     "title": "The line check",
     "lines": [
      "The line check protects against chasing a number the market has already taken. It compares two different things on purpose: the market's movement since the opener, measured in points of the line, against the strength score, used as a staleness budget. Once the number has moved toward the lean by as much as the score, the read counts as spent. That coupling is a named, unvalidated rule (references/interpretation.yaml, movement_rule).",
-     "spread: opener HOU +3 vs best now HOU +3 (-120) at draftkings; moved +0 toward HOU (negative = away), lean 0.75 -> pass (number not gone)."
+     "spread: opener HOU +3 vs best now HOU +2.5 (+100) at draftkings; moved +0.5 toward HOU (negative = away), lean 0.75 -> pass (number not gone)."
     ]
    },
    {
@@ -1081,14 +1081,14 @@
    "shadow_lean": {
     "spread": {
      "side": "DEN",
-     "line": 2.5,
-     "price": -102,
-     "book": "fanduel",
+     "line": null,
+     "price": null,
+     "book": null,
      "tier": "D",
      "net_lean": 0.0,
      "forced_default": true,
      "line_stale": false,
-     "pulled_at": "2026-10-13T17:57:13-07:00"
+     "pulled_at": null
     },
     "total": null
    },
@@ -1108,10 +1108,10 @@
     "status": "forecast",
     "badge": null,
     "detail": null,
-    "wind_mph": 11.7,
-    "wind_max_3h_mph": 11.7,
-    "gust_mph": 14.5,
-    "temp_f": 50.7,
+    "wind_mph": 6.2,
+    "wind_max_3h_mph": 6.2,
+    "gust_mph": 15.0,
+    "temp_f": 53.4,
     "precip_in_3h": 0.0,
     "kickoff_hour_utc": "2026-10-16T00:00:00+00:00",
     "hours": [
@@ -1126,7 +1126,7 @@
     "lat": 39.7439,
     "lon": -105.0201,
     "kickoff_utc": "2026-10-16T00:15:00+00:00",
-    "fetched_at": "2026-10-13T17:57:16.412639-07:00",
+    "fetched_at": "2026-10-17T09:25:33.892401-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {
@@ -1183,8 +1183,8 @@
     "rule_a": true,
     "rule_b": true,
     "number_to_shop": {
-     "line": 3.0,
-     "price": -120,
+     "line": 2.5,
+     "price": 100,
      "book": "draftkings",
      "reachable_by": [
       "Q",
@@ -1195,8 +1195,8 @@
      "books_quoting": 3
     },
     "opener_consensus": 3.0,
-    "moved_toward_lean": 0.0,
-    "lean_remaining": 0.75,
+    "moved_toward_lean": 0.5,
+    "lean_remaining": 0.25,
     "angles_for": [
      {
       "name": "sandwich_game",
@@ -1269,7 +1269,7 @@
      }
     ],
     "angles_against": [],
-    "edge_pts": 0.54
+    "edge_pts": 5.14
    },
    "total": {
     "lean_side": null,
@@ -1771,15 +1771,15 @@
      "spread": {
       "net": "sum of fired weights: HOU 0.75; net 0.75 toward HOU; cap +/-1.5 -> lean HOU 0.75",
       "rule_a": "survivors same direction: 1 of 2 needed (or 1 survivor + 1 watch); watch same direction: 1 counted (1 below floor - not counted); survivors against: 0 -> pass",
-      "rule_b": "opener HOU +3 vs best now HOU +3 (-120) at draftkings; moved +0 toward HOU (negative = away), lean 0.75 -> pass (number not gone)",
-      "move": "open HOU +3 (2026-10-08_07041) -> latest HOU +2.5 (2026-10-13_17571); move -0.5 over 2 snapshot(s); toward lean (+0.5); key numbers crossed: 3.0",
+      "rule_b": "opener HOU +3 vs best now HOU +2.5 (+100) at draftkings; moved +0.5 toward HOU (negative = away), lean 0.75 -> pass (number not gone)",
+      "move": "open HOU +3 (2026-10-08_07041) -> latest HOU +2.5 (2026-10-17_07523); move -0.5 over 5 snapshot(s); toward lean (+0.5); key numbers crossed: 3.0",
       "verdict": "SHORTLIST"
      },
      "total": {
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": "open over 43 (2026-10-08_07041) -> latest over 42.5 (2026-10-13_17571); move -0.5 over 2 snapshot(s); key numbers crossed: none",
+      "move": "open over 43 (2026-10-08_07041) -> latest over 42.5 (2026-10-17_07523); move -0.5 over 5 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      }
     }
@@ -1787,26 +1787,26 @@
    "shadow_lean": {
     "spread": {
      "side": "HOU",
-     "line": 3.0,
-     "price": -120,
+     "line": 2.5,
+     "price": 100,
      "book": "draftkings",
      "tier": "A",
      "net_lean": 0.75,
      "forced_default": false,
      "line_stale": false,
-     "pulled_at": "2026-10-13T17:57:13-07:00"
+     "pulled_at": "2026-10-17T07:52:33-07:00"
     },
     "total": null
    },
    "tag": "BET",
    "tag_rank": 1,
-   "tag_reason": "Rule (a) met: 1 survivor + 1 watch for HOU; edge +0.5 at the number to shop",
+   "tag_reason": "Rule (a) met: 1 survivor + 1 watch for HOU; edge +5.1 at the number to shop",
    "tag_market": "spread",
    "tag_tier": "A",
    "tag_keys": {
     "net_survivor_weight": 0.75,
     "survivor_angles_fired": 1,
-    "price_edge": 0.5,
+    "price_edge": 0.0,
     "kickoff": "2026-10-18T06:30:00-07:00"
    },
    "tag_priced_out": null,
@@ -1814,11 +1814,11 @@
     "status": "forecast",
     "badge": null,
     "detail": null,
-    "wind_mph": 12.1,
-    "wind_max_3h_mph": 12.1,
-    "gust_mph": 24.4,
-    "temp_f": 55.2,
-    "precip_in_3h": 0.0,
+    "wind_mph": 13.2,
+    "wind_max_3h_mph": 13.2,
+    "gust_mph": 27.7,
+    "temp_f": 55.1,
+    "precip_in_3h": 0.01,
     "kickoff_hour_utc": "2026-10-18T13:00:00+00:00",
     "hours": [
      "2026-10-18T13:00:00+00:00",
@@ -1832,19 +1832,19 @@
     "lat": 51.556,
     "lon": -0.2795,
     "kickoff_utc": "2026-10-18T13:30:00+00:00",
-    "fetched_at": "2026-10-13T17:57:16.412639-07:00",
+    "fetched_at": "2026-10-17T09:25:33.892401-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {
     "spread": {
      "market": "spreads",
      "side": "HOU",
-     "snapshots": 2,
+     "snapshots": 5,
      "open": 3.0,
      "open_at": "2026-10-08_070417 America/Phoenix",
      "open_books": 2,
      "latest": 2.5,
-     "latest_at": "2026-10-13_175713 America/Phoenix",
+     "latest_at": "2026-10-17_075233 America/Phoenix",
      "latest_books": 3,
      "open_price": -106,
      "latest_price": -105,
@@ -1858,15 +1858,15 @@
     "total": {
      "market": "totals",
      "side": "over",
-     "snapshots": 2,
+     "snapshots": 5,
      "open": 43.0,
      "open_at": "2026-10-08_070417 America/Phoenix",
      "open_books": 2,
      "latest": 42.5,
-     "latest_at": "2026-10-13_175713 America/Phoenix",
+     "latest_at": "2026-10-17_075233 America/Phoenix",
      "latest_books": 3,
      "open_price": -110,
-     "latest_price": -112,
+     "latest_price": -108,
      "move": -0.5,
      "toward_lean": null,
      "direction": null,
@@ -1891,7 +1891,7 @@
     "rule_a": false,
     "rule_b": true,
     "number_to_shop": {
-     "line": 4.5,
+     "line": 3.0,
      "price": -108,
      "book": "draftkings",
      "reachable_by": [
@@ -1899,12 +1899,12 @@
       "Mike",
       "Marques"
      ],
-     "consensus": 4.5,
+     "consensus": 3.0,
      "books_quoting": 3
     },
     "opener_consensus": 3.0,
-    "moved_toward_lean": -1.5,
-    "lean_remaining": 2.25,
+    "moved_toward_lean": 0.0,
+    "lean_remaining": 0.75,
     "angles_for": [
      {
       "name": "sandwich_game",
@@ -1931,7 +1931,7 @@
      }
     ],
     "angles_against": [],
-    "edge_pts": 3.22
+    "edge_pts": 2.93
    },
    "total": {
     "lean_side": null,
@@ -2387,15 +2387,15 @@
      "spread": {
       "net": "sum of fired weights: CLE 0.75; net 0.75 toward CLE; cap +/-1.5 -> lean CLE 0.75",
       "rule_a": "survivors same direction: 1 of 2 needed (or 1 survivor + 1 watch); watch same direction: 0 counted; survivors against: 0 -> fail",
-      "rule_b": "opener CLE +3 vs best now CLE +4.5 (-108) at draftkings; moved -1.5 toward CLE (negative = away), lean 0.75 -> pass (number not gone)",
-      "move": "open CLE +3 (2026-10-08_07041) -> latest CLE +4.5 (2026-10-13_17571); move +1.5 over 3 snapshot(s); against lean (-1.5); key numbers crossed: 3.0",
+      "rule_b": "opener CLE +3 vs best now CLE +3 (-108) at draftkings; moved +0 toward CLE (negative = away), lean 0.75 -> pass (number not gone)",
+      "move": "open CLE +3 (2026-10-08_07041) -> latest CLE +3 (2026-10-17_07523); move +0 over 6 snapshot(s); flat (+0); key numbers crossed: none",
       "verdict": "not enough angles (1 survivor, 0 watch same way)"
      },
      "total": {
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": "open over 41 (2026-10-08_07041) -> latest over 41.5 (2026-10-13_17571); move +0.5 over 3 snapshot(s); key numbers crossed: none",
+      "move": "open over 41 (2026-10-08_07041) -> latest over 39.5 (2026-10-17_07523); move -1.5 over 6 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      }
     }
@@ -2403,14 +2403,14 @@
    "shadow_lean": {
     "spread": {
      "side": "CLE",
-     "line": 4.5,
+     "line": 3.0,
      "price": -108,
      "book": "draftkings",
      "tier": "B",
      "net_lean": 0.75,
      "forced_default": false,
      "line_stale": false,
-     "pulled_at": "2026-10-13T17:57:13-07:00"
+     "pulled_at": "2026-10-17T07:52:33-07:00"
     },
     "total": null
    },
@@ -2430,10 +2430,10 @@
     "status": "forecast",
     "badge": null,
     "detail": null,
-    "wind_mph": 10.2,
-    "wind_max_3h_mph": 10.5,
-    "gust_mph": 15.4,
-    "temp_f": 59.1,
+    "wind_mph": 9.9,
+    "wind_max_3h_mph": 10.6,
+    "gust_mph": 15.0,
+    "temp_f": 56.2,
     "precip_in_3h": 0.0,
     "kickoff_hour_utc": "2026-10-18T17:00:00+00:00",
     "hours": [
@@ -2448,42 +2448,40 @@
     "lat": 41.5061,
     "lon": -81.6995,
     "kickoff_utc": "2026-10-18T17:00:00+00:00",
-    "fetched_at": "2026-10-13T17:57:16.412639-07:00",
+    "fetched_at": "2026-10-17T09:25:33.892401-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {
     "spread": {
      "market": "spreads",
      "side": "CLE",
-     "snapshots": 3,
+     "snapshots": 6,
      "open": 3.0,
      "open_at": "2026-10-08_070417 America/Phoenix",
      "open_books": 2,
-     "latest": 4.5,
-     "latest_at": "2026-10-13_175713 America/Phoenix",
+     "latest": 3.0,
+     "latest_at": "2026-10-17_075233 America/Phoenix",
      "latest_books": 3,
      "open_price": -103,
-     "latest_price": -110,
-     "move": 1.5,
-     "toward_lean": -1.5,
-     "direction": "against lean",
-     "key_crossed": [
-      3.0
-     ]
+     "latest_price": -108,
+     "move": 0.0,
+     "toward_lean": 0.0,
+     "direction": "flat",
+     "key_crossed": []
     },
     "total": {
      "market": "totals",
      "side": "over",
-     "snapshots": 3,
+     "snapshots": 6,
      "open": 41.0,
      "open_at": "2026-10-08_070417 America/Phoenix",
      "open_books": 2,
-     "latest": 41.5,
-     "latest_at": "2026-10-13_175713 America/Phoenix",
+     "latest": 39.5,
+     "latest_at": "2026-10-17_075233 America/Phoenix",
      "latest_books": 3,
      "open_price": -110,
-     "latest_price": -108,
-     "move": 0.5,
+     "latest_price": -112,
+     "move": -1.5,
      "toward_lean": null,
      "direction": null,
      "key_crossed": []
@@ -2945,14 +2943,14 @@
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": "open PHI -2 (2026-10-08_07041) -> latest PHI -1.5 (2026-10-13_17571); move +0.5 over 2 snapshot(s); key numbers crossed: none",
+      "move": "open PHI -2 (2026-10-08_07041) -> latest PHI +3 (2026-10-17_07523); move +5 over 5 snapshot(s); key numbers crossed: 3.0",
       "verdict": "no lean"
      },
      "total": {
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": "open over 43 (2026-10-08_07041) -> latest over 40.5 (2026-10-13_17571); move -2.5 over 2 snapshot(s); key numbers crossed: none",
+      "move": "open over 43 (2026-10-08_07041) -> latest over 39 (2026-10-17_07523); move -4 over 5 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      }
     }
@@ -2960,14 +2958,14 @@
    "shadow_lean": {
     "spread": {
      "side": "PHI",
-     "line": -1.0,
-     "price": -108,
-     "book": "betmgm",
+     "line": 3.5,
+     "price": -122,
+     "book": "fanduel",
      "tier": "D",
      "net_lean": 0.0,
      "forced_default": true,
      "line_stale": false,
-     "pulled_at": "2026-10-13T17:57:13-07:00"
+     "pulled_at": "2026-10-17T07:52:33-07:00"
     },
     "total": null
    },
@@ -2987,10 +2985,10 @@
     "status": "forecast",
     "badge": null,
     "detail": null,
-    "wind_mph": 9.0,
-    "wind_max_3h_mph": 9.2,
-    "gust_mph": 13.2,
-    "temp_f": 60.4,
+    "wind_mph": 7.8,
+    "wind_max_3h_mph": 7.8,
+    "gust_mph": 11.9,
+    "temp_f": 53.3,
     "precip_in_3h": 0.0,
     "kickoff_hour_utc": "2026-10-18T17:00:00+00:00",
     "hours": [
@@ -3005,40 +3003,42 @@
     "lat": 39.9008,
     "lon": -75.1675,
     "kickoff_utc": "2026-10-18T17:00:00+00:00",
-    "fetched_at": "2026-10-13T17:57:16.412639-07:00",
+    "fetched_at": "2026-10-17T09:25:33.892401-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {
     "spread": {
      "market": "spreads",
      "side": "PHI",
-     "snapshots": 2,
+     "snapshots": 5,
      "open": -2.0,
      "open_at": "2026-10-08_070417 America/Phoenix",
      "open_books": 2,
-     "latest": -1.5,
-     "latest_at": "2026-10-13_175713 America/Phoenix",
+     "latest": 3.0,
+     "latest_at": "2026-10-17_075233 America/Phoenix",
      "latest_books": 3,
      "open_price": -110,
      "latest_price": -105,
-     "move": 0.5,
+     "move": 5.0,
      "toward_lean": null,
      "direction": null,
-     "key_crossed": []
+     "key_crossed": [
+      3.0
+     ]
     },
     "total": {
      "market": "totals",
      "side": "over",
-     "snapshots": 2,
+     "snapshots": 5,
      "open": 43.0,
      "open_at": "2026-10-08_070417 America/Phoenix",
      "open_books": 2,
-     "latest": 40.5,
-     "latest_at": "2026-10-13_175713 America/Phoenix",
+     "latest": 39.0,
+     "latest_at": "2026-10-17_075233 America/Phoenix",
      "latest_books": 3,
      "open_price": -112,
      "latest_price": -110,
-     "move": -2.5,
+     "move": -4.0,
      "toward_lean": null,
      "direction": null,
      "key_crossed": []
@@ -3500,14 +3500,14 @@
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": "open ATL +1.5 (2026-10-08_07041) -> latest ATL +3 (2026-10-13_17571); move +1.5 over 3 snapshot(s); key numbers crossed: 3.0",
+      "move": "open ATL +1.5 (2026-10-08_07041) -> latest ATL +1.5 (2026-10-17_07523); move +0 over 6 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      },
      "total": {
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": "open over 47.5 (2026-10-08_07041) -> latest over 49.5 (2026-10-13_17571); move +2 over 3 snapshot(s); key numbers crossed: none",
+      "move": "open over 47.5 (2026-10-08_07041) -> latest over 52 (2026-10-17_07523); move +4.5 over 6 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      }
     }
@@ -3515,14 +3515,14 @@
    "shadow_lean": {
     "spread": {
      "side": "ATL",
-     "line": 3.0,
-     "price": -105,
+     "line": 1.5,
+     "price": -115,
      "book": "fanduel",
      "tier": "D",
      "net_lean": 0.0,
      "forced_default": true,
      "line_stale": false,
-     "pulled_at": "2026-10-13T17:57:13-07:00"
+     "pulled_at": "2026-10-17T07:52:33-07:00"
     },
     "total": null
    },
@@ -3542,10 +3542,10 @@
     "status": "forecast",
     "badge": null,
     "detail": null,
-    "wind_mph": 12.2,
-    "wind_max_3h_mph": 12.2,
-    "gust_mph": 17.0,
-    "temp_f": 64.7,
+    "wind_mph": 13.9,
+    "wind_max_3h_mph": 13.9,
+    "gust_mph": 23.5,
+    "temp_f": 59.7,
     "precip_in_3h": 0.0,
     "kickoff_hour_utc": "2026-10-18T17:00:00+00:00",
     "hours": [
@@ -3560,42 +3560,40 @@
     "lat": 33.7554,
     "lon": -84.401,
     "kickoff_utc": "2026-10-18T17:00:00+00:00",
-    "fetched_at": "2026-10-13T17:57:16.412639-07:00",
+    "fetched_at": "2026-10-17T09:25:33.892401-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {
     "spread": {
      "market": "spreads",
      "side": "ATL",
-     "snapshots": 3,
+     "snapshots": 6,
      "open": 1.5,
      "open_at": "2026-10-08_070417 America/Phoenix",
      "open_books": 2,
-     "latest": 3.0,
-     "latest_at": "2026-10-13_175713 America/Phoenix",
+     "latest": 1.5,
+     "latest_at": "2026-10-17_075233 America/Phoenix",
      "latest_books": 3,
      "open_price": -107,
-     "latest_price": -110,
-     "move": 1.5,
+     "latest_price": -115,
+     "move": 0.0,
      "toward_lean": null,
      "direction": null,
-     "key_crossed": [
-      3.0
-     ]
+     "key_crossed": []
     },
     "total": {
      "market": "totals",
      "side": "over",
-     "snapshots": 3,
+     "snapshots": 6,
      "open": 47.5,
      "open_at": "2026-10-08_070417 America/Phoenix",
      "open_books": 2,
-     "latest": 49.5,
-     "latest_at": "2026-10-13_175713 America/Phoenix",
+     "latest": 52.0,
+     "latest_at": "2026-10-17_075233 America/Phoenix",
      "latest_books": 3,
      "open_price": -110,
      "latest_price": -110,
-     "move": 2.0,
+     "move": 4.5,
      "toward_lean": null,
      "direction": null,
      "key_crossed": []
@@ -4057,14 +4055,14 @@
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": "open NYG +1.5 (2026-10-08_07041) -> latest NYG +1.5 (2026-10-13_17571); move +0 over 3 snapshot(s); key numbers crossed: none",
+      "move": "open NYG +1.5 (2026-10-08_07041) -> latest NYG +1.5 (2026-10-17_07523); move +0 over 6 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      },
      "total": {
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": "open over 45 (2026-10-08_07041) -> latest over 45.5 (2026-10-13_17571); move +0.5 over 3 snapshot(s); key numbers crossed: none",
+      "move": "open over 45 (2026-10-08_07041) -> latest over 46 (2026-10-17_07523); move +1 over 6 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      }
     }
@@ -4073,13 +4071,13 @@
     "spread": {
      "side": "NYG",
      "line": 1.5,
-     "price": -120,
+     "price": -122,
      "book": "draftkings",
      "tier": "D",
      "net_lean": 0.0,
      "forced_default": true,
      "line_stale": false,
-     "pulled_at": "2026-10-13T17:57:13-07:00"
+     "pulled_at": "2026-10-17T07:52:33-07:00"
     },
     "total": null
    },
@@ -4099,10 +4097,10 @@
     "status": "forecast",
     "badge": null,
     "detail": null,
-    "wind_mph": 10.2,
-    "wind_max_3h_mph": 11.3,
-    "gust_mph": 15.9,
-    "temp_f": 61.1,
+    "wind_mph": 6.3,
+    "wind_max_3h_mph": 7.6,
+    "gust_mph": 9.8,
+    "temp_f": 54.4,
     "precip_in_3h": 0.0,
     "kickoff_hour_utc": "2026-10-18T17:00:00+00:00",
     "hours": [
@@ -4117,22 +4115,22 @@
     "lat": 40.8135,
     "lon": -74.0745,
     "kickoff_utc": "2026-10-18T17:00:00+00:00",
-    "fetched_at": "2026-10-13T17:57:16.412639-07:00",
+    "fetched_at": "2026-10-17T09:25:33.892401-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {
     "spread": {
      "market": "spreads",
      "side": "NYG",
-     "snapshots": 3,
+     "snapshots": 6,
      "open": 1.5,
      "open_at": "2026-10-08_070417 America/Phoenix",
      "open_books": 2,
      "latest": 1.5,
-     "latest_at": "2026-10-13_175713 America/Phoenix",
+     "latest_at": "2026-10-17_075233 America/Phoenix",
      "latest_books": 3,
      "open_price": -115,
-     "latest_price": -120,
+     "latest_price": -122,
      "move": 0.0,
      "toward_lean": null,
      "direction": null,
@@ -4141,16 +4139,16 @@
     "total": {
      "market": "totals",
      "side": "over",
-     "snapshots": 3,
+     "snapshots": 6,
      "open": 45.0,
      "open_at": "2026-10-08_070417 America/Phoenix",
      "open_books": 2,
-     "latest": 45.5,
-     "latest_at": "2026-10-13_175713 America/Phoenix",
+     "latest": 46.0,
+     "latest_at": "2026-10-17_075233 America/Phoenix",
      "latest_books": 3,
      "open_price": -112,
-     "latest_price": -110,
-     "move": 0.5,
+     "latest_price": -108,
+     "move": 1.0,
      "toward_lean": null,
      "direction": null,
      "key_crossed": []
@@ -4670,14 +4668,14 @@
       "net": "sum of fired weights: NE 0.75; net 0.75 toward NE; cap +/-1.5 -> lean NE 0.75",
       "rule_a": "survivors same direction: 1 of 2 needed (or 1 survivor + 1 watch); watch same direction: 0 counted; survivors against: 0 -> fail",
       "rule_b": "opener NE -7 vs best now NE -7 (-112) at betmgm; moved +0 toward NE (negative = away), lean 0.75 -> pass (number not gone)",
-      "move": "open NE -7 (2026-10-08_07041) -> latest NE -7.5 (2026-10-13_17571); move -0.5 over 3 snapshot(s); toward lean (+0.5); key numbers crossed: 7.0",
+      "move": "open NE -7 (2026-10-08_07041) -> latest NE -7.5 (2026-10-17_07523); move -0.5 over 6 snapshot(s); toward lean (+0.5); key numbers crossed: 7.0",
       "verdict": "not enough angles (1 survivor, 0 watch same way)"
      },
      "total": {
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": "open over 43.5 (2026-10-08_07041) -> latest over 43.5 (2026-10-13_17571); move +0 over 3 snapshot(s); key numbers crossed: none",
+      "move": "open over 43.5 (2026-10-08_07041) -> latest over 43.5 (2026-10-17_07523); move +0 over 6 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      }
     }
@@ -4692,7 +4690,7 @@
      "net_lean": 0.75,
      "forced_default": false,
      "line_stale": false,
-     "pulled_at": "2026-10-13T17:57:13-07:00"
+     "pulled_at": "2026-10-17T07:52:33-07:00"
     },
     "total": null
    },
@@ -4712,10 +4710,10 @@
     "status": "forecast",
     "badge": null,
     "detail": null,
-    "wind_mph": 11.1,
-    "wind_max_3h_mph": 11.5,
-    "gust_mph": 19.9,
-    "temp_f": 56.0,
+    "wind_mph": 1.1,
+    "wind_max_3h_mph": 4.1,
+    "gust_mph": 5.8,
+    "temp_f": 50.0,
     "precip_in_3h": 0.0,
     "kickoff_hour_utc": "2026-10-18T17:00:00+00:00",
     "hours": [
@@ -4730,22 +4728,22 @@
     "lat": 42.0909,
     "lon": -71.2643,
     "kickoff_utc": "2026-10-18T17:00:00+00:00",
-    "fetched_at": "2026-10-13T17:57:16.412639-07:00",
+    "fetched_at": "2026-10-17T09:25:33.892401-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {
     "spread": {
      "market": "spreads",
      "side": "NE",
-     "snapshots": 3,
+     "snapshots": 6,
      "open": -7.0,
      "open_at": "2026-10-08_070417 America/Phoenix",
      "open_books": 2,
      "latest": -7.5,
-     "latest_at": "2026-10-13_175713 America/Phoenix",
+     "latest_at": "2026-10-17_075233 America/Phoenix",
      "latest_books": 3,
      "open_price": -105,
-     "latest_price": -105,
+     "latest_price": -106,
      "move": -0.5,
      "toward_lean": 0.5,
      "direction": "toward lean",
@@ -4756,15 +4754,15 @@
     "total": {
      "market": "totals",
      "side": "over",
-     "snapshots": 3,
+     "snapshots": 6,
      "open": 43.5,
      "open_at": "2026-10-08_070417 America/Phoenix",
      "open_books": 2,
      "latest": 43.5,
-     "latest_at": "2026-10-13_175713 America/Phoenix",
+     "latest_at": "2026-10-17_075233 America/Phoenix",
      "latest_books": 3,
      "open_price": -110,
-     "latest_price": -115,
+     "latest_price": -110,
      "move": 0.0,
      "toward_lean": null,
      "direction": null,
@@ -4790,10 +4788,11 @@
     "rule_b": true,
     "number_to_shop": {
      "line": -2.5,
-     "price": -108,
-     "book": "betmgm",
+     "price": -110,
+     "book": "fanduel",
      "reachable_by": [
       "Q",
+      "Mike",
       "Marques"
      ],
      "consensus": -2.5,
@@ -4852,7 +4851,7 @@
       "mechanism": "Rest: mini-bye of 9+ days after a Thursday game."
      }
     ],
-    "edge_pts": 3.22
+    "edge_pts": 2.76
    },
    "total": {
     "lean_side": null,
@@ -5331,15 +5330,15 @@
      "spread": {
       "net": "sum of fired weights: TB 0.5, PIT 0.75; net 0.25 toward PIT; cap +/-1.5 -> lean PIT 0.25",
       "rule_a": "survivors same direction: 1 of 2 needed (or 1 survivor + 1 watch); watch same direction: 0 counted; survivors against: 1 -> fail",
-      "rule_b": "opener PIT -2.75 vs best now PIT -2.5 (-108) at betmgm; moved -0.25 toward PIT (negative = away), lean 0.25 -> pass (number not gone)",
-      "move": "open PIT -2.75 (2026-10-08_07041) -> latest PIT -2.5 (2026-10-13_17571); move +0.25 over 2 snapshot(s); against lean (-0.25); key numbers crossed: none",
+      "rule_b": "opener PIT -2.75 vs best now PIT -2.5 (-110) at fanduel; moved -0.25 toward PIT (negative = away), lean 0.25 -> pass (number not gone)",
+      "move": "open PIT -2.75 (2026-10-08_07041) -> latest PIT -2.5 (2026-10-17_07523); move +0.25 over 5 snapshot(s); against lean (-0.25); key numbers crossed: none",
       "verdict": "not enough angles (1 survivor, 0 watch same way)"
      },
      "total": {
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": "open over 39 (2026-10-08_07041) -> latest over 39.5 (2026-10-13_17571); move +0.5 over 2 snapshot(s); key numbers crossed: none",
+      "move": "open over 39 (2026-10-08_07041) -> latest over 38.5 (2026-10-17_07523); move -0.5 over 5 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      }
     }
@@ -5348,13 +5347,13 @@
     "spread": {
      "side": "PIT",
      "line": -2.5,
-     "price": -108,
-     "book": "betmgm",
+     "price": -110,
+     "book": "fanduel",
      "tier": "B",
      "net_lean": 0.25,
      "forced_default": false,
      "line_stale": false,
-     "pulled_at": "2026-10-13T17:57:13-07:00"
+     "pulled_at": "2026-10-17T07:52:33-07:00"
     },
     "total": null
    },
@@ -5374,10 +5373,10 @@
     "status": "forecast",
     "badge": null,
     "detail": null,
-    "wind_mph": 19.2,
-    "wind_max_3h_mph": 21.0,
-    "gust_mph": 31.8,
-    "temp_f": 78.0,
+    "wind_mph": 14.6,
+    "wind_max_3h_mph": 16.0,
+    "gust_mph": 25.5,
+    "temp_f": 75.7,
     "precip_in_3h": 0.0,
     "kickoff_hour_utc": "2026-10-18T17:00:00+00:00",
     "hours": [
@@ -5392,22 +5391,22 @@
     "lat": 27.9759,
     "lon": -82.5033,
     "kickoff_utc": "2026-10-18T17:00:00+00:00",
-    "fetched_at": "2026-10-13T17:57:16.412639-07:00",
+    "fetched_at": "2026-10-17T09:25:33.892401-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {
     "spread": {
      "market": "spreads",
      "side": "PIT",
-     "snapshots": 2,
+     "snapshots": 5,
      "open": -2.75,
      "open_at": "2026-10-08_070417 America/Phoenix",
      "open_books": 2,
      "latest": -2.5,
-     "latest_at": "2026-10-13_175713 America/Phoenix",
+     "latest_at": "2026-10-17_075233 America/Phoenix",
      "latest_books": 3,
      "open_price": -106,
-     "latest_price": -110,
+     "latest_price": -112,
      "move": 0.25,
      "toward_lean": -0.25,
      "direction": "against lean",
@@ -5416,16 +5415,16 @@
     "total": {
      "market": "totals",
      "side": "over",
-     "snapshots": 2,
+     "snapshots": 5,
      "open": 39.0,
      "open_at": "2026-10-08_070417 America/Phoenix",
      "open_books": 2,
-     "latest": 39.5,
-     "latest_at": "2026-10-13_175713 America/Phoenix",
+     "latest": 38.5,
+     "latest_at": "2026-10-17_075233 America/Phoenix",
      "latest_books": 3,
      "open_price": -110,
-     "latest_price": -110,
-     "move": 0.5,
+     "latest_price": -115,
+     "move": -0.5,
      "toward_lean": null,
      "direction": null,
      "key_crossed": []
@@ -5887,14 +5886,14 @@
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": "open IND -6.5 (2026-10-08_07041) -> latest IND -7 (2026-10-13_17571); move -0.5 over 3 snapshot(s); key numbers crossed: 7.0",
+      "move": "open IND -6.5 (2026-10-08_07041) -> latest IND -7 (2026-10-17_07523); move -0.5 over 6 snapshot(s); key numbers crossed: 7.0",
       "verdict": "no lean"
      },
      "total": {
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": "open over 44 (2026-10-08_07041) -> latest over 44 (2026-10-13_17571); move +0 over 3 snapshot(s); key numbers crossed: none",
+      "move": "open over 44 (2026-10-08_07041) -> latest over 44.5 (2026-10-17_07523); move +0.5 over 6 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      }
     }
@@ -5909,7 +5908,7 @@
      "net_lean": 0.0,
      "forced_default": true,
      "line_stale": false,
-     "pulled_at": "2026-10-13T17:57:13-07:00"
+     "pulled_at": "2026-10-17T07:52:33-07:00"
     },
     "total": null
    },
@@ -5929,10 +5928,10 @@
     "status": "forecast",
     "badge": null,
     "detail": null,
-    "wind_mph": 7.6,
-    "wind_max_3h_mph": 9.0,
-    "gust_mph": 13.0,
-    "temp_f": 61.4,
+    "wind_mph": 7.2,
+    "wind_max_3h_mph": 7.2,
+    "gust_mph": 11.9,
+    "temp_f": 54.4,
     "precip_in_3h": 0.0,
     "kickoff_hour_utc": "2026-10-18T17:00:00+00:00",
     "hours": [
@@ -5947,22 +5946,22 @@
     "lat": 39.7601,
     "lon": -86.1639,
     "kickoff_utc": "2026-10-18T17:00:00+00:00",
-    "fetched_at": "2026-10-13T17:57:16.412639-07:00",
+    "fetched_at": "2026-10-17T09:25:33.892401-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {
     "spread": {
      "market": "spreads",
      "side": "IND",
-     "snapshots": 3,
+     "snapshots": 6,
      "open": -6.5,
      "open_at": "2026-10-08_070417 America/Phoenix",
      "open_books": 2,
      "latest": -7.0,
-     "latest_at": "2026-10-13_175713 America/Phoenix",
+     "latest_at": "2026-10-17_075233 America/Phoenix",
      "latest_books": 3,
      "open_price": -110,
-     "latest_price": -108,
+     "latest_price": -105,
      "move": -0.5,
      "toward_lean": null,
      "direction": null,
@@ -5973,16 +5972,16 @@
     "total": {
      "market": "totals",
      "side": "over",
-     "snapshots": 3,
+     "snapshots": 6,
      "open": 44.0,
      "open_at": "2026-10-08_070417 America/Phoenix",
      "open_books": 2,
-     "latest": 44.0,
-     "latest_at": "2026-10-13_175713 America/Phoenix",
+     "latest": 44.5,
+     "latest_at": "2026-10-17_075233 America/Phoenix",
      "latest_books": 3,
      "open_price": -110,
-     "latest_price": -108,
-     "move": 0.0,
+     "latest_price": -110,
+     "move": 0.5,
      "toward_lean": null,
      "direction": null,
      "key_crossed": []
@@ -6444,14 +6443,14 @@
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": "open LA -11 (2026-10-08_07041) -> latest LA -12.5 (2026-10-13_17571); move -1.5 over 3 snapshot(s); key numbers crossed: none",
+      "move": "open LA -11 (2026-10-08_07041) -> latest LA -12.5 (2026-10-17_07523); move -1.5 over 6 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      },
      "total": {
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": "open over 51 (2026-10-08_07041) -> latest over 51.5 (2026-10-13_17571); move +0.5 over 3 snapshot(s); key numbers crossed: none",
+      "move": "open over 51 (2026-10-08_07041) -> latest over 51.5 (2026-10-17_07523); move +0.5 over 6 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      }
     }
@@ -6460,13 +6459,13 @@
     "spread": {
      "side": "LA",
      "line": -12.5,
-     "price": -110,
+     "price": -108,
      "book": "betmgm",
      "tier": "D",
      "net_lean": 0.0,
      "forced_default": true,
      "line_stale": false,
-     "pulled_at": "2026-10-13T17:57:13-07:00"
+     "pulled_at": "2026-10-17T07:52:33-07:00"
     },
     "total": null
    },
@@ -6496,22 +6495,22 @@
     "lat": 33.9535,
     "lon": -118.3392,
     "kickoff_utc": "2026-10-18T20:05:00+00:00",
-    "fetched_at": "2026-10-13T17:57:16.412639-07:00",
+    "fetched_at": "2026-10-17T09:25:33.892401-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {
     "spread": {
      "market": "spreads",
      "side": "LA",
-     "snapshots": 3,
+     "snapshots": 6,
      "open": -11.0,
      "open_at": "2026-10-08_070417 America/Phoenix",
      "open_books": 2,
      "latest": -12.5,
-     "latest_at": "2026-10-13_175713 America/Phoenix",
+     "latest_at": "2026-10-17_075233 America/Phoenix",
      "latest_books": 3,
      "open_price": -107,
-     "latest_price": -115,
+     "latest_price": -110,
      "move": -1.5,
      "toward_lean": null,
      "direction": null,
@@ -6520,15 +6519,15 @@
     "total": {
      "market": "totals",
      "side": "over",
-     "snapshots": 3,
+     "snapshots": 6,
      "open": 51.0,
      "open_at": "2026-10-08_070417 America/Phoenix",
      "open_books": 2,
      "latest": 51.5,
-     "latest_at": "2026-10-13_175713 America/Phoenix",
+     "latest_at": "2026-10-17_075233 America/Phoenix",
      "latest_books": 3,
      "open_price": -107,
-     "latest_price": -115,
+     "latest_price": -112,
      "move": 0.5,
      "toward_lean": null,
      "direction": null,
@@ -6991,14 +6990,14 @@
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": "open LV +4.5 (2026-10-08_07041) -> latest LV +5.5 (2026-10-13_17571); move +1 over 3 snapshot(s); key numbers crossed: none",
+      "move": "open LV +4.5 (2026-10-08_07041) -> latest LV +5.5 (2026-10-17_07523); move +1 over 6 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      },
      "total": {
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": "open over 51.5 (2026-10-08_07041) -> latest over 53.5 (2026-10-13_17571); move +2 over 3 snapshot(s); key numbers crossed: none",
+      "move": "open over 51.5 (2026-10-08_07041) -> latest over 53.5 (2026-10-17_07523); move +2 over 6 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      }
     }
@@ -7007,13 +7006,13 @@
     "spread": {
      "side": "LV",
      "line": 5.5,
-     "price": -108,
-     "book": "draftkings",
+     "price": -115,
+     "book": "fanduel",
      "tier": "D",
      "net_lean": 0.0,
      "forced_default": true,
      "line_stale": false,
-     "pulled_at": "2026-10-13T17:57:13-07:00"
+     "pulled_at": "2026-10-17T07:52:33-07:00"
     },
     "total": null
    },
@@ -7043,22 +7042,22 @@
     "lat": 36.0909,
     "lon": -115.1833,
     "kickoff_utc": "2026-10-18T20:25:00+00:00",
-    "fetched_at": "2026-10-13T17:57:16.412639-07:00",
+    "fetched_at": "2026-10-17T09:25:33.892401-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {
     "spread": {
      "market": "spreads",
      "side": "LV",
-     "snapshots": 3,
+     "snapshots": 6,
      "open": 4.5,
      "open_at": "2026-10-08_070417 America/Phoenix",
      "open_books": 2,
      "latest": 5.5,
-     "latest_at": "2026-10-13_175713 America/Phoenix",
+     "latest_at": "2026-10-17_075233 America/Phoenix",
      "latest_books": 3,
      "open_price": -106,
-     "latest_price": -110,
+     "latest_price": -115,
      "move": 1.0,
      "toward_lean": null,
      "direction": null,
@@ -7067,15 +7066,15 @@
     "total": {
      "market": "totals",
      "side": "over",
-     "snapshots": 3,
+     "snapshots": 6,
      "open": 51.5,
      "open_at": "2026-10-08_070417 America/Phoenix",
      "open_books": 2,
      "latest": 53.5,
-     "latest_at": "2026-10-13_175713 America/Phoenix",
+     "latest_at": "2026-10-17_075233 America/Phoenix",
      "latest_books": 3,
      "open_price": -109,
-     "latest_price": -108,
+     "latest_price": -110,
      "move": 2.0,
      "toward_lean": null,
      "direction": null,
@@ -7538,14 +7537,14 @@
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": "open KC -7.5 (2026-10-08_07041) -> latest KC -8.5 (2026-10-13_17571); move -1 over 3 snapshot(s); key numbers crossed: none",
+      "move": "open KC -7.5 (2026-10-08_07041) -> latest KC -7.5 (2026-10-17_07523); move +0 over 6 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      },
      "total": {
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": "open over 45.5 (2026-10-08_07041) -> latest over 42.5 (2026-10-13_17571); move -3 over 3 snapshot(s); key numbers crossed: none",
+      "move": "open over 45.5 (2026-10-08_07041) -> latest over 41.5 (2026-10-17_07523); move -4 over 6 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      }
     }
@@ -7553,14 +7552,14 @@
    "shadow_lean": {
     "spread": {
      "side": "KC",
-     "line": -8.0,
-     "price": -110,
-     "book": "betmgm",
+     "line": -7.5,
+     "price": -105,
+     "book": "fanduel",
      "tier": "D",
      "net_lean": 0.0,
      "forced_default": true,
      "line_stale": false,
-     "pulled_at": "2026-10-13T17:57:13-07:00"
+     "pulled_at": "2026-10-17T07:52:33-07:00"
     },
     "total": null
    },
@@ -7580,10 +7579,10 @@
     "status": "forecast",
     "badge": null,
     "detail": null,
-    "wind_mph": 13.6,
-    "wind_max_3h_mph": 13.6,
-    "gust_mph": 21.5,
-    "temp_f": 64.7,
+    "wind_mph": 12.0,
+    "wind_max_3h_mph": 12.0,
+    "gust_mph": 17.9,
+    "temp_f": 63.2,
     "precip_in_3h": 0.0,
     "kickoff_hour_utc": "2026-10-18T20:00:00+00:00",
     "hours": [
@@ -7598,23 +7597,23 @@
     "lat": 39.0489,
     "lon": -94.4839,
     "kickoff_utc": "2026-10-18T20:25:00+00:00",
-    "fetched_at": "2026-10-13T17:57:16.412639-07:00",
+    "fetched_at": "2026-10-17T09:25:33.892401-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {
     "spread": {
      "market": "spreads",
      "side": "KC",
-     "snapshots": 3,
+     "snapshots": 6,
      "open": -7.5,
      "open_at": "2026-10-08_070417 America/Phoenix",
      "open_books": 2,
-     "latest": -8.5,
-     "latest_at": "2026-10-13_175713 America/Phoenix",
+     "latest": -7.5,
+     "latest_at": "2026-10-17_075233 America/Phoenix",
      "latest_books": 3,
      "open_price": -109,
-     "latest_price": -105,
-     "move": -1.0,
+     "latest_price": -108,
+     "move": 0.0,
      "toward_lean": null,
      "direction": null,
      "key_crossed": []
@@ -7622,16 +7621,16 @@
     "total": {
      "market": "totals",
      "side": "over",
-     "snapshots": 3,
+     "snapshots": 6,
      "open": 45.5,
      "open_at": "2026-10-08_070417 America/Phoenix",
      "open_books": 2,
-     "latest": 42.5,
-     "latest_at": "2026-10-13_175713 America/Phoenix",
+     "latest": 41.5,
+     "latest_at": "2026-10-17_075233 America/Phoenix",
      "latest_books": 3,
      "open_price": -110,
-     "latest_price": -108,
-     "move": -3.0,
+     "latest_price": -105,
+     "move": -4.0,
      "toward_lean": null,
      "direction": null,
      "key_crossed": []
@@ -7656,8 +7655,8 @@
     "rule_b": true,
     "number_to_shop": {
      "line": 1.5,
-     "price": -115,
-     "book": "draftkings",
+     "price": -114,
+     "book": "fanduel",
      "reachable_by": [
       "Q",
       "Mike",
@@ -7695,7 +7694,7 @@
      }
     ],
     "angles_against": [],
-    "edge_pts": 0.7
+    "edge_pts": 0.92
    },
    "total": {
     "lean_side": null,
@@ -8151,15 +8150,15 @@
      "spread": {
       "net": "sum of fired weights: DAL 0.5; net 0.5 toward DAL; cap +/-1.5 -> lean DAL 0.5",
       "rule_a": "survivors same direction: 1 of 2 needed (or 1 survivor + 1 watch); watch same direction: 0 counted; survivors against: 0 -> fail",
-      "rule_b": "opener DAL -2 vs best now DAL +1.5 (-115) at draftkings; moved -3.5 toward DAL (negative = away), lean 0.5 -> pass (number not gone)",
-      "move": "open DAL -2 (2026-10-08_07041) -> latest DAL +1.5 (2026-10-13_17571); move +3.5 over 2 snapshot(s); against lean (-3.5); key numbers crossed: none",
+      "rule_b": "opener DAL -2 vs best now DAL +1.5 (-114) at fanduel; moved -3.5 toward DAL (negative = away), lean 0.5 -> pass (number not gone)",
+      "move": "open DAL -2 (2026-10-08_07041) -> latest DAL +1.5 (2026-10-17_07523); move +3.5 over 5 snapshot(s); against lean (-3.5); key numbers crossed: none",
       "verdict": "not enough angles (1 survivor, 0 watch same way)"
      },
      "total": {
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": "open over 50.5 (2026-10-08_07041) -> latest over 52.5 (2026-10-13_17571); move +2 over 2 snapshot(s); key numbers crossed: none",
+      "move": "open over 50.5 (2026-10-08_07041) -> latest over 53 (2026-10-17_07523); move +2.5 over 5 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      }
     }
@@ -8168,13 +8167,13 @@
     "spread": {
      "side": "DAL",
      "line": 1.5,
-     "price": -115,
-     "book": "draftkings",
+     "price": -114,
+     "book": "fanduel",
      "tier": "B",
      "net_lean": 0.5,
      "forced_default": false,
      "line_stale": false,
-     "pulled_at": "2026-10-13T17:57:13-07:00"
+     "pulled_at": "2026-10-17T07:52:33-07:00"
     },
     "total": null
    },
@@ -8194,10 +8193,10 @@
     "status": "forecast",
     "badge": null,
     "detail": null,
-    "wind_mph": 16.5,
-    "wind_max_3h_mph": 17.0,
-    "gust_mph": 38.3,
-    "temp_f": 56.3,
+    "wind_mph": 8.1,
+    "wind_max_3h_mph": 8.1,
+    "gust_mph": 19.5,
+    "temp_f": 49.3,
     "precip_in_3h": 0.0,
     "kickoff_hour_utc": "2026-10-19T00:00:00+00:00",
     "hours": [
@@ -8212,22 +8211,22 @@
     "lat": 44.5013,
     "lon": -88.0622,
     "kickoff_utc": "2026-10-19T00:20:00+00:00",
-    "fetched_at": "2026-10-13T17:57:16.412639-07:00",
+    "fetched_at": "2026-10-17T09:25:33.892401-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {
     "spread": {
      "market": "spreads",
      "side": "DAL",
-     "snapshots": 2,
+     "snapshots": 5,
      "open": -2.0,
      "open_at": "2026-10-08_070417 America/Phoenix",
      "open_books": 2,
      "latest": 1.5,
-     "latest_at": "2026-10-13_175713 America/Phoenix",
+     "latest_at": "2026-10-17_075233 America/Phoenix",
      "latest_books": 3,
      "open_price": -112,
-     "latest_price": -115,
+     "latest_price": -114,
      "move": 3.5,
      "toward_lean": -3.5,
      "direction": "against lean",
@@ -8236,16 +8235,16 @@
     "total": {
      "market": "totals",
      "side": "over",
-     "snapshots": 2,
+     "snapshots": 5,
      "open": 50.5,
      "open_at": "2026-10-08_070417 America/Phoenix",
      "open_books": 2,
-     "latest": 52.5,
-     "latest_at": "2026-10-13_175713 America/Phoenix",
+     "latest": 53.0,
+     "latest_at": "2026-10-17_075233 America/Phoenix",
      "latest_books": 3,
      "open_price": -112,
-     "latest_price": -115,
-     "move": 2.0,
+     "latest_price": -110,
+     "move": 2.5,
      "toward_lean": null,
      "direction": null,
      "key_crossed": []
@@ -8766,14 +8765,14 @@
       "net": "sum of fired weights: SF 0.75; net 0.75 toward SF; cap +/-1.5 -> lean SF 0.75",
       "rule_a": "survivors same direction: 1 of 2 needed (or 1 survivor + 1 watch); watch same direction: 0 counted; survivors against: 0 -> fail",
       "rule_b": "opener SF -7.25 vs best now SF -7.5 (-108) at draftkings; moved +0.25 toward SF (negative = away), lean 0.75 -> pass (number not gone)",
-      "move": "open SF -7.25 (2026-10-08_07041) -> latest SF -7.5 (2026-10-13_17571); move -0.25 over 3 snapshot(s); toward lean (+0.25); key numbers crossed: none",
+      "move": "open SF -7.25 (2026-10-08_07041) -> latest SF -7.5 (2026-10-17_07523); move -0.25 over 6 snapshot(s); toward lean (+0.25); key numbers crossed: none",
       "verdict": "not enough angles (1 survivor, 0 watch same way)"
      },
      "total": {
       "net": "sum of fired weights: nothing fired; net 0; cap +/-1.5 -> lean none",
       "rule_a": "survivors same direction: 0 of 2 needed; watch same direction: 0 -> no lean, not counted",
       "rule_b": "not checked (no lean)",
-      "move": "open over 50 (2026-10-08_07041) -> latest over 50.5 (2026-10-13_17571); move +0.5 over 3 snapshot(s); key numbers crossed: none",
+      "move": "open over 50 (2026-10-08_07041) -> latest over 52 (2026-10-17_07523); move +2 over 6 snapshot(s); key numbers crossed: none",
       "verdict": "no lean"
      }
     }
@@ -8788,7 +8787,7 @@
      "net_lean": 0.75,
      "forced_default": false,
      "line_stale": false,
-     "pulled_at": "2026-10-13T17:57:13-07:00"
+     "pulled_at": "2026-10-17T07:52:33-07:00"
     },
     "total": null
    },
@@ -8808,10 +8807,10 @@
     "status": "forecast",
     "badge": null,
     "detail": null,
-    "wind_mph": 10.5,
-    "wind_max_3h_mph": 10.5,
+    "wind_mph": 10.2,
+    "wind_max_3h_mph": 10.2,
     "gust_mph": 10.7,
-    "temp_f": 68.3,
+    "temp_f": 65.9,
     "precip_in_3h": 0.0,
     "kickoff_hour_utc": "2026-10-20T00:00:00+00:00",
     "hours": [
@@ -8826,19 +8825,19 @@
     "lat": 37.4033,
     "lon": -121.9694,
     "kickoff_utc": "2026-10-20T00:15:00+00:00",
-    "fetched_at": "2026-10-13T17:57:16.412639-07:00",
+    "fetched_at": "2026-10-17T09:25:33.892401-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {
     "spread": {
      "market": "spreads",
      "side": "SF",
-     "snapshots": 3,
+     "snapshots": 6,
      "open": -7.25,
      "open_at": "2026-10-08_070417 America/Phoenix",
      "open_books": 2,
      "latest": -7.5,
-     "latest_at": "2026-10-13_175713 America/Phoenix",
+     "latest_at": "2026-10-17_075233 America/Phoenix",
      "latest_books": 3,
      "open_price": -112,
      "latest_price": -108,
@@ -8850,16 +8849,16 @@
     "total": {
      "market": "totals",
      "side": "over",
-     "snapshots": 3,
+     "snapshots": 6,
      "open": 50.0,
      "open_at": "2026-10-08_070417 America/Phoenix",
      "open_books": 2,
-     "latest": 50.5,
-     "latest_at": "2026-10-13_175713 America/Phoenix",
+     "latest": 52.0,
+     "latest_at": "2026-10-17_075233 America/Phoenix",
      "latest_books": 3,
      "open_price": -107,
-     "latest_price": -112,
-     "move": 0.5,
+     "latest_price": -110,
+     "move": 2.0,
      "toward_lean": null,
      "direction": null,
      "key_crossed": []
