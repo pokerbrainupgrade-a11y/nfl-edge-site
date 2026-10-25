@@ -127,9 +127,9 @@ button.chip { cursor: pointer; }
 .head .subl .num { color: var(--text); }
 .head h1 .apill { display: inline-flex; align-items: center; gap: 6px; vertical-align: middle; margin-left: 10px; padding: 4px 10px; border-radius: 999px; background: var(--neutral-bg); color: var(--accent-text); font-size: 12px; font-weight: 700; letter-spacing: .02em; }
 .head h1 .apill svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-.head .meta { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 8px; font-size: 13px; color: var(--text-secondary); }
-.head .meta > span { display: inline-flex; align-items: center; gap: 6px; }
-.head .meta svg { width: 14px; height: 14px; stroke: var(--text-muted); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.head .meta { display: block; margin-top: 8px; font-size: 13px; line-height: 1.8; color: var(--text-secondary); }   /* C2: one text line, " · " separated (L2) */
+.head .meta > span { display: inline; white-space: nowrap; }
+.head .meta svg { width: 14px; height: 14px; vertical-align: -2px; margin-right: 4px; stroke: var(--text-muted); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .head .meta .num { color: var(--text); }
 .head .meta .v-ok svg { stroke: var(--positive); }
 .head .meta .v-warn svg { stroke: var(--warning); }
@@ -165,7 +165,9 @@ button.chip { cursor: pointer; }
 .asofline { font-size: 12px; color: var(--text-muted); margin: -8px 0 20px; }
 
 /* ------------------------------------------------------------ panels and the two-column grid */
-.grid2 { display: grid; grid-template-columns: minmax(0, 1fr) 276px; gap: 20px; margin-bottom: 20px; align-items: start; }
+/* SESSION 10-24 Lane C C2 (Asana 1219855073629866): 2fr / 1fr as the UI sprint specified (L1: opportunities 62-70 % of the row);
+   the reskin's 276px column (5ca8837, unrecorded) made it 74 %. */
+.grid2 { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 20px; margin-bottom: 20px; align-items: start; }
 .grid2.lower { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
 .col { display: flex; flex-direction: column; gap: 20px; min-width: 0; }
 .panel { background: var(--surface); border-radius: var(--radius); padding: 0; min-width: 0; box-shadow: var(--shadow); }
@@ -356,7 +358,7 @@ body.ev-open { overflow: hidden; }
   .main { margin: var(--topbar) 0 0 0; padding: 12px 16px calc(var(--tabbar) + env(safe-area-inset-bottom, 0px) + 24px); }
   .head h1 { font-size: 24px; line-height: 30px; }
   .head h1 .apill { display: inline-flex; margin: 6px 0 0; }
-  .head .meta { gap: 4px 12px; font-size: 12px; }
+  .head .meta { font-size: 12px; }
   .head .ctl { width: 100%; }
   .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-bottom: 12px; }
   .kpi { min-height: 96px; padding: 12px 14px; }

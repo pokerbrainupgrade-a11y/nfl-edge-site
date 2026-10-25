@@ -9,7 +9,7 @@
   "source": "schedule row lookup: each slate game matched to games.parquet by home + away + kickoff date (America/Phoenix), week read from that row",
   "slate_source": "odds pull 2026-10-25_071021 America/Phoenix (odds_latest.parquet)",
   "slate_window": {
-   "start": "2026-10-25T07:25:45-07:00",
+   "start": "2026-10-25T08:44:33-07:00",
    "end": "2026-10-26T23:59:59-07:00"
   },
   "slate_games": 12,
@@ -20,15 +20,15 @@
   },
   "disagreeing": [],
   "schedule": {
-   "pulled_at": "2026-10-25 07:25 America/Phoenix",
+   "pulled_at": "2026-10-25 08:44 America/Phoenix",
    "age_days": 0.0,
    "stale": false,
    "max_age_days": 7,
    "refreshed": false,
    "error": null
   },
-  "checked_at": "2026-10-25T07:25:45-07:00",
-  "detail": "all 12 slate games between Sun 10/25 07:25 and Mon 10/26 23:59 matched schedule rows labelled week 7",
+  "checked_at": "2026-10-25T08:44:33-07:00",
+  "detail": "all 12 slate games between Sun 10/25 08:44 and Mon 10/26 23:59 matched schedule rows labelled week 7",
   "ledger": "shadow rows from this run are written with week_status=verified"
  },
  "bet_cards": [
@@ -75,11 +75,62 @@
     },
     {
      "label": "OUR EDGE",
-     "text": "Backtested cover rate: about 55% (sandwich_game, worst recent window, n=490). At +100 on a whole number you need 45.5% to break even after pushes. Edge: +4.7 percentage points."
+     "text": "Historical record, not a probability: sandwich_game 55.1% over n=490 (2021-2025 window)."
     },
     {
      "label": "PLACE THIS BET",
      "text": "Take SEA -3. Do not take it worse than SEA -3.5."
+    }
+   ]
+  },
+  {
+   "game_id": "2026_07_TB_CAR",
+   "matchup": "TB@CAR",
+   "home": "CAR",
+   "away": "TB",
+   "kickoff_display": "Sun 10/25 10:00",
+   "kickoff_phoenix": "2026-10-25T10:00:00-07:00",
+   "tag": "POSSIBLE BET",
+   "tag_rank": 7,
+   "tag_tier": "B",
+   "market": "spread",
+   "side": "CAR",
+   "bet": "CAR -3",
+   "line": -3.0,
+   "price": -102,
+   "book": "betmgm",
+   "estimate": {
+    "basis": "backtested cover rate",
+    "angle": "sandwich_game",
+    "weight": 0.75,
+    "pct": 55.14,
+    "n": 490,
+    "window": "2021-2025"
+   },
+   "breakeven_pct": 45.97,
+   "edge_pts": 4.23,
+   "becomes_bet_bar_pts": 5.0,
+   "worst_line": null,
+   "becomes_bet_line": -2.5,
+   "at_bar_now": false,
+   "place_label": "WATCH",
+   "warning": null,
+   "lines": [
+    {
+     "label": "THE LINE",
+     "text": "CAR -3 (-102) at BetMGM, pulled Sun 10/25 07:10 America/Phoenix."
+    },
+    {
+     "label": "WHAT IT MEANS",
+     "text": "Carolina must win by 4 or more. Win by exactly 3 and the bet pushes: the stake comes back. Win by 2 or less, or lose, and the bet loses."
+    },
+    {
+     "label": "OUR EDGE",
+     "text": "Historical record, not a probability: sandwich_game 55.1% over n=490 (2021-2025 window)."
+    },
+    {
+     "label": "WATCH",
+     "text": "Watch \u2014 not a bet at this price. Becomes a bet at CAR -2.5 or better."
     }
    ]
   },
@@ -126,11 +177,11 @@
     },
     {
      "label": "OUR EDGE",
-     "text": "Backtested cover rate: about 55% (sandwich_game, worst recent window, n=490). At -104 you need 51.0% to break even. Edge: +4.2 percentage points."
+     "text": "Historical record, not a probability: sandwich_game 55.1% over n=490 (2021-2025 window)."
     },
     {
      "label": "WATCH",
-     "text": "Watch \u2014 not a bet at this price: edge +4.2 against the bar of 5 percentage points for a bet on price alone. Becomes a bet at HOU -10 or better."
+     "text": "Watch \u2014 not a bet at this price. Becomes a bet at HOU -10 or better."
     }
    ]
   },
@@ -177,11 +228,11 @@
     },
     {
      "label": "OUR EDGE",
-     "text": "Backtested cover rate: about 55% (sandwich_game, worst recent window, n=490). At -105 you need 51.2% to break even. Edge: +3.9 percentage points."
+     "text": "Historical record, not a probability: sandwich_game 55.1% over n=490 (2021-2025 window)."
     },
     {
      "label": "WATCH",
-     "text": "Watch \u2014 not a bet at this price: edge +3.9 against the bar of 5 percentage points for a bet on price alone. Becomes a bet at ARI +5 or better."
+     "text": "Watch \u2014 not a bet at this price. Becomes a bet at ARI +5 or better."
     }
    ]
   },
@@ -228,11 +279,11 @@
     },
     {
      "label": "OUR EDGE",
-     "text": "Backtested cover rate: about 55% (sandwich_game, worst recent window, n=490). At -108 you need 51.9% to break even. Edge: +3.2 percentage points."
+     "text": "Historical record, not a probability: sandwich_game 55.1% over n=490 (2021-2025 window)."
     },
     {
      "label": "WATCH",
-     "text": "Watch \u2014 not a bet at this price: edge +3.2 against the bar of 5 percentage points for a bet on price alone. Becomes a bet at DAL -4 or better."
+     "text": "Watch \u2014 not a bet at this price. Becomes a bet at DAL -4 or better."
     }
    ]
   },
@@ -279,11 +330,11 @@
     },
     {
      "label": "OUR EDGE",
-     "text": "Backtested cover rate: about 55% (sandwich_game, worst recent window, n=490). At -110 you need 52.4% to break even. Edge: +2.8 percentage points."
+     "text": "Historical record, not a probability: sandwich_game 55.1% over n=490 (2021-2025 window)."
     },
     {
      "label": "WATCH",
-     "text": "Watch \u2014 not a bet at this price: edge +2.8 against the bar of 5 percentage points for a bet on price alone. Becomes a bet at GB +4.5 or better."
+     "text": "Watch \u2014 not a bet at this price. Becomes a bet at GB +4.5 or better."
     }
    ]
   },
@@ -330,11 +381,11 @@
     },
     {
      "label": "OUR EDGE",
-     "text": "Backtested cover rate: about 55% (sandwich_game, worst recent window, n=490). At -112 you need 52.8% to break even. Edge: +2.3 percentage points."
+     "text": "Historical record, not a probability: sandwich_game 55.1% over n=490 (2021-2025 window)."
     },
     {
      "label": "WATCH",
-     "text": "Watch \u2014 not a bet at this price: edge +2.3 against the bar of 5 percentage points for a bet on price alone. Becomes a bet at TEN +3 or better."
+     "text": "Watch \u2014 not a bet at this price. Becomes a bet at TEN +3 or better."
     }
    ]
   },
@@ -346,7 +397,7 @@
    "kickoff_display": "Sun 10/25 10:00",
    "kickoff_phoenix": "2026-10-25T10:00:00-07:00",
    "tag": "POSSIBLE BET",
-   "tag_rank": 6,
+   "tag_rank": 5,
    "tag_tier": "B",
    "market": "spread",
    "side": "NYJ",
@@ -381,11 +432,11 @@
     },
     {
      "label": "OUR EDGE",
-     "text": "Backtested cover rate: about 55% (sandwich_game, worst recent window, n=490). At -115 you need 53.5% to break even. Edge: +1.7 percentage points."
+     "text": "Historical record, not a probability: sandwich_game 55.1% over n=490 (2021-2025 window)."
     },
     {
      "label": "WATCH",
-     "text": "Watch \u2014 not a bet at this price: edge +1.7 against the bar of 5 percentage points for a bet on price alone. Becomes a bet at NYJ -3 or better."
+     "text": "Watch \u2014 not a bet at this price. Becomes a bet at NYJ -3 or better."
     }
    ]
   },
@@ -397,7 +448,7 @@
    "kickoff_display": "Sun 10/25 10:00",
    "kickoff_phoenix": "2026-10-25T10:00:00-07:00",
    "tag": "POSSIBLE BET",
-   "tag_rank": 7,
+   "tag_rank": 6,
    "tag_tier": "B",
    "market": "spread",
    "side": "SF",
@@ -432,62 +483,11 @@
     },
     {
      "label": "OUR EDGE",
-     "text": "Backtested cover rate: about 55% (sandwich_game, worst recent window, n=490). At -115 you need 53.5% to break even. Edge: +1.7 percentage points."
+     "text": "Historical record, not a probability: sandwich_game 55.1% over n=490 (2021-2025 window)."
     },
     {
      "label": "WATCH",
-     "text": "Watch \u2014 not a bet at this price: edge +1.7 against the bar of 5 percentage points for a bet on price alone. Becomes a bet at SF -1 or better."
-    }
-   ]
-  },
-  {
-   "game_id": "2026_07_TB_CAR",
-   "matchup": "TB@CAR",
-   "home": "CAR",
-   "away": "TB",
-   "kickoff_display": "Sun 10/25 10:00",
-   "kickoff_phoenix": "2026-10-25T10:00:00-07:00",
-   "tag": "POSSIBLE BET",
-   "tag_rank": 4,
-   "tag_tier": "B",
-   "market": "spread",
-   "side": "CAR",
-   "bet": "CAR -2.5",
-   "line": -2.5,
-   "price": -122,
-   "book": "fanduel",
-   "estimate": {
-    "basis": "backtested cover rate",
-    "angle": "sandwich_game",
-    "weight": 0.75,
-    "pct": 55.14,
-    "n": 490,
-    "window": "2021-2025"
-   },
-   "breakeven_pct": 54.95,
-   "edge_pts": 0.19,
-   "becomes_bet_bar_pts": 5.0,
-   "worst_line": null,
-   "becomes_bet_line": -0.5,
-   "at_bar_now": false,
-   "place_label": "WATCH",
-   "warning": null,
-   "lines": [
-    {
-     "label": "THE LINE",
-     "text": "CAR -2.5 (-122) at FanDuel, pulled Sun 10/25 07:10 America/Phoenix."
-    },
-    {
-     "label": "WHAT IT MEANS",
-     "text": "Carolina must win by 3 or more. Win by 2 or less, or lose, and the bet loses."
-    },
-    {
-     "label": "OUR EDGE",
-     "text": "Backtested cover rate: about 55% (sandwich_game, worst recent window, n=490). At -122 you need 55.0% to break even. Edge: +0.2 percentage points."
-    },
-    {
-     "label": "WATCH",
-     "text": "Watch \u2014 not a bet at this price: edge +0.2 against the bar of 5 percentage points for a bet on price alone. Becomes a bet at CAR -0.5 or better."
+     "text": "Watch \u2014 not a bet at this price. Becomes a bet at SF -1 or better."
     }
    ]
   },
@@ -499,7 +499,7 @@
    "kickoff_display": "Thu 10/22 17:15",
    "kickoff_phoenix": "2026-10-22T17:15:00-07:00",
    "tag": "POSSIBLE BET",
-   "tag_rank": 5,
+   "tag_rank": 4,
    "tag_tier": "B",
    "market": "spread",
    "side": "CHI",
@@ -585,11 +585,11 @@
     },
     {
      "label": "OUR EDGE",
-     "text": "Backtested cover rate: about 55% (sandwich_game, worst recent window, n=490). At -123 you need 55.2% to break even. Edge: -0.0 percentage points."
+     "text": "Historical record, not a probability: sandwich_game 55.1% over n=490 (2021-2025 window)."
     },
     {
      "label": "WATCH",
-     "text": "No edge at this price. Watch \u2014 not a bet at this price: edge -0.0 against the bar of 5 percentage points for a bet on price alone. Becomes a bet at NO +5.5 or better."
+     "text": "No edge at this price. Watch \u2014 not a bet at this price. Becomes a bet at NO +5.5 or better."
     }
    ]
   }
@@ -602,21 +602,21 @@
  "id": "2026-W07",
  "season": 2026,
  "week": 7,
- "generated_at": "2026-10-25T07:25:53-07:00",
+ "generated_at": "2026-10-25T08:44:40-07:00",
  "timezone": "America/Phoenix",
  "odds_pull": {
   "succeeded": true,
   "fetched_at": "2026-10-25T07:10:21-07:00",
-  "age_hours": 0.3,
+  "age_hours": 1.6,
   "stale": false,
-  "detail": "pull 2026-10-25_071021 America/Phoenix, 0.3 h old"
+  "detail": "pull 2026-10-25_071021 America/Phoenix, 1.6 h old"
  },
  "books": [
   "betmgm",
   "draftkings",
   "fanduel"
  ],
- "data_refresh": "ok 2026-10-25 07:25",
+ "data_refresh": "ok 2026-10-25 08:44",
  "rules": {
   "lean_cap_points": 1.5,
   "stale_after_hours": 36,
@@ -661,8 +661,8 @@
   "status": "ok",
   "detail": "11 game(s) with a kickoff forecast, 0 unknown, 3 indoor",
   "host": "api.open-meteo.com",
-  "fetched_at": "2026-10-25T07:25:48.192945-07:00",
-  "snapshot": "/Users/quincypbu/NFL-Edge/data/weather/forecast_2026-10-25_072553.json",
+  "fetched_at": "2026-10-25T08:44:35.139205-07:00",
+  "snapshot": "/Users/quincypbu/NFL-Edge/data/weather/forecast_2026-10-25_084440.json",
   "counts": {
    "forecast": 11,
    "unknown": 0,
@@ -1396,7 +1396,7 @@
     "total": null
    },
    "tag": "POSSIBLE BET",
-   "tag_rank": 5,
+   "tag_rank": 4,
    "tag_reason": "Survivor lean CHI, rule (a) not met: 1 of 2",
    "tag_market": "spread",
    "tag_tier": "B",
@@ -1429,7 +1429,7 @@
     "lat": 41.8623,
     "lon": -87.6167,
     "kickoff_utc": "2026-10-23T00:15:00+00:00",
-    "fetched_at": "2026-10-25T07:25:48.192945-07:00",
+    "fetched_at": "2026-10-25T08:44:35.139205-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {
@@ -2026,8 +2026,8 @@
     "badge": null,
     "detail": null,
     "wind_mph": 14.9,
-    "wind_max_3h_mph": 15.8,
-    "gust_mph": 32.2,
+    "wind_max_3h_mph": 16.4,
+    "gust_mph": 33.6,
     "temp_f": 59.5,
     "precip_in_3h": 0.0,
     "kickoff_hour_utc": "2026-10-25T13:00:00+00:00",
@@ -2043,7 +2043,7 @@
     "lat": 48.9244,
     "lon": 2.3601,
     "kickoff_utc": "2026-10-25T13:30:00+00:00",
-    "fetched_at": "2026-10-25T07:25:48.192945-07:00",
+    "fetched_at": "2026-10-25T08:44:35.139205-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {
@@ -2580,10 +2580,10 @@
     "status": "forecast",
     "badge": null,
     "detail": null,
-    "wind_mph": 0.5,
-    "wind_max_3h_mph": 5.4,
+    "wind_mph": 1.4,
+    "wind_max_3h_mph": 5.3,
     "gust_mph": 6.0,
-    "temp_f": 62.6,
+    "temp_f": 63.1,
     "precip_in_3h": 0.0,
     "kickoff_hour_utc": "2026-10-25T17:00:00+00:00",
     "hours": [
@@ -2598,7 +2598,7 @@
     "lat": 39.278,
     "lon": -76.6227,
     "kickoff_utc": "2026-10-25T17:00:00+00:00",
-    "fetched_at": "2026-10-25T07:25:48.192945-07:00",
+    "fetched_at": "2026-10-25T08:44:35.139205-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {
@@ -3196,10 +3196,10 @@
     "status": "forecast",
     "badge": null,
     "detail": null,
-    "wind_mph": 3.6,
-    "wind_max_3h_mph": 3.6,
+    "wind_mph": 0.5,
+    "wind_max_3h_mph": 2.9,
     "gust_mph": 5.1,
-    "temp_f": 70.3,
+    "temp_f": 70.4,
     "precip_in_3h": 0.0,
     "kickoff_hour_utc": "2026-10-25T17:00:00+00:00",
     "hours": [
@@ -3214,7 +3214,7 @@
     "lat": 36.1665,
     "lon": -86.7713,
     "kickoff_utc": "2026-10-25T17:00:00+00:00",
-    "fetched_at": "2026-10-25T07:25:48.192945-07:00",
+    "fetched_at": "2026-10-25T08:44:35.139205-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {
@@ -3724,9 +3724,9 @@
    "shadow_lean": {
     "spread": {
      "side": "MIN",
-     "line": -6.5,
-     "price": -115,
-     "book": "draftkings",
+     "line": -7.0,
+     "price": -102,
+     "book": "betmgm",
      "tier": "D",
      "net_lean": 0.0,
      "forced_default": true,
@@ -3761,7 +3761,7 @@
     "lat": 44.9736,
     "lon": -93.2575,
     "kickoff_utc": "2026-10-25T17:00:00+00:00",
-    "fetched_at": "2026-10-25T07:25:48.192945-07:00",
+    "fetched_at": "2026-10-25T08:44:35.139205-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {
@@ -4388,7 +4388,7 @@
     "total": null
    },
    "tag": "POSSIBLE BET",
-   "tag_rank": 6,
+   "tag_rank": 5,
    "tag_reason": "Survivor lean NYJ, rule (a) not met: 1 of 2",
    "tag_market": "spread",
    "tag_tier": "B",
@@ -4403,10 +4403,10 @@
     "status": "forecast",
     "badge": null,
     "detail": null,
-    "wind_mph": 3.0,
-    "wind_max_3h_mph": 5.4,
-    "gust_mph": 7.2,
-    "temp_f": 65.5,
+    "wind_mph": 2.2,
+    "wind_max_3h_mph": 4.1,
+    "gust_mph": 5.1,
+    "temp_f": 64.9,
     "precip_in_3h": 0.0,
     "kickoff_hour_utc": "2026-10-25T17:00:00+00:00",
     "hours": [
@@ -4421,7 +4421,7 @@
     "lat": 40.8135,
     "lon": -74.0745,
     "kickoff_utc": "2026-10-25T17:00:00+00:00",
-    "fetched_at": "2026-10-25T07:25:48.192945-07:00",
+    "fetched_at": "2026-10-25T08:44:35.139205-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {
@@ -5110,10 +5110,10 @@
     "status": "forecast",
     "badge": null,
     "detail": null,
-    "wind_mph": 11.8,
-    "wind_max_3h_mph": 11.8,
-    "gust_mph": 16.6,
-    "temp_f": 79.7,
+    "wind_mph": 11.5,
+    "wind_max_3h_mph": 11.5,
+    "gust_mph": 15.9,
+    "temp_f": 80.5,
     "precip_in_3h": 0.0,
     "kickoff_hour_utc": "2026-10-25T17:00:00+00:00",
     "hours": [
@@ -5128,7 +5128,7 @@
     "lat": 29.6847,
     "lon": -95.4107,
     "kickoff_utc": "2026-10-25T17:00:00+00:00",
-    "fetched_at": "2026-10-25T07:25:48.192945-07:00",
+    "fetched_at": "2026-10-25T08:44:35.139205-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {
@@ -5709,7 +5709,7 @@
     "total": null
    },
    "tag": "POSSIBLE BET",
-   "tag_rank": 7,
+   "tag_rank": 6,
    "tag_reason": "Survivor lean SF, rule (a) not met: 1 of 2",
    "tag_market": "spread",
    "tag_tier": "B",
@@ -5724,10 +5724,10 @@
     "status": "forecast",
     "badge": null,
     "detail": null,
-    "wind_mph": 11.8,
-    "wind_max_3h_mph": 11.8,
-    "gust_mph": 17.2,
-    "temp_f": 66.4,
+    "wind_mph": 11.7,
+    "wind_max_3h_mph": 11.7,
+    "gust_mph": 17.0,
+    "temp_f": 66.5,
     "precip_in_3h": 0.0,
     "kickoff_hour_utc": "2026-10-25T17:00:00+00:00",
     "hours": [
@@ -5742,7 +5742,7 @@
     "lat": 33.7554,
     "lon": -84.401,
     "kickoff_utc": "2026-10-25T17:00:00+00:00",
-    "fetched_at": "2026-10-25T07:25:48.192945-07:00",
+    "fetched_at": "2026-10-25T08:44:35.139205-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {
@@ -5801,20 +5801,19 @@
     "rule_a": false,
     "rule_b": true,
     "number_to_shop": {
-     "line": -2.5,
-     "price": -122,
-     "book": "fanduel",
+     "line": -3.0,
+     "price": -102,
+     "book": "betmgm",
      "reachable_by": [
       "Q",
-      "Mike",
       "Marques"
      ],
      "consensus": -3.0,
      "books_quoting": 3
     },
     "opener_consensus": -2.75,
-    "moved_toward_lean": -0.25,
-    "lean_remaining": 1.0,
+    "moved_toward_lean": 0.25,
+    "lean_remaining": 0.5,
     "angles_for": [
      {
       "name": "sandwich_game",
@@ -5841,7 +5840,7 @@
      }
     ],
     "angles_against": [],
-    "edge_pts": 0.19
+    "edge_pts": 4.23
    },
    "total": {
     "lean_side": null,
@@ -6297,7 +6296,7 @@
      "spread": {
       "net": "sum of fired weights: CAR 0.75; net 0.75 toward CAR; cap +/-1.5 -> lean CAR 0.75",
       "rule_a": "survivors same direction: 1 of 2 needed (or 1 survivor + 1 watch); watch same direction: 0 counted; survivors against: 0 -> fail",
-      "rule_b": "opener CAR -2.75 vs best now CAR -2.5 (-122) at fanduel; moved -0.25 toward CAR (negative = away), lean 0.75 -> pass (number not gone)",
+      "rule_b": "opener CAR -2.75 vs best now CAR -3 (-102) at betmgm; moved +0.25 toward CAR (negative = away), lean 0.75 -> pass (number not gone)",
       "move": "open CAR -2.75 (2026-10-13_17571) -> latest CAR -3 (2026-10-25_07102); move -0.25 over 8 snapshot(s); toward lean (+0.25); key numbers crossed: 3.0",
       "verdict": "not enough angles (1 survivor, 0 watch same way)"
      },
@@ -6313,9 +6312,9 @@
    "shadow_lean": {
     "spread": {
      "side": "CAR",
-     "line": -2.5,
-     "price": -122,
-     "book": "fanduel",
+     "line": -3.0,
+     "price": -102,
+     "book": "betmgm",
      "tier": "B",
      "net_lean": 0.75,
      "forced_default": false,
@@ -6325,14 +6324,14 @@
     "total": null
    },
    "tag": "POSSIBLE BET",
-   "tag_rank": 4,
+   "tag_rank": 7,
    "tag_reason": "Survivor lean CAR, rule (a) not met: 1 of 2",
    "tag_market": "spread",
    "tag_tier": "B",
    "tag_keys": {
     "net_survivor_weight": 0.75,
     "survivor_angles_fired": 1,
-    "price_edge": 0.5,
+    "price_edge": 0.0,
     "kickoff": "2026-10-25T10:00:00-07:00"
    },
    "tag_priced_out": null,
@@ -6340,10 +6339,10 @@
     "status": "forecast",
     "badge": null,
     "detail": null,
-    "wind_mph": 11.5,
-    "wind_max_3h_mph": 11.5,
-    "gust_mph": 16.6,
-    "temp_f": 64.6,
+    "wind_mph": 11.9,
+    "wind_max_3h_mph": 11.9,
+    "gust_mph": 17.2,
+    "temp_f": 64.3,
     "precip_in_3h": 0.0,
     "kickoff_hour_utc": "2026-10-25T17:00:00+00:00",
     "hours": [
@@ -6358,7 +6357,7 @@
     "lat": 35.2258,
     "lon": -80.8528,
     "kickoff_utc": "2026-10-25T17:00:00+00:00",
-    "fetched_at": "2026-10-25T07:25:48.192945-07:00",
+    "fetched_at": "2026-10-25T08:44:35.139205-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {
@@ -7003,10 +7002,10 @@
     "status": "forecast",
     "badge": null,
     "detail": null,
-    "wind_mph": 2.8,
-    "wind_max_3h_mph": 2.8,
+    "wind_mph": 2.1,
+    "wind_max_3h_mph": 3.4,
     "gust_mph": 4.0,
-    "temp_f": 79.4,
+    "temp_f": 79.5,
     "precip_in_3h": 0.0,
     "kickoff_hour_utc": "2026-10-25T20:00:00+00:00",
     "hours": [
@@ -7021,7 +7020,7 @@
     "lat": 33.5276,
     "lon": -112.2626,
     "kickoff_utc": "2026-10-25T20:05:00+00:00",
-    "fetched_at": "2026-10-25T07:25:48.192945-07:00",
+    "fetched_at": "2026-10-25T08:44:35.139205-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {
@@ -7626,7 +7625,7 @@
     "lat": 42.34,
     "lon": -83.0456,
     "kickoff_utc": "2026-10-25T20:25:00+00:00",
-    "fetched_at": "2026-10-25T07:25:48.192945-07:00",
+    "fetched_at": "2026-10-25T08:44:35.139205-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {
@@ -8173,7 +8172,7 @@
     "lat": 36.0909,
     "lon": -115.1833,
     "kickoff_utc": "2026-10-25T20:25:00+00:00",
-    "fetched_at": "2026-10-25T07:25:48.192945-07:00",
+    "fetched_at": "2026-10-25T08:44:35.139205-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {
@@ -8847,7 +8846,7 @@
    },
    "tag": "BET",
    "tag_rank": 1,
-   "tag_reason": "Rule (a) met: 2 survivors for SEA; edge +4.7 at the number to shop",
+   "tag_reason": "Rule (a) met: 2 survivors for SEA; the price check passes at the number to shop",
    "tag_market": "spread",
    "tag_tier": "A",
    "tag_keys": {
@@ -8861,11 +8860,11 @@
     "status": "forecast",
     "badge": null,
     "detail": null,
-    "wind_mph": 9.6,
-    "wind_max_3h_mph": 9.6,
-    "gust_mph": 21.0,
-    "temp_f": 51.9,
-    "precip_in_3h": 0.03,
+    "wind_mph": 7.9,
+    "wind_max_3h_mph": 8.0,
+    "gust_mph": 25.3,
+    "temp_f": 52.0,
+    "precip_in_3h": 0.02,
     "kickoff_hour_utc": "2026-10-26T00:00:00+00:00",
     "hours": [
      "2026-10-26T00:00:00+00:00",
@@ -8879,7 +8878,7 @@
     "lat": 47.5952,
     "lon": -122.3316,
     "kickoff_utc": "2026-10-26T00:20:00+00:00",
-    "fetched_at": "2026-10-25T07:25:48.192945-07:00",
+    "fetched_at": "2026-10-25T08:44:35.139205-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {
@@ -9495,7 +9494,7 @@
     "lat": 39.9008,
     "lon": -75.1675,
     "kickoff_utc": "2026-10-27T00:15:00+00:00",
-    "fetched_at": "2026-10-25T07:25:48.192945-07:00",
+    "fetched_at": "2026-10-25T08:44:35.139205-07:00",
     "source_host": "api.open-meteo.com"
    },
    "movement": {

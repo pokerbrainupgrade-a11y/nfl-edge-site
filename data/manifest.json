@@ -4,7 +4,7 @@
   "source": "schedule row lookup: each slate game matched to games.parquet by home + away + kickoff date (America/Phoenix), week read from that row",
   "slate_source": "odds pull 2026-10-25_071021 America/Phoenix (odds_latest.parquet)",
   "slate_window": {
-   "start": "2026-10-25T07:27:38-07:00",
+   "start": "2026-10-25T08:47:14-07:00",
    "end": "2026-10-26T23:59:59-07:00"
   },
   "slate_games": 12,
@@ -15,18 +15,18 @@
   },
   "disagreeing": [],
   "schedule": {
-   "pulled_at": "2026-10-25 07:25 America/Phoenix",
+   "pulled_at": "2026-10-25 08:44 America/Phoenix",
    "age_days": 0.0,
    "stale": false,
    "max_age_days": 7,
    "refreshed": false,
    "error": null
   },
-  "checked_at": "2026-10-25T07:27:38-07:00",
+  "checked_at": "2026-10-25T08:47:14-07:00",
   "week": 7,
   "status": "verified",
   "flag": null,
-  "detail": "all 12 slate games between Sun 10/25 07:27 and Mon 10/26 23:59 matched schedule rows labelled week 7; latest_week = 2026-W07",
+  "detail": "all 12 slate games between Sun 10/25 08:47 and Mon 10/26 23:59 matched schedule rows labelled week 7; latest_week = 2026-W07",
   "run_week": 7,
   "run_week_source": "lookup",
   "ledger": null,
@@ -41,7 +41,7 @@
  },
  "site_schema_version": 7,
  "timezone": "America/Phoenix",
- "exported_at": "2026-10-25T07:27:38-07:00",
+ "exported_at": "2026-10-25T08:47:15-07:00",
  "latest_week": "2026-W07",
  "weeks": [
   {
@@ -49,7 +49,7 @@
    "season": 2026,
    "week": 7,
    "file": "weeks/2026-W07.json",
-   "generated_at": "2026-10-25T07:25:53-07:00",
+   "generated_at": "2026-10-25T08:44:40-07:00",
    "counts": {
     "games": 14,
     "shortlist": 1,
@@ -147,8 +147,8 @@
  ],
  "last_publish": {
   "week": "2026-W07",
-  "published_at": "2026-10-25 07:27 America/Phoenix",
-  "engine_head": "b72be5e",
+  "published_at": "2026-10-25 08:47 America/Phoenix",
+  "engine_head": "98767ab",
   "url": "https://pokerbrainupgrade-a11y.github.io/nfl-edge-site/"
  },
  "reports": {

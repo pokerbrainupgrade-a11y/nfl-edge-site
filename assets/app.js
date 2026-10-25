@@ -159,17 +159,21 @@
   // ------------------------------------------------------------ shared pieces
   function headRow(w, title, ctl) {
     const hist = allPlayed(w), vs = verifyState(w), books = (w.books || []).join(', ');
+    // SESSION 10-24 Lane C C2 (Asana 1219855073629866): one subline, " · " separated, reading "Scan <time> · Odds <time>" as the UI
+    // sprint specified (L2); the reskin's flex row of "Captured odds" spans (5ca8837, unrecorded) had no .subl and no separators.
+    const meta = ['<span>NFL ' + esc(w.season) + ' regular season</span>',
+      '<span>' + ICON.clock + (hist ? 'Saved scan ' : 'Scan ') + '<span class="num">' + esc(tsFull(w.generated_at)) + '</span></span>',
+      '<span>' + ICON.clock + 'Odds <span class="num">' + esc(tsFull((w.odds_pull || {}).fetched_at)) + '</span></span>',
+      '<span class="' + (vs.cls === 'ok' ? 'v-ok' : 'v-warn') + '">' + (vs.cls === 'ok' ? ICON.shield : ICON.shieldx) + 'Week ' + esc(vs.word.toLowerCase()) + '</span>'];
+    if (books) meta.push('<span>' + esc(books) + '</span>');
     return '<div class="head"><div><h1>' + esc(title) + (hist ? ' <span class="apill">' + ICON.archive + 'Archived · Week ' + esc(w.week) + '</span>' : '') + '</h1>' +
-      '<div class="meta"><span>NFL ' + esc(w.season) + ' regular season</span>' +
-      '<span>' + ICON.clock + (hist ? 'Saved scan ' : 'Scan ') + '<span class="num">' + esc(tsFull(w.generated_at)) + '</span></span>' +
-      '<span>' + ICON.clock + 'Captured odds <span class="num">' + esc(tsFull((w.odds_pull || {}).fetched_at)) + '</span></span>' +
-      '<span class="' + (vs.cls === 'ok' ? 'v-ok' : 'v-warn') + '">' + (vs.cls === 'ok' ? ICON.shield : ICON.shieldx) + 'Week ' + esc(vs.word.toLowerCase()) + '</span>' +
-      (books ? '<span>' + esc(books) + '</span>' : '') + '</div></div>' + (ctl ? '<div class="ctl">' + ctl + '</div>' : '') + '</div>';
+      '<div class="subl meta">' + meta.join(' · ') + '</div></div>' + (ctl ? '<div class="ctl">' + ctl + '</div>' : '') + '</div>';
   }
   function suggestion(w, g) {
     // the scanner's own words only: the bet card for BET / POSSIBLE BET rows; NO BET rows have no card
     const c = cardFor(w, g.game_id);
-    if (c) return { text: c.bet, price: c.price, book: c.book, card: c, q: c.market + ' · ' + c.place_label, mk: c.market };
+    // C2 (L7): a card with no posted number (4.6 S2, line_no_number) has bet null; its own THE LINE sentence is the text
+    if (c) return { text: c.bet != null ? c.bet : (((c.lines || []).find((ln) => ln.label === 'THE LINE') || {}).text || 'No number posted yet'), price: c.price, book: c.book, card: c, q: c.market + ' · ' + c.place_label, mk: c.market };
     if (g.tag === 'NO BET') return { text: 'No suggested wager', price: null, book: null, card: null, q: g.tag_reason || '' };
     return { text: 'No recommendation recorded', price: null, book: null, card: null, q: w.bet_cards ? '' : 'this scan predates bet cards' };
   }
@@ -194,7 +198,7 @@
   }
   function clvTile() {
     const c = state.clv && state.clv.all;
-    if (!c) return { value: 'No bets logged', sub: 'CLV appears once real bets are graded', cls: 'txt' };
+    if (!c) return { value: '—', sub: 'No system-sourced bets logged · CLV appears once real bets are graded', cls: '' };   // C2 (L8)
     return { value: signed(c.mean_clv_prob, 4), sub: 'mean CLV (probability) · n ' + c.graded + ' graded of ' + c.bets + ' real bets', cls: '' };
   }
 
@@ -296,7 +300,7 @@
     const s = suggestion(w, g);
     return '<tr class="row" id="g-' + esc(g.game_id) + '" data-game="' + esc(g.game_id) + '"><td><div class="mu">' + esc(g.away) + ' @ ' + esc(g.home) + '</div><div class="ko">' + esc(kick(g.kickoff_phoenix)) + '</div></td>' +
       '<td class="st">' + tagHtml(g.tag) + (g.tag_rank != null ? '<span class="rank num">#' + esc(g.tag_rank) + '</span>' : '') + '</td>' +
-      '<td><div class="sug">' + esc(s.text) + '</div><div class="q">' + esc(s.mk ? s.mk + (s.price != null ? ' · at ' + price(s.price) : '') : s.q) + '</div></td>' +
+      '<td><div class="sug">' + esc(s.text) + (s.price != null ? ' <span class="muted">(' + esc(price(s.price)) + ')</span>' : '') + '</div><div class="q">' + esc(s.q) + '</div></td>' +   // C2 (L7): bet + price on the row as on the phone card; the reskin moved the price to the sub line
       '<td class="ang">' + angleCell(g) + '</td><td class="off">' + offerHtml(w, g) + '</td>' +
       '<td><a class="rev" href="#/week/' + esc(w.id) + '/' + esc(g.game_id) + '" aria-label="Review ' + esc(g.matchup) + '">' + ICON.chev + '</a></td></tr>';
   }
@@ -465,6 +469,22 @@
         (a.mechanism ? '<div class="mech">' + esc(a.mechanism) + '</div>' : '') + '</div>';
     }).join('');
   }
+  // SESSION 10-24 Lane C C3 (Asana 1219855073629866; audit F5, HIGH 1219847672114983, Q 2026-10-23: hide the edge number, do
+  // not relabel it). The export still carries edge_pts and the scanner's OUR EDGE / WATCH wording (Lane A's contract); the site
+  // ignores them: THE LINE and WHAT IT MEANS render as exported, the third line is the counted angle's historical record
+  // (cover rate, window, n) labelled as such, and the place line is built from the card's fields without the edge clause.
+  // No edge figure reaches the page until a calibrated probability exists.
+  function cardLines(c) {
+    const out = (c.lines || []).filter((ln) => ln.label === 'THE LINE' || ln.label === 'WHAT IT MEANS').map((ln) => ({ label: ln.label, text: ln.text }));
+    const e = c.estimate || {};
+    out.push({ label: 'ANGLE RECORD', text: e.angle ? e.angle + ': covered ' + pct(e.pct) + ' in ' + (e.window || 'the recent window') + ' (n ' + (e.n != null ? e.n : '—') + '). Historical record, not a probability.' : 'No counted angle recorded. Historical record only, not a probability.' });
+    let place;
+    if (c.bet == null) place = 'Nothing to place yet.';
+    else if (c.place_label === 'PLACE THIS BET') place = 'Take ' + c.bet + '.' + (c.worst_line != null ? ' Only at ' + lineText(c.market, c.side, c.worst_line) + ' or better.' : '');
+    else place = 'Watch — not a bet at this price.' + (c.becomes_bet_line != null ? ' Becomes a bet at ' + lineText(c.market, c.side, c.becomes_bet_line) + ' or better.' : '');
+    out.push({ label: c.place_label || 'WATCH', text: place });
+    return out;
+  }
   function evidenceHtml(w, g) {
     const s = suggestion(w, g), c = s.card, n = shop(g), os = oddsState(w);
     const mk = g.tag_market || 'spread', m = g[mk] || {};
@@ -486,7 +506,7 @@
     h += '</section>';
     // 2. why it appears, in the scan's own words
     h += '<section><h3>Why it appears</h3><div class="small sec">' + esc(g.tag_reason || 'No reason recorded') + '</div>';
-    if (c && c.lines) h += '<ul class="lines">' + c.lines.map((ln) => '<li class="' + (ln.label === 'PLACE THIS BET' ? 'place' : ln.label === 'WATCH' ? 'watch' : '') + '"><b>' + esc(ln.label) + '</b>' + esc(ln.text) + '</li>').join('') + '</ul>';
+    if (c) h += '<ul class="lines">' + cardLines(c).map((ln) => '<li class="' + (ln.label === 'PLACE THIS BET' ? 'place' : ln.label === 'WATCH' ? 'watch' : '') + '"><b>' + esc(ln.label) + '</b>' + esc(ln.text) + '</li>').join('') + '</ul>';   // C3: no edge figure
     if (sl && sl.interpretation && sl.interpretation.what_this_means) h += '<ul class="lines">' + sl.interpretation.what_this_means.map((x) => '<li><b>' + esc(x.label) + '</b>' + esc(x.text) + '</li>').join('') + '</ul>';
     h += '</section>';
     // 3. evidence: the angles that fired, then every angle checked
@@ -669,7 +689,7 @@
       '<table class="snap"><thead><tr><th>Price</th><th>Win rate needed to break even</th></tr></thead><tbody>' + [-105, -110, -115, -120].map((a) => '<tr><td>' + esc(price(a)) + '</td><td>' + breakevenPct(a).toFixed(1) + '%</td></tr>').join('') + '</tbody></table>' +
       '<p class="small muted">Computed as |price| / (|price| + 100) for negative prices.</p>' +
       '<p class="small sec"><b>Strength score.</b> ' + esc((lib.method || {}).strength_score || 'Method text not exported.') + '</p>' +
-      '<p class="small sec"><b>Bet cards.</b> Every row tagged BET or POSSIBLE BET is printed as four lines: THE LINE, WHAT IT MEANS, OUR EDGE (the backtested cover rate of the row\'s strongest counted angle against the win rate the price requires, in percentage points) and PLACE THIS BET or WATCH. BET means tier A and a positive edge; a card that says PLACE THIS BET always has a positive edge and a BET tag.</p>' +
+      '<p class="small sec"><b>Bet cards.</b> Every row tagged BET or POSSIBLE BET is printed as four lines: THE LINE, WHAT IT MEANS, ANGLE RECORD (the backtested cover rate of the row\'s strongest counted angle in its worst recent window, with n: a historical record, not a probability) and PLACE THIS BET or WATCH. The scanner\'s edge figure is not shown anywhere on this site until a calibrated probability exists (audit F5, 2026-10-23); the tag and the place line are the scanner\'s.</p>' +
       '<p class="small sec"><b>Gates.</b> Week 9 gate, Tue 2026-11-10: first read of the production ledger, CLV by source and by bettor. Nothing is promoted or demoted on win/loss.</p></details>';
     h += '<details class="disc" id="how-to-read"' + (section === 'how-to-read' ? ' open' : '') + '><summary>How to read the scan</summary>' +
       '<p class="small sec"><b>Lean.</b> The strength score of a market: survivor weights summed by side and netted, capped at 1.5. A count of agreeing evidence, never a projected margin.</p>' +
@@ -878,7 +898,9 @@
     h += '<div class="cnts"><div class="cnt"><div class="v">' + esc(rec.picks != null ? rec.picks : '—') + '</div><div class="k">PICKS</div></div><div class="cnt"><div class="v">' + esc(rec.settled != null ? rec.settled : '—') + '</div><div class="k">SETTLED</div></div>' +
       '<div class="cnt"><div class="v">' + esc(rec.hit_pct == null ? '—' : Number(rec.hit_pct).toFixed(1) + '%') + '</div><div class="k">HIT RATE</div></div><div class="cnt"><div class="v">' + esc(rec.avg_breakeven_pct == null ? '—' : Number(rec.avg_breakeven_pct).toFixed(1) + '%') + '</div><div class="k">AVG BREAKEVEN</div></div>' +
       '<div class="cnt"><div class="v">' + esc(rec.avg_clv_pts == null ? '—' : signed(rec.avg_clv_pts, 2)) + '</div><div class="k">AVG CLV (PTS)</div></div><div class="cnt"><div class="v">' + esc(rec.clv_n != null ? rec.clv_n : '—') + '</div><div class="k">CLV SAMPLE</div></div></div>';
-    h += '<p class="small muted">Program gate (read 2026-11-10): at least 40 blind picks settled, average closing-line value above 0, and hit rate at least 2 points above what the prices needed' + (rec.hit_minus_implied_pts != null ? ' (now ' + esc(signed(rec.hit_minus_implied_pts, 2)) + ' pts)' : '') + '. ' + (sh.note ? esc(sh.note) : '') + '</p>';
+    // SESSION 10-24 Lane C C1 (Asana 1219855073629866; decision E2 on 1219842461346771): the 11-10 pass test is avg CLV > 0 on
+    // >= 40 settled blind v2.1 picks; hit - implied stays on the page as information only, never a gate condition.
+    h += '<p class="small muted" id="props-gate">Program gate (read 2026-11-10): at least 40 settled blind v2.1 picks and average closing-line value above 0. Hit rate vs what the prices needed is shown for information' + (rec.hit_minus_implied_pts != null ? ' (now ' + esc(signed(rec.hit_minus_implied_pts, 2)) + ' pts, informational)' : '') + '. ' + (sh.note ? esc(sh.note) : '') + '</p>';
     return h + '</div></div>';
   }
   // PROPS v2 P7 (SPRINT 2026-10-23, Asana 1219855016156419): the "Research picks" list sits directly under the research-only
