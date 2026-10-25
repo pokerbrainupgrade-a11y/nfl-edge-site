@@ -188,6 +188,7 @@ button.chip { cursor: pointer; }
 .tag.possible { background: var(--warning-bg); color: var(--warning); }
 .tag.nobet { background: var(--neutral-bg); color: var(--text-secondary); }
 .tag.unknown { background: var(--danger-bg); color: var(--danger); }
+.tag.baseline { background: var(--neutral-bg); color: var(--text-muted); text-transform: none; letter-spacing: 0; font-weight: 700; }   /* PROPS v2.1 F4: rule-v2 rows, never counted */
 .pill { display: inline-block; padding: 2px 8px; border-radius: 6px; font-size: 11px; font-weight: 700; white-space: nowrap; }
 .pill.survivor { background: var(--positive-bg); color: var(--positive); }
 .pill.watch { background: var(--warning-bg); color: var(--warning); }
@@ -471,3 +472,13 @@ details.rungs[open] > summary::before { transform: rotate(90deg); }
   .pctl select.btn { flex: 1 1 160px; }
   .tabbar { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); }   /* one column per entry: a sixth entry never needs an edit */
 }
+
+/* PROPS v2 P7 (SPRINT 2026-10-23): the Research picks list under the props banner - compact rows, wraps at phone width */
+.research { background: var(--surface-soft); border-radius: var(--radius); padding: 10px 14px 6px; margin: 0 0 16px; }
+.research .rhead { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; margin-bottom: 6px; }
+.research .rrow { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; padding: 6px 0; border-top: 1px solid var(--border); font-size: 13px; color: var(--text-secondary); overflow-wrap: anywhere; min-width: 0; }
+.research .rrow .rp { font-weight: 800; color: var(--text); }
+.research .rrow .rm { color: var(--text); }
+.research .rrow .rn { flex: 1 1 100%; font-size: 12.5px; }
+.research .rrow .num { font-family: var(--mono); color: var(--text); }
+.research .rrow .tag.nobet { font-size: 10.5px; padding: 1px 6px; }

@@ -857,7 +857,9 @@
   }
   function shadowCard(p) {
     const res = p.result ? pill(p.result === 'hit' ? 'survivor' : p.result === 'miss' ? 'against' : 'neutral', p.result === 'pending' ? 'pending' : p.result.replace('_', ' ')) : '';
-    let h = '<div class="card sc"><div class="l1"><span class="tag nobet">SHADOW · $0</span>' + res + '<span class="small muted num">' + esc(kick(p.kickoff)) + '</span></div>';
+    // PROPS v2.1 F4 (E1): rule-v2 rows are the labelled baseline and never count toward the Nov 10 gate
+    const base = p.baseline ? '<span class="tag baseline">baseline — not counted</span>' : '';
+    let h = '<div class="card sc"><div class="l1"><span class="tag nobet">SHADOW · $0</span>' + base + res + '<span class="small muted num">' + esc(kick(p.kickoff)) + '</span></div>';
     h += '<div class="mu">' + esc(p.game) + ' · ' + esc(p.player) + '</div>';
     h += '<ul class="lines">' + (p.card || []).map((c, i) => '<li class="' + (i === 3 ? 'shadow' : '') + '"><b>' + esc(c.label) + '</b>' + esc(c.text) + '</li>').join('') + '</ul>';
     if (p.clv_pts != null) h += '<div class="small sec" style="margin-top:6px">Closing-line value <span class="num">' + esc(signed(p.clv_pts, 2)) + ' pts</span> vs the ' + esc(stamp(p.close_stamp)) + ' pull</div>';
@@ -867,7 +869,8 @@
   function shadowPanel2(d) {
     const sh = d.shadow || {}, rec = sh.record || {};
     let h = '<div class="panel" id="props-shadow"><div class="ph"><h2>' + ICON.eye + 'Shadow picks (no money)</h2><span class="sub">zero stake · logged before kickoff · graded on hit rate and closing-line value</span></div><div class="pb">';
-    h += '<p class="small sec">Rule ' + esc(sh.rule_version || '—') + ': a pick exists only when one of our books (' + esc((sh.candidate_books || []).map(bookName).join(', ')) + ') posts a price whose breakeven sits at least <span class="num">' + esc(sh.min_edge_pts) + '</span> points below the other books\' no-vig consensus at the same line' + (sh.min_edge_placeholder ? ' <span class="muted">(placeholder bar — Q decides)</span>' : '') + '. A price rule, not a prediction. Nothing here is a bet.</p>';
+    if (/^v2/.test(sh.rule_version || '')) h += '<p class="small sec">Rule ' + esc(sh.rule_version) + ': the model projects every quoted player (role baseline, own history, game script, injuries) as a full outcome distribution; a pick exists when its chance of a side at the posted line beats what the best price at one of our books (' + esc((sh.candidate_books || []).map(bookName).join(', ')) + ') needs by at least <span class="num">' + esc(sh.min_edge_pts) + '</span> points' + (sh.guard_pts != null ? ', and the model sits within <span class="num">' + esc(sh.guard_pts) + '</span> points of the market\'s own consensus' : '') + '. Nothing here is a bet.</p>';
+    else h += '<p class="small sec">Rule ' + esc(sh.rule_version || '—') + ': a pick exists only when one of our books (' + esc((sh.candidate_books || []).map(bookName).join(', ')) + ') posts a price whose breakeven sits at least <span class="num">' + esc(sh.min_edge_pts) + '</span> points below the other books\' no-vig consensus at the same line' + (sh.min_edge_placeholder ? ' <span class="muted">(placeholder bar — Q decides)</span>' : '') + '. A price rule, not a prediction. Nothing here is a bet.</p>';
     const picks = sh.this_week || [];
     if (!picks.length) h += '<div class="empty" id="shadow-empty"><b>No shadow picks this week.</b>' + ((sh.evaluated_pulls || []).length ? esc((sh.evaluated_pulls || []).length) + ' pull' + ((sh.evaluated_pulls || []).length === 1 ? '' : 's') + ' evaluated (' + esc((sh.evaluated_pulls || []).map(stamp).join(', ')) + '); no price cleared the bar.' : 'No pull evaluated yet.') + '</div>';
     else picks.forEach((p) => { h += shadowCard(p); });
@@ -875,14 +878,38 @@
     h += '<div class="cnts"><div class="cnt"><div class="v">' + esc(rec.picks != null ? rec.picks : '—') + '</div><div class="k">PICKS</div></div><div class="cnt"><div class="v">' + esc(rec.settled != null ? rec.settled : '—') + '</div><div class="k">SETTLED</div></div>' +
       '<div class="cnt"><div class="v">' + esc(rec.hit_pct == null ? '—' : Number(rec.hit_pct).toFixed(1) + '%') + '</div><div class="k">HIT RATE</div></div><div class="cnt"><div class="v">' + esc(rec.avg_breakeven_pct == null ? '—' : Number(rec.avg_breakeven_pct).toFixed(1) + '%') + '</div><div class="k">AVG BREAKEVEN</div></div>' +
       '<div class="cnt"><div class="v">' + esc(rec.avg_clv_pts == null ? '—' : signed(rec.avg_clv_pts, 2)) + '</div><div class="k">AVG CLV (PTS)</div></div><div class="cnt"><div class="v">' + esc(rec.clv_n != null ? rec.clv_n : '—') + '</div><div class="k">CLV SAMPLE</div></div></div>';
-    h += '<p class="small muted">Program gate (read 2026-11-10): at least 40 settled shadow picks with average closing-line value above 0. ' + (sh.note ? esc(sh.note) : '') + '</p>';
+    h += '<p class="small muted">Program gate (read 2026-11-10): at least 40 blind picks settled, average closing-line value above 0, and hit rate at least 2 points above what the prices needed' + (rec.hit_minus_implied_pts != null ? ' (now ' + esc(signed(rec.hit_minus_implied_pts, 2)) + ' pts)' : '') + '. ' + (sh.note ? esc(sh.note) : '') + '</p>';
     return h + '</div></div>';
+  }
+  // PROPS v2 P7 (SPRINT 2026-10-23, Asana 1219855016156419): the "Research picks" list sits directly under the research-only
+  // banner: this week's zero-stake picks with the model's chance, the edge over what the price needs, and the picked rung.
+  // No tag, no stake, no lane word (D1). A pick row without model fields (a v1 pick) prints its market gap instead.
+  function researchList(d) {
+    const sh = (d && d.shadow) || {};
+    const picks = sh.research_picks || [];
+    let h = '<section class="research" id="props-research" aria-label="Research picks"><div class="rhead"><span class="tiny">Research picks — zero stake · ' + (picks.length ? esc(picks.length) + ' this week' : 'none this week') + '</span>' +
+      '<span class="small muted">' + (/^v2/.test(sh.rule_version || '') ? 'Rule ' + esc(sh.rule_version) + ': the model\'s chance of a side at the posted line vs what the price needs, bar ' + esc(sh.min_edge_pts) + ' pts' + (sh.guard_pts != null ? ', guard ' + esc(sh.guard_pts) + ' pts' : '') + (sh.baseline_version ? '; rule ' + esc(sh.baseline_version) + ' rows are the baseline and never count' : '') + '. Not bets.' : 'Rule ' + esc(sh.rule_version || '—') + '. Not bets.') + '</span></div>';
+    if (!picks.length) return h + '<div class="rrow muted small">No research pick registered this week' + ((sh.evaluated_pulls || []).length ? ' (' + esc((sh.evaluated_pulls || []).length) + ' pull' + ((sh.evaluated_pulls || []).length === 1 ? '' : 's') + ' evaluated).' : '.') + '</div></section>';
+    picks.forEach((p) => {
+      const side = p.side === 'Over' ? 'over' : 'under';
+      const res = p.result && p.result !== 'pending' ? ' ' + pill(p.result === 'hit' ? 'survivor' : p.result === 'miss' ? 'against' : 'neutral', String(p.result).replace('_', ' ')) : '';
+      let line = '<span class="rp">' + esc(p.player) + '</span> <span class="rm">' + esc(p.label || p.market) + ' ' + esc(side) + ' <span class="num">' + esc(p.line) + '</span></span> <span class="small muted">' + esc(price(p.price)) + ' at ' + esc(bookName(p.book)) + ' · ' + esc(p.game) + '</span>';
+      const shown = p.anchored_pct != null ? 'anchored <span class="num">' + esc(Number(p.anchored_pct).toFixed(1)) + '%</span> <span class="muted">(model ' + esc(Number(p.model_pct).toFixed(1)) + '%)</span>' : 'model <span class="num">' + esc(Number(p.model_pct).toFixed(1)) + '%</span>';
+      const baseTag = p.baseline ? ' · <span class="tag baseline">' + esc(sh.baseline_label || 'baseline — not counted') + '</span>' : '';
+      if (p.model_pct != null) line += '<span class="rn">' + shown + ' vs needs <span class="num">' + esc(Number(p.breakeven_pct).toFixed(1)) + '%</span> · edge <span class="num">' + esc(signed(p.edge_pts, 1)) + ' pts</span>' + (p.rung != null ? ' · <span class="tag nobet">RUNG ' + esc(p.rung) + '</span>' : '') + (p.backfilled ? ' · <span class="muted">backfilled</span>' : '') + baseTag + res + '</span>';
+      else line += '<span class="rn">market <span class="num">' + esc(Number(p.consensus_pct).toFixed(1)) + '%</span> vs needs <span class="num">' + esc(Number(p.breakeven_pct).toFixed(1)) + '%</span> · gap <span class="num">' + esc(signed(p.edge_pts, 1)) + ' pts</span>' + res + '</span>';
+      h += '<div class="rrow">' + line + '</div>';
+    });
+    if (sh.record_line) h += '<div class="rrow small muted">' + esc(sh.record_line) + '</div>';
+    if (sh.baseline_record_line) h += '<div class="rrow small muted">' + esc(sh.baseline_record_line) + '</div>';
+    return h + '</section>';
   }
   function renderProps(w, d, err) {
     const m = (d && d.meta) || {};
     const banner = '<div class="banner info" id="banner-props-research"><b>Research only.</b> ' + esc((m.banner || PROPS_BANNER).replace(/^Research only\.\s*/, '')) + '</div>';
     let html = '<div class="head"><div><h1>Props</h1><div class="subl">Player prop prices · how they have hit · zero-stake shadow picks</div></div></div>';
     html += banner;
+    if (d && d.shadow) html += researchList(d);
     const empty = !d || !m.pull_stamp;
     if (empty) {
       html += '<div class="empty" id="props-empty"><b>No prop capture yet</b>' + (err ? 'The props file could not be read. ' : '') + esc(m.note || 'Nothing to show until a prop pull is on disk and the board is built.') + '</div>';
