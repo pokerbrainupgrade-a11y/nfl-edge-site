@@ -567,7 +567,7 @@
     document.body.classList.remove('ev-open');
     const y = state.scrollBefore;
     setTimeout(() => { $drawer.hidden = true; $backdrop.hidden = true; $drawer.innerHTML = ''; }, 160);
-    if (navigate && state.rendered) location.hash = '#/' + state.rendered.view + '/' + state.rendered.id;
+    if (navigate && state.rendered) location.hash = state.rendered.view === 'props' ? '#/props' : '#/' + state.rendered.view + '/' + state.rendered.id;   // SPRINT 11-04 T4: never #/props/<id>
     window.scrollTo(0, y);
   }
   $backdrop.addEventListener('click', () => closeEvidence(true));
@@ -769,6 +769,68 @@
                        betrivers: 'BetRivers', hardrockbet: 'Hard Rock Bet', bovada: 'Bovada', betonlineag: 'BetOnline', lowvig: 'LowVig', mybookieag: 'MyBookie', betus: 'BetUS', ballybet: 'Bally Bet' };
   const bookName = (k) => BOOK_NAMES[k] || String(k || 'book unknown');
   const propsState = { market: 'all', ours: false };
+  // SPRINT 2026-11-04 PROPS TAB (Asana 1220234298381370): what is open or closed on the Props view, held for the visit so a
+  // filter change or a re-render keeps it; d / w are the file and week on screen (the pick drawer reads them)
+  const propsUi = { sec: { research: true, prices: true, hit: true, shadow: true }, games: {}, players: {}, groups: {}, rungs: {}, base: {}, rf: 'all', d: null, w: null };
+  const PROPS_SEC = { research: 'props-research', prices: 'props-prices', hit: 'props-hit', shadow: 'props-shadow' };
+  const PROPS_GATE_N = 40;   // the program gate's settled-pick count (#props-gate)
+  // T1: four tiles on desktop (the Week view's .kpis shape), three chips on the phone (.chips); each opens its section
+  function propsTiles(d, w) {
+    const sh = d.shadow || {}, rec = sh.record || {}, picks = sh.research_picks || [], games = d.this_week || [];
+    const fr = propsFreshness(d, w), pulled = !!(d.meta || {}).pull_stamp;
+    const settled = rec.settled != null ? rec.settled : null;
+    const bar = '<span class="pbar" aria-hidden="true"><i style="width:' + (settled == null ? 0 : Math.min(100, settled / PROPS_GATE_N * 100)) + '%"></i></span>';
+    const clvN = rec.clv_n != null ? rec.clv_n : 0;
+    const clvV = rec.avg_clv_pts == null ? '—' : signed(rec.avg_clv_pts, 2);
+    const clvCls = rec.avg_clv_pts == null || clvN < 10 ? '' : rec.avg_clv_pts > 0 ? ' up' : rec.avg_clv_pts < 0 ? ' down' : '';
+    const hm = (rec.hits != null ? rec.hits : '—') + '–' + (rec.misses != null ? rec.misses : '—');
+    const recV = settled == null ? '—' : esc(settled) + '<small> / ' + PROPS_GATE_N + '</small>';
+    const capV = pulled && fr.age != null ? Math.floor(fr.age) + ' h' : '—';
+    const ic = (k) => ICON[k].replace('<svg', '<svg class="ic" aria-hidden="true"');
+    const rv = esc(sh.rule_version || '—');
+    let h = '<div class="kpis desk ptiles">' +
+      '<button type="button" class="kpi" id="ptl-picks" data-go="research"><span class="k">Research picks</span><span class="v">' + esc(picks.length) + '</span><span class="s">zero stake · rule ' + rv + '</span>' + ic('eye') + '</button>' +
+      '<button type="button" class="kpi" id="ptl-record" data-go="shadow"><span class="k">Counted record</span><span class="v">' + recV + '</span><span class="s">' + bar + esc(hm) + ' hits–misses</span>' + ic('chart') + '</button>' +
+      '<button type="button" class="kpi" id="ptl-clv" data-go="shadow"><span class="k">Avg closing value</span><span class="v' + clvCls + '">' + esc(clvV) + '</span><span class="s">' + esc(clvN) + ' reading' + (clvN === 1 ? '' : 's') + '</span>' + ic('target') + '</button>' +
+      '<button type="button" class="kpi' + (fr.stale ? ' warn' : '') + '" id="ptl-capture" data-go="prices"><span class="k">Price capture</span><span class="v">' + esc(capV) + '</span><span class="s">' + esc(games.length) + ' game' + (games.length === 1 ? '' : 's') + (pulled ? ' · ' + esc(fr.when) + (fr.stale ? ' · past the ' + esc(fr.limit) + ' h window' : '') : ' · no capture yet') + '</span>' + ic('clock') + '</button></div>';
+    h += '<div class="chips pchips pp-phone">' +
+      '<button type="button" class="chipc" id="pc-picks" data-go="research"><span class="v">' + esc(picks.length) + '</span><span class="k">PICKS</span></button>' +
+      '<button type="button" class="chipc" id="pc-record" data-go="shadow"><span class="v">' + recV + '</span><span class="k">RECORD ' + esc(hm) + '</span></button>' +
+      '<button type="button" class="chipc" id="pc-clv" data-go="shadow"><span class="v' + clvCls + '">' + esc(clvV) + '</span><span class="k">CLOSING · n ' + esc(clvN) + '</span></button></div>';
+    return h;
+  }
+  // T2: every block has a header button that collapses or expands its body (chevron, icon, title, count bubble)
+  const secHid = (k) => propsUi.sec[k] ? '' : ' hidden';
+  function secHead(k, icon, title, n) {
+    return '<button type="button" class="psh" data-sec="' + k + '" aria-expanded="' + (propsUi.sec[k] ? 'true' : 'false') + '" aria-controls="psb-' + k + '"><span class="chev" aria-hidden="true">' + ICON.chev + '</span>' +
+      ICON[icon].replace('<svg', '<svg aria-hidden="true"') + '<span class="t">' + esc(title) + '</span>' + (n != null ? '<span class="bub">' + esc(n) + '</span>' : '') + '</button>';
+  }
+  function setSec(k, open) {
+    propsUi.sec[k] = open;
+    const b = $main.querySelector('.psh[data-sec="' + k + '"]'), body = document.getElementById('psb-' + k);
+    if (b) b.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if (body) body.hidden = !open;
+  }
+  // a <details> carrying data-bag / data-k records its open state in propsUi[bag][k]; absent = the block's default
+  const held = (bag, k, dflt) => Object.prototype.hasOwnProperty.call(propsUi[bag], k) ? propsUi[bag][k] : dflt;
+  const heldAttr = (bag, k, dflt) => ' data-bag="' + bag + '" data-k="' + esc(k) + '"' + (held(bag, k, dflt) ? ' open' : '');
+  function goSec(key) {
+    setSec(key, true);
+    const el = document.getElementById(PROPS_SEC[key]);
+    if (!el) return;
+    window.scrollTo(0, Math.max(0, el.getBoundingClientRect().top + window.scrollY - (document.querySelector('.topbar') || { offsetHeight: 64 }).offsetHeight - 8));
+  }
+  function bindProps(w, d) {
+    $main.querySelectorAll('[data-go]').forEach((b) => b.addEventListener('click', () => goSec(b.getAttribute('data-go'))));
+    $main.querySelectorAll('.psh').forEach((b) => b.addEventListener('click', () => setSec(b.getAttribute('data-sec'), b.getAttribute('aria-expanded') !== 'true')));
+    $main.querySelectorAll('details[data-bag]').forEach((el) => el.addEventListener('toggle', () => { propsUi[el.getAttribute('data-bag')][el.getAttribute('data-k')] = el.open; }));
+    const all = (open) => $main.querySelectorAll('#props-prices details.pgame, #props-prices details.pplayer').forEach((el) => { el.open = open; propsUi[el.getAttribute('data-bag')][el.getAttribute('data-k')] = open; });
+    const ex = document.getElementById('pf-expand'), co = document.getElementById('pf-collapse');
+    if (ex) ex.addEventListener('click', () => all(true));
+    if (co) co.addEventListener('click', () => all(false));
+    $main.querySelectorAll('#rpills button').forEach((b) => b.addEventListener('click', () => { propsUi.rf = b.getAttribute('data-rf'); state.keepScroll = window.scrollY; renderProps(w, d, null); }));
+    $main.querySelectorAll('[data-key]').forEach((el) => el.addEventListener('click', (ev) => { if (ev.target.closest('a')) return; location.hash = '#/props/' + el.getAttribute('data-key'); }));
+  }
   const BAND_WORDS = { '<= -200': 'at −200 or shorter', '-199..-110': 'between −199 and −110', '-109..+109': 'between −109 and +109',
                        '+110..+199': 'between +110 and +199', '+200..+499': 'between +200 and +499', '+500 and up': 'at +500 or longer' };
   const bandWords = (b) => BAND_WORDS[b] || String(b);
@@ -785,21 +847,18 @@
     if (propsState.market === 'all') return true;
     return m.market === propsState.market;
   }
-  function mainLine(m) {
-    const main = m.main;
-    if (!main) return '';
-    const o = pq(main.over), u = pq(main.under);
-    if (!o && !u) return propsState.ours ? '<div class="pline"><b>' + esc(m.label) + ' ' + esc(main.line) + ':</b> <span class="muted">not posted at our books in this pull</span></div>' : '';
-    let s = '<b>' + esc(m.label) + ' ' + esc(main.line) + ':</b> ';
-    const bits = [];
-    if (o) bits.push('best over <span class="num">' + esc(quoteText(o)) + '</span>' + (!propsState.ours && !o.cand && main.over.ours ? ' <span class="muted">(ours ' + esc(quoteText(main.over.ours)) + ')</span>' : ''));
-    if (u) bits.push('best under <span class="num">' + esc(quoteText(u)) + '</span>' + (!propsState.ours && !u.cand && main.under.ours ? ' <span class="muted">(ours ' + esc(quoteText(main.under.ours)) + ')</span>' : ''));
-    s += bits.join(', ') + '.';
-    if (main.cons != null) s += " Market's fair chance of the over: <span class=\"num\">" + esc(Number(main.cons).toFixed(0)) + '%</span> <span class="muted">(' + esc(main.ncons) + ' books, vig removed)</span>.';
-    else s += ' <span class="muted">Fair chance unavailable (one book at this line).</span>';
-    return '<div class="pline">' + s + '</div>';
+  // SPRINT 11-04 T5: each market is a tile - the line, an Over and an Under bubble (best price and book; "ours" beside it when
+  // it differs), the market's fair-chance bar with its book count. The plain sentence the board printed before stays as the
+  // tile's accessible text (.psr); the visible tile is aria-hidden. Rungs stay behind a collapsed details.rungs.
+  const oursOf = (side, q) => !propsState.ours && q && !q.cand && side && side.ours ? side.ours : null;
+  function sideBub(word, q, ours) {
+    if (!q) return '<span class="sb none"><span class="w">' + esc(word) + '</span><span class="num">—</span><span class="bkn">not posted</span></span>';
+    return '<span class="sb"><span class="w">' + esc(word) + '</span><span class="num">' + esc(price(q.price)) + '</span><span class="bkn">' + esc(bookName(q.book)) + (q.be != null ? ' · needs ' + esc(Number(q.be).toFixed(1)) + '%' : '') + '</span>' +
+      (ours ? '<span class="ours">ours ' + esc(price(ours.price)) + ' · ' + esc(bookName(ours.book)) + '</span>' : '') + '</span>';
   }
-  function rungLines(m) {
+  const tileWrap = (m, sentence, body, extra) => '<div class="mtile pline" data-mk="' + esc(m.market) + '"><span class="psr">' + sentence + '</span><div class="mt" aria-hidden="true">' + body + '</div>' + (extra || '') + '</div>';
+  const tileHead = (m, ln) => '<div class="mh">' + mkChip(m.market, m.label) + (ln != null ? '<span class="ln">' + esc(ln) + '</span>' : '') + '</div>';
+  function rungLines(m, k) {
     const rungs = (m.rungs || []).map((r) => {
       const o = pq(r.over), u = pq(r.under);
       if (!o && !u) return null;
@@ -809,25 +868,51 @@
       return '<div class="rung"><span class="num">' + esc(r.line) + '</span> · ' + esc(parts.join(' · ')) + '</div>';
     }).filter(Boolean);
     if (!rungs.length) return '';
-    return '<details class="rungs"><summary>' + rungs.length + ' more line' + (rungs.length === 1 ? '' : 's') + ' <span class="muted">(one-sided prices: the vig stays in; "needed" is the raw breakeven)</span></summary>' + rungs.join('') + '</details>';
+    return '<details class="rungs"' + heldAttr('rungs', k, false) + '><summary>' + rungs.length + ' more line' + (rungs.length === 1 ? '' : 's') + ' <span class="muted">(one-sided prices: the vig stays in; "needed" is the raw breakeven)</span></summary>' + rungs.join('') + '</details>';
   }
-  function marketLines(m) {
+  function marketTile(m, k) {
     if (m.market === 'player_anytime_td') {
       const y = pq(m.yes);
-      if (!y) return propsState.ours ? '<div class="pline"><b>anytime touchdown:</b> <span class="muted">not posted at our books</span></div>' : '';
-      return '<div class="pline"><b>anytime touchdown:</b> best <span class="num">' + esc(quoteText(y)) + '</span>, price needs <span class="num">' + esc(Number(y.be).toFixed(1)) + '%</span>' + (!propsState.ours && !y.cand && m.yes.ours ? ' <span class="muted">(ours ' + esc(quoteText(m.yes.ours)) + ')</span>' : '') + '. <span class="muted">One-sided: the vig stays in.</span></div>';
+      if (!y) return propsState.ours ? tileWrap(m, '<b>anytime touchdown:</b> <span class="muted">not posted at our books</span>', tileHead(m, null) + '<div class="fair">not posted at our books</div>') : '';
+      const ours = oursOf(m.yes, y);
+      const s = '<b>anytime touchdown:</b> best <span class="num">' + esc(quoteText(y)) + '</span>, price needs <span class="num">' + esc(Number(y.be).toFixed(1)) + '%</span>' + (ours ? ' <span class="muted">(ours ' + esc(quoteText(ours)) + ')</span>' : '') + '. <span class="muted">One-sided: the vig stays in.</span>';
+      return tileWrap(m, s, tileHead(m, null) + '<div class="sbs one">' + sideBub('Yes', y, ours) + '</div><div class="fair"><div class="mbar"><i style="width:' + Math.max(0, Math.min(100, Number(y.be))) + '%"></i></div>price needs <span class="num">' + esc(Number(y.be).toFixed(1)) + '%</span> · one-sided, the vig stays in</div>');
     }
     if (m.market === 'player_tds_over') {
-      const rungs = (m.rungs || []).map((r) => { const o = pq(r.over); return o ? (Math.ceil(Number(r.line)) + '+ at ' + quoteText(o) + ' (' + Number(o.be).toFixed(1) + '% needed)') : null; }).filter(Boolean);
-      if (!rungs.length) return '';
-      return '<div class="pline"><b>touchdowns ladder:</b> <span class="num">' + esc(rungs.join(' · ')) + '</span> <span class="muted">One-sided.</span></div>';
+      const rs = (m.rungs || []).map((r) => { const o = pq(r.over); return o ? { r: r, o: o } : null; }).filter(Boolean);
+      if (!rs.length) return '';
+      const s = '<b>touchdowns ladder:</b> <span class="num">' + esc(rs.map((x) => Math.ceil(Number(x.r.line)) + '+ at ' + quoteText(x.o) + ' (' + Number(x.o.be).toFixed(1) + '% needed)').join(' · ')) + '</span> <span class="muted">One-sided.</span>';
+      return tileWrap(m, s, tileHead(m, null) + '<div class="sbs">' + rs.map((x) => sideBub(Math.ceil(Number(x.r.line)) + '+', x.o, null)).join('') + '</div><div class="fair">one-sided prices: the vig stays in</div>');
     }
-    return mainLine(m) + rungLines(m);
+    const main = m.main;
+    let s = null, body = '';
+    if (main) {
+      const o = pq(main.over), u = pq(main.under);
+      if (!o && !u) {
+        if (propsState.ours) { s = '<b>' + esc(m.label) + ' ' + esc(main.line) + ':</b> <span class="muted">not posted at our books in this pull</span>'; body = tileHead(m, main.line) + '<div class="fair">not posted at our books in this pull</div>'; }
+      } else {
+        const oo = oursOf(main.over, o), uo = oursOf(main.under, u), bits = [];
+        if (o) bits.push('best over <span class="num">' + esc(quoteText(o)) + '</span>' + (oo ? ' <span class="muted">(ours ' + esc(quoteText(oo)) + ')</span>' : ''));
+        if (u) bits.push('best under <span class="num">' + esc(quoteText(u)) + '</span>' + (uo ? ' <span class="muted">(ours ' + esc(quoteText(uo)) + ')</span>' : ''));
+        s = '<b>' + esc(m.label) + ' ' + esc(main.line) + ':</b> ' + bits.join(', ') + '.';
+        if (main.cons != null) s += " Market's fair chance of the over: <span class=\"num\">" + esc(Number(main.cons).toFixed(0)) + '%</span> <span class="muted">(' + esc(main.ncons) + ' books, vig removed)</span>.';
+        else s += ' <span class="muted">Fair chance unavailable (one book at this line).</span>';
+        body = tileHead(m, main.line) + '<div class="sbs">' + sideBub('Over', o, oo) + sideBub('Under', u, uo) + '</div>' +
+          (main.cons != null ? '<div class="fair"><div class="mbar"><i style="width:' + Math.max(0, Math.min(100, Number(main.cons))) + '%"></i></div>fair chance of the over <span class="num">' + esc(Number(main.cons).toFixed(0)) + '%</span> · ' + esc(main.ncons) + ' books, vig removed</div>' : '<div class="fair">fair chance unavailable (one book at this line)</div>');
+      }
+    }
+    const rungs = rungLines(m, k);
+    if (s == null && !rungs) return '';
+    if (s == null) { s = '<b>' + esc(m.label) + ':</b> ladder lines only'; body = tileHead(m, null); }
+    return tileWrap(m, s, body, rungs);
   }
-  function playerRow(p) {
-    const lines = (p.markets || []).filter(marketVisible).map(marketLines).filter(Boolean);
-    if (!lines.length) return '';
-    return '<div class="prow"><div class="pname">' + esc(p.player) + '</div>' + lines.join('') + '</div>';
+  // a player is an expanding row; the market chips show while it is closed
+  function playerRow(g, p) {
+    const k = g.event_id + '|' + p.player;
+    const tiles = (p.markets || []).filter(marketVisible).map((m) => ({ m: m, t: marketTile(m, k + '|' + m.market) })).filter((x) => x.t);
+    if (!tiles.length) return '';
+    return '<details class="pplayer prow"' + heldAttr('players', k, false) + '><summary><span class="pname">' + esc(p.player) + '</span><span class="mks">' + tiles.map((x) => mkChip(x.m.market, x.m.label)).join('') + '</span></summary>' +
+      '<div class="mtiles">' + tiles.map((x) => x.t).join('') + '</div></details>';
   }
   function marketOptions(d) {
     const seen = {};
@@ -846,16 +931,17 @@
   function pricesPanel(d, w) {
     const m = d.meta || {}, fr = propsFreshness(d, w);
     const games = d.this_week || [];
-    let h = '<div class="panel" id="props-prices"><div class="ph"><h2>' + ICON.target + "This week's prop prices</h2><span class=\"sub\">" + esc(games.length) + ' game' + (games.length === 1 ? '' : 's') + ' · ' + esc(games.reduce((n, g) => n + (g.players || []).length, 0)) + ' players · captured ' + esc(fr.when) + '</span></div><div class="pb">';
+    let h = '<div class="panel" id="props-prices"><div class="ph"><h2>' + secHead('prices', 'target', "This week's prop prices", games.length) + '</h2><span class="sub">' + esc(games.length) + ' game' + (games.length === 1 ? '' : 's') + ' · ' + esc(games.reduce((n, g) => n + (g.players || []).length, 0)) + ' players · captured ' + esc(fr.when) + '</span></div><div class="pb" id="psb-prices"' + secHid('prices') + '>';
     h += '<div class="pctl"><label class="small sec" for="pf-market">Market</label><select id="pf-market" class="btn" aria-label="Market">' + marketOptions(d) + '</select>' +
       '<button type="button" class="btn' + (propsState.ours ? ' on' : '') + '" id="pf-ours" aria-pressed="' + (propsState.ours ? 'true' : 'false') + '">Our books only</button>' +
+      '<button type="button" class="btn" id="pf-expand">Expand all</button><button type="button" class="btn" id="pf-collapse">Collapse all</button>' +
       '<span class="small muted">Best price on the board; "ours" = the best of ' + esc((m.books_seen || []).filter((b) => (d.shadow && d.shadow.candidate_books || []).indexOf(b) >= 0).map(bookName).join(', ') || 'DraftKings, FanDuel, BetMGM') + '.</span></div>';
     if (!games.length) return h + '<div class="empty" id="props-empty"><b>No prop capture yet</b>' + esc(m.note || '') + '</div></div></div>';
     games.forEach((g) => {
-      const rows = (g.players || []).map(playerRow).filter(Boolean);
-      h += '<details class="pgame" id="pg-' + esc(g.event_id) + '"' + (g.started ? '' : ' open') + '><summary><span class="mu">' + esc(g.away) + ' @ ' + esc(g.home) + '</span><span class="small num sec">' + esc(kick(g.kickoff)) + '</span>' +
-        (g.started ? pill('neutral', 'Kicked off — prices are the record of the pull') : pill('survivor', 'Not started')) + '<span class="small muted">' + esc(rows.length) + ' player' + (rows.length === 1 ? '' : 's') + (g.week != null ? ' · week ' + esc(g.week) : '') + '</span></summary>';
-      h += rows.length ? rows.join('') : '<div class="empty">No price in this pull matches the filter.</div>';
+      const rows = (g.players || []).map((p) => playerRow(g, p)).filter(Boolean);
+      h += '<details class="pgame" id="pg-' + esc(g.event_id) + '"' + heldAttr('games', g.event_id, !g.started) + '><summary><span class="mu">' + esc(g.away) + ' @ ' + esc(g.home) + '</span><span class="small num sec">' + esc(kick(g.kickoff)) + '</span>' +
+        (g.started ? pill('neutral', 'Kicked off — prices are the record of the pull') : pill('watch', 'Not started')) + '<span class="bub">' + esc(rows.length) + '</span><span class="small muted">player' + (rows.length === 1 ? '' : 's') + (g.week != null ? ' · week ' + esc(g.week) : '') + '</span></summary>';
+      h += rows.length ? '<div class="pplayers">' + rows.join('') + '</div>' : '<div class="empty">No price in this pull matches the filter.</div>';
       h += '</details>';
     });
     if (m.size_note) h += '<div class="note small muted" style="margin-top:8px">File trimmed to the size budget: ' + esc(m.size_note) + '</div>';
@@ -863,89 +949,201 @@
   }
   function hitPanel(d) {
     const hr = d.hit_rate || {}, tbl = hr.table || [];
-    let h = '<div class="panel" id="props-hit"><div class="ph"><h2>' + ICON.chart + 'How props have actually hit</h2><span class="sub">every captured price, graded on the real stat line · ' + esc(fmtN(hr.rows)) + ' rows</span></div><div class="pb">';
+    let h = '<div class="panel" id="props-hit"><div class="ph"><h2>' + secHead('hit', 'chart', 'How props have actually hit', tbl.length) + '</h2><span class="sub">every captured price, graded on the real stat line · ' + esc(fmtN(hr.rows)) + ' rows</span></div><div class="pb" id="psb-hit"' + secHid('hit') + '>';
     h += '<p class="small sec">Each row: the share of prices in that band that cashed against the share the price needed. "Price needed" has the vig removed where the same book quoted the other side (two-sided), else it is the raw breakeven. Rows with fewer than ' + esc(hr.small_sample_n || 100) + ' graded are greyed: too few to trust. Descriptive, not an angle.</p>';
     if (!tbl.length) return h + '<div class="empty" id="props-hit-empty"><b>Nothing graded yet.</b>' + esc(hr.note || '') + '</div></div></div>';
-    let cur = null;
-    tbl.forEach((r) => {
-      if (r.market !== cur) { cur = r.market; h += '<div class="tiny" style="margin:10px 0 2px">' + esc(cap1(r.label || r.market)) + '</div>'; }
-      const n = Number(r.wins) + Number(r.losses);
-      const s = cap1(r.label || r.market) + ' ' + bandWords(r.band) + ': hit ' + (r.hit_pct == null ? '—' : Number(r.hit_pct).toFixed(1) + '%') + ' of the time, price needed ' + (r.implied_pct == null ? '—' : Number(r.implied_pct).toFixed(1) + '%') + '. ' + fmtN(n) + ' graded.';
-      h += '<div class="hrow' + (r.small_sample ? ' small' : '') + '"><span class="s">' + esc(s) + '</span><span class="nums">W ' + esc(r.wins) + ' · L ' + esc(r.losses) + ' · P ' + esc(r.pushes) + ' · diff ' + esc(signed(r.diff_pts)) + ' pts · two-sided ' + esc(r.two_sided) + '</span>' + (r.small_sample ? pill('neutral', 'too few to trust') : '') + '</div>';
+    // SPRINT 11-04 T6: market groups (collapsed by default) expand to their price bands; each band shows hit % against
+    // needed % as two bars, W / L / P and a diff bubble; the plain sentence stays as the row's accessible text
+    const groups = [];
+    tbl.forEach((r) => { let g = groups[groups.length - 1]; if (!g || g.market !== r.market) { g = { market: r.market, label: r.label, rows: [] }; groups.push(g); } g.rows.push(r); });
+    const wd = (x) => x == null ? 0 : Math.max(0, Math.min(100, Number(x)));
+    groups.forEach((g) => {
+      h += '<details class="hgroup"' + heldAttr('groups', g.market, false) + '><summary>' + mkChip(g.market, g.label || g.market) + '<span class="bub">' + esc(g.rows.length) + '</span><span class="small muted">price band' + (g.rows.length === 1 ? '' : 's') + '</span></summary>';
+      g.rows.forEach((r) => {
+        const n = Number(r.wins) + Number(r.losses);
+        const s = cap1(r.label || r.market) + ' ' + bandWords(r.band) + ': hit ' + (r.hit_pct == null ? '—' : Number(r.hit_pct).toFixed(1) + '%') + ' of the time, price needed ' + (r.implied_pct == null ? '—' : Number(r.implied_pct).toFixed(1) + '%') + '. ' + fmtN(n) + ' graded.';
+        const cls = r.diff_pts > 0 ? 'up' : r.diff_pts < 0 ? 'down' : '';
+        h += '<div class="hrow' + (r.small_sample ? ' small' : '') + '"><span class="s psr">' + esc(s) + '</span><div class="hv" aria-hidden="true"><span class="band">' + esc(cap1(bandWords(r.band))) + '</span>' +
+          '<div class="hbars"><div class="hb"><span>hit</span><span class="track"><i class="' + cls + '" style="width:' + wd(r.hit_pct) + '%"></i></span><span class="num">' + esc(r.hit_pct == null ? '—' : Number(r.hit_pct).toFixed(1) + '%') + '</span></div>' +
+          '<div class="hb"><span>needed</span><span class="track"><i class="need" style="width:' + wd(r.implied_pct) + '%"></i></span><span class="num">' + esc(r.implied_pct == null ? '—' : Number(r.implied_pct).toFixed(1) + '%') + '</span></div></div>' +
+          '<span class="nums">W ' + esc(r.wins) + ' · L ' + esc(r.losses) + ' · P ' + esc(r.pushes) + ' · two-sided ' + esc(r.two_sided) + '</span><span class="bub2 ' + cls + '">diff ' + esc(signed(r.diff_pts)) + ' pts</span></div>' +
+          (r.small_sample ? pill('watch', 'too few to trust') : '') + '</div>';
+      });
+      h += '</details>';
     });
     return h + '</div></div>';
+  }
+  // SPRINT 11-04 T7: the record as tiles (picks, settled, hit rate, avg price needed, avg closing value, readings, beat close)
+  // plus a bar toward the gate's 40; the baseline record sits collapsed under its own label
+  function recTiles(rec, id) {
+    const t = (k, v, cls) => '<div class="cnt"><div class="v' + (cls ? ' ' + cls : '') + '">' + esc(v) + '</div><div class="k">' + k + '</div></div>';
+    const clvN = rec.clv_n != null ? rec.clv_n : 0;
+    const clvCls = rec.avg_clv_pts == null || clvN < 10 ? '' : rec.avg_clv_pts > 0 ? 'up' : rec.avg_clv_pts < 0 ? 'down' : '';
+    return '<div class="cnts rtiles"' + (id ? ' id="' + id + '"' : '') + '>' + t('PICKS', rec.picks != null ? rec.picks : '—') + t('SETTLED', rec.settled != null ? rec.settled : '—') +
+      t('HIT RATE', rec.hit_pct == null ? '—' : Number(rec.hit_pct).toFixed(1) + '%') + t('AVG PRICE NEEDED', rec.avg_breakeven_pct == null ? '—' : Number(rec.avg_breakeven_pct).toFixed(1) + '%') +
+      t('AVG CLOSING VALUE', rec.avg_clv_pts == null ? '—' : signed(rec.avg_clv_pts, 2) + ' pts', clvCls) + t('READINGS', rec.clv_n != null ? rec.clv_n : '—') +
+      t('BEAT CLOSE', rec.beat_close_pct == null ? '—' : Number(rec.beat_close_pct).toFixed(1) + '%') + '</div>';
   }
   function shadowCard(p) {
     const res = p.result ? pill(p.result === 'hit' ? 'survivor' : p.result === 'miss' ? 'against' : 'neutral', p.result === 'pending' ? 'pending' : p.result.replace('_', ' ')) : '';
     // PROPS v2.1 F4 (E1): rule-v2 rows are the labelled baseline and never count toward the Nov 10 gate
     const base = p.baseline ? '<span class="tag baseline">baseline — not counted</span>' : '';
-    let h = '<div class="card sc"><div class="l1"><span class="tag nobet">SHADOW · $0</span>' + base + res + '<span class="small muted num">' + esc(kick(p.kickoff)) + '</span></div>';
+    const key = pickKey(p);
+    let h = '<div class="card sc" data-key="' + esc(key) + '"><div class="l1"><span class="tag nobet">SHADOW · $0</span>' + base + res + '<span class="small muted num">' + esc(kick(p.kickoff)) + '</span></div>';
     h += '<div class="mu">' + esc(p.game) + ' · ' + esc(p.player) + '</div>';
     h += '<ul class="lines">' + (p.card || []).map((c, i) => '<li class="' + (i === 3 ? 'shadow' : '') + '"><b>' + esc(c.label) + '</b>' + esc(c.text) + '</li>').join('') + '</ul>';
     if (p.clv_pts != null) h += '<div class="small sec" style="margin-top:6px">Closing-line value <span class="num">' + esc(signed(p.clv_pts, 2)) + ' pts</span> vs the ' + esc(stamp(p.close_stamp)) + ' pull</div>';
     else if (p.clv_note) h += '<div class="small muted" style="margin-top:6px">Closing-line value: ' + esc(p.clv_note) + '</div>';
-    return h + '</div>';
+    return h + '<a class="cta-l" href="#/props/' + esc(key) + '">Open the pick ›</a></div>';
   }
   function shadowPanel2(d) {
     const sh = d.shadow || {}, rec = sh.record || {};
-    let h = '<div class="panel" id="props-shadow"><div class="ph"><h2>' + ICON.eye + 'Shadow picks (no money)</h2><span class="sub">zero stake · logged before kickoff · graded on hit rate and closing-line value</span></div><div class="pb">';
+    let h = '<div class="panel" id="props-shadow"><div class="ph"><h2>' + secHead('shadow', 'eye', 'Shadow picks (no money)', (sh.this_week || []).length) + '</h2><span class="sub">zero stake · logged before kickoff · graded on hit rate and closing-line value</span></div><div class="pb" id="psb-shadow"' + secHid('shadow') + '>';
     if (/^v2/.test(sh.rule_version || '')) h += '<p class="small sec">Rule ' + esc(sh.rule_version) + ': the model projects every quoted player (role baseline, own history, game script, injuries) as a full outcome distribution; a pick exists when its chance of a side at the posted line beats what the best price at one of our books (' + esc((sh.candidate_books || []).map(bookName).join(', ')) + ') needs by at least <span class="num">' + esc(sh.min_edge_pts) + '</span> points' + (sh.guard_pts != null ? ', and the model sits within <span class="num">' + esc(sh.guard_pts) + '</span> points of the market\'s own consensus' : '') + '. Nothing here is a bet.</p>';
     else h += '<p class="small sec">Rule ' + esc(sh.rule_version || '—') + ': a pick exists only when one of our books (' + esc((sh.candidate_books || []).map(bookName).join(', ')) + ') posts a price whose breakeven sits at least <span class="num">' + esc(sh.min_edge_pts) + '</span> points below the other books\' no-vig consensus at the same line' + (sh.min_edge_placeholder ? ' <span class="muted">(placeholder bar — Q decides)</span>' : '') + '. A price rule, not a prediction. Nothing here is a bet.</p>';
     const picks = sh.this_week || [];
     if (!picks.length) h += '<div class="empty" id="shadow-empty"><b>No shadow picks this week.</b>' + ((sh.evaluated_pulls || []).length ? esc((sh.evaluated_pulls || []).length) + ' pull' + ((sh.evaluated_pulls || []).length === 1 ? '' : 's') + ' evaluated (' + esc((sh.evaluated_pulls || []).map(stamp).join(', ')) + '); no price cleared the bar.' : 'No pull evaluated yet.') + '</div>';
     else picks.forEach((p) => { h += shadowCard(p); });
-    h += '<div class="tiny" style="margin:12px 0 6px">Running record · all weeks</div>';
-    h += '<div class="cnts"><div class="cnt"><div class="v">' + esc(rec.picks != null ? rec.picks : '—') + '</div><div class="k">PICKS</div></div><div class="cnt"><div class="v">' + esc(rec.settled != null ? rec.settled : '—') + '</div><div class="k">SETTLED</div></div>' +
-      '<div class="cnt"><div class="v">' + esc(rec.hit_pct == null ? '—' : Number(rec.hit_pct).toFixed(1) + '%') + '</div><div class="k">HIT RATE</div></div><div class="cnt"><div class="v">' + esc(rec.avg_breakeven_pct == null ? '—' : Number(rec.avg_breakeven_pct).toFixed(1) + '%') + '</div><div class="k">AVG BREAKEVEN</div></div>' +
-      '<div class="cnt"><div class="v">' + esc(rec.avg_clv_pts == null ? '—' : signed(rec.avg_clv_pts, 2)) + '</div><div class="k">AVG CLV (PTS)</div></div><div class="cnt"><div class="v">' + esc(rec.clv_n != null ? rec.clv_n : '—') + '</div><div class="k">CLV SAMPLE</div></div></div>';
+    h += '<div class="tiny" style="margin:12px 0 6px">Running record · all weeks' + (rec.rule_version ? ' · rule ' + esc(rec.rule_version) : '') + '</div>';
+    h += recTiles(rec, 'props-record');
+    h += '<div class="gbar"><span class="pbar" aria-hidden="true"><i style="width:' + (rec.settled == null ? 0 : Math.min(100, rec.settled / PROPS_GATE_N * 100)) + '%"></i></span><span>settled <span class="num">' + esc(rec.settled != null ? rec.settled : '—') + '</span> of ' + PROPS_GATE_N + ' toward the program gate</span></div>';
+    if (sh.baseline_record) h += '<details class="base"' + heldAttr('base', 'baseline', false) + '><summary>Baseline record · rule ' + esc(sh.baseline_record.rule_version || sh.baseline_version || '—') + ' — ' + esc(sh.baseline_label || 'baseline — not counted') + '</summary>' + recTiles(sh.baseline_record) + '</details>';
     // SESSION 10-24 Lane C C1 (Asana 1219855073629866; decision E2 on 1219842461346771): the 11-10 pass test is avg CLV > 0 on
     // >= 40 settled blind v2.1 picks; hit - implied stays on the page as information only, never a gate condition.
     h += '<p class="small muted" id="props-gate">Program gate (read 2026-11-10): at least 40 settled blind v2.1 picks and average closing-line value above 0. Hit rate vs what the prices needed is shown for information' + (rec.hit_minus_implied_pts != null ? ' (now ' + esc(signed(rec.hit_minus_implied_pts, 2)) + ' pts, informational)' : '') + '. ' + (sh.note ? esc(sh.note) : '') + '</p>';
     return h + '</div></div>';
   }
   // PROPS v2 P7 (SPRINT 2026-10-23, Asana 1219855016156419): the "Research picks" list sits directly under the research-only
-  // banner: this week's zero-stake picks with the model's chance, the edge over what the price needs, and the picked rung.
-  // No tag, no stake, no lane word (D1). A pick row without model fields (a v1 pick) prints its market gap instead.
+  // banner. SPRINT 11-04 T3: it reads like Ranked Opportunities - a table on desktop, Week-feed cards on the phone, best edge
+  // first (a display order), filter pills whose counts are the file's rows. No tag, no stake, no lane word (D1). A row or card
+  // opens the pick drawer (T4). Market labels carry their own colour tokens (blue / teal / violet / steel).
+  const MK_FAM = (mk) => /pass/.test(mk) ? 'pass' : /rush/.test(mk) ? 'rush' : /recep/.test(mk) ? 'rec' : /td/.test(mk) ? 'td' : 'other';
+  const mkChip = (mk, lbl) => '<span class="mk mk-' + MK_FAM(String(mk || '')) + '">' + esc(cap1(lbl || mk || 'market')) + '</span>';
+  const slug = (s) => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+  const pickKey = (p) => slug([p.pull_stamp || 'nopull', p.player, p.market, p.side, p.line, p.rule_version].join(' '));
+  const RF = [['all', 'All'], ['main', 'Main lines'], ['rung', 'Ladder rungs'], ['over', 'Over'], ['under', 'Under']];
+  const isRung = (p) => p.pick_kind ? p.pick_kind === 'rung' : p.rung != null;
+  const rfMatch = (f, p) => f === 'all' || (f === 'main' ? !isRung(p) : f === 'rung' ? isRung(p) : f === 'over' ? p.side === 'Over' : p.side === 'Under');
+  // research rows joined to their shadow row (the shadow row carries pull_stamp, the card and the model inputs)
+  function pickRows(d) {
+    const sh = (d && d.shadow) || {}, tw = sh.this_week || [];
+    const same = (a, b) => a.player === b.player && a.market === b.market && a.side === b.side && Number(a.line) === Number(b.line) && a.rule_version === b.rule_version;
+    const rows = (sh.research_picks || []).map((p) => { const s = tw.find((x) => same(x, p)) || null; return { p: p, s: s, key: pickKey(s || p) }; });
+    const only = tw.filter((s) => !rows.some((r) => r.s === s)).map((s) => ({ p: s, s: s, key: pickKey(s) }));
+    return { research: rows, all: rows.concat(only) };
+  }
+  const resPill = (p) => { const r = p.result || 'pending'; return pill(r === 'hit' ? 'survivor' : r === 'miss' ? 'against' : r === 'pending' ? 'watch' : 'neutral', String(r).replace('_', ' ')); };
+  const pickLabels = (p, sh) => '<span class="lbls">' + mkChip(p.market, p.label) + '<span class="lb">' + (isRung(p) ? 'Ladder rung' : 'Main line') + '</span>' +
+    (p.baseline ? '<span class="tag baseline">' + esc(sh.baseline_label || 'baseline — not counted') + '</span>' : '<span class="lb">Counted</span>') + '<span class="tag nobet">SHADOW · $0</span></span>';
+  const pickText = (p) => esc(p.side) + ' ' + esc(p.line) + ' <span class="muted">(' + esc(price(p.price)) + ')</span>';
+  const clvText = (p) => p.clv_pts != null ? 'Closing value <span class="num">' + esc(signed(p.clv_pts, 2)) + ' pts</span>' : 'Closing value —';
+  // model chance (anchored when the row carries it) against what the price needs: two bubbles and a thin bar (width = the %)
+  function mvn(p, big) {
+    const has = p.model_pct != null;
+    const v = has ? (p.anchored_pct != null ? p.anchored_pct : p.model_pct) : p.consensus_pct, need = p.breakeven_pct;
+    const cls = v == null || need == null ? '' : Number(v) > Number(need) ? 'up' : Number(v) < Number(need) ? 'down' : '';
+    const wd = (x) => x == null ? 0 : Math.max(0, Math.min(100, Number(x)));
+    return '<div class="mvn"><span class="bub2 ' + cls + '">' + (has ? (p.anchored_pct != null ? 'anchored ' : 'model ') : 'market ') + esc(pct(v)) + '</span><span class="bub2">needs ' + esc(pct(need)) + '</span></div>' +
+      '<div class="mbar' + (big ? ' big' : '') + '" aria-hidden="true"><i class="' + cls + '" style="width:' + wd(v) + '%"></i><b style="left:' + wd(need) + '%"></b></div>' +
+      '<div class="q small muted">' + (has && p.anchored_pct != null ? 'model ' + esc(pct(p.model_pct)) + ' · ' : '') + (has ? 'edge ' : 'gap ') + '<span class="num">' + esc(signed(p.edge_pts, 1)) + ' pts</span></div>';
+  }
+  function pickCard(r, sh) {
+    const p = r.p;
+    return '<div class="card fc rc" id="rc-' + esc(r.key) + '" data-key="' + esc(r.key) + '"><div class="l1">' + pickLabels(p, sh) + resPill(p) + '</div>' +
+      '<div class="mu">' + esc(p.player) + '</div><div class="ko">' + esc(p.game) + ' · ' + esc(kick(p.kickoff)) + '</div>' +
+      '<div class="cap">The pick</div><div class="sug">' + pickText(p) + '</div><div class="off">' + esc(cap1(p.label || p.market)) + ' · at ' + esc(bookName(p.book)) + '</div>' +
+      '<div class="cap">Model vs what the price needs</div>' + mvn(p) + '<div class="off">' + clvText(p) + '</div>' +
+      '<a class="cta" href="#/props/' + esc(r.key) + '">Open the pick ›</a></div>';
+  }
   function researchList(d) {
     const sh = (d && d.shadow) || {};
-    const picks = sh.research_picks || [];
-    let h = '<section class="research" id="props-research" aria-label="Research picks"><div class="rhead"><span class="tiny">Research picks — zero stake · ' + (picks.length ? esc(picks.length) + ' this week' : 'none this week') + '</span>' +
-      '<span class="small muted">' + (/^v2/.test(sh.rule_version || '') ? 'Rule ' + esc(sh.rule_version) + ': the model\'s chance of a side at the posted line vs what the price needs, bar ' + esc(sh.min_edge_pts) + ' pts' + (sh.guard_pts != null ? ', guard ' + esc(sh.guard_pts) + ' pts' : '') + (sh.baseline_version ? '; rule ' + esc(sh.baseline_version) + ' rows are the baseline and never count' : '') + '. Not bets.' : 'Rule ' + esc(sh.rule_version || '—') + '. Not bets.') + '</span></div>';
-    if (!picks.length) return h + '<div class="rrow muted small">No research pick registered this week' + ((sh.evaluated_pulls || []).length ? ' (' + esc((sh.evaluated_pulls || []).length) + ' pull' + ((sh.evaluated_pulls || []).length === 1 ? '' : 's') + ' evaluated).' : '.') + '</div></section>';
-    picks.forEach((p) => {
-      const side = p.side === 'Over' ? 'over' : 'under';
-      const res = p.result && p.result !== 'pending' ? ' ' + pill(p.result === 'hit' ? 'survivor' : p.result === 'miss' ? 'against' : 'neutral', String(p.result).replace('_', ' ')) : '';
-      let line = '<span class="rp">' + esc(p.player) + '</span> <span class="rm">' + esc(p.label || p.market) + ' ' + esc(side) + ' <span class="num">' + esc(p.line) + '</span></span> <span class="small muted">' + esc(price(p.price)) + ' at ' + esc(bookName(p.book)) + ' · ' + esc(p.game) + '</span>';
-      const shown = p.anchored_pct != null ? 'anchored <span class="num">' + esc(Number(p.anchored_pct).toFixed(1)) + '%</span> <span class="muted">(model ' + esc(Number(p.model_pct).toFixed(1)) + '%)</span>' : 'model <span class="num">' + esc(Number(p.model_pct).toFixed(1)) + '%</span>';
-      const baseTag = p.baseline ? ' · <span class="tag baseline">' + esc(sh.baseline_label || 'baseline — not counted') + '</span>' : '';
-      if (p.model_pct != null) line += '<span class="rn">' + shown + ' vs needs <span class="num">' + esc(Number(p.breakeven_pct).toFixed(1)) + '%</span> · edge <span class="num">' + esc(signed(p.edge_pts, 1)) + ' pts</span>' + (p.rung != null ? ' · <span class="tag nobet">RUNG ' + esc(p.rung) + '</span>' : '') + (p.backfilled ? ' · <span class="muted">backfilled</span>' : '') + baseTag + res + '</span>';
-      else line += '<span class="rn">market <span class="num">' + esc(Number(p.consensus_pct).toFixed(1)) + '%</span> vs needs <span class="num">' + esc(Number(p.breakeven_pct).toFixed(1)) + '%</span> · gap <span class="num">' + esc(signed(p.edge_pts, 1)) + ' pts</span>' + res + '</span>';
-      h += '<div class="rrow">' + line + '</div>';
-    });
+    const rows = pickRows(d).research.slice().sort((a, b) => (b.p.edge_pts != null ? b.p.edge_pts : -1e9) - (a.p.edge_pts != null ? a.p.edge_pts : -1e9));
+    const picks = rows.map((r) => r.p), f = propsUi.rf;
+    const shown = rows.filter((r) => rfMatch(f, r.p));
+    let h = '<section class="research" id="props-research" aria-label="Research picks"><div class="rhead"><h2 class="rh">' + secHead('research', 'eye', 'Research picks', picks.length) + '</h2><span class="tiny">zero stake · ' + (picks.length ? esc(picks.length) + ' this week' : 'none this week') + '</span>' +
+      '<span class="small muted">' + (/^v2/.test(sh.rule_version || '') ? 'Rule ' + esc(sh.rule_version) + ': the model\'s chance of a side at the posted line vs what the price needs, bar ' + esc(sh.min_edge_pts) + ' pts' + (sh.guard_pts != null ? ', guard ' + esc(sh.guard_pts) + ' pts' : '') + (sh.baseline_version ? '; rule ' + esc(sh.baseline_version) + ' rows are the baseline and never count' : '') + '. Not bets.' : 'Rule ' + esc(sh.rule_version || '—') + '. Not bets.') + '</span></div><div class="psb" id="psb-research"' + secHid('research') + '>';
+    if (!picks.length) return h + '<div class="rrow muted small">No research pick registered this week' + ((sh.evaluated_pulls || []).length ? ' (' + esc((sh.evaluated_pulls || []).length) + ' pull' + ((sh.evaluated_pulls || []).length === 1 ? '' : 's') + ' evaluated).' : '.') + '</div></div></section>';
+    h += '<div class="rpills" id="rpills" role="group" aria-label="Filter research picks">' + RF.map((x) => '<button type="button" data-rf="' + x[0] + '" aria-pressed="' + (f === x[0] ? 'true' : 'false') + '" class="' + (f === x[0] ? 'on' : '') + '">' + esc(x[1]) + ' <span class="n">' + rows.filter((r) => rfMatch(x[0], r.p)).length + '</span></button>').join('') + '</div>';
+    h += '<div class="small muted rnote">Sorted by edge over what the price needs, best first (a display order) · ' + shown.length + ' of ' + rows.length + ' shown</div>';
+    if (!shown.length) h += '<div class="empty">No research pick matches that filter.</div>';
+    else {
+      h += '<div class="opps rboard desk"><div class="tbl-wrap"><table class="tbl"><thead><tr><th>Player</th><th>Labels</th><th>The pick</th><th>Model vs needs</th><th>Status</th><th></th></tr></thead><tbody>';
+      shown.forEach((r) => {
+        const p = r.p;
+        h += '<tr class="row" id="rp-' + esc(r.key) + '" data-key="' + esc(r.key) + '"><td><div class="mu">' + esc(p.player) + '</div><div class="ko">' + esc(p.game) + ' · ' + esc(kick(p.kickoff)) + '</div></td>' +
+          '<td>' + pickLabels(p, sh) + '</td><td><div class="sug">' + pickText(p) + '</div><div class="q">at ' + esc(bookName(p.book)) + '</div></td><td class="mvc">' + mvn(p) + '</td>' +
+          '<td>' + resPill(p) + '<div class="q">' + clvText(p) + '</div></td>' +
+          '<td><a class="rev" href="#/props/' + esc(r.key) + '" aria-label="Open the pick: ' + esc(p.player + ' ' + (p.label || p.market) + ' ' + String(p.side).toLowerCase() + ' ' + p.line) + '">' + ICON.chev + '</a></td></tr>';
+      });
+      h += '</tbody></table></div></div><div class="pp-phone rcards">' + shown.map((r) => pickCard(r, sh)).join('') + '</div>';
+    }
     if (sh.record_line) h += '<div class="rrow small muted">' + esc(sh.record_line) + '</div>';
     if (sh.baseline_record_line) h += '<div class="rrow small muted">' + esc(sh.baseline_record_line) + '</div>';
-    return h + '</section>';
+    return h + '</div></section>';
+  }
+  // T4: the pick drawer - the evidence view's $drawer and backdrop (right side on desktop, a full page with Back on the
+  // phone), route #/props/<pick_key>. It never dispatches nfl-edge:evidence, so bets.js cannot add a Log control to a prop;
+  // a pick_key the file does not hold closes quietly and leaves the board in place.
+  const WHY = [['projection', 'Projection', (v) => v], ['proj_base', 'Role baseline', (v) => v], ['script_mult', 'Game script', (v) => '×' + v], ['injury_mult', 'Injury', (v) => '×' + v],
+               ['role', 'Role', (v) => v], ['anchor_w', 'Market anchor weight', (v) => v], ['anchored_pct', 'Anchored chance', pct], ['model_pct', 'Raw model chance', pct]];
+  function pickHtml(r, sh) {
+    const p = Object.assign({}, r.s || {}, r.p), card = (r.s && r.s.card) || p.card || [];
+    let h = '<div class="ev pk" id="pick" data-key="' + esc(r.key) + '">';
+    h += '<div class="evh"><div><div class="tiny">' + pickLabels(p, sh) + '</div><h2>' + esc(p.player) + '</h2><div class="ko">' + esc(p.game) + ' · ' + esc(kick(p.kickoff)) + '</div>' +
+      '<div class="note">' + esc(cap1(p.label || p.market)) + ' · ' + esc(p.side) + ' ' + esc(p.line) + ' (' + esc(price(p.price)) + ') at ' + esc(bookName(p.book)) + ' · pull ' + esc(p.pull_stamp ? stamp(p.pull_stamp) : '—') + ' · rule ' + esc(p.rule_version || '—') + '</div></div>' +
+      '<button type="button" class="close" id="pd-close" aria-label="Close the pick"><span class="only-desk">Close</span><span class="only-phone">‹ Back</span></button></div>';
+    h += '<section><h3>The card</h3>' + (card.length ? '<ul class="lines">' + card.map((c, i) => '<li class="' + (i === 3 ? 'shadow' : '') + '"><b>' + esc(c.label) + '</b>' + esc(c.text) + '</li>').join('') + '</ul>' : '<div class="small sec">No card in the file for this row.</div>') + '</section>';
+    const why = WHY.filter((x) => p[x[0]] != null);
+    h += '<section><h3>Why the model likes it</h3>' + (why.length ? '<div class="wtiles">' + why.map((x) => '<div class="wt"><div class="k">' + esc(x[1]) + '</div><div class="v">' + esc(x[2](p[x[0]])) + '</div></div>').join('') + '</div>' : '<div class="small sec">This row carries no model inputs (rule ' + esc(p.rule_version || '—') + ': a price rule, not a projection).</div>') + '</section>';
+    h += '<section><h3>Model vs what the price needs</h3>' + mvn(p, true) + '</section>';
+    h += '<section><h3>Closing value</h3><div class="small sec">' + (p.clv_pts != null ? 'Closing-line value <span class="num">' + esc(signed(p.clv_pts, 2)) + ' pts</span> vs the ' + esc(stamp(p.close_stamp)) + ' pull' : 'Closing-line value not available yet' + (p.clv_note && p.clv_note !== 'n/a' ? ': ' + esc(p.clv_note) : ' (the file records n/a).')) + '</div></section>';
+    h += '<section><h3>Result</h3><div class="small sec">' + resPill(p) + ' · stat value <span class="num">' + esc(p.value != null ? p.value : '—') + '</span>' + (p.status ? ' · ' + esc(p.status) : '') + '</div></section>';
+    return h + '</div>';
+  }
+  function openPick(key) {
+    const d = propsUi.d, r = d ? pickRows(d).all.find((x) => x.key === key) : null;
+    if (!r) { closeEvidence(false); if (location.hash !== '#/props') location.replace('#/props'); return; }
+    if (!state.evidence) state.scrollBefore = window.scrollY;
+    state.evidence = 'props:' + key;
+    $drawer.innerHTML = pickHtml(r, d.shadow || {});
+    $drawer.hidden = false; $backdrop.hidden = false;
+    document.body.classList.add('ev-open');
+    requestAnimationFrame(() => { $drawer.classList.add('show'); $backdrop.classList.add('show'); });
+    $drawer.scrollTop = 0;
+    document.getElementById('pd-close').addEventListener('click', () => closeEvidence(true));
+  }
+  function propsRendered(w, d) {
+    propsUi.d = d; propsUi.w = w;
+    state.rendered = { view: 'props', id: null };
+    const k = propsUi.pending; propsUi.pending = null;
+    if (k) openPick(k);
   }
   function renderProps(w, d, err) {
     const m = (d && d.meta) || {};
     const banner = '<div class="banner info" id="banner-props-research"><b>Research only.</b> ' + esc((m.banner || PROPS_BANNER).replace(/^Research only\.\s*/, '')) + '</div>';
-    let html = '<div class="head"><div><h1>Props</h1><div class="subl">Player prop prices · how they have hit · zero-stake shadow picks</div></div></div>';
+    const sh0 = (d && d.shadow) || {};
+    const subl = (m.week != null ? 'Week ' + esc(m.week) : 'Week —') + ' · prices captured ' + (m.pull_at ? esc(tsShort(m.pull_at)) : '—') + ' · rule ' + esc(sh0.rule_version || m.rule_version || '—');
+    let html = '<div class="head"><div><h1>Props</h1><div class="subl" id="props-subl">' + subl + '</div></div></div>';
     html += banner;
-    if (d && d.shadow) html += researchList(d);
     const empty = !d || !m.pull_stamp;
     if (empty) {
+      if (d && d.shadow) html += propsTiles(d, w) + researchList(d);
       html += '<div class="empty" id="props-empty"><b>No prop capture yet</b>' + (err ? 'The props file could not be read. ' : '') + esc(m.note || 'Nothing to show until a prop pull is on disk and the board is built.') + '</div>';
       if (d && d.shadow) html += shadowPanel2(d);
       $main.innerHTML = html;
+      if (d) bindProps(w, d);
       window.scrollTo(0, 0);
       announce('props', w);
+      propsRendered(w, d);
       return;
     }
     const fr = propsFreshness(d, w);
     if (fr.stale) html += '<div class="banner warn" id="banner-props-odds"><b>Prop prices last captured ' + esc(fr.when) + '</b> (captured ' + esc(Math.floor(fr.age)) + ' h ago, past the ' + esc(fr.limit) + ' h window) — the books have moved; check the sportsbook before relying on a price.</div>';
     html += '<div class="asofline" id="props-asof">Prop prices captured ' + esc(tsFull(m.pull_at)) + ' · pull ' + esc(stamp(m.pull_stamp)) + ' · ' + esc((m.books_seen || []).map(bookName).join(', ') || 'books unavailable') + (m.credits_remaining != null ? ' · Odds API credits remaining ' + esc(fmtN(m.credits_remaining)) : '') + (m.week != null ? ' · week ' + esc(m.week) : '') + '</div>';
+    html += propsTiles(d, w) + researchList(d);
     html += pricesPanel(d, w) + hitPanel(d) + shadowPanel2(d);
     $main.innerHTML = html;
+    bindProps(w, d);
     const sel = document.getElementById('pf-market');
     if (sel) sel.addEventListener('change', () => { propsState.market = sel.value; state.keepScroll = window.scrollY; renderProps(w, d, null); });
     const ours = document.getElementById('pf-ours');
@@ -953,9 +1151,11 @@
     window.scrollTo(0, state.keepScroll != null ? state.keepScroll : 0);
     state.keepScroll = null;
     announce('props', w);
+    propsRendered(w, d);
   }
-  function viewProps() {
+  function viewProps(key) {
     setNav('props');
+    propsUi.pending = key || null;
     const latest = latestId();
     const go = (w) => {
       renderChrome(w);
@@ -993,13 +1193,18 @@
       if (p[2]) openEvidence(state.weeks[id], p[2]); else closeEvidence(false);
       return;
     }
+    // SPRINT 11-04 T4: the Props board is in place: only the pick drawer opens, switches or closes
+    if (page === 'props' && state.rendered && state.rendered.view === 'props') {
+      if (p[1]) openPick(p[1]); else closeEvidence(false);
+      return;
+    }
     closeEvidence(false);
     state.rendered = null;   // every other render replaces the canvas; viewWeek / viewSlate record theirs after rendering
     if (page === 'week') return viewWeek(p[1] || null, p[2] || null);
     if (page === 'slate') return viewSlate(p[1] || null, p[2] || null);
     if (page === 'angles') return viewAngles();
     if (page === 'ledger') return viewLedger();
-    if (page === 'props') return viewProps();
+    if (page === 'props') return viewProps(p[1] || null);
     if (page === 'system') return viewSystem(p[1] || null);
     location.replace('#/week');
   }

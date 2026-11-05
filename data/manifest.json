@@ -2,36 +2,37 @@
  "week_resolution": {
   "season": 2026,
   "source": "schedule row lookup: each slate game matched to games.parquet by home + away + kickoff date (America/Phoenix), week read from that row",
-  "slate_source": "odds pull 2026-11-01_071347 America/Phoenix (odds_latest.parquet)",
+  "slate_source": "odds pull 2026-11-03_074148 America/Phoenix (odds_latest.parquet)",
   "slate_window": {
-   "start": "2026-11-01T07:31:47-07:00",
-   "end": "2026-11-02T23:59:59-07:00"
+   "start": "2026-11-04T18:43:56-07:00",
+   "end": "2026-11-09T23:59:59-07:00"
   },
-  "slate_games": 13,
-  "matched": 13,
+  "slate_games": 15,
+  "matched": 15,
   "unmatched": [],
   "weeks_seen": {
-   "wk08": 13
+   "wk09": 15
   },
   "disagreeing": [],
   "schedule": {
-   "pulled_at": "2026-11-01 07:21 America/Phoenix",
+   "pulled_at": "2026-11-04 18:42 America/Phoenix",
    "age_days": 0.0,
    "stale": false,
    "max_age_days": 7,
    "refreshed": false,
    "error": null
   },
-  "checked_at": "2026-11-01T07:31:47-07:00",
-  "week": 8,
+  "checked_at": "2026-11-04T18:43:56-07:00",
+  "week": 9,
   "status": "verified",
   "flag": null,
-  "detail": "all 13 slate games between Sun 11/01 07:31 and Mon 11/02 23:59 matched schedule rows labelled week 8; latest_week = 2026-W08",
-  "run_week": 8,
+  "detail": "all 15 slate games between Wed 11/04 18:43 and Mon 11/09 23:59 matched schedule rows labelled week 9; latest_week = 2026-W09",
+  "run_week": 9,
   "run_week_source": "lookup",
   "ledger": null,
   "latest_week_source": "lookup",
   "weeks_on_disk": [
+   "2026-W09",
    "2026-W08",
    "2026-W07",
    "2026-W06",
@@ -42,9 +43,29 @@
  },
  "site_schema_version": 7,
  "timezone": "America/Phoenix",
- "exported_at": "2026-11-01T07:31:47-07:00",
- "latest_week": "2026-W08",
+ "exported_at": "2026-11-04T18:43:57-07:00",
+ "latest_week": "2026-W09",
  "weeks": [
+  {
+   "id": "2026-W09",
+   "season": 2026,
+   "week": 9,
+   "file": "weeks/2026-W09.json",
+   "generated_at": "2026-11-04T17:15:16-07:00",
+   "counts": {
+    "games": 15,
+    "shortlist": 1,
+    "survivors": 5,
+    "watch": 8,
+    "expressions_tested": 32,
+    "lanes": {
+     "BET": 1,
+     "POSSIBLE BET": 10,
+     "NO BET": 4
+    }
+   },
+   "odds_pull_at": "2026-11-03T07:41:48-07:00"
+  },
   {
    "id": "2026-W08",
    "season": 2026,
@@ -167,9 +188,9 @@
   }
  ],
  "last_publish": {
-  "week": "2026-W08",
-  "published_at": "2026-11-01 07:31 America/Phoenix",
-  "engine_head": "efd75de",
+  "week": "2026-W09",
+  "published_at": "2026-11-04 18:43 America/Phoenix",
+  "engine_head": "237b2a7",
   "url": "https://pokerbrainupgrade-a11y.github.io/nfl-edge-site/"
  },
  "reports": {

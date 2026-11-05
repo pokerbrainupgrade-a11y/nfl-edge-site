@@ -1,34 +1,34 @@
 {
- "generated_at": "2026-10-09T09:01:06-07:00",
+ "generated_at": "2026-11-04T18:42:37-07:00",
  "timezone": "America/Phoenix",
  "stale_entry_hours": 12,
  "counts": {
-  "rows": 47,
-  "settled": 33,
-  "pending": 14,
+  "rows": 110,
+  "settled": 91,
+  "pending": 19,
   "stale": 16,
   "week_unverified": 0
  },
  "tiers": [
   {
    "tier": "A",
-   "rows": 1,
-   "settled": 0,
+   "rows": 6,
+   "settled": 5,
    "stale": 0,
-   "graded_fresh": 0,
-   "mean_clv": null,
-   "beat_close_pct": null,
-   "ats": "0-0-0"
+   "graded_fresh": 5,
+   "mean_clv": -0.0066,
+   "beat_close_pct": 20.0,
+   "ats": "4-1-0"
   },
   {
    "tier": "B",
-   "rows": 18,
-   "settled": 11,
+   "rows": 51,
+   "settled": 40,
    "stale": 4,
-   "graded_fresh": 7,
-   "mean_clv": -0.0215,
-   "beat_close_pct": 28.6,
-   "ats": "5-6-0"
+   "graded_fresh": 35,
+   "mean_clv": -0.0155,
+   "beat_close_pct": 25.7,
+   "ats": "14-23-2"
   },
   {
    "tier": "C",
@@ -42,35 +42,35 @@
   },
   {
    "tier": "D",
-   "rows": 27,
-   "settled": 21,
+   "rows": 52,
+   "settled": 45,
    "stale": 11,
-   "graded_fresh": 10,
-   "mean_clv": -0.0256,
-   "beat_close_pct": 30.0,
-   "ats": "10-10-1"
+   "graded_fresh": 34,
+   "mean_clv": -0.0235,
+   "beat_close_pct": 20.6,
+   "ats": "21-23-1"
   },
   {
    "tier": "ALL",
-   "rows": 47,
-   "settled": 33,
+   "rows": 110,
+   "settled": 91,
    "stale": 16,
-   "graded_fresh": 17,
-   "mean_clv": -0.0239,
-   "beat_close_pct": 29.4,
-   "ats": "15-17-1"
+   "graded_fresh": 74,
+   "mean_clv": -0.0186,
+   "beat_close_pct": 23.0,
+   "ats": "39-48-3"
   }
  ],
  "by_source_caller": [
   {
    "source": "model",
    "caller": "engine",
-   "n": 47,
-   "settled": 33,
-   "graded": 17,
-   "mean_clv": -0.0239,
-   "beat_close_pct": 29.4,
-   "wlp": "15-17-1"
+   "n": 110,
+   "settled": 91,
+   "graded": 74,
+   "mean_clv": -0.0186,
+   "beat_close_pct": 23.0,
+   "wlp": "39-48-3"
   },
   {
    "source": "gut",

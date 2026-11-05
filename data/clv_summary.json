@@ -1,0 +1,105 @@
+{
+ "schema_version": 1,
+ "generated_at": "2026-11-04T18:42:38-07:00",
+ "timezone": "America/Phoenix",
+ "season": 2026,
+ "source": "tracker/bets.sqlite (make settle); zero-stake shadow rows are never included",
+ "all": {
+  "bets": 1,
+  "settled": 1,
+  "graded": 1,
+  "mean_clv_prob": 0.0287,
+  "mean_clv_ev": 0.053,
+  "beat_close_pct": 100.0,
+  "record": "1-0-0"
+ },
+ "test_bets": 3,
+ "app_bets": 1,
+ "by_bettor": {
+  "Q": {
+   "bets": 1,
+   "settled": 1,
+   "graded": 1,
+   "mean_clv_prob": 0.0287,
+   "mean_clv_ev": 0.053,
+   "beat_close_pct": 100.0,
+   "record": "1-0-0"
+  },
+  "Mike": {
+   "bets": 0,
+   "settled": 0,
+   "graded": 0,
+   "mean_clv_prob": null,
+   "mean_clv_ev": null,
+   "beat_close_pct": null,
+   "record": "0-0-0"
+  },
+  "Marques": {
+   "bets": 0,
+   "settled": 0,
+   "graded": 0,
+   "mean_clv_prob": null,
+   "mean_clv_ev": null,
+   "beat_close_pct": null,
+   "record": "0-0-0"
+  }
+ },
+ "by_source": {
+  "scan": {
+   "bets": 1,
+   "settled": 1,
+   "graded": 1,
+   "mean_clv_prob": 0.0287,
+   "mean_clv_ev": 0.053,
+   "beat_close_pct": 100.0,
+   "record": "1-0-0"
+  },
+  "freelance": {
+   "bets": 0,
+   "settled": 0,
+   "graded": 0,
+   "mean_clv_prob": null,
+   "mean_clv_ev": null,
+   "beat_close_pct": null,
+   "record": "0-0-0"
+  }
+ },
+ "by_tag_at_entry": {
+  "BET": {
+   "bets": 1,
+   "settled": 1,
+   "graded": 1,
+   "mean_clv_prob": 0.0287,
+   "mean_clv_ev": 0.053,
+   "beat_close_pct": 100.0,
+   "record": "1-0-0"
+  },
+  "POSSIBLE BET": {
+   "bets": 0,
+   "settled": 0,
+   "graded": 0,
+   "mean_clv_prob": null,
+   "mean_clv_ev": null,
+   "beat_close_pct": null,
+   "record": "0-0-0"
+  },
+  "NO BET": {
+   "bets": 0,
+   "settled": 0,
+   "graded": 0,
+   "mean_clv_prob": null,
+   "mean_clv_ev": null,
+   "beat_close_pct": null,
+   "record": "0-0-0"
+  },
+  "untagged": {
+   "bets": 0,
+   "settled": 0,
+   "graded": 0,
+   "mean_clv_prob": null,
+   "mean_clv_ev": null,
+   "beat_close_pct": null,
+   "record": "0-0-0"
+  }
+ }
+}

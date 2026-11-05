@@ -484,3 +484,146 @@ details.rungs[open] > summary::before { transform: rotate(90deg); }
 .research .rrow .rn { flex: 1 1 100%; font-size: 12.5px; }
 .research .rrow .num { font-family: var(--mono); color: var(--text); }
 .research .rrow .tag.nobet { font-size: 10.5px; padding: 1px 6px; }
+
+/* ============================================================ SPRINT 2026-11-04 PROPS TAB (Asana 1220234298381370) — BEGIN
+   Props view only: tiles, clickable sections, research board, pick drawer, game / player / market tiles, hit bands, record.
+   Tokens only. The market-label colours are their own tokens (blue / teal / violet / steel), never the status colours;
+   green / amber / red stay status (hit or above needed / pending, stale or too few / miss or below needed). Contrast rows in
+   docs/ui/palette.md. No raw hex outside this block's :root. */
+:root {
+  --mk-pass: #8DB6FF; --mk-pass-bg: #16305E;
+  --mk-rush: #5CCBDB; --mk-rush-bg: #0E3440;
+  --mk-rec: #C3A9FF;  --mk-rec-bg: #2B2556;
+  --mk-td: #C4D0DB;   --mk-td-bg: #263650;
+}
+/* T1 tiles and chips */
+.ptiles .kpi { font: inherit; color: var(--text); text-align: left; border: 0; cursor: pointer; width: 100%; transition: background var(--motion); }
+.ptiles .kpi > span { display: block; }
+.ptiles .kpi:hover { background: var(--surface-raised); }
+.ptiles .kpi .v small { font-size: 16px; color: var(--text-muted); font-weight: 600; }
+.ptiles .kpi .v.up, .pchips .chipc .v.up { color: var(--positive); }
+.ptiles .kpi .v.down, .pchips .chipc .v.down { color: var(--danger); }
+.ptiles .kpi.warn { box-shadow: inset 3px 0 0 var(--warning); }
+.ptiles .kpi.warn .v, .ptiles .kpi.warn .ic { color: var(--warning); stroke: var(--warning); }
+.ptiles .kpi:focus-visible, .pchips .chipc:focus-visible { outline: 2px solid var(--accent-text); outline-offset: 2px; }
+.pbar { display: block; height: 6px; border-radius: 3px; background: var(--surface-soft); overflow: hidden; margin: 2px 0 6px; }
+.pbar > i { display: block; height: 100%; background: var(--accent-text); }
+.pchips .chipc { font: inherit; color: var(--text); text-align: left; border: 0; cursor: pointer; width: 100%; min-width: 0; }
+.pchips .chipc .v small { font-size: 13px; color: var(--text-muted); }
+.pchips .chipc .k { color: var(--text-secondary); overflow-wrap: anywhere; }
+@media (min-width: 768px) { .pp-phone { display: none; } }
+/* T2 section headers */
+.psh { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 4px 0 0; border: 0; background: transparent; color: var(--text); font: inherit; font-size: 16px; font-weight: 700; cursor: pointer; text-align: left; }
+.psh .chev { display: inline-flex; }
+.psh .chev svg { width: 16px; height: 16px; stroke: var(--accent-text); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform var(--motion); }
+.psh[aria-expanded="true"] .chev svg { transform: rotate(90deg); }
+.psh > svg { width: 18px; height: 18px; stroke: var(--accent-text); fill: none; stroke-width: 1.8; stroke-linecap: round; }
+.psh:focus-visible { outline: 2px solid var(--accent-text); outline-offset: 2px; border-radius: var(--radius-sm); }
+.bub { display: inline-flex; align-items: center; justify-content: center; min-width: 22px; height: 22px; padding: 0 7px; border-radius: 999px; background: var(--surface-inset); color: var(--text); font-family: var(--mono); font-size: 11.5px; font-weight: 600; white-space: nowrap; }
+.research .rh { margin: 0; font-size: 16px; }
+.research .rhead { align-items: center; }
+/* T3 research board: market chips, labels, filter pills, model-vs-needs bubbles and bar, phone cards */
+.mk { display: inline-block; max-width: 100%; padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 700; line-height: 1.35; overflow-wrap: anywhere; background: var(--neutral-bg); color: var(--text-secondary); }
+.mk-pass { background: var(--mk-pass-bg); color: var(--mk-pass); }
+.mk-rush { background: var(--mk-rush-bg); color: var(--mk-rush); }
+.mk-rec { background: var(--mk-rec-bg); color: var(--mk-rec); }
+.mk-td { background: var(--mk-td-bg); color: var(--mk-td); }
+.lb { display: inline-block; padding: 2px 8px; border-radius: 6px; font-size: 11px; font-weight: 700; background: var(--neutral-bg); color: var(--text-secondary); white-space: nowrap; }
+.lbls { display: inline-flex; flex-wrap: wrap; gap: 4px; align-items: center; min-width: 0; }
+.rpills { display: flex; flex-wrap: wrap; gap: 8px; margin: 6px 0 8px; }
+.rpills button { display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 0 12px; border-radius: 10px; border: 1px solid var(--border); background: var(--surface); color: var(--text-secondary); font: inherit; font-size: 12.5px; font-weight: 700; cursor: pointer; }
+.rpills button.on { background: var(--accent); color: var(--text); border-color: var(--accent-text); }
+.rpills .n { font-family: var(--mono); font-size: 11.5px; }
+.rnote { margin: 0 0 8px; }
+.rboard { margin: 0 0 6px; }
+.rboard .tbl td { vertical-align: middle; }
+.rboard td.mvc { min-width: 190px; }
+.rboard tr.row:hover { background: var(--surface); }
+.mvn { display: flex; flex-wrap: wrap; gap: 6px; }
+.bub2 { display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; border-radius: 999px; font-family: var(--mono); font-size: 12px; font-weight: 600; background: var(--surface-raised); color: var(--text); white-space: nowrap; }
+.bub2.up { background: var(--positive-bg); color: var(--positive); }
+.bub2.down { background: var(--danger-bg); color: var(--danger); }
+.mbar { position: relative; height: 6px; border-radius: 3px; background: var(--surface-raised); margin: 7px 0 3px; min-width: 60px; }
+.mbar.big { height: 10px; border-radius: 5px; }
+.mbar > i { position: absolute; left: 0; top: 0; bottom: 0; border-radius: inherit; background: var(--accent-text); }
+.mbar > i.up { background: var(--positive); }
+.mbar > i.down { background: var(--danger); }
+.mbar > b { position: absolute; top: -3px; bottom: -3px; width: 2px; margin-left: -1px; background: var(--text); }
+.rc { cursor: pointer; }
+.rc .mu, .rc .ko, .rc .off { overflow-wrap: anywhere; }
+.rc .l1 { flex-wrap: wrap; }
+@media (max-width: 767px) { .rpills button { min-height: 44px; min-width: 44px; } .fc.rc .sug { font-size: 20px; } }
+/* T4 pick drawer */
+.pk .evh .tiny .lbls { margin-bottom: 4px; }
+.pk .evh h2 { overflow-wrap: anywhere; }
+.pk .evh .note { margin-top: 4px; overflow-wrap: anywhere; }
+.pk .wtiles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.pk .wt { background: var(--surface-raised); border-radius: var(--radius-sm); padding: 8px 10px; min-width: 0; }
+.pk .wt .k { font-size: 11px; color: var(--text-muted); font-weight: 700; letter-spacing: .04em; }
+.pk .wt .v { font-family: var(--mono); font-size: 16px; font-weight: 600; color: var(--text); overflow-wrap: anywhere; }
+.pk .lines li.shadow b { color: var(--warning); }
+/* T5 prices by game: player rows, market tiles, side bubbles, fair-chance bar */
+.psr { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0; }
+.pplayers { padding: 0 0 6px; }
+details.pplayer { padding: 0 0 0 18px; }
+details.pplayer > summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 6px 8px; flex-wrap: wrap; min-height: 44px; padding: 4px 0; }
+details.pplayer > summary::-webkit-details-marker { display: none; }
+details.pplayer > summary::before { content: "›"; display: inline-block; color: var(--accent-text); font-size: 16px; transition: transform var(--motion); }
+details.pplayer[open] > summary::before { transform: rotate(90deg); }
+details.pplayer > summary .pname { overflow-wrap: anywhere; min-width: 0; }
+.mks { display: flex; flex-wrap: wrap; gap: 4px; min-width: 0; }
+.mtiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 8px; padding: 2px 0 10px; }
+.mtile { position: relative; background: var(--surface-raised); border-radius: var(--radius-sm); padding: 10px 12px; min-width: 0; margin-top: 0; }
+.mtile .mh { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.mtile .ln { font-family: var(--mono); font-size: 15px; font-weight: 600; color: var(--text); }
+.mtile .mbar { background: var(--surface-soft); }
+.sbs { display: grid; grid-template-columns: repeat(auto-fit, minmax(96px, 1fr)); gap: 6px; margin-top: 8px; }
+.sbs.one { grid-template-columns: minmax(0, 1fr); }
+.sb { display: flex; flex-direction: column; gap: 1px; background: var(--surface-soft); border-radius: var(--radius-sm); padding: 6px 9px; min-width: 0; }
+.sb .w { font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--text-muted); font-weight: 700; }
+.sb .num { font-family: var(--mono); font-size: 15px; font-weight: 600; color: var(--text); }
+.sb .bkn { font-size: 12px; color: var(--text-secondary); overflow-wrap: anywhere; }
+.sb .ours { font-size: 11.5px; color: var(--accent-text); overflow-wrap: anywhere; }
+.sb.none .num { color: var(--text-muted); }
+.fair { font-size: 12px; color: var(--text-muted); margin-top: 6px; overflow-wrap: anywhere; }
+.fair .num { color: var(--text); }
+.mtile details.rungs { margin: 8px 0 0; }
+.mtile .rung { padding: 6px 0 6px 14px; border-top: 1px solid var(--border); }
+@media (max-width: 767px) {
+  details.pplayer { padding-left: 8px; }
+  .mtiles { grid-template-columns: minmax(0, 1fr); }
+  details.rungs > summary { min-height: 44px; }
+}
+/* T6 how props have hit: market groups and price bands */
+details.hgroup { border-top: 1px solid var(--border); }
+details.hgroup > summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; min-height: 44px; }
+details.hgroup > summary::-webkit-details-marker { display: none; }
+details.hgroup > summary::before { content: "›"; display: inline-block; color: var(--accent-text); font-size: 16px; transition: transform var(--motion); }
+details.hgroup[open] > summary::before { transform: rotate(90deg); }
+.hgroup .hrow { position: relative; align-items: center; }
+.hrow .hv { display: grid; grid-template-columns: minmax(120px, 1fr) minmax(180px, 2fr) auto auto; gap: 6px 14px; align-items: center; flex: 1 1 100%; min-width: 0; }
+.hrow .band { color: var(--text); font-weight: 600; overflow-wrap: anywhere; }
+.hrow.small .band { color: var(--text-muted); }
+.hbars { display: grid; gap: 4px; min-width: 0; }
+.hb { display: grid; grid-template-columns: 52px minmax(0, 1fr) 52px; gap: 6px; align-items: center; font-size: 11.5px; color: var(--text-muted); }
+.hb .track { position: relative; height: 6px; border-radius: 3px; background: var(--surface-raised); overflow: hidden; }
+.hb .track > i { position: absolute; left: 0; top: 0; bottom: 0; background: var(--accent-text); }
+.hb .track > i.up { background: var(--positive); }
+.hb .track > i.down { background: var(--danger); }
+.hb .track > i.need { background: var(--text-muted); }
+.hb .num { font-family: var(--mono); color: var(--text); text-align: right; }
+@media (max-width: 767px) { .hrow .hv { grid-template-columns: minmax(0, 1fr); } }
+/* T7 record tiles, gate bar, baseline record, shadow cards */
+.rtiles .cnt .v.up { color: var(--positive); }
+.rtiles .cnt .v.down { color: var(--danger); }
+.gbar { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 12px; color: var(--text-muted); margin: 0 0 10px; }
+.gbar .pbar { flex: 1 1 160px; margin: 0; background: var(--surface-raised); }
+.gbar .num { font-family: var(--mono); color: var(--text); }
+details.base { border-top: 1px solid var(--border); margin: 0 0 8px; }
+details.base > summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 8px; min-height: 44px; font-size: 13px; font-weight: 700; color: var(--text-secondary); }
+details.base > summary::-webkit-details-marker { display: none; }
+details.base > summary::before { content: "›"; display: inline-block; color: var(--accent-text); font-size: 16px; transition: transform var(--motion); }
+details.base[open] > summary::before { transform: rotate(90deg); }
+.card.sc[data-key] { cursor: pointer; }
+.card.sc .cta-l { display: inline-flex; align-items: center; min-height: 44px; min-width: 44px; margin-top: 4px; color: var(--accent-text); font-weight: 700; font-size: 13px; text-decoration: none; }
+/* ============================================================ SPRINT 2026-11-04 PROPS TAB — END */
