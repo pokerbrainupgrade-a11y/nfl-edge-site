@@ -1,11 +1,11 @@
 {
- "generated_at": "2026-11-04T18:42:37-07:00",
+ "generated_at": "2026-11-06T20:37:23-07:00",
  "timezone": "America/Phoenix",
  "stale_entry_hours": 12,
  "counts": {
   "rows": 110,
-  "settled": 91,
-  "pending": 19,
+  "settled": 92,
+  "pending": 18,
   "stale": 16,
   "week_unverified": 0
  },
@@ -23,12 +23,12 @@
   {
    "tier": "B",
    "rows": 51,
-   "settled": 40,
+   "settled": 41,
    "stale": 4,
-   "graded_fresh": 35,
-   "mean_clv": -0.0155,
-   "beat_close_pct": 25.7,
-   "ats": "14-23-2"
+   "graded_fresh": 36,
+   "mean_clv": -0.0158,
+   "beat_close_pct": 25.0,
+   "ats": "14-24-2"
   },
   {
    "tier": "C",
@@ -53,12 +53,12 @@
   {
    "tier": "ALL",
    "rows": 110,
-   "settled": 91,
+   "settled": 92,
    "stale": 16,
-   "graded_fresh": 74,
-   "mean_clv": -0.0186,
-   "beat_close_pct": 23.0,
-   "ats": "39-48-3"
+   "graded_fresh": 75,
+   "mean_clv": -0.0187,
+   "beat_close_pct": 22.7,
+   "ats": "39-49-3"
   }
  ],
  "by_source_caller": [
@@ -66,11 +66,11 @@
    "source": "model",
    "caller": "engine",
    "n": 110,
-   "settled": 91,
-   "graded": 74,
-   "mean_clv": -0.0186,
-   "beat_close_pct": 23.0,
-   "wlp": "39-48-3"
+   "settled": 92,
+   "graded": 75,
+   "mean_clv": -0.0187,
+   "beat_close_pct": 22.7,
+   "wlp": "39-49-3"
   },
   {
    "source": "gut",

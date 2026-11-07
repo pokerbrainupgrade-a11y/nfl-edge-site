@@ -15,7 +15,7 @@
   var FB = window.NFL_EDGE_FIREBASE || {};
   var BETTORS = ['Q', 'Mike', 'Marques'];
   var MARKETS = [['spread', 'Spread'], ['total', 'Total'], ['ml', 'Moneyline']];
-  var state = { user: null, allowlisted: null, probe: null, bets: [], counts: null, editing: null, week: null, lastMsg: null, evidenceGame: null };
+  var state = { user: null, allowlisted: null, probe: null, bets: [], counts: null, editing: null, week: null, lastMsg: null, evidenceGame: null, gut: [], gutCaller: null };
   var app = null, auth = null, db = null;
   var $hdr = document.querySelector('.hdr-in');
   var $btn = document.createElement('button');
@@ -75,11 +75,11 @@
         return auth.signInWithCredential(firebase.auth.GoogleAuthProvider.credential(claims));
       },
       signOut: function () { return auth.signOut(); },
-      state: function () { return { user: state.user ? { email: state.user.email, uid: state.user.uid } : null, allowlisted: state.allowlisted, bets: state.bets.length, lastMsg: state.lastMsg }; }
+      state: function () { return { user: state.user ? { email: state.user.email, uid: state.user.uid } : null, allowlisted: state.allowlisted, bets: state.bets.length, gut: state.gut.length, lastMsg: state.lastMsg }; }
     };
   }
   auth.onAuthStateChanged(function (user) {
-    state.user = user; state.allowlisted = null; state.bets = []; state.counts = null; state.editing = null;
+    state.user = user; state.allowlisted = null; state.bets = []; state.counts = null; state.editing = null; state.gut = [];
     renderButton();
     if (!user) { augment(); augmentEvidence(); return; }
     probe().then(function () { augment(); augmentEvidence(); });
@@ -169,10 +169,150 @@
     ui.className = 'ev-log-ui';
     if (note) { if (st) st.textContent = ''; ui.innerHTML = note; sec.appendChild(ui); return; }
     if (st) st.textContent = 'Records the bet you placed yourself at the sportsbook: bettor, book, side, line, price, stake and time.';
-    ui.innerHTML = '<div id="bets-msg" class="banner ok" hidden></div>' + (g ? '<button type="button" class="btn primary logbet" data-game="' + esc(g.game_id) + '">Log manually placed bet</button>' : '<span class="small muted">no game in view</span>') + '<div id="betform-host"></div>';
+    ui.innerHTML = '<div id="bets-msg" class="banner ok" hidden></div>' + (g ? '<button type="button" class="btn primary logbet" data-game="' + esc(g.game_id) + '">Log manually placed bet</button>' +
+      ' <button type="button" class="btn gutpick" data-game="' + esc(g.game_id) + '">Gut pick · no money</button>' : '<span class="small muted">no game in view</span>') + '<div id="betform-host"></div>';
     sec.appendChild(ui);
     var b = ui.querySelector('.logbet');
     if (b) b.addEventListener('click', function () { openForm(w, g, null, ui.querySelector('#betform-host')); });
+    if (g) gutBlock(w, g, ui);
+  }
+
+  // ------------------------------------------------------------ C4 SPRINT 11-05 (6.5): gut picks - no money, 3 a week
+  // One short form on the game's evidence view (side, number pre-filled from the board, a one-line why) and "My gut picks
+  // this week" with delete before kickoff. Writes one pending gut_intake doc (rules: allowlist, caller derived from the
+  // email, no money field, create/delete before kickoff); the Mac importer moves it into shadow_calls as source=gut and
+  // rejects a fourth pick in a week with a reason shown here. Signed out: nothing (the block is only built signed in).
+  // The caller is never typed: the page sends its best guess from the Google name; if the rules refuse that name it tries
+  // the other two (only the caller's own name can ever be stored).
+  var GUT_MAX = 3;
+  function gutOrder() {
+    var names = BETTORS.map(function (b) { return b.toLowerCase(); });
+    [bettorGuess(state.user), state.gutCaller].forEach(function (n) {
+      if (!n) return;
+      n = n.toLowerCase();
+      names.splice(names.indexOf(n), 1); names.unshift(n);
+    });
+    return names;
+  }
+  function gutText(x) { return x.market === 'spread' ? x.side + ' ' + (x.line > 0 ? '+' : '') + x.line : String(x.side).toUpperCase() + ' ' + x.line; }
+  function gutMessage(kind, text) {
+    state.lastMsg = text;
+    var box = el('gut-msg');
+    if (!box) return;
+    box.className = 'banner ' + kind; box.textContent = text; box.hidden = false;
+  }
+  function gutLeft() { return GUT_MAX - state.gut.filter(function (x) { return x.status !== 'rejected'; }).length; }
+  function gutBlock(w, g, ui) {
+    var box = document.createElement('div');
+    box.className = 'gut-ui';
+    box.innerHTML = '<div class="game-line"><h3>My gut picks this week</h3><span class="small muted num" id="gut-left"></span></div>' +
+      '<div id="gut-msg" class="banner ok" hidden></div><div id="my-gut" class="small sec">Loading…</div><div id="gutform-host"></div>';
+    ui.appendChild(box);
+    var b = ui.querySelector('.gutpick');
+    if (b) b.addEventListener('click', function () { if (gutLeft() > 0) openGutForm(w, g, el('gutform-host')); });
+    loadMyGut(w);
+  }
+  function loadMyGut(w) {
+    var box = el('my-gut');
+    if (!box) return;
+    db.collection('gut_intake').where('caller_uid', '==', state.user.uid).get().then(function (snap) {
+      var rows = [];
+      snap.forEach(function (d) { var x = d.data(); x._id = d.id; if (x.season === w.season && x.week === w.week) rows.push(x); });
+      rows.sort(function (a, b) { return (tsToDate(a.created_at) || 0) - (tsToDate(b.created_at) || 0); });
+      state.gut = rows;
+      renderMyGut(w);
+    }).catch(function (e) { box.innerHTML = '<span class="banner bad">Could not load your gut picks: ' + esc(e.message || e) + '</span>'; });
+  }
+  function renderMyGut(w) {
+    var box = el('my-gut');
+    if (!box) return;
+    var left = gutLeft();
+    var lab = el('gut-left'); if (lab) lab.textContent = left + ' of ' + GUT_MAX + ' left';
+    var btn = document.querySelector('#ev-log .gutpick'); if (btn) btn.disabled = left <= 0;
+    if (!state.gut.length) { box.innerHTML = 'No gut picks for Week ' + esc(w.week) + ' yet.'; return; }
+    var now = Date.now();
+    box.innerHTML = '<ul class="bets-list">' + state.gut.map(function (x) {
+      var g = gameById(w, x.game_id);
+      var ko = tsToDate(x.kickoff_at);
+      var open = x.status === 'pending' && ko && ko.getTime() > now;
+      var st = x.status === 'rejected' ? '<span class="pill against">rejected</span> <span class="small muted">' + esc(x.reject_reason || 'no reason recorded') + '</span>'
+        : '<span class="pill ' + (x.status === 'imported' ? 'survivor' : 'neutral') + '">' + esc(x.status) + '</span>';
+      return '<li class="gut-row" data-id="' + esc(x._id) + '"><span class="m"><b class="num">' + esc(gutText(x)) + '</b></span><span class="small sec">' +
+        esc(g ? g.matchup : x.game_id) + '</span><span class="small">' + esc(x.why) + '</span><span>' + st + '</span>' +
+        (open ? '<span class="bet-actions"><button type="button" class="btn gut-del" data-id="' + esc(x._id) + '">Delete</button></span>'
+              : '<span class="small muted">' + (x.status === 'pending' ? 'closed at kickoff' : '') + '</span>') + '</li>';
+    }).join('') + '</ul>';
+    box.querySelectorAll('.gut-del').forEach(function (b) {
+      b.addEventListener('click', function () {
+        db.collection('gut_intake').doc(b.getAttribute('data-id')).delete().then(function () { gutMessage('ok', 'Gut pick deleted.'); loadMyGut(w); })
+          .catch(function (e) { gutMessage('bad', 'Delete refused: ' + esc(e.message || e)); });
+      });
+    });
+  }
+  function gutSides(g, market) { return market === 'total' ? [['over', 'Over'], ['under', 'Under']] : [[g.away, g.away], [g.home, g.home]]; }
+  function gutPrefill(g, market) {
+    var m = g[market] || {};
+    var shop = m.number_to_shop || null;
+    var side = market === 'total' ? (m.lean_side || 'over') : (m.lean_side || g.home);
+    return { side: side, line: shop && shop.line != null ? shop.line : '' };
+  }
+  function openGutForm(w, g, host) {
+    if (!host) return;
+    host.innerHTML = '';
+    var market = g.tag_market === 'total' ? 'total' : 'spread';
+    var pre = gutPrefill(g, market);
+    var opts = function (mk, sel) { return gutSides(g, mk).map(function (o) { return '<option value="' + esc(o[0]) + '"' + (o[0] === sel ? ' selected' : '') + '>' + esc(o[1]) + '</option>'; }).join(''); };
+    host.innerHTML = '<form class="card betform" id="gutform" autocomplete="off">' +
+      '<h3>Gut pick · no money <span class="small muted">' + esc(g.matchup) + '</span></h3>' +
+      '<div class="bf-grid">' +
+      '<label>Market <select id="gf-market"><option value="spread"' + (market === 'spread' ? ' selected' : '') + '>Spread</option><option value="total"' + (market === 'total' ? ' selected' : '') + '>Total</option></select></label>' +
+      '<label>Side <select id="gf-side">' + opts(market, pre.side) + '</select></label>' +
+      '<label>Number <input id="gf-line" type="number" step="0.5" value="' + esc(pre.line) + '" required></label>' +
+      '</div>' +
+      '<label>Why <input id="gf-why" maxlength="140" required placeholder="one line, 140 characters"></label>' +
+      '<div class="bf-actions"><button type="submit" class="btn primary" id="gf-save">Save gut pick</button> <button type="button" class="btn" id="gf-cancel">Cancel</button></div>' +
+      '<div class="small muted">No money and no stake: a pick for the record, graded like every other call. ' + GUT_MAX + ' a week; delete until kickoff.</div>' +
+      '</form>';
+    var lastSide = pre.side;
+    el('gf-cancel').addEventListener('click', function () { host.innerHTML = ''; });
+    el('gf-market').addEventListener('change', function () {
+      var mk = el('gf-market').value, p2 = gutPrefill(g, mk);
+      el('gf-side').innerHTML = opts(mk, p2.side); el('gf-line').value = p2.line; lastSide = p2.side;
+    });
+    el('gf-side').addEventListener('change', function () {
+      // a spread number is from the side's view: switching team flips its sign
+      var v = el('gf-side').value, ln = el('gf-line').value;
+      if (el('gf-market').value === 'spread' && v !== lastSide && ln !== '') el('gf-line').value = -Number(ln);
+      lastSide = v;
+    });
+    el('gutform').addEventListener('submit', function (ev) { ev.preventDefault(); submitGut(w, g, host); });
+  }
+  function submitGut(w, g, host) {
+    var why = el('gf-why').value.trim();
+    var lineRaw = el('gf-line').value;
+    if (!why || why.length > 140) { gutMessage('bad', 'Add a one-line why (1 to 140 characters).'); return; }
+    if (lineRaw === '') { gutMessage('bad', 'A gut pick needs the number.'); return; }
+    if (gutLeft() <= 0) { gutMessage('bad', 'You have used your ' + GUT_MAX + ' gut picks this week.'); return; }
+    var doc = {
+      caller_uid: state.user.uid, caller: null, season: w.season, week: w.week, game_id: g.game_id,
+      market: el('gf-market').value, side: el('gf-side').value, line: Number(lineRaw), why: why,
+      kickoff_at: firebase.firestore.Timestamp.fromDate(new Date(g.kickoff_phoenix)),
+      created_at: firebase.firestore.FieldValue.serverTimestamp(), status: 'pending', import_ref: null, schema_version: 1
+    };
+    var order = gutOrder();
+    var save = el('gf-save'); save.disabled = true;
+    function attempt(i) {
+      doc.caller = order[i];
+      return db.collection('gut_intake').add(doc).then(function () { state.gutCaller = order[i]; })
+        .catch(function (e) { if (e && e.code === 'permission-denied' && i + 1 < order.length) return attempt(i + 1); throw e; });
+    }
+    attempt(0).then(function () { gutMessage('ok', 'Gut pick saved: ' + gutText(doc) + ' (pending). Delete until kickoff.'); host.innerHTML = ''; loadMyGut(w); })
+      .catch(function (e) {
+        save.disabled = false;
+        gutMessage('bad', e && e.code === 'permission-denied'
+          ? 'Firestore refused this gut pick: the game must be ahead of kickoff and every field in range.'
+          : (e && e.code === 'unavailable' ? 'You look offline. Nothing was saved; try again.' : 'Not saved: ' + (e && e.message ? e.message : e)));
+      });
   }
 
   // ------------------------------------------------------------ my bets (Ledger)

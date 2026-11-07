@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "generated_at": "2026-11-04T18:42:38-07:00",
+ "generated_at": "2026-11-06T20:37:23-07:00",
  "timezone": "America/Phoenix",
  "season": 2026,
  "source": "tracker/bets.sqlite (make settle); zero-stake shadow rows are never included",
