@@ -53,12 +53,18 @@
    "published_at": "2026-11-06 20:38 America/Phoenix",
    "engine_head": "e81a3ed",
    "url": "https://pokerbrainupgrade-a11y.github.io/nfl-edge-site/"
+  },
+  {
+   "week": "2026-W10",
+   "published_at": "2026-11-13 09:09 America/Phoenix",
+   "engine_head": "da2f5a7",
+   "url": "https://pokerbrainupgrade-a11y.github.io/nfl-edge-site/"
   }
  ],
  "last": {
-  "week": "2026-W09",
-  "published_at": "2026-11-06 20:38 America/Phoenix",
-  "engine_head": "e81a3ed",
+  "week": "2026-W10",
+  "published_at": "2026-11-13 09:09 America/Phoenix",
+  "engine_head": "da2f5a7",
   "url": "https://pokerbrainupgrade-a11y.github.io/nfl-edge-site/"
  }
 }
