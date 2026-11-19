@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-11-15T10:10:06-07:00",
+ "generated_at": "2026-11-19T07:36:14-07:00",
  "timezone": "America/Phoenix",
  "stale_entry_hours": 12,
  "counts": {
-  "rows": 127,
-  "settled": 111,
-  "pending": 16,
+  "rows": 144,
+  "settled": 127,
+  "pending": 17,
   "stale": 16,
   "week_unverified": 0
  },
  "tiers": [
   {
    "tier": "A",
-   "rows": 6,
+   "rows": 7,
    "settled": 6,
    "stale": 0,
    "graded_fresh": 6,
@@ -22,13 +22,13 @@
   },
   {
    "tier": "B",
-   "rows": 60,
-   "settled": 51,
+   "rows": 72,
+   "settled": 60,
    "stale": 4,
-   "graded_fresh": 46,
-   "mean_clv": -0.0133,
-   "beat_close_pct": 26.1,
-   "ats": "19-29-2"
+   "graded_fresh": 55,
+   "mean_clv": -0.0152,
+   "beat_close_pct": 23.6,
+   "ats": "23-34-2"
   },
   {
    "tier": "C",
@@ -42,35 +42,35 @@
   },
   {
    "tier": "D",
-   "rows": 60,
-   "settled": 53,
+   "rows": 64,
+   "settled": 60,
    "stale": 11,
-   "graded_fresh": 42,
-   "mean_clv": -0.0197,
-   "beat_close_pct": 26.2,
-   "ats": "23-29-1"
+   "graded_fresh": 49,
+   "mean_clv": -0.0218,
+   "beat_close_pct": 24.5,
+   "ats": "24-35-1"
   },
   {
    "tier": "ALL",
-   "rows": 127,
-   "settled": 111,
+   "rows": 144,
+   "settled": 127,
    "stale": 16,
-   "graded_fresh": 94,
-   "mean_clv": -0.0173,
-   "beat_close_pct": 25.5,
-   "ats": "47-60-3"
+   "graded_fresh": 110,
+   "mean_clv": -0.019,
+   "beat_close_pct": 23.6,
+   "ats": "52-71-3"
   }
  ],
  "by_source_caller": [
   {
    "source": "model",
    "caller": "engine",
-   "n": 127,
-   "settled": 111,
-   "graded": 94,
-   "mean_clv": -0.0173,
-   "beat_close_pct": 25.5,
-   "wlp": "47-60-3"
+   "n": 144,
+   "settled": 127,
+   "graded": 110,
+   "mean_clv": -0.019,
+   "beat_close_pct": 23.6,
+   "wlp": "52-71-3"
   },
   {
    "source": "gut",
